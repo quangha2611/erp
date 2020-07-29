@@ -1,0 +1,970 @@
+@extends('Layout.master')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('asset/css/customer/style.css') }}" type="text/css">
+@endsection
+
+@section('title','ERP-Danh sách khách hàng của tôi')
+
+@section('content-page')
+    <div class="col-md-10 content-wrapper">
+        <ul class="breadcrumb">
+            <li><a href="https://erp.nhanh.vn/"><i class="fa fa-home"></i></a></li>
+            <li><a href="https://erp.nhanh.vn/crm/customer/mycustomer">Khách hàng của tôi</a></li>
+        </ul>
+        <div class="advance-form-filter">
+            <form method="GET" name="customerIndexFilter" id="customerIndexFilter">
+                <div>
+                    <div class="form-group collapse-toggle">
+                        <a class="btn btn-default  btn-toggle-filter" data-toggle="collapse"
+                            href="https://erp.nhanh.vn/crm/customer/indexvg#collapseFilter">
+                            Bộ lọc nâng cao <i class="fa fa-angle-down"></i>
+                        </a>
+                    </div>
+                    <div class="form-group pull-right">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>
+                            Tìm kiếm</button>
+                    </div>
+                    <div class="col-md-6 pull-right form-group"><input type="text" name="keyword"
+                            placeholder="Thông tin khách hàng" id="keyword"
+                            class="form-control form-control" value=""></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 collapseFilter collapse in" id="collapseFilter" style="">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group col-md-3"><input type="text" name="id"
+                                    maxlength="15" placeholder="ID Thông tin" id="id"
+                                    class="form-control form-control" value=""></div>
+                            <div class="form-group col-md-3"><select name="contractStatus"
+                                    id="contractStatus" class="form-control form-control">
+                                    <option value="">- Trạng thái hợp đồng-</option>
+                                    <option value="1">Có hợp đồng</option>
+                                    <option value="2">Không có hợp đồng</option>
+                                    <option value="3">tất cả</option>
+                                </select></div>
+                            <div class="form-group col-md-3"><input type="text" name="accountId"
+                                    maxlength="15" placeholder="ID khách hàng" id="accountId"
+                                    class="form-control form-control" value=""></div><input
+                                type="hidden" name="userId" id="userId" value="">
+                            <div class="form-group col-md-3"><input type="text" name="userIdSuggest"
+                                    class="erp-form-userIdSuggest form-control form-control ui-autocomplete-input"
+                                    data-lookup="userId" placeholder="Người phụ trách"
+                                    id="userIdSuggest" value="" autocomplete="off"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary"><i
+                                        class="fa fa-search"></i> Tìm kiếm</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 dgButtons">
+                </div>
+                <div class="col-md-6 paginatorItem">
+                    <div class="paginator"><span class="labelPages">1 - 5 / 5</span></div>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+            </div>
+            <ul class="media-list" id="dgCustomer">
+                <li class="">
+                    <div>
+                        <h4 class="media-heading pull-left row">
+                            <a href="https://erp.nhanh.vn/crm/account/view?id=21810"
+                                class="customerName customer_405449"><i class="fa fa-building"></i>
+                                CÔNG TY TNHH AUCO <i class="fa fa-external-link"
+                                    style="font-size: 12px;"></i></a>
+                        </h4>
+                        <div class="col-md-2 pull-right">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle btn btn-pure btn-sm" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="true">
+                                    Thao tác
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="https://erp.nhanh.vn/crm/account/edit2?id=21810"><i
+                                                class="fa fa-edit"></i> Sửa</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addphonecall?accountId=21810"><i
+                                                class="fa fa-phone"></i> Thêm cuộc gọi</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addmeeting?accountId=21810"><i
+                                                class="fa fa-map-marker"></i> Thêm cuộc gặp</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addcalendar?accountId=21810"><i
+                                                class="fa fa-calendar"></i> Thêm lịch hẹn</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?accountId=21810"><i
+                                                class="fa fa-phone-square"></i> Thêm yêu cầu gọi</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/contract/add?accountId=21810"><i
+                                                class="fa fa-book"></i> Thêm hợp đồng</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="pickup" data-namerefer="customer_405449"
+                                            data-leadid="405449" data-accountid="21810"><i
+                                                class="fa fa-heart"></i> Nhận chăm sóc</a></li>
+                                    <li><a class="assign" data-namerefer="customer_405449"
+                                            data-leadid="405449" data-accountid="21810"><i
+                                                class="fa fa-hand-o-right"></i> Bàn giao</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?accountId=21810&amp;surveyId=1"><i
+                                                class="fa fa-question"></i> Khảo sát trước gặp</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?accountId=21810&amp;surveyId=2"><i
+                                                class="fa fa-question"></i> Khảo sát sau gặp</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-file-text"
+                            data-original-title="Ngành hàng của khách" data-toggle="tooltip"
+                            data-placement="top"></i> <span
+                            class="label label-success industries-item">Hoạt động kinh doanh khác
+                        </span></div>
+                    <div style="line-height: 25px;"><i class="fa fa-phone-square"></i> 0936717001
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-map-marker"
+                            style="padding: 0 2px;"></i> 96 Cao Thắng, Phường 4, Quận 3, Thành phố
+                        Hồ Chí Minh</div>
+                    <div style="line-height: 25px;padding-bottom:5px;"><i class="fa fa fa-book"
+                            style="padding-right:4px;" data-original-title="Trạng thái"
+                            data-toggle="tooltip"></i>
+                        <lable class="label label-success">Khách hàng</lable>
+                    </div>
+                    <div class="well margin-top-10 collapse in" id="customer_lead_405449" style="">
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang được chăm sóc tại</h4>
+                            </div>
+                            <div>
+                                <div>
+                                    <p>123job.vn (2 người)</p>
+                                    <div class="col-md-12">
+                                        <p class="text-muted"><span class="employeeName">9791 - Đỗ
+                                                Thị Thanh Nhàn</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_405449"
+                                                data-leadid="405449" data-accountid="21810"
+                                                data-userid="8627"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                        <p class="text-muted"><span class="employeeName">6749 -
+                                                Nguyễn Văn Hưng</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_405449"
+                                                data-leadid="405449" data-accountid="21810"
+                                                data-userid="5374"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang sử dụng sản phẩm</h4>
+                            </div>
+                            <div>
+                                <p>123job - Gói mở hồ sơ ứng viên</p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <!-- Lịch sử chắm sóc -->
+                        <div class="col-md-12 row">
+                            <h4>Lịch sử chăm sóc - <small class="text-muted">Lần chăm sóc gần nhất
+                                    là 2 tuần trước (10:46 09/07)</small></h4>
+
+                            <ul class="media-list">
+
+                                <li class="media">
+                                    <a href="https://erp.nhanh.vn/crm/lead/view?id=405449&amp;tab=activities"
+                                        class="center-block text-muted">Xem tổng cộng 0 hành
+                                        động.</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <!-- Kết thúc lịch sử -->
+
+                        <div class="clearfix"></div>
+                        <br>
+                    </div>
+                    <div class="col-md-12 row">
+                        <a class="text-danger" data-toggle="collapse"
+                            href="https://erp.nhanh.vn/crm/customer/indexvg#customer_lead_405449">Xem
+                            tóm tắt <i class="fa  fa-angle-down"></i></a>&nbsp;&nbsp;&nbsp;<a
+                            class="text-muted"
+                            href="https://erp.nhanh.vn/crm/account/view?id=21810">Xem chi tiết <i
+                                class="fa fa-external-link"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </li>
+                <li class="">
+                    <div>
+                        <h4 class="media-heading pull-left row">
+                            <a href="https://erp.nhanh.vn/crm/lead/view?id=405964"
+                                class="customerName customer_405964"><i class="fa fa-building"></i>
+                                Công ty cổ phần Vnp Group <i class="fa fa-external-link"
+                                    style="font-size: 12px;"></i></a>
+                        </h4>
+                        <div class="col-md-2 pull-right">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle btn btn-pure btn-sm" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="true">
+                                    Thao tác
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="https://erp.nhanh.vn/crm/lead/edit?id=405964"><i
+                                                class="fa fa-edit"></i> Sửa</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addphonecall?leadId=405964"><i
+                                                class="fa fa-phone"></i> Thêm cuộc gọi</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addmeeting?leadId=405964"><i
+                                                class="fa fa-map-marker"></i> Thêm cuộc gặp</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addcalendar?leadId=405964"><i
+                                                class="fa fa-calendar"></i> Thêm lịch hẹn</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?leadId=405964"><i
+                                                class="fa fa-phone-square"></i> Thêm yêu cầu gọi</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/contract/add?leadId=405964"><i
+                                                class="fa fa-book"></i> Thêm hợp đồng</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="pickup" data-namerefer="customer_405964"
+                                            data-leadid="405964" data-accountid=""><i
+                                                class="fa fa-heart"></i> Nhận chăm sóc</a></li>
+                                    <li><a class="assign" data-namerefer="customer_405964"
+                                            data-leadid="405964" data-accountid=""><i
+                                                class="fa fa-hand-o-right"></i> Bàn giao</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?leadId=405964&amp;surveyId=1"><i
+                                                class="fa fa-question"></i> Khảo sát trước gặp</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?leadId=405964&amp;surveyId=2"><i
+                                                class="fa fa-question"></i> Khảo sát sau gặp</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-file-text"
+                            data-original-title="Ngành hàng của khách" data-toggle="tooltip"
+                            data-placement="top"></i> <span
+                            class="label label-success industries-item">Thời trang, phụ kiện </span>
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-phone-square"></i> 0333383632
+                    </div>
+                    <div><i class="fa fa-envelope"></i> hungnv@vatgia.com</div>
+                    <div style="line-height: 25px;"><i class="fa fa-map-marker"
+                            style="padding: 0 2px;"></i> Đống đa, Hà Nội</div>
+                    <div style="line-height: 25px;padding-bottom:5px;"><i class="fa fa fa-book"
+                            style="padding-right:4px;" data-original-title="Trạng thái"
+                            data-toggle="tooltip"></i>
+                        <lable class="label label-info">Thông tin</lable>
+                    </div>
+                    <div class="collapse well margin-top-10" id="customer_lead_405964">
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang được chăm sóc tại</h4>
+                            </div>
+                            <div>
+                                <div>
+                                    <p>123job.vn (2 người)</p>
+                                    <div class="col-md-12">
+                                        <p class="text-muted"><span class="employeeName">6749 -
+                                                Nguyễn Văn Hưng</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_405964"
+                                                data-leadid="405964" data-accountid=""
+                                                data-userid="5374"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                        <p class="text-muted"><span class="employeeName">6749 -
+                                                Nguyễn Văn Hưng</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_405964"
+                                                data-leadid="405964" data-accountid=""
+                                                data-userid="5374"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                        <p class="text-muted"><span class="employeeName">9791 - Đỗ
+                                                Thị Thanh Nhàn</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_405964"
+                                                data-leadid="405964" data-accountid=""
+                                                data-userid="8627"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                        <p class="text-muted"><span class="employeeName">6749 -
+                                                Nguyễn Văn Hưng</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_405964"
+                                                data-leadid="405964" data-accountid=""
+                                                data-userid="5374"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang sử dụng sản phẩm</h4>
+                            </div>
+                            <p class="text-warning"><i class="fa  fa-exclamation-triangle"></i> Chưa
+                                sử dụng sản phẩm nào</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <!-- Lịch sử chắm sóc -->
+                        <div class="col-md-12 row">
+                            <h4>Lịch sử chăm sóc - <small class="text-muted">Lần chăm sóc gần nhất
+                                    là 2 tuần trước (21:32 10/07)</small></h4>
+
+                            <ul class="media-list">
+
+                                <li class="media">
+                                    <a href="https://erp.nhanh.vn/crm/lead/view?id=405964&amp;tab=activities"
+                                        class="center-block text-muted">Xem tổng cộng 0 hành
+                                        động.</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <!-- Kết thúc lịch sử -->
+
+                        <div class="clearfix"></div>
+                        <br>
+                    </div>
+                    <div class="col-md-12 row">
+                        <a class="text-danger" data-toggle="collapse"
+                            href="https://erp.nhanh.vn/crm/customer/indexvg#customer_lead_405964">Xem
+                            tóm tắt <i class="fa  fa-angle-down"></i></a>&nbsp;&nbsp;&nbsp;<a
+                            class="text-muted"
+                            href="https://erp.nhanh.vn/crm/lead/view?id=405964">Xem chi tiết <i
+                                class="fa fa-external-link"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </li>
+                <li class="">
+                    <div>
+                        <h4 class="media-heading pull-left row">
+                            <a href="https://erp.nhanh.vn/crm/lead/view?id=406392"
+                                class="customerName customer_406392"><i class="fa fa-user"></i>
+                                Nguyễn Thị Hoa <i class="fa fa-external-link"
+                                    style="font-size: 12px;"></i></a>
+                        </h4>
+                        <div class="col-md-2 pull-right">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle btn btn-pure btn-sm" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="true">
+                                    Thao tác
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="https://erp.nhanh.vn/crm/lead/edit?id=406392"><i
+                                                class="fa fa-edit"></i> Sửa</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addphonecall?leadId=406392"><i
+                                                class="fa fa-phone"></i> Thêm cuộc gọi</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addmeeting?leadId=406392"><i
+                                                class="fa fa-map-marker"></i> Thêm cuộc gặp</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addcalendar?leadId=406392"><i
+                                                class="fa fa-calendar"></i> Thêm lịch hẹn</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?leadId=406392"><i
+                                                class="fa fa-phone-square"></i> Thêm yêu cầu gọi</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/contract/add?leadId=406392"><i
+                                                class="fa fa-book"></i> Thêm hợp đồng</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="pickup" data-namerefer="customer_406392"
+                                            data-leadid="406392" data-accountid=""><i
+                                                class="fa fa-heart"></i> Nhận chăm sóc</a></li>
+                                    <li><a class="assign" data-namerefer="customer_406392"
+                                            data-leadid="406392" data-accountid=""><i
+                                                class="fa fa-hand-o-right"></i> Bàn giao</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?leadId=406392&amp;surveyId=1"><i
+                                                class="fa fa-question"></i> Khảo sát trước gặp</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?leadId=406392&amp;surveyId=2"><i
+                                                class="fa fa-question"></i> Khảo sát sau gặp</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-file-text"
+                            data-original-title="Ngành hàng của khách" data-toggle="tooltip"
+                            data-placement="top"></i> <span
+                            class="label label-success industries-item">Hoạt động kinh doanh khác
+                        </span></div>
+                    <div style="line-height: 25px;"><i class="fa fa-phone-square"></i> 0987352141
+                    </div>
+                    <div style="line-height: 25px;padding-bottom:5px;"><i class="fa fa fa-book"
+                            style="padding-right:4px;" data-original-title="Trạng thái"
+                            data-toggle="tooltip"></i>
+                        <lable class="label label-info">Thông tin</lable>
+                    </div>
+                    <div class="collapse well margin-top-10" id="customer_lead_406392">
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang được chăm sóc tại</h4>
+                            </div>
+                            <div>
+                                <div>
+                                    <p>123job.vn (2 người)</p>
+                                    <div class="col-md-12">
+                                        <p class="text-muted"><span class="employeeName">9791 - Đỗ
+                                                Thị Thanh Nhàn</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_406392"
+                                                data-leadid="406392" data-accountid=""
+                                                data-userid="8627"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                        <p class="text-muted"><span class="employeeName">6749 -
+                                                Nguyễn Văn Hưng</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_406392"
+                                                data-leadid="406392" data-accountid=""
+                                                data-userid="5374"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang sử dụng sản phẩm</h4>
+                            </div>
+                            <p class="text-warning"><i class="fa  fa-exclamation-triangle"></i> Chưa
+                                sử dụng sản phẩm nào</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <!-- Lịch sử chắm sóc -->
+                        <div class="col-md-12 row">
+                            <h4>Lịch sử chăm sóc - <small class="text-muted">Lần chăm sóc gần nhất
+                                    là 1 tuần trước (10:19 14/07)</small></h4>
+
+                            <ul class="media-list">
+
+                                <li class="media">
+                                    <a href="https://erp.nhanh.vn/crm/lead/view?id=406392&amp;tab=activities"
+                                        class="center-block text-muted">Xem tổng cộng 0 hành
+                                        động.</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <!-- Kết thúc lịch sử -->
+
+                        <div class="clearfix"></div>
+                        <br>
+                    </div>
+                    <div class="col-md-12 row">
+                        <a class="text-danger" data-toggle="collapse"
+                            href="https://erp.nhanh.vn/crm/customer/indexvg#customer_lead_406392">Xem
+                            tóm tắt <i class="fa  fa-angle-down"></i></a>&nbsp;&nbsp;&nbsp;<a
+                            class="text-muted"
+                            href="https://erp.nhanh.vn/crm/lead/view?id=406392">Xem chi tiết <i
+                                class="fa fa-external-link"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </li>
+                <li class="">
+                    <div>
+                        <h4 class="media-heading pull-left row">
+                            <a href="https://erp.nhanh.vn/crm/lead/view?id=406317"
+                                class="customerName customer_406317"><i class="fa fa-building"></i>
+                                Công ty cổ phần Vnp Group <i class="fa fa-external-link"
+                                    style="font-size: 12px;"></i></a>
+                        </h4>
+                        <div class="col-md-2 pull-right">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle btn btn-pure btn-sm" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="true">
+                                    Thao tác
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="https://erp.nhanh.vn/crm/lead/edit?id=406317"><i
+                                                class="fa fa-edit"></i> Sửa</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addphonecall?leadId=406317"><i
+                                                class="fa fa-phone"></i> Thêm cuộc gọi</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addmeeting?leadId=406317"><i
+                                                class="fa fa-map-marker"></i> Thêm cuộc gặp</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addcalendar?leadId=406317"><i
+                                                class="fa fa-calendar"></i> Thêm lịch hẹn</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?leadId=406317"><i
+                                                class="fa fa-phone-square"></i> Thêm yêu cầu gọi</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/contract/add?leadId=406317"><i
+                                                class="fa fa-book"></i> Thêm hợp đồng</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="pickup" data-namerefer="customer_406317"
+                                            data-leadid="406317" data-accountid=""><i
+                                                class="fa fa-heart"></i> Nhận chăm sóc</a></li>
+                                    <li><a class="assign" data-namerefer="customer_406317"
+                                            data-leadid="406317" data-accountid=""><i
+                                                class="fa fa-hand-o-right"></i> Bàn giao</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?leadId=406317&amp;surveyId=1"><i
+                                                class="fa fa-question"></i> Khảo sát trước gặp</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?leadId=406317&amp;surveyId=2"><i
+                                                class="fa fa-question"></i> Khảo sát sau gặp</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-file-text"
+                            data-original-title="Ngành hàng của khách" data-toggle="tooltip"
+                            data-placement="top"></i> <span
+                            class="label label-success industries-item">Điện tử, Điện máy </span>
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-phone-square"></i> 0333383633
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-map-marker"
+                            style="padding: 0 2px;"></i> Hà Nội, Việt Nam</div>
+                    <div style="line-height: 25px;padding-bottom:5px;"><i class="fa fa fa-book"
+                            style="padding-right:4px;" data-original-title="Trạng thái"
+                            data-toggle="tooltip"></i>
+                        <lable class="label label-info">Thông tin</lable>
+                    </div>
+                    <div class="collapse well margin-top-10" id="customer_lead_406317">
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang được chăm sóc tại</h4>
+                            </div>
+                            <div>
+                                <div>
+                                    <p>123job.vn (2 người)</p>
+                                    <div class="col-md-12">
+                                        <p class="text-muted"><span class="employeeName">6749 -
+                                                Nguyễn Văn Hưng</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_406317"
+                                                data-leadid="406317" data-accountid=""
+                                                data-userid="5374"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                        <p class="text-muted"><span class="employeeName">8099 - Ứng
+                                                Đình Hướng</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_406317"
+                                                data-leadid="406317" data-accountid=""
+                                                data-userid="6792"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang sử dụng sản phẩm</h4>
+                            </div>
+                            <p class="text-warning"><i class="fa  fa-exclamation-triangle"></i> Chưa
+                                sử dụng sản phẩm nào</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <!-- Lịch sử chắm sóc -->
+                        <div class="col-md-12 row">
+                            <h4>Lịch sử chăm sóc - <small class="text-muted">Lần chăm sóc gần nhất
+                                    là 1 tuần trước (22:32 13/07)</small></h4>
+
+                            <ul class="media-list">
+
+                                <li class="media">
+                                    <a href="https://erp.nhanh.vn/crm/lead/view?id=406317&amp;tab=activities"
+                                        class="center-block text-muted">Xem tổng cộng 0 hành
+                                        động.</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <!-- Kết thúc lịch sử -->
+
+                        <div class="clearfix"></div>
+                        <br>
+                    </div>
+                    <div class="col-md-12 row">
+                        <a class="text-danger" data-toggle="collapse"
+                            href="https://erp.nhanh.vn/crm/customer/indexvg#customer_lead_406317">Xem
+                            tóm tắt <i class="fa  fa-angle-down"></i></a>&nbsp;&nbsp;&nbsp;<a
+                            class="text-muted"
+                            href="https://erp.nhanh.vn/crm/lead/view?id=406317">Xem chi tiết <i
+                                class="fa fa-external-link"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </li>
+                <li class="">
+                    <div>
+                        <h4 class="media-heading pull-left row">
+                            <a href="https://erp.nhanh.vn/crm/lead/view?id=405963"
+                                class="customerName customer_405963"><i class="fa fa-building"></i>
+                                Công ty cổ phần Vnp Group <i class="fa fa-external-link"
+                                    style="font-size: 12px;"></i></a>
+                        </h4>
+                        <div class="col-md-2 pull-right">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle btn btn-pure btn-sm" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="true">
+                                    Thao tác
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="https://erp.nhanh.vn/crm/lead/edit?id=405963"><i
+                                                class="fa fa-edit"></i> Sửa</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addphonecall?leadId=405963"><i
+                                                class="fa fa-phone"></i> Thêm cuộc gọi</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addmeeting?leadId=405963"><i
+                                                class="fa fa-map-marker"></i> Thêm cuộc gặp</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addcalendar?leadId=405963"><i
+                                                class="fa fa-calendar"></i> Thêm lịch hẹn</a></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?leadId=405963"><i
+                                                class="fa fa-phone-square"></i> Thêm yêu cầu gọi</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/contract/add?leadId=405963"><i
+                                                class="fa fa-book"></i> Thêm hợp đồng</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a class="pickup" data-namerefer="customer_405963"
+                                            data-leadid="405963" data-accountid=""><i
+                                                class="fa fa-heart"></i> Nhận chăm sóc</a></li>
+                                    <li><a class="assign" data-namerefer="customer_405963"
+                                            data-leadid="405963" data-accountid=""><i
+                                                class="fa fa-hand-o-right"></i> Bàn giao</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?leadId=405963&amp;surveyId=1"><i
+                                                class="fa fa-question"></i> Khảo sát trước gặp</a>
+                                    </li>
+                                    <li><a
+                                            href="https://erp.nhanh.vn/crm/activity/answersurvey?leadId=405963&amp;surveyId=2"><i
+                                                class="fa fa-question"></i> Khảo sát sau gặp</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div style="line-height: 25px;"><i class="fa fa-file-text"
+                            data-original-title="Ngành hàng của khách" data-toggle="tooltip"
+                            data-placement="top"></i> <span
+                            class="label label-success industries-item">Dịch vụ, giải trí, du lịch
+                        </span></div>
+                    <div style="line-height: 25px;"><i class="fa fa-phone-square"></i> 0333383630
+                    </div>
+                    <div><i class="fa fa-envelope"></i> hungitc.hubt@gmail.com</div>
+                    <div style="line-height: 25px;"><i class="fa fa-map-marker"
+                            style="padding: 0 2px;"></i> Hà Nội, Việt Nam</div>
+                    <div style="line-height: 25px;padding-bottom:5px;"><i class="fa fa fa-book"
+                            style="padding-right:4px;" data-original-title="Trạng thái"
+                            data-toggle="tooltip"></i>
+                        <lable class="label label-info">Thông tin</lable>
+                    </div>
+                    <div class="collapse well margin-top-10" id="customer_lead_405963">
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang được chăm sóc tại</h4>
+                            </div>
+                            <div>
+                                <div>
+                                    <p>123job.vn (1 người)</p>
+                                    <div class="col-md-12">
+                                        <p class="text-muted"><span class="employeeName">6749 -
+                                                Nguyễn Văn Hưng</span> <a
+                                                class="discard fa fa-times text-danger"
+                                                data-namerefer="customer_405963"
+                                                data-leadid="405963" data-accountid=""
+                                                data-userid="5374"
+                                                title="Bỏ quyền chăm sóc của người dùng với khách hàng này"></a>
+                                        </p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <div>
+                                <h4>Đang sử dụng sản phẩm</h4>
+                            </div>
+                            <p class="text-warning"><i class="fa  fa-exclamation-triangle"></i> Chưa
+                                sử dụng sản phẩm nào</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <!-- Lịch sử chắm sóc -->
+                        <div class="col-md-12 row">
+                            <h4>Lịch sử chăm sóc - <small class="text-muted">Lần chăm sóc gần nhất
+                                    là 2 tuần trước (21:16 10/07)</small></h4>
+
+                            <ul class="media-list">
+
+                                <li class="media">
+                                    <a href="https://erp.nhanh.vn/crm/lead/view?id=405963&amp;tab=activities"
+                                        class="center-block text-muted">Xem tổng cộng 0 hành
+                                        động.</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <!-- Kết thúc lịch sử -->
+
+                        <div class="clearfix"></div>
+                        <br>
+                    </div>
+                    <div class="col-md-12 row">
+                        <a class="text-danger" data-toggle="collapse"
+                            href="https://erp.nhanh.vn/crm/customer/indexvg#customer_lead_405963">Xem
+                            tóm tắt <i class="fa  fa-angle-down"></i></a>&nbsp;&nbsp;&nbsp;<a
+                            class="text-muted"
+                            href="https://erp.nhanh.vn/crm/lead/view?id=405963">Xem chi tiết <i
+                                class="fa fa-external-link"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                </li>
+            </ul>
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmPickupModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Nhận chăm sóc</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info">
+                            <p>Bạn muốn nhận chăm sóc khách hàng <i class="customerName"></i> ?</p>
+                        </div>
+                        <input type="hidden" class="referId" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-save">Có</button>
+                        <button type="button" class="btn btn-default"
+                            data-dismiss="modal">Không</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="errorModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Lỗi</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                            data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="successModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="alert alert-success">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                            data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmAssignModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Nhận chăm sóc</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info">
+                            <div class="form-group">Khách hàng <i class="customerName"></i></div>
+                            <div class="form-group">
+                                <label class="form-label pull-left">Bàn giao cho: </label>
+                                <div class="col-md-8">
+                                    <input type="text"
+                                        class="form-control userName ui-autocomplete-input"
+                                        placeholder="Nhân viên" autocomplete="off">
+                                    <div class="user-area">
+
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+                        <input type="hidden" class="referId" value="">
+                        <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content"
+                            id="ui-id-2" tabindex="0" style="display: none;"></ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-save">Có</button>
+                        <button type="button" class="btn btn-default"
+                            data-dismiss="modal">Không</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="confirmDiscardModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Gỡ chăm sóc</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info">
+                            <p>Bạn muốn hủy quyền chăm sóc khách hàng <b class="customerName"></b>
+                                của nhân viên <b class="employeeName"></b></p>
+                        </div>
+                        <input type="hidden" class="userId" value="">
+                        <input type="hidden" class="leadId" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-save">Có</button>
+                        <button type="button" class="btn btn-default"
+                            data-dismiss="modal">Không</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var pageVariable = {
+                'messages': {
+                    'SERVER_ERROR': 'Có lỗi trong quá trình thực hiện',
+                    'PICKUP_SUCCESS': 'Bạn đã nhận chăm sóc khách hàng thành công.',
+                    'ASSIGN_SUCCESS': 'Bạn đã bàn giao khách hàng thành công.',
+                    'DISCARD_SUCCESS': 'Bạn đã bỏ chắm sóc thành công.',
+                    'NO_USER_SELECT': 'Bạn chưa chọn người bàn giao',
+                    'PAGE_DENIED': 'Bạn không có quyền thực hiện tác vụ này',
+
+                }
+            };
+        </script>
+        <style>
+            .margin-top-10 {
+                margin-top: 10px;
+            }
+
+            .industries-item {
+                background: #296eaa !important;
+                padding: 3px;
+                margin-right: 2px;
+            }
+        </style>
+    </div>
+@endsection
+
+@section('js')
+
+    <script type="text/javascript">
+        var usrCnf = {
+            language: 'vi'
+        };
+    </script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/saved_resource') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/firebase-app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/firebase-messaging.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/firebase-firestore.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/firebase-auth.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/getfirebaseconfig') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/notification.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/notification.reducer.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        CKEDITOR.env.isCompatible = true;
+    </script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/saved_resource(1)') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/customer/saved_resource(2)') }}"></script>
+
+@endsection
