@@ -3,7 +3,7 @@
 @section('title','ERP-Danh sách khách hàng')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('asset/css/customer/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/css/account/style.css') }}" type="text/css">
 @endsection
 
 @section('content-page')
@@ -608,15 +608,15 @@
             language: 'vi'
         };
     </script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/saved_resource') }}"></script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/firebase-app.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/firebase-messaging.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/firebase-firestore.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/firebase-auth.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/getfirebaseconfig') }}"></script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/notification.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/notification.reducer.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/asset/js/customer/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/saved_resource') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/firebase-app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/firebase-messaging.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/firebase-firestore.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/firebase-auth.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/getfirebaseconfig') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/notification.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/notification.reducer.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/asset/js/account/ckeditor.js') }}"></script>
     <script type="text/javascript">
         CKEDITOR.env.isCompatible = true;
     </script>

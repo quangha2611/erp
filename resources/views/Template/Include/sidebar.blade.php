@@ -36,21 +36,21 @@
                                     class="fa fa-info"></i> <span class="text">Thông tin</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/customer/index"><i
+                                <li class=""><a class="" href="{{ route('customerIndex') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách chung
                                             (Nhanh)</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/opportunity/index"><i
+                                        href="{{ route('infomationOpportunityIndex') }}"><i
                                             class="fa fa-refresh"></i> <span class="text">Trạng thái thông
                                             tin</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/activity/listcall"><i
+                                        href="{{ route('activityListcall') }}"><i
                                             class="fa fa-headphones"></i> <span class="text">Danh sách yêu
                                             cầu gọi</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/lead/search"><i
+                                <li class=""><a class="" href="{{ route('leadSearch') }}"><i
                                             class="fa fa-check"></i> <span class="text">Kiểm tra thông tin
                                             tồn tại</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/lead/add"><i
+                                <li class=""><a class="" href="{{ route('leadAdd') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Nhập thông
                                             tin</span></a></li>
                             </ul>
@@ -59,7 +59,7 @@
                                     class="fa fa-users"></i> <span class="text">Khách hàng</span> <i
                                     class="toggle-icon fa fa-angle-right"></i></a>
                             <ul class="sub-menu">
-                                <li class=""><a class="" href="{{ route('customerIndex') }}">
+                                <li class=""><a class="" href="{{ route('accountIndex') }}">
                                     <i class="fa fa-list"> </i> 
                                     <span class="text">Danh sách KH (Nhanh)</span></a>
                                 </li>
@@ -71,7 +71,7 @@
                                     <i class="fa fa-list"></i> 
                                     <span class="text">Khách hàng đang thả nổi</span></a>
                                 </li>
-                                <li class=""><a class="" href="{{ route('customerStatus') }}">
+                                <li class=""><a class="" href="{{ route('accountStatus') }}">
                                     <i class="fa fa-list"></i> 
                                     <span class="text">Trạng thái khách hàng</span></a>
                                 </li>
@@ -81,18 +81,18 @@
                                     class="fa fa-home"></i> <span class="text">Gian hàng</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/service/index"><i
+                                <li class=""><a class="" href="{{ route('serviceIndex') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách Gian
                                             hàng</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/service/expried"><i
+                                <li class=""><a class="" href="{{ route('serviceExpried') }}"><i
                                             class="fa fa-list"></i> <span class="text">Gian hàng sắp hết
                                             hạn</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/service/exprieddate"><i
+                                        href="{{ route('serviceExpriedDate') }}"><i
                                             class="fa fa-list"></i> <span class="text">Gian hàng hết
                                             hạn</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/service/indexuser"><i
+                                        href="{{ route('serviceIndexuser') }}"><i
                                             class="fa fa-user"></i> <span class="text">Gian hàng bạn chăm
                                             sóc</span></a></li>
                             </ul>
@@ -101,14 +101,14 @@
                                     class="fa fa-gavel"></i> <span class="text">Đấu giá</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/auction/join"><i
+                                <li class=""><a class="" href="{{ route('auctionJoin') }}"><i
                                             class="fa fa-users"></i> <span class="text">Tham gia đấu
                                             giá</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/auction/indexuser"><i
+                                        href="{{ route('auctionIndexuser') }}"><i
                                             class="fa fa-user"></i> <span class="text">Phiên đấu giá bạn
                                             tham gia</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/auction/add"><i
+                                <li class=""><a class="" href="{{ route('auctionAdd') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Thêm phiên đấu
                                             giá</span></a></li>
                             </ul>
@@ -117,7 +117,7 @@
                                     class="fa fa-search"></i> <span class="text">Từ khóa</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/keyword/index"><i
+                                <li class=""><a class="" href="{{ route('keywordIndex') }}""><i
                                             class="fa fa-list"></i> <span class="text">Danh sách từ
                                             khóa</span></a></li>
                             </ul>
