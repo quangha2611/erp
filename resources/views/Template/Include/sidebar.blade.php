@@ -40,7 +40,7 @@
                                             class="fa fa-list"></i> <span class="text">Danh sách chung
                                             (Nhanh)</span></a></li>
                                 <li class=""><a class=""
-                                        href="{{ route('infomationOpportunityIndex') }}"><i
+                                        href="{{ route('opportunityIndex') }}"><i
                                             class="fa fa-refresh"></i> <span class="text">Trạng thái thông
                                             tin</span></a></li>
                                 <li class=""><a class=""
@@ -126,10 +126,10 @@
                                     class="fa fa-user"></i> <span class="text">Liên hệ</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/contact/index"><i
+                                <li class=""><a class="" href="{{ route('contactIndex') }}"><i
                                             class="fa fa-list "></i> <span class="text">Danh sách liên
                                             hệ</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/contact/add"><i
+                                <li class=""><a class="" href="{{ route('contactAdd') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Thêm liên
                                             hệ</span></a></li>
                             </ul>
@@ -154,39 +154,45 @@
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/requirement/index"><i
+                                        href="{{ route('requirementIndex') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách yêu cầu
                                             Task</span></a></li>
+                                <li><a class="" href="https://erp.nhanh.vn/crm/report/requirementemployee"><i
+                                            class="fa fa-bar-chart-o"></i> <span class="text">Yêu cầu task nhân viên</span> </a>
+                                </li>
+                                <li><a class="" href="https://erp.nhanh.vn/crm/report/requirementcustomer"><i
+                                            class="fa fa-bar-chart-o"></i> <span class="text">Yêu cầu task khách hàng</span> </a>
+                                </li>
                             </ul>
                         </li>
                         <li class=""><a class="js-sub-menu-toggle" rel="/crm/contract/index"><i
                                     class="fa fa-book"></i> <span class="text">Hợp đồng</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/contract/index"><i
+                                <li class=""><a class="" href="{{ route('contractIndex') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách hợp
                                             đồng</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/contract/transaction"><i
+                                        href="{{ route('contractTransaction') }}"><i
                                             class="fa fa-money"></i> <span class="text">Danh sách thanh
                                             toán</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/contract/add"><i
+                                <li class=""><a class="" href="{{ route('contractAdd') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Thêm hợp
                                             đồng</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/contract/scheduce"><i
+                                    href="{{ route('contractScheduce') }}"><i
                                             class="fa fa-calendar"></i> <span class="text">Lịch hẹn thanh
                                             toán</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/customer/productexpired"><i
+                                        href="{{ route('customerProductexpried') }}"><i
                                             class="fa fa-clock-o"></i> <span class="text">Các hợp đồng hết
                                             hạn</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/contract/template"><i
+                                        href="{{ route('contractTemplate') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách mẫu
                                             in</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/contract/addtemplate"><i
+                                        href="{{ route('contractAddTemplate') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Thêm mẫu
                                             in</span></a></li>
                             </ul>
@@ -195,11 +201,11 @@
                                     class="fa fa-bullseye"></i> <span class="text">Chỉ tiêu</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/target/index"><i
+                                <li class=""><a class="" href="{{ route('targetIndex') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách chỉ
                                             tiêu</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/target/registtarget"><i
+                                        href="{{ route('targetRegisttarget') }}"><i
                                             class="fa fa-bullseye"></i> <span class="text">Đăng kí chỉ
                                             tiêu</span></a></li>
                             </ul>
@@ -233,10 +239,10 @@
                                             class="fa fa-bar-chart-o"></i> <span class="text">Khảo sát kinh
                                             doanh</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/report/vgnewcustomer"><i
+                                        href="{{ route('reportVgnewcustomer') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Hợp đồng mới
                                             (VG)</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/report/index"><i
+                                <li class=""><a class="" href="{{ route('reportIndex') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Chăm
                                             sóc</span></a></li>
                                 <li class=""><a class=""
@@ -248,7 +254,7 @@
                                             class="fa fa-bar-chart-o"></i> <span class="text">Chăm sóc khách
                                             hàng VG</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/report/accounttoemployee"><i
+                                        href="{{ route('reportAccounttoemployee') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Trạng thái
                                             khách theo nhân viên</span></a></li>
                             </ul>

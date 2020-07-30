@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-
+// ============================================
 Route::prefix('customer')->group(function () {
     Route::get('indexvg', function() {
         return view('Layout.Customer.indexvg');
@@ -32,6 +32,13 @@ Route::prefix('customer')->group(function () {
         return view('Layout.Customer.freelistvg');
     })->name('customerFreelistvg');
 
+    Route::get('productexpried', function() {
+        return view('Layout.Customer.productexpried');
+    })->name('customerProductexpried');
+
+    Route::get('productexpried30', function() {
+        return view('Layout.Customer.productexpried30');
+    })->name('customerProductexpried30');
 
     // Danh sach chung
     Route::get('index', function () {
@@ -71,7 +78,7 @@ Route::prefix('customer')->group(function () {
     })->name('customerIndexL7A');
 });
 
-
+// ============================================
 Route::prefix('calendar')->group(function () {
     Route::get('index', function () {
         return view('Layout.Calendar.index');
@@ -86,7 +93,7 @@ Route::prefix('calendar')->group(function () {
     })->name('calendarPersonalview');
 });
 
-
+// ============================================
 Route::prefix('activity')->group(function () {
     Route::get('index', function () {
         return view('Layout.Activity.index');
@@ -114,16 +121,15 @@ Route::prefix('activity')->group(function () {
     })->name('activityEdit');
 });
 
-
-Route::prefix('infomation')->group(function () {
-    //Trang thai thong tin
-    Route::get('opportunity/index', function () {
-        return view('Layout.Infomation.Opportunity.index');
-    })->name('infomationOpportunityIndex');
+// ============================================
+Route::prefix('opportunity')->group(function () {
+    Route::get('index', function () {
+        return view('Layout.Opportunity.index');
+    })->name('opportunityIndex');
 
 });
 
-
+// ============================================
 Route::prefix('lead')->group(function () {
     Route::get('search', function () {
         return view('Layout.Lead.search');
@@ -134,6 +140,7 @@ Route::prefix('lead')->group(function () {
     })->name('leadAdd');
 });
 
+// ============================================
 Route::prefix('account')->group(function () {
     Route::get('index', function () {
         return view('Layout.Account.index');
@@ -144,7 +151,7 @@ Route::prefix('account')->group(function () {
     })->name('accountStatus');
 });
 
-
+// ============================================
 Route::prefix('service')->group(function () {
     Route::get('index', function () {
         return view('Layout.Service.index');
@@ -164,7 +171,7 @@ Route::prefix('service')->group(function () {
 });
 
 
-
+// ============================================
 Route::prefix('auction')->group(function () {
     Route::get('join', function () {
         return view('Layout.Auction.join');
@@ -179,9 +186,178 @@ Route::prefix('auction')->group(function () {
     })->name('auctionAdd');
 });
 
-
+// ============================================
 Route::prefix('keyword')->group(function () {
     Route::get('index', function () {
         return view('Layout.Keyword.index');
     })->name('keywordIndex');
+});
+
+// ============================================
+Route::prefix('contact')->group(function () {
+    Route::get('index', function () {
+        return view('Layout.Contact.index');
+    })->name('contactIndex');
+
+    Route::get('edit', function () {
+        return view('Layout.Contact.edit');
+    })->name('contactEdit');
+
+    Route::get('add', function () {
+        return view('Layout.Contact.add');
+    })->name('contactAdd');
+});
+
+// ============================================
+Route::prefix('requirement')->group(function () {
+    Route::get('index', function () {
+        return view('Layout.Requirement.index');
+    })->name('requirementIndex');
+});
+
+// ============================================
+Route::prefix('contract')->group(function () {
+    Route::get('index', function () {
+        return view('Layout.Contract.index');
+    })->name('contractIndex');
+
+    Route::get('transaction', function () {
+        return view('Layout.Contract.transaction');
+    })->name('contractTransaction');
+
+    Route::get('add', function () {
+        return view('Layout.Contract.add');
+    })->name('contractAdd');
+
+    Route::get('scheduce', function () {
+        return view('Layout.Contract.scheduce');
+    })->name('contractScheduce');
+
+    Route::get('template', function () {
+        return view('Layout.Contract.template');
+    })->name('contractTemplate');
+
+    Route::get('addtemplate', function () {
+        return view('Layout.Contract.addtemplate');
+    })->name('contractAddTemplate');
+});
+
+// ============================================
+Route::prefix('target')->group(function () {
+    Route::get('index', function () {
+        return view('Layout.Target.index');
+    })->name('targetIndex');
+
+    Route::get('edit', function () {
+        return view('Layout.Target.edit');
+    })->name('targetEdit');
+
+    Route::get('registtarget', function () {
+        return view('Layout.Target.registtarget');
+    })->name('targetRegisttarget');
+
+    Route::get('add', function () {
+        return view('Layout.Target.add');
+    })->name('targetAdd');
+});
+
+// ============================================
+Route::prefix('report')->group(function () {
+    Route::get('index', function () {
+        return view('Layout.Report.index');
+    })->name('reportIndex');
+    
+    Route::get('department', function () {
+        return view('Layout.Report.department');
+    })->name('reportDepartment');
+
+    Route::get('location', function () {
+        return view('Layout.Report.location');
+    })->name('reportLocation');
+
+    Route::get('comparedepartment', function () {
+        return view('Layout.Report.comparedepartment');
+    })->name('reportComparedepartment');
+
+    Route::get('customer', function () {
+        return view('Layout.Report.customer');
+    })->name('reportCustomer');
+
+    Route::get('statusproduct', function () {
+        return view('Layout.Report.statusproduct');
+    })->name('reportStatusproduct');
+    
+
+    Route::get('accounttoemployee', function () {
+        return view('Layout.Report.accounttoemployee');
+    })->name('reportAccounttoemployee');
+
+    Route::get('accounttoemployee#home', function () {
+        return view('Layout.Report.accounttoemployee');
+    })->name('reportAccounttoemployeeHome');
+
+    Route::get('accounttoemployee#department', function () {
+        return view('Layout.Report.accounttoemployeeDepartment');
+    })->name('reportAccounttoemployeeDepartment');
+
+    Route::get('accounttoemployee#percent', function () {
+        return view('Layout.Report.accounttoemployeePercent');
+    })->name('reportAccounttoemployeePercent');
+
+    Route::get('sourceaccount', function () {
+        return view('Layout.Report.sourceaccount');
+    })->name('reportSourceaccount');
+
+    Route::get('statuscustomer', function () {
+        return view('Layout.Report.statuscustomer');
+    })->name('reportStatuscustomer');
+
+    Route::get('statuscustomer2', function () {
+        return view('Layout.Report.statuscustomer2');
+    })->name('reportStatuscustomer2');
+
+    Route::get('statuscustomer3', function () {
+        return view('Layout.Report.statuscustomer3');
+    })->name('reportStatuscustomer3');
+
+    Route::get('contractrequirement', function () {
+        return view('Layout.Report.contractrequirement');
+    })->name('reportContractrequirement');
+
+    Route::get('vgnewcustomer', function () {
+        return view('Layout.Report.vgnewcustomer');
+    })->name('reportVgnewcustomer');
+
+    Route::get('expirationcontract', function () {
+        return view('Layout.Report.expirationcontract');
+    })->name('reportExpirationcontract');
+
+    Route::get('bill', function () {
+        return view('Layout.Report.bill');
+    })->name('reportBill');
+    
+    Route::get('serviceexpired', function () {
+        return view('Layout.Report.serviceexpired');
+    })->name('reportServiceexpired');
+
+    Route::get('rawserviceproduct', function () {
+        return view('Layout.Report.rawserviceproduct');
+    })->name('reportRawserviceproduct');
+
+    Route::get('meetingvg', function () {
+        return view('Layout.Report.meetingvg');
+    })->name('reportMeetingvg');
+
+    Route::get('carevg', function () {
+        return view('Layout.Report.carevg');
+    })->name('reportCarevg');
+
+    Route::get('contractforservice', function () {
+        return view('Layout.Report.contractforservice');
+    })->name('reportContractforservice');
+
+    Route::get('confirmrequirement', function () {
+        return view('Layout.Report.confirmrequirement');
+    })->name('reportConfirmrequirement');
+
 });

@@ -1,0 +1,1 @@
+$('#exportAll').jsExcelExport({'param':{'format':'csv'}});$('#userName').autocomplete({source:function(request,response){$.post('/system/user/suggest',{'q':request.term},function(rs){if(rs.code){response(rs.data);}});},minLength:2,select:function(event,ui){$('#userId').val(ui.item.id);},});$('#userName').on('change',function(){if(!$('#userName').val()){$('#userId').val('');}});

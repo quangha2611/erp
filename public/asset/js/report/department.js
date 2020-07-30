@@ -1,0 +1,1 @@
+$(function(){Department.load('#companyId','#departmentId');$('#exportExcel').jsExcelExport({'param':{'format':'excel'}});});
