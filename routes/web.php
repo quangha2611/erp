@@ -170,7 +170,6 @@ Route::prefix('service')->group(function () {
     })->name('serviceIndexuser');
 });
 
-
 // ============================================
 Route::prefix('auction')->group(function () {
     Route::get('join', function () {
@@ -286,7 +285,6 @@ Route::prefix('report')->group(function () {
     Route::get('statusproduct', function () {
         return view('Layout.Report.statusproduct');
     })->name('reportStatusproduct');
-    
 
     Route::get('accounttoemployee', function () {
         return view('Layout.Report.accounttoemployee');
@@ -360,4 +358,32 @@ Route::prefix('report')->group(function () {
         return view('Layout.Report.confirmrequirement');
     })->name('reportConfirmrequirement');
 
+    Route::get('requirementemployee', function () {
+        return view('Layout.Report.requirementemployee');
+    })->name('reportRequirementemployee');
+
+    Route::get('requirementcustomer', function () {
+        return view('Layout.Report.requirementcustomer');
+    })->name('reportRequirementcustomer');
+
+    Route::get('rank', function () {
+        return view('Layout.Report.rank');
+    })->name('reportRank');
+
+    Route::get('productforemployee', function () {
+        return view('Layout.Report.productforemployee');
+    })->name('reportProductforemployee');
+
+    Route::get('survey', function () {
+        return view('Layout.Report.survey');
+    })->name('reportSurvey');
+
+    Route::get('target', function () {
+        return view('Layout.Report.target');
+    })->name('reportTarget');
+
+    Route::get('employee', function () {
+        return view('Layout.Report.employee');
+    })->name('reportEmployee');
+    
 });

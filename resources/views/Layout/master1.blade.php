@@ -100,23 +100,23 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu ">
-                            <li class=""><a href="https://erp.nhanh.vn/crm/report/target">
+                            <li class=""><a href="{{ route('reportTarget') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Nhân viên VG</span>
                                 </a></li>
-                            <li class=""><a href="https://erp.nhanh.vn/crm/report/employee">
+                            <li class=""><a href="{{ route('reportEmployee') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Doanh thu theo nhân viên</span>
                                 </a></li>
-                            <li class=""><a href="https://erp.nhanh.vn/crm/report/rank">
+                            <li class=""><a href="{{ route('reportRank') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Xếp hạng</span>
                                 </a></li>
-                            <li class=""><a href="https://erp.nhanh.vn/crm/report/productforemployee">
+                            <li class=""><a href="{{ route('reportProductforemployee') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Doanh thu NV theo Sản phẩm</span>
                                 </a></li>
-                            <li class=""><a href="https://erp.nhanh.vn/crm/report/survey">
+                            <li class=""><a href="{{ route('reportSurvey') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Khảo sát kinh doanh</span>
                                 </a></li>
@@ -124,7 +124,7 @@
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Chăm sóc khách hàng VG</span>
                                 </a></li>
-                            <li class=""><a href="https://erp.nhanh.vn/crm/report/accounttoemployee">
+                            <li class=""><a href="{{ route('reportAccounttoemployeeHome') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Trạng thái khách theo nhân viên</span>
                                 </a></li>

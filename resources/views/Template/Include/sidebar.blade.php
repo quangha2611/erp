@@ -157,10 +157,10 @@
                                         href="{{ route('requirementIndex') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách yêu cầu
                                             Task</span></a></li>
-                                <li><a class="" href="https://erp.nhanh.vn/crm/report/requirementemployee"><i
+                                <li><a class="" href="{{ route('reportRequirementemployee') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Yêu cầu task nhân viên</span> </a>
                                 </li>
-                                <li><a class="" href="https://erp.nhanh.vn/crm/report/requirementcustomer"><i
+                                <li><a class="" href="{{ route('reportRequirementcustomer') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Yêu cầu task khách hàng</span> </a>
                                 </li>
                             </ul>
@@ -219,23 +219,23 @@
                                     class="fa fa-bar-chart-o"></i> <span class="text">Báo cáo</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/report/target"><i
+                                <li class=""><a class="" href="{{ route('reportTarget') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Nhân viên
                                             VG</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/report/employee"><i
+                                <li class=""><a class="" href="{{ route('reportEmployee') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Doanh thu theo
                                             nhân viên</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/report/rank"><i
+                                <li class=""><a class="" href="{{ route('reportRank') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Xếp
                                             hạng</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/report/contractforservice"><i
+                                        href="{{ route('reportContractforservice') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Doanh số gian
                                             hàng</span></a></li>
                                 <li class=""><a class="" href="https://erp.nhanh.vn/crm/report/revanuevg"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Doanh Số
                                             VG</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/report/survey"><i
+                                <li class=""><a class="" href="{{ route('reportSurvey') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Khảo sát kinh
                                             doanh</span></a></li>
                                 <li class=""><a class=""
