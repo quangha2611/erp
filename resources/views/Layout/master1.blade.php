@@ -120,7 +120,7 @@
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Khảo sát kinh doanh</span>
                                 </a></li>
-                            <li class=""><a href="https://erp.nhanh.vn/crm/report/employeecarevg">
+                            <li class=""><a href="{{ route('reportEmployeecarevg') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Chăm sóc khách hàng VG</span>
                                 </a></li>
@@ -170,7 +170,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu ">
-                            <li class=""><a href="https://erp.nhanh.vn/crm/report/productforemployee">
+                            <li class=""><a href="{{ route('reportProductforemployee') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Doanh thu NV theo Sản phẩm</span>
                                 </a></li>
@@ -180,7 +180,6 @@
                                 </a></li>
                         </ul>
                     </li>
-
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" rel="/crm/report/index">
                             <i class="fa fa-bar-chart-o"></i>

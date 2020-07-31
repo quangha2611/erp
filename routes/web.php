@@ -91,6 +91,10 @@ Route::prefix('calendar')->group(function () {
     Route::get('personalview', function () {
         return view('Layout.Calendar.personalview');
     })->name('calendarPersonalview');
+    
+    Route::get('edit', function () {
+        return view('Layout.Calendar.edit');
+    })->name('calendarEdit');
 });
 
 // ============================================
@@ -385,5 +389,8 @@ Route::prefix('report')->group(function () {
     Route::get('employee', function () {
         return view('Layout.Report.employee');
     })->name('reportEmployee');
-    
+
+    Route::get('employeecarevg', function () {
+        return view('Layout.Report.employeecarevg');
+    })->name('reportEmployeecarevg');
 });

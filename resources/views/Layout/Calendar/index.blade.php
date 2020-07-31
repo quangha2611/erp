@@ -146,7 +146,7 @@
                             <td title="88229">Yêu cầu gọi cho khách</td>
                             <td>Đỗ Thị Thanh Nhàn</td>
                             <td class="colControls"><a class="fa fa-edit icon"
-                                    href="https://erp.nhanh.vn/crm/calendar/edit?id=88229"></a>&nbsp;<a
+                                    href="{{ route('calendarEdit') }}"></a>&nbsp;<a
                                     class="fa fa-trash deleteCalendar icon" idref="88229"></a></td>
                         </tr>
                         <tr class="calendarStt1 even">
@@ -207,7 +207,7 @@
                             <td title="88227">Yêu cầu gọi cho thông tin vừa nhập</td>
                             <td>Ứng Đình Hướng</td>
                             <td class="colControls"><a class="fa fa-edit icon"
-                                    href="https://erp.nhanh.vn/crm/calendar/edit?id=88227"></a>&nbsp;<a
+                                    href="{{ route('calendarEdit') }}"></a>&nbsp;<a
                                     class="fa fa-trash deleteCalendar icon" idref="88227"></a></td>
                         </tr>
                         <tr class="calendarStt1">
@@ -272,7 +272,7 @@
                             <td title="88216">Yêu cầu gọi cho khách</td>
                             <td>Đỗ Thị Thanh Nhàn</td>
                             <td class="colControls"><a class="fa fa-edit icon"
-                                    href="https://erp.nhanh.vn/crm/calendar/edit?id=88216"></a>&nbsp;<a
+                                    href="{{ route('calendarEdit') }}"></a>&nbsp;<a
                                     class="fa fa-trash deleteCalendar icon" idref="88216"></a></td>
                         </tr>
                         <tr class="calendarStt1 even">
@@ -337,7 +337,7 @@
                             <td title="88215">Tư vấn dịch vụ</td>
                             <td>Nguyễn Văn Hưng</td>
                             <td class="colControls"><a class="fa fa-edit icon"
-                                    href="https://erp.nhanh.vn/crm/calendar/edit?id=88215"></a>&nbsp;<a
+                                    href="{{ route('calendarEdit') }}"></a>&nbsp;<a
                                     class="fa fa-trash deleteCalendar icon" idref="88215"></a></td>
                         </tr>
                     </tbody>
