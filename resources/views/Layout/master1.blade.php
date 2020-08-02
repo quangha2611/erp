@@ -1,4 +1,4 @@
-@include('Template.Include.header')
+@include('Template.Include.Crm.header')
 
 {{-- report menu  --}}
 
@@ -225,4 +225,4 @@
 
 @yield('content-page')
     
-@include('Template.Include.footer')
+@include('Template.Include.Crm.footer')

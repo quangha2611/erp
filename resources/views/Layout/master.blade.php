@@ -1,8 +1,8 @@
-@include('Template.Include.header')
+@include('Template.Include.Crm.header')
 
-@include('Template.Include.sidebar')
+@include('Template.Include.Crm.sidebar')
 
 @yield('content-page')
     
-@include('Template.Include.footer')
+@include('Template.Include.Crm.footer')
 
