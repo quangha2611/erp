@@ -13,8 +13,87 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// KHÁCH HÀNG
 Route::prefix('crm')->group(function() {
 
+    // LỊCH LÀM VIỆC
+    Route::prefix('calendar')->group(function () {
+        Route::get('index', function () {
+            return view('Layout.Crm.Calendar.index');
+        })->name('calendarIndex');
+    
+        Route::get('add', function () {
+            return view('Layout.Crm.Calendar.add');
+        })->name('calendarAdd');
+    
+        Route::get('personalview', function () {
+            return view('Layout.Crm.Calendar.personalview');
+        })->name('calendarPersonalview');
+        
+        Route::get('edit', function () {
+            return view('Layout.Crm.Calendar.edit');
+        })->name('calendarEdit');
+    });
+    
+    // LỊCH SỬ CHĂM SÓC
+    Route::prefix('activity')->group(function () {
+        Route::get('index', function () {
+            return view('Layout.Crm.Activity.index');
+        })->name('activityIndex');
+    
+        Route::get('indexvg', function () {
+            return view('Layout.Crm.Activity.indexvg');
+        })->name('activityIndexvg');
+    
+        // Danh sach cuoc goi
+        Route::get('listcall', function() {
+            return view('Layout.Crm.Activity.listcall');
+        })->name('activityListcall');
+    
+        Route::get('yourListcall', function() {
+            return view('Layout.Crm.Activity.yourListcall');
+        })->name('activityYourListcall');
+    
+        Route::get('allListcall', function() {
+            return view('Layout.Crm.Activity.allListcall');
+        })->name('activityAllListcall');
+    
+        Route::get('edit', function() {
+            return view('Layout.Crm.Activity.edit');
+        })->name('activityEdit');
+    });
+    
+    // THÔNG TIN
+    Route::prefix('opportunity')->group(function () {
+        Route::get('index', function () {
+            return view('Layout.Crm.Opportunity.index');
+        })->name('opportunityIndex');
+    
+    });
+    
+    // THÔNG TIN
+    Route::prefix('lead')->group(function () {
+        Route::get('search', function () {
+            return view('Layout.Crm.Lead.search');
+        })->name('leadSearch');
+    
+        Route::get('add', function () {
+            return view('Layout.Crm.Lead.add');
+        })->name('leadAdd');
+    });
+    
+    // KHÁCH HÀNG
+    Route::prefix('account')->group(function () {
+        Route::get('index', function () {
+            return view('Layout.Crm.Account.index');
+        })->name('accountIndex');
+    
+        Route::get('status', function() {
+            return view('Layout.Crm.Account.status');
+        })->name('accountStatus');
+    });
+
+    // KHÁCH HÀNG 
     Route::prefix('customer')->group(function () {
         Route::get('indexvg', function() {
             return view('Layout.Crm.Customer.indexvg');
@@ -35,6 +114,14 @@ Route::prefix('crm')->group(function() {
         Route::get('productexpried30', function() {
             return view('Layout.Crm.Customer.productexpried30');
         })->name('customerProductexpried30');
+
+        Route::get('productexpried30', function() {
+            return view('Layout.Crm.Customer.productexpried30');
+        })->name('customerProductexpried30');
+
+        Route::get('companysource', function() {
+            return view('Layout.Crm.Customer.companysource');
+        })->name('customerCompanysource');
     
         // Danh sach chung
         Route::get('index', function () {
@@ -73,85 +160,8 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Customer.indexl7a');
         })->name('customerIndexL7A');
     });
-    
-    // ============================================
-    Route::prefix('calendar')->group(function () {
-        Route::get('index', function () {
-            return view('Layout.Crm.Calendar.index');
-        })->name('calendarIndex');
-    
-        Route::get('add', function () {
-            return view('Layout.Crm.Calendar.add');
-        })->name('calendarAdd');
-    
-        Route::get('personalview', function () {
-            return view('Layout.Crm.Calendar.personalview');
-        })->name('calendarPersonalview');
-        
-        Route::get('edit', function () {
-            return view('Layout.Crm.Calendar.edit');
-        })->name('calendarEdit');
-    });
-    
-    // ============================================
-    Route::prefix('activity')->group(function () {
-        Route::get('index', function () {
-            return view('Layout.Crm.Activity.index');
-        })->name('activityIndex');
-    
-        Route::get('indexvg', function () {
-            return view('Layout.Crm.Activity.indexvg');
-        })->name('activityIndexvg');
-    
-        // Danh sach cuoc goi
-        Route::get('listcall', function() {
-            return view('Layout.Crm.Activity.listcall');
-        })->name('activityListcall');
-    
-        Route::get('yourListcall', function() {
-            return view('Layout.Crm.Activity.yourListcall');
-        })->name('activityYourListcall');
-    
-        Route::get('allListcall', function() {
-            return view('Layout.Crm.Activity.allListcall');
-        })->name('activityAllListcall');
-    
-        Route::get('edit', function() {
-            return view('Layout.Crm.Activity.edit');
-        })->name('activityEdit');
-    });
-    
-    // ============================================
-    Route::prefix('opportunity')->group(function () {
-        Route::get('index', function () {
-            return view('Layout.Crm.Opportunity.index');
-        })->name('opportunityIndex');
-    
-    });
-    
-    // ============================================
-    Route::prefix('lead')->group(function () {
-        Route::get('search', function () {
-            return view('Layout.Crm.Lead.search');
-        })->name('leadSearch');
-    
-        Route::get('add', function () {
-            return view('Layout.Crm.Lead.add');
-        })->name('leadAdd');
-    });
-    
-    // ============================================
-    Route::prefix('account')->group(function () {
-        Route::get('index', function () {
-            return view('Layout.Crm.Account.index');
-        })->name('accountIndex');
-    
-        Route::get('status', function() {
-            return view('Layout.Crm.Account.status');
-        })->name('accountStatus');
-    });
-    
-    // ============================================
+
+    // GIAN HÀNG
     Route::prefix('service')->group(function () {
         Route::get('index', function () {
             return view('Layout.Crm.Service.index');
@@ -170,7 +180,7 @@ Route::prefix('crm')->group(function() {
         })->name('serviceIndexuser');
     });
     
-    // ============================================
+    // ĐẤU GIÁ
     Route::prefix('auction')->group(function () {
         Route::get('join', function () {
             return view('Layout.Crm.Auction.join');
@@ -183,16 +193,20 @@ Route::prefix('crm')->group(function() {
         Route::get('add', function () {
             return view('Layout.Crm.Auction.add');
         })->name('auctionAdd');
+
+        Route::get('view', function () {
+            return view('Layout.Crm.Auction.view');
+        })->name('auctionView');
     });
     
-    // ============================================
+    // TỪ KHÓA
     Route::prefix('keyword')->group(function () {
         Route::get('index', function () {
             return view('Layout.Crm.Keyword.index');
         })->name('keywordIndex');
     });
     
-    // ============================================
+    // LIÊN HỆ
     Route::prefix('contact')->group(function () {
         Route::get('index', function () {
             return view('Layout.Crm.Contact.index');
@@ -207,14 +221,33 @@ Route::prefix('crm')->group(function() {
         })->name('contactAdd');
     });
     
-    // ============================================
+    // THỰC HIỆN DỊCH VỤ VG & YÊU CẦU
     Route::prefix('requirement')->group(function () {
         Route::get('index', function () {
             return view('Layout.Crm.Requirement.index');
         })->name('requirementIndex');
+        Route::get('indexvg', function () {
+            return view('Layout.Crm.Requirement.indexvg');
+        })->name('requirementIndexvg');
+        
+        Route::get('indexnocontractvg', function () {
+            return view('Layout.Crm.Requirement.indexnocontractvg');
+        })->name('requirementIndexnocontractvg');
+
+        Route::get('indexcontractvg', function () {
+            return view('Layout.Crm.Requirement.indexcontractvg');
+        })->name('requirementIndexcontractvg');
+
+        Route::get('indexsharevg', function () {
+            return view('Layout.Crm.Requirement.indexsharevg');
+        })->name('requirementIndexsharevg');
+
+        Route::get('addvg', function () {
+            return view('Layout.Crm.Requirement.addvg');
+        })->name('requirementAddvg');
     });
     
-    // ============================================
+    // HỢP ĐỒNG
     Route::prefix('contract')->group(function () {
         Route::get('index', function () {
             return view('Layout.Crm.Contract.index');
@@ -240,8 +273,8 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Contract.addtemplate');
         })->name('contractAddTemplate');
     });
-    
-    // ============================================
+
+    // CHỈ TIÊU
     Route::prefix('target')->group(function () {
         Route::get('index', function () {
             return view('Layout.Crm.Target.index');
@@ -260,7 +293,14 @@ Route::prefix('crm')->group(function() {
         })->name('targetAdd');
     });
     
-    // ============================================
+    // DOANH SỐ TRIỂN KHAI & VẬN CHUYỂN
+    Route::prefix('bill')->group( function() {
+        Route::get('salary',function() {
+            return view('Layout.Crm.Bill.salary');
+        })->name('billSalary');
+    });
+    
+    // BÁO CÁO
     Route::prefix('report')->group(function () {
         Route::get('index', function () {
             return view('Layout.Crm.Report.index');
@@ -389,11 +429,43 @@ Route::prefix('crm')->group(function() {
         Route::get('employeecarevg', function () {
             return view('Layout.Crm.Report.employeecarevg');
         })->name('reportEmployeecarevg');
+
+        Route::get('revanuevg', function () {
+            return view('Layout.Crm.Report.revanuevg');
+        })->name('reportRevanuevg');
+
+        Route::get('customercarecompany', function () {
+            return view('Layout.Crm.Report.customercarecompany');
+        })->name('reportCustomercarecompany');
+
+        Route::get('customercaredepartment', function () {
+            return view('Layout.Crm.Report.customercaredepartment');
+        })->name('reportCustomercaredepartment');
+
+        Route::get('customercaredailytarget', function () {
+            return view('Layout.Crm.Report.customercaredailytarget');
+        })->name('reportCustomercaredailytarget');
+
+        Route::get('revenuetomonth', function () {
+            return view('Layout.Crm.Report.revenuetomonth');
+        })->name('reportRevenuetomonth');
+        
+        Route::get('carekpi', function () {
+            return view('Layout.Crm.Report.carekpi');
+        })->name('reportCarekpi');
+
+        Route::get('employeecare', function () {
+            return view('Layout.Crm.Report.employeecare');
+        })->name('reportEmployeecare');
+
+        Route::get('service', function () {
+            return view('Layout.Crm.Report.service');
+        })->name('reportService');
     });
 
 });
 
-
+// TÀI SẢN
 Route::prefix('asset')->group(function() {
     Route::prefix('manage')->group(function() {
         Route::get('index',function() {
@@ -419,4 +491,130 @@ Route::prefix('asset')->group(function() {
             return view('Layout.Asset.Category.edit');
         })->name('assetCategoryEdit');
     });
+});
+
+//TÀI LIỆU CÔNG TY
+Route::prefix('document')->group(function() {
+    Route::prefix('document')->group(function(){
+        Route::get('index',function() {
+            return view('Layout.Document.Document.index');
+        })->name('documentDocumentIndex');
+
+        Route::get('add',function() {
+            return view('Layout.Document.Document.add');
+        })->name('documentDocumentAdd');
+    });
+
+    Route::prefix('category')->group(function(){
+        Route::get('index',function() {
+            return view('Layout.Document.Category.index');
+        })->name('documentCategoryIndex');
+
+        Route::get('add',function() {
+            return view('Layout.Document.Category.add');
+        })->name('documentCategoryAdd');
+    });
+});
+
+// KẾ TOÁN
+Route::prefix('accounting')->group(function() {
+    Route::prefix('transaction')->group(function(){
+        Route::get('myindex',function() {
+            return view('Layout.Accounting.Transaction.myindex');
+        })->name('accountingTransactionMyindex');
+
+        Route::get('addpaymentsimple',function() {
+            return view('Layout.Accounting.Transaction.addpaymentsimple');
+        })->name('accountingTransactionAddpaymentsimple');
+
+        Route::get('addrecieversimple',function() {
+            return view('Layout.Accounting.Transaction.addrecieversimple');
+        })->name('accountingTransactionAddrecieversimple');
+
+        Route::get('view',function() {
+            return view('Layout.Accounting.Transaction.view');
+        })->name('accountingTransactionView');
+
+        Route::get('/',function() {
+            return view('Layout.Accounting.Transaction.index');
+        })->name('accountingTransaction');
+
+        Route::get('addreqpayment',function() {
+            return view('Layout.Accounting.Transaction.addreqpayment');
+        })->name('accountingTransactionAddreqpayment');
+    }); 
+
+
+    Route::prefix('expense')->group(function(){
+        Route::get('category',function() {
+            return view('Layout.Accounting.Expense.category');
+        })->name('accountingExpenseCategory');
+
+        Route::get('addcategory',function() {
+            return view('Layout.Accounting.Expense.addcategory');
+        })->name('accountingExpenseAddcategory');
+
+        Route::get('editcategory',function() {
+            return view('Layout.Accounting.Expense.editcategory');
+        })->name('accountingExpenseEditcategory');
+    }); 
+
+    Route::prefix('account')->group(function(){
+        Route::get('/',function() {
+            return view('Layout.Accounting.Account.index');
+        })->name('accountingAccount');
+        
+        Route::get('add',function() {
+            return view('Layout.Accounting.Account.add');
+        })->name('accountingAccountAdd');
+
+        Route::get('edit',function() {
+            return view('Layout.Accounting.Account.edit');
+        })->name('accountingAccountEdit');
+    }); 
+
+    Route::prefix('report')->group(function(){
+        Route::get('/',function() {
+            return view('Layout.Accounting.Report.report');
+        })->name('accountingReport');
+        
+        Route::get('expensecategory',function() {
+            return view('Layout.Accounting.Report.expensecategory');
+        })->name('accountingReportExpensecategory');
+
+        Route::get('expensecategorybycreated',function() {
+            return view('Layout.Accounting.Report.expensecategorybycreated');
+        })->name('accountingReportExpensecategorybycreated');
+    
+        Route::get('transactionbycreated',function() {
+            return view('Layout.Accounting.Report.transactionbycreated');
+        })->name('accountingReportTransactionbycreated');
+
+        Route::get('transactionbyapprovedbyid',function() {
+            return view('Layout.Accounting.Report.transactionbyapprovedbyid');
+        })->name('accountingReportTransactionbyapprovedbyid');
+    });
+});
+
+// CẢI TIẾN
+Route::prefix('idea')->group(function() {
+    Route::prefix('manage')->group(function(){
+        Route::get('/',function() {
+            return view('Layout.Idea.Manage.index');
+        })->name('ideaManage');
+
+        Route::get('add',function() {
+            return view('Layout.Idea.Manage.add');
+        })->name('ideaManageAdd');
+    }); 
+
+    Route::prefix('category')->group(function(){
+        Route::get('/',function() {
+            return view('Layout.Idea.Category.index');
+        })->name('ideaCategory');
+
+        Route::get('add',function() {
+            return view('Layout.Idea.Category.add');
+        })->name('ideaCategoryAdd');
+    }); 
 });

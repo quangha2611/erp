@@ -1,0 +1,1 @@
+$(function(){IdeaCategory.load('#companyId','#parentId');});

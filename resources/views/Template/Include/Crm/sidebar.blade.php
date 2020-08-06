@@ -44,6 +44,10 @@
                                             class="fa fa-refresh"></i> <span class="text">Trạng thái thông
                                             tin</span></a></li>
                                 <li class=""><a class=""
+                                    href="{{ route('customerCompanysource') }}"><i
+                                        class="fa fa-list"></i> <span class="text">Thông tin nguồn công
+                                        ty</span></a></li>
+                                <li class=""><a class=""
                                         href="{{ route('activityListcall') }}"><i
                                             class="fa fa-headphones"></i> <span class="text">Danh sách yêu
                                             cầu gọi</span></a></li>
@@ -57,7 +61,7 @@
                         </li>
                         <li class=""><a class="js-sub-menu-toggle" rel="/crm/account/index"><i
                                     class="fa fa-users"></i> <span class="text">Khách hàng</span> <i
-                                    class="toggle-icon fa fa-angle-right"></i></a>
+                                    class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu">
                                 <li class=""><a class="" href="{{ route('accountIndex') }}">
                                     <i class="fa fa-list"> </i> 
@@ -134,20 +138,31 @@
                                             hệ</span></a></li>
                             </ul>
                         </li>
-                        <li class=""><a class="js-sub-menu-toggle" rel="/crm/requirement/index"><i
-                                    class="fa fa-cogs"></i> <span class="text">Triển khai dịch vụ</span> <i
-                                    class="toggle-icon fa fa-angle-left"></i></a>
-                            <ul class="sub-menu "></ul>
-                        </li>
                         <li class=""><a class="js-sub-menu-toggle" rel="/crm/requirement/indexvg"><i
                                     class="fa fa-cogs"></i> <span class="text">Thực hiện dịch vụ VG</span>
                                 <i class="toggle-icon fa fa-angle-left"></i></a>
-                            <ul class="sub-menu ">
-                                <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/requirement/myindexvg"><i
-                                            class="fa fa-list"></i> <span class="text">Yêu cầu của
-                                            bạn</span></a></li>
-                            </ul>
+                                <ul class="sub-menu">
+                                    <li class=""><a class=""
+                                            href="{{ route('requirementIndexvg') }}"><i
+                                                class="fa fa-list"></i> <span class="text">Tất cả yêu
+                                                cầu</span></a></li>
+                                    <li class=""><a class=""
+                                            href="{{ route('requirementIndexnocontractvg') }}"><i
+                                                class="fa fa-list"></i> <span class="text">Yêu cầu trả
+                                                trước</span></a></li>
+                                    <li class=""><a class=""
+                                            href="{{ route('requirementIndexcontractvg') }}"><i
+                                                class="fa fa-list"></i> <span class="text">Yêu cầu gắn Hợp
+                                                đồng</span></a></li>
+                                    <li class=""><a class=""
+                                            href="{{ route('requirementIndexsharevg') }}"><i
+                                                class="fa fa-list"></i> <span class="text">Yêu cầu đã tách
+                                                HĐ</span></a></li>
+                                    <li class=""><a class=""
+                                            href="{{ route('requirementAddvg') }}"><i
+                                                class="fa fa-plus"></i> <span class="text">Thêm yêu cầu trả
+                                                trước</span></a></li>
+                                </ul>
                         </li>
                         <li class=""><a class="js-sub-menu-toggle" rel="/crm/requirement/index"><i
                                     class="fa fa-cog"></i> <span class="text">Yêu cầu</span> <i
@@ -215,6 +230,11 @@
                                 <i class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu "></ul>
                         </li>
+                        <li><a class="" href="{{ route('billSalary') }}">
+                                <i class="fa fa-money"></i> 
+                                <span class="text">Doanh số triển khai &amp; vận chuyển</span> 
+                            </a>
+                        </li>
                         <li class=""><a class="js-sub-menu-toggle" rel="/crm/report/target"><i
                                     class="fa fa-bar-chart-o"></i> <span class="text">Báo cáo</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
@@ -232,7 +252,7 @@
                                         href="{{ route('reportContractforservice') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Doanh số gian
                                             hàng</span></a></li>
-                                <li class=""><a class="" href="https://erp.nhanh.vn/crm/report/revanuevg"><i
+                                <li class=""><a class="" href="{{ route('reportRevanuevg') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Doanh Số
                                             VG</span></a></li>
                                 <li class=""><a class="" href="{{ route('reportSurvey') }}"><i
@@ -246,17 +266,26 @@
                                             class="fa fa-bar-chart-o"></i> <span class="text">Chăm
                                             sóc</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/report/employeecare"><i
+                                        href="{{ route('reportEmployeecare') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Chăm sóc khách
                                             hàng</span></a></li>
                                 <li class=""><a class=""
-                                        href="https://erp.nhanh.vn/crm/report/employeecarevg"><i
+                                        href="{{ route('reportEmployeecarevg') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Chăm sóc khách
                                             hàng VG</span></a></li>
                                 <li class=""><a class=""
                                         href="{{ route('reportAccounttoemployee') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Trạng thái
                                             khách theo nhân viên</span></a></li>
+                                <li class=""><a class="" href="{{ route('reportRevenuetomonth') }}"><i
+                                    class="fa fa-bar-chart-o"></i> <span class="text">Doanh số từng
+                                            tháng cho nvkd</span></a></li>
+                                <li class=""><a class="" href="{{ route('reportService') }}"><i
+                                    class="fa fa-bar-chart-o"></i> <span class="text">Dịch vụ khách
+                                            hàng</span></a></li>
+                                <li class=""><a class="" href="{{ route('reportCarekpi') }}"><i
+                                    class="fa fa-bar-chart-o"></i> <span class="text">KPI chăm sóc
+                                            theo nhân viên</span></a></li>
                             </ul>
                         </li>
                     </ul>

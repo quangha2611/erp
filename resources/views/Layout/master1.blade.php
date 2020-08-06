@@ -211,7 +211,7 @@
                                 <a href="{{ route('customerIndexvg') }}">Danh sách hợp đồng</a>
                             </li>
                             <li>
-                                <a href="https://erp.nhanh.vn/crm/requirement/addvg">Thêm yêu cầu trả
+                                <a href="{{ route('requirementAddvg') }}">Thêm yêu cầu trả
                                     trước</a>
                             </li>
                         </ul>

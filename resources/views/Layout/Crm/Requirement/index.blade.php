@@ -213,5 +213,5 @@
     <script type="text/javascript">
         CKEDITOR.env.isCompatible = true;
     </script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/contact/saved_resource(1)') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/requirement/saved_resource(1)') }}"></script>
 @endsection

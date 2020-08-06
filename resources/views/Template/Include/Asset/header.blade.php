@@ -20,7 +20,7 @@
 	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>ERP-Danh sách tài sản</title>
+	<title>@yield('title')</title>
 	<meta name="DC.language" content="scheme=utf-8 content=vi">
 	<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
 	<link href="https://erp.nhanh.vn/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">

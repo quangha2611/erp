@@ -5,7 +5,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script async="" src="{{ asset('/asset/js/customer/analytics.js') }}"></script>
+	<script async="" src="{{ asset('/asset/js/crm/customer/analytics.js') }}"></script>
 	<script type="text/javascript">
 		var newStatus = 1;
 		var feedbackStatus = 2;
@@ -756,6 +756,7 @@
 									<ul class="nav nav-tabs">
 										<li><a href="https://erp.nhanh.vn/company">Công ty</a></li>
 										<li><a href="https://erp.nhanh.vn/hrm">Nhân sự</a></li>
+										<li><a href="https://erp.nhanh.vn/asset">Tài sản</a></li>
 										<li><a href="https://erp.nhanh.vn/document">Tài liệu</a></li>
 										<li><a href="https://erp.nhanh.vn/accounting">Kế toán</a></li>
 										<li><a href="https://erp.nhanh.vn/work">Công việc</a></li>

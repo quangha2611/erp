@@ -3,7 +3,7 @@
 @section('title','ERP-Đặt Lịch')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('asset/css/crm/infomation/opportunity/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('asset/css/crm/opportunity/style.css') }}" type="text/css">
 @endsection
 
 @section('content-page')
@@ -150,18 +150,18 @@
             language: 'vi'
         };
     </script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/saved_resource') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/firebase-app.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/firebase-messaging.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/firebase-firestore.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/firebase-auth.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/getfirebaseconfig') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/notification.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/notification.reducer.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/saved_resource') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/firebase-app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/firebase-messaging.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/firebase-firestore.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/firebase-auth.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/getfirebaseconfig') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/notification.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/notification.reducer.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/ckeditor.js') }}"></script>
     <script type="text/javascript">
         CKEDITOR.env.isCompatible = true;
     </script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/saved_resource(1)') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset/js/crm/infomation/opportunity/addcalendar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/saved_resource(1)') }}"></script>
+    <script type="text/javascript" src="{{ asset('asset/js/crm/opportunity/addcalendar.js') }}"></script>
 @endsection
