@@ -1,3 +1,7 @@
+@import '../utils/_variables';
+
+
+
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -708,7 +712,7 @@ a {
         outline: 0;
         color: #2a6496;
         text-decoration: underline;
-        color: #e80909;
+        color: $hoverColor;
     }
 
     &:focus {
@@ -717,7 +721,7 @@ a {
         outline: thin dotted;
         outline: 5px auto -webkit-focus-ring-color;
         outline-offset: -2px;
-        color: #e80909;
+        color: $hoverColor;
     }
 }
 
@@ -1065,7 +1069,7 @@ table {
             color: #555;
 
             &:hover {
-                color: red;
+                color: $hoverColor;
             }
         }
     }
@@ -4679,8 +4683,8 @@ select[multiple].input-lg {
 
     .dropdown-toggle.btn-primary {
         color: #fff;
-        background-color: #3276b1;
-        border-color: #285e8e;
+        background-color: $buttonColor;
+        border-color: $buttonColor;
         background-image: none;
     }
 
@@ -4748,8 +4752,8 @@ select[multiple].input-lg {
 
         .btn-primary {
             color: #fff;
-            background-color: #3276b1;
-            border-color: #285e8e;
+            background-color: $buttonColor;
+            border-color: $buttonColor;
             background-image: none;
         }
 
@@ -4912,31 +4916,31 @@ select[multiple].input-lg {
 
 .btn-primary {
     color: #fff;
-    background-color: #428bca;
+    background-color: #999;
     border-color: #357ebd;
-    background-color: #296eaa;
-    border-color: #246195;
+    background-color: $buttonColor;
+    border-color: $buttonColor;
 
     &:hover {
         color: #fff;
-        background-color: #3276b1;
-        border-color: #285e8e;
-        background-color: #246195;
+        background-color: $buttonColor;
+        border-color: $buttonColor;
+        background-color: $buttonColor;
     }
 
     &:focus {
         color: #fff;
-        background-color: #3276b1;
-        border-color: #285e8e;
-        background-color: #246195;
+        background-color: $buttonColor;
+        border-color: $buttonColor;
+        background-color: $buttonColor;
     }
 
     &:active {
         color: #fff;
-        background-color: #3276b1;
-        border-color: #285e8e;
+        background-color: $buttonColor;
+        border-color: $buttonColor;
         background-image: none;
-        background-color: #246195;
+        background-color: $buttonColor;
     }
 
     .badge {
@@ -4952,17 +4956,17 @@ select[multiple].input-lg {
 
     .open {
         .dropdown-toggle.btn-primary {
-            background-color: #246195;
+            background-color: $buttonColor;
         }
     }
 }
 
 .btn-primary.active {
     color: #fff;
-    background-color: #3276b1;
-    border-color: #285e8e;
+    background-color: $buttonColor;
+    border-color: $buttonColor;
     background-image: none;
-    background-color: #246195;
+    background-color: $buttonColor;
 }
 
 .btn-primary.disabled {
@@ -8144,7 +8148,7 @@ select[multiple].input-group-sm {
             background-color: #fff;
             border: 1px solid #ddd;
             border-bottom-color: transparent;
-            background-color: #296eaa;
+            background-color: $buttonColor;
             color: #fff;
             cursor: pointer;
 
@@ -8154,7 +8158,7 @@ select[multiple].input-group-sm {
                 background-color: #fff;
                 border: 1px solid #ddd;
                 border-bottom-color: transparent;
-                background-color: #296eaa;
+                background-color: $buttonColor;
                 color: #fff;
                 cursor: pointer;
             }
@@ -8165,7 +8169,7 @@ select[multiple].input-group-sm {
                 background-color: #fff;
                 border: 1px solid #ddd;
                 border-bottom-color: transparent;
-                background-color: #296eaa;
+                background-color: $buttonColor;
                 color: #fff;
                 cursor: pointer;
             }
@@ -17949,7 +17953,7 @@ a.editable-click.editable-disabled {
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
             box-shadow: none;
-            background-color: #296eaa;
+            background-color: $buttonColor;
             background-image: none;
             color: #fff;
             border: 1px solid #26669e;
@@ -21292,28 +21296,28 @@ html[dir="rtl"] {
 
         &:hover {
             color: #fff;
-            background-color: #3276b1;
-            border-color: #285e8e;
+            background-color: $buttonColor;
+            border-color: $buttonColor;
         }
 
         &:focus {
             color: #fff;
-            background-color: #3276b1;
-            border-color: #285e8e;
+            background-color: $buttonColor;
+            border-color: $buttonColor;
         }
 
         &:active {
             color: #fff;
-            background-color: #3276b1;
-            border-color: #285e8e;
+            background-color: $buttonColor;
+            border-color: $buttonColor;
             background-image: none;
         }
     }
 
     .btn-primary.active {
         color: #fff;
-        background-color: #3276b1;
-        border-color: #285e8e;
+        background-color: $buttonColor;
+        border-color: $buttonColor;
         background-image: none;
     }
 
@@ -26390,7 +26394,7 @@ td.visible-print {
     .tag {
         margin-right: 2px;
         color: white;
-        background-color: #296eaa;
+        background-color: $buttonColor;
         position: relative;
         padding-left: 17px;
         font-size: 85%;

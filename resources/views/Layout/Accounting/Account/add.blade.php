@@ -1,7 +1,7 @@
 @extends('Layout.master4')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('asset/css/accounting/account/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 @endsection
 
 @section('title', 'ERP-Thêm phiếu xin thu')

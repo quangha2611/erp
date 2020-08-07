@@ -2,18 +2,11 @@
 Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
-
 body {
-    /* Font */
     font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
     font-size: 12px;
-
-    /* Text color */
     color: #333;
-
-    /* Remove the background color to make it transparent */
     background-color: #fff;
-
     margin: 20px;
 }
 
@@ -31,36 +24,73 @@ blockquote {
     border-width: 0;
 }
 
-.cke_contents_ltr blockquote {
-    padding-left: 20px;
-    padding-right: 8px;
-    border-left-width: 5px;
+.cke_contents_ltr {
+    blockquote {
+        padding-left: 20px;
+        padding-right: 8px;
+        border-left-width: 5px;
+    }
 }
 
-.cke_contents_rtl blockquote {
-    padding-left: 8px;
-    padding-right: 20px;
-    border-right-width: 5px;
+.cke_contents_rtl {
+    blockquote {
+        padding-left: 8px;
+        padding-right: 20px;
+        border-right-width: 5px;
+    }
 }
 
 a {
     color: #0782C1;
+
+    >img {
+        padding: 1px;
+        margin: 1px;
+        border: none;
+        outline: 1px solid #0782C1;
+    }
 }
 
-ol,
-ul,
-dl {
-    /* IE7: reset rtl list margin. (#7334) */
+ol {
     *margin-right: 0px;
-    /* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
     padding: 0 40px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
+ul {
+    *margin-right: 0px;
+    padding: 0 40px;
+}
+
+dl {
+    *margin-right: 0px;
+    padding: 0 40px;
+}
+
+h1 {
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+h2 {
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+h3 {
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+h4 {
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+h5 {
+    font-weight: normal;
+    line-height: 1.2;
+}
+
 h6 {
     font-weight: normal;
     line-height: 1.2;
@@ -87,9 +117,7 @@ img.left {
 
 pre {
     white-space: pre-wrap;
-    /* CSS 2.1 */
     word-wrap: break-word;
-    /* IE7 */
     -moz-tab-size: 4;
     -o-tab-size: 4;
     -webkit-tab-size: 4;
@@ -112,17 +140,9 @@ figure {
     padding: 10px;
     margin: 10px 20px;
     display: inline-block;
-}
 
-figure>figcaption {
-    text-align: center;
-    display: block;
-    /* For IE8 */
-}
-
-a>img {
-    padding: 1px;
-    margin: 1px;
-    border: none;
-    outline: 1px solid #0782C1;
+    >figcaption {
+        text-align: center;
+        display: block;
+    }
 }

@@ -193,3 +193,51 @@ ul.main-menu {
         }
     }
 }
+
+.sidebar-content {
+    padding: 0 10px;
+    margin-top: 30px;
+
+    .panel-heading {
+        h5 {
+            margin: 0;
+        }
+    }
+
+    p {
+        font-size: 0.85em;
+    }
+
+    >h5 {
+        display: block;
+        font-size: 0.9em;
+        text-align: left;
+        margin-bottom: 0;
+    }
+
+    .list-info-sidebar {
+        border: 1px solid #ccc;
+
+        li {
+            font-size: 12px;
+        }
+
+        .data-name {
+            width: 100%;
+            background-color: transparent;
+        }
+
+        .progress {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+.bar.positive {
+    fill: #1d92af;
+}
+
+.bar.negative {
+    fill: #bd0026;
+}

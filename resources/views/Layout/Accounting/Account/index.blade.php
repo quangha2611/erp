@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 @endsection
 
-@section('title', 'ERP-Thêm phiếu xin thu')
+@section('title', 'ERP-Danh sách tài khoản')
 
 @section('content-page')
 
