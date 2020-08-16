@@ -1,0 +1,257 @@
+.page-error {
+    h1 {
+        margin-top: 0;
+    }
+
+    .title {
+        display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: middle;
+        *vertical-align: auto;
+        zoom: 1;
+        *display: inline;
+        text-align: center;
+    }
+
+    .number {
+        display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: middle;
+        *vertical-align: auto;
+        zoom: 1;
+        *display: inline;
+        float: left;
+        text-align: right;
+        font-size: 4em;
+        margin-right: 5px;
+    }
+
+    .text {
+        display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: middle;
+        *vertical-align: auto;
+        zoom: 1;
+        *display: inline;
+        float: left;
+        text-align: left;
+        font-size: 1.5em;
+        line-height: 1.2;
+        position: relative;
+        top: 12px;
+    }
+
+    .searchbox {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 40%;
+    }
+}
+
+.btn-login-facebook {
+    background-color: #3b5998;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    padding-left: 40px;
+
+    &:hover {
+        color: #fff;
+        background-color: #37538d;
+    }
+
+    &:focus {
+        color: #fff;
+        background-color: #37538d;
+    }
+
+    &:before {
+        font-family: FontAwesome;
+        font-size: 20px;
+        content: "\f09a";
+        display: block;
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        padding: 7px 0;
+        width: 40px;
+        height: 40px;
+        background-color: #2d4373;
+    }
+}
+
+.page-login {
+    .logo {
+        margin-bottom: 40px;
+    }
+
+    .separator {
+        margin: 30px auto;
+        position: relative;
+        width: 100%;
+
+        &:before {
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            content: "";
+            vertical-align: middle;
+            height: 0;
+            border-top: 1px solid #ddd;
+            position: absolute;
+            top: 9px;
+            left: 10px;
+            right: 10px;
+        }
+
+        span {
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            position: relative;
+            background-color: #ececec;
+            padding: 0 8px;
+        }
+    }
+
+    .login-box {
+        width: 100%;
+        border: 1px solid #ddd;
+        padding: 25px;
+        text-align: left;
+        background-color: #f1f1f1;
+
+        .title {
+            font-size: 1.2em;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .btn-login {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+    }
+
+    .links {
+        text-align: center;
+
+        p {
+            margin-bottom: 0;
+            font-size: 0.9em;
+
+            a {
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+.btn-register-facebook {
+    background-color: #3b5998;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    padding-left: 40px;
+
+    &:hover {
+        color: #fff;
+        background-color: #37538d;
+    }
+
+    &:focus {
+        color: #fff;
+        background-color: #37538d;
+    }
+
+    &:before {
+        font-family: FontAwesome;
+        font-size: 20px;
+        content: "\f09a";
+        display: block;
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        padding: 7px 0;
+        width: 40px;
+        height: 40px;
+        background-color: #2d4373;
+    }
+}
+
+.page-register {
+    .logo {
+        margin-bottom: 40px;
+    }
+
+    .separator {
+        margin: 30px auto;
+        position: relative;
+        width: 100%;
+
+        &:before {
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            content: "";
+            vertical-align: middle;
+            height: 0;
+            border-top: 1px solid #ddd;
+            position: absolute;
+            top: 9px;
+            left: 10px;
+            right: 10px;
+        }
+
+        span {
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            position: relative;
+            background-color: #ececec;
+            padding: 0 8px;
+        }
+    }
+
+    .register-box {
+        width: 100%;
+        border: 1px solid #ddd;
+        padding: 25px;
+        text-align: left;
+        background-color: #f1f1f1;
+
+        .title {
+            font-size: 1.2em;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        input {
+            margin-bottom: 10px;
+
+            &:focus {
+                border-color: #ccc;
+            }
+        }
+
+        .btn-register {
+            margin-top: 20px;
+        }
+    }
+}

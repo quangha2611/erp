@@ -1,0 +1,21 @@
+@import '../utils/variables';
+
+.icon {
+    font-size: 1.2em;
+}
+
+.color-blue {
+    color: #428bca;
+}
+
+.color-red {
+    color: $iconColor;
+}
+
+.color-green {
+    color: #50fc21;
+}
+
+.textBlack {
+    color: black !important;
+}
