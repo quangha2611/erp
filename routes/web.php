@@ -618,3 +618,7 @@ Route::prefix('idea')->group(function() {
         })->name('ideaCategoryAdd');
     }); 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

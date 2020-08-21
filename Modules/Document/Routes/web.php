@@ -11,6 +11,26 @@
 |
 */
 
-Route::prefix('document')->group(function() {
-    Route::get('/', 'DocumentController@index');
+
+
+Route::group(['prefix' => 'document', 'middleware' => ['auth']], function(){
+    Route::prefix('document')->group(function(){
+        Route::get('/','DocumentController@index')->name('get.document.document.index');
+
+        Route::get('/create','DocumentController@create')->name('get.document.document.create');
+
+        Route::post('/store','DocumentController@store')->name('post.document.document.store');
+    });
+
+    Route::prefix('category')->group(function(){
+        Route::get('/','DocumentCategoryController@index')->name('get.document.category.index');
+
+        Route::get('/create','DocumentCategoryController@create')->name('get.document.category.create');
+
+        Route::post('/store','DocumentCategoryController@store')->name('post.document.category.store');
+
+        Route::get('/edit/{id}','DocumentCategoryController@edit')->name('get.document.category.edit');
+
+        Route::get('/filter','DocumentCategoryController@filter')->name('get.document.category.filter');
+    });
 });

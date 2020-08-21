@@ -5,16 +5,34 @@ namespace Modules\Document\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
+
+
+use App\Company;
+use Modules\Document\Entities\DocumentFile;
+use Modules\Document\Entities\Document;
+use Modules\Document\Repositories\DocumentCategory\DocumentCategoryRepository;
+
+use Modules\Document\Repositories\Document\DocumentInterfaceRepository;
 
 class DocumentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
+    protected $document;
+
+    public function __construct(DocumentInterfaceRepository $documentInterfaceRepository)
+    {
+        $this->document = $documentInterfaceRepository;
+    }
+
     public function index()
     {
-        return view('document::index');
+        $documents = $this->document->index();
+
+        $companies = Company::all();
+        $documentCategory = new DocumentCategoryRepository();
+        $categories = $documentCategory->index();
+
+        return view('document::pages.document.index',compact('documents','companies','categories'));
     }
 
     /**
@@ -23,17 +41,40 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        return view('document::create');
+        $companies = Company::all();
+        $documents = $this->document->index();
+        $documentCategory = new DocumentCategoryRepository;
+        $categories = $documentCategory->index();
+
+        return view('document::pages.document.add',compact('companies','documents','categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
+    
     public function store(Request $request)
     {
-        //
+        // $this->document->create($request->all());
+        $document = Document::create($request->all());
+        if( $request->file('fileUpload') != null ) {
+            foreach($request->file('fileUpload') as $fileUpload) {
+                // get file name
+                $nameFile = $fileUpload->getClientOriginalName();
+                // store in public/documents/$namefile
+                Storage::disk('public')->putFileAs('documents',$fileUpload,$nameFile);  
+
+                //store file namefile relationship with document
+                $doc_file = DocumentFile::create([
+                    'name' => $nameFile,
+                    'document' => $document->id,
+                ]);
+
+            }
+        }
+
+        if($request->afterSubmit == 'show') {
+            return redirect()->route('get.document.document.index');
+        } else {
+            return redirect()->route('get.document.document.create');
+        }
     }
 
     /**

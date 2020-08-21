@@ -31,7 +31,7 @@
                         <input type="text" name="id" maxlength="255" placeholder="ID" id="id" class="form-control" value=""> 
                     </div>
                     <div class="form-group">
-                        <input type="text" name="createdByName" placeholder="Người tạo" id="createdByName" class="form-control ui-autocomplete-input" value="" autocomplete="off"> 
+                        <input type="text" name="author" placeholder="Người tạo" id="author" class="form-control ui-autocomplete-input" value="" autocomplete="off"> 
                     </div>
                     <input type="hidden" name="createdById" id="createdById" class="form-control" value="">
                     <div class="form-group">
@@ -66,7 +66,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://erp.nhanh.vn/asset/manage/index#" id="exportAll">
+                                <a href="{{ route('get.asset.manage.exportAll',['type'=>'xlsx']) }}" id="exportAll">
                                     <i class="fa fa-file-excel-o"></i> Xuất toàn bộ excel
                                 </a>
                             </li>

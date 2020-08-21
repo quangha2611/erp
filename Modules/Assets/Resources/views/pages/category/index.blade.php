@@ -21,11 +21,11 @@
                     <div class="form-group">
                         <select name="companyId" id="companyId" class="form-control" required>
                             <option value="">- Công ty -</option>
-                            @include('assets::pages.category.include._inc_recursiveInput',[
-                                'data' => $companies,
-                                'parentId' => null,
-                                'note' => '--',
-                            ])
+                                @include('assets::pages.category.include._inc_recursiveInput',[
+                                    'data' => $companies,
+                                    'parentId' => null,
+                                    'note' => '--',
+                                ])
                         </select>
                     </div>
                     <div class="form-group">
@@ -74,11 +74,15 @@
                                 {{ $category->code }}
                             </td>
                             <td>{{ $category->companyId }}</td>
-                            <td style="position: relative">Phạm Văn Phú</td>
+                            <td style="position: relative">{{ $category->author }}</td>
                             <td class="colControls">
-                                <a href="{{ route('get.asset.category.edit', $category->id) }}" class="fa fa-edit edit-item"></a>
-                                <a href="{{ route('post.asset.category.destroy', $category->id) }}" style="margin-left:5px;" value="631" class="fa fa-trash-o delete del_Item"></a>
-                            
+                                <form action="{{ route('post.asset.category.destroy') }}" method="POST">
+                                    @csrf
+                                    <a href="{{ route('get.asset.category.edit', $category->id) }}" class="fa fa-edit edit-item"></a>
+                                    <label style="margin-left:5px; cursor: pointer" value="631" class="fa fa-trash-o delete del_Item" for="{{ 'destroy'.$category->id }}">
+                                    </label>
+                                    <input type="submit" id="{{ 'destroy'.$category->id }}" style="display: none" name="id" value="{{ $category->id }}">
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -89,7 +93,11 @@
             </div>
         </div>
         <div class="text-center">
-            {{ $categories->links() }}
+            @if(isset($currentCompanyId))
+                {{ $categories->appends(['companyId' => $currentCompanyId])->links() }}
+            @else
+                {{ $categories->links() }}
+            @endif
         </div>
         <!-- Dialog bootstrap -->
         <div id="delModal" class="modal fade">

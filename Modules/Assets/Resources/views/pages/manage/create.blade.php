@@ -64,7 +64,7 @@
                                 <div class="col-md-8"><input type="text" name="name" maxlength="255"
                                         id="name" class="form-control ui-autocomplete-input"
                                         value="" autocomplete="off" required></div>
-                            </div><input type="hidden" name="nameId" id="nameId" value="">
+                            </div><input type="hidden" name="author" id="nameId" value="{{ Auth::user()->id }}">
                             <div class="form-group"><label class="col-md-4 control-label">Mã
                                     TS:</label>
                                 <div class="col-md-8"><input type="text" name="code" maxlength="255"

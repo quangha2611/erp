@@ -1,0 +1,23 @@
+.progress.wide {
+    width: 60px;
+}
+
+.progress.progress-sm {
+    height: 12px;
+
+    .progress-bar {
+        text-indent: -9999px;
+    }
+}
+
+.progress.progress-xs {
+    height: 5px;
+
+    .progress-bar {
+        text-indent: -9999px;
+    }
+}
+
+.progress-vertical-wrapper {
+    height: 200px;
+}

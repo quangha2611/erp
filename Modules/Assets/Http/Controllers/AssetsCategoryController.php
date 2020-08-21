@@ -5,63 +5,65 @@ namespace Modules\Assets\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 use Modules\Assets\Entities\AssetCategory;
 use App\Company;
 
+use Modules\Assets\Repositories\AssetsCategory\AssetsCategoryInterfaceRepository;
+use Modules\Assets\Repositories\AssetsCategory\AssetsCategoryRepository;
+
 class AssetsCategoryController extends Controller
 {
+    protected $assetsCategory;
+
+    public function __construct(AssetsCategoryInterfaceRepository $assetsCategoryInterfaceRepository)
+    {
+        $this->assetsCategory = $assetsCategoryInterfaceRepository;
+    }
+
     public function index()
     {
-        $categories = AssetCategory::paginate(4);
+        $categories = $this->assetsCategory->paginate(5);
         $companies = Company::all();
 
-        // get name of company by id
-        foreach($categories as $category) {
-            $category->companyId = Company::findOrFail($category->companyId)->name;
-        }
-
-        return view('assets::pages.category.index',[
-            'categories' => $categories,
-            'companies' => $companies,
-            'currentCompanyId' => 0  // company in filter tool
-        ]);
+        return view('assets::pages.category.index',compact('categories','companies'));
     }
 
 
     public function filter(Request $request) 
     {
-        $categories = AssetCategory::where('companyId',$request->companyId)->paginate(2);
+        $categories = $this->assetsCategory->filter($request->all());
         $companies = Company::all();
 
-        // get name of company by id
-        foreach($categories as $category) {
-            $category->companyId = Company::findOrFail($category->companyId)->name;
-        }
+        $currentCompanyId = $request->companyId;
 
-        return view('assets::pages.category.index',[
-            'categories' => $categories,
-            'companies' => $companies,
-            'currentCompanyId' => $request->companyId,
-        ]);
+        return view('assets::pages.category.index',compact('categories','companies','currentCompanyId'));
     }
 
 
     public function create()
     {
         $companies = Company::all();
-        $categories = AssetCategory::all();
+        $categories = $this->assetsCategory->index();
         
-        return view('assets::pages.category.create',[
-            'companies' => $companies,
-            'categories' => $categories
-        ]);
+        return view('assets::pages.category.create',compact('companies','categories'));
         
     }
 
     public function store(Request $request)
     {
-        AssetCategory::create($request->all());
+        $validator = Validator::make($request->all(), [
+            'name' => 'min:6|max:255|unique:asset_categories|bail',
+            'code' => 'min:6|max:255|unique:asset_categories|bail',
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        $this->assetsCategory->store($request->all());
 
         if ($request->afterSubmit =='continue') {
             return redirect()->route('get.asset.category.create');
@@ -77,32 +79,25 @@ class AssetsCategoryController extends Controller
 
     public function edit($id)
     {
-        $categories = AssetCategory::all();
-        $category = AssetCategory::findOrFail($id);
+        $categories = $this->assetsCategory->index();
+        $category = $this->assetsCategory->find($id);
         $companies = Company::all();
+        $currentCompany = Company::findOrFail($category->companyId)->name;
 
-        return view('assets::pages.category.edit',[
-            'categories' => $categories,
-            'category' => $category,
-            'companies' => $companies
-        ]);
+        return view('assets::pages.category.edit',compact('categories','category','companies','currentCompany'));
     }
 
     public function update(Request $request, $id)
     {
-        $category = AssetCategory::findOrFail($id);
-        $category->companyId = $request->companyId;
-        $category->name = $request->name;
-        $category->parentName = $request->parentName;
-        $category->code = $request->code;
+        $this->assetsCategory->update($id,$request->all());
 
-        $category->save();
         return redirect()->route('get.asset.category.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $asset = AssetCategory::findOrFail($id)->delete();
+        $this->assetsCategory->destroy($request->id);
+        
         return redirect()->route('get.asset.category.index');
     }
 

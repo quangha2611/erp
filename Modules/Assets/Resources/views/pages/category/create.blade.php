@@ -29,7 +29,7 @@
                                     <span class="required">*</span> 
                                 </label>
                                 <div class="col-md-8">
-                                    <select name="companyId" id="companyId" class="form-control" required>
+                                    <select name="companyId" id="companyId" class="form-control" required value="{{ old('companyId') }}">
                                         <option value="">- Công ty -</option>
                                         @include('assets::pages.category.include._inc_recursiveInput',[
                                             'data' => $companies,
@@ -44,13 +44,19 @@
                                     <span class="required">*</span> 
                                 </label>
                                 <div class="col-md-8">
-                                    <input type="text" name="name" maxlength="255" id="name" class="form-control" value="" required>
+                                    <input type="text" name="name" maxlength="255" id="name" class="form-control" value="{{ old('name') }}" required>
+                                    @error('name')
+                                        <p style="color: #b81f1f;">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
+                                
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Danh mục cha:</label>
                                 <div class="col-md-8">
-                                    <select name="parentId" id="parentId" class="form-control">
+                                    <select name="parentId" id="parentId" class="form-control" value="{{ old('parentId') }}">
                                         <option value="">- Danh mục -</option>
                                         @include('assets::pages.category.include._inc_recursiveInput',[
                                             'data' => $categories,
@@ -62,12 +68,22 @@
                             </div>
                             <div class="form-group"><label class="col-md-4 control-label">Mã
                                     code:</label>
-                                <div class="col-md-8"><input type="text" name="code" maxlength="255"
-                                        id="code" class="form-control" value=""></div>
-                            </div><input type="hidden" name="id" id="id" value="">
+                                <div class="col-md-8">
+                                    <input type="text" name="code" maxlength="255" id="code" class="form-control" value="{{ old('code') }}">
+                                    @error('code')
+                                        <p style="color: #b81f1f;">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" id="id" value="">
                         </fieldset>
                     </div>
                     <div style="clear:both"></div>
+                    @error('name')
+                        {{ $message }}
+                    @enderror
                     <div class="col-md-12">
                         <div>
                             <div class="form-group"><label class="col-md-2 control-label">Sau khi
@@ -91,6 +107,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="author" value="{{ Auth::user()->id }}">
             </form>
         </div>
     </div>
