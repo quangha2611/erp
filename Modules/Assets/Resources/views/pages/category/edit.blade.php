@@ -28,16 +28,14 @@
                             <div class="form-group"><label
                                     class="col-md-4 control-label required">Công ty: <span
                                         class="required">*</span> </label>
-                                <div class="col-md-8"><select name="companyId" id="companyId"
-                                        class="form-control" required>
+                                <div class="col-md-8">
+                                    <select name="companyId" id="companyId" class="form-control" required>
                                         <option value="">- Công ty -</option>
-                                        @foreach ($companies as $company)
-                                            @if ($category->companyId == $company->id)
-                                                <option value="{{ $company->id }}" selected>{{ $company->name }}</option>
-                                            @else
-                                                <option value="{{ $company->id }}">{{ $company->name }}</option>
-                                            @endif
-                                        @endforeach
+                                        @include('assets::pages.category.include._inc_recursiveInput',[
+                                            'data' => $companies,
+                                            'parentId' => null,
+                                            'note' => '--',
+                                        ])
                                     </select></div>
                             </div>
                             <div class="form-group"><label
@@ -50,12 +48,12 @@
                                 <label class="col-md-4 control-label">Danh mục cha:</label>
                                 <div class="col-md-8">
                                     <select name="parentId" id="parentId" class="form-control">
-                                        <option value="">- Danh mục -</option>
+                                    <option value="">- Danh mục -</option>
                                         @include('assets::pages.category.include._inc_recursiveInput',[
                                             'data' => $categories,
                                             'parentId' => null,
                                             'note' => '--',
-                                            'currentParentId' => $category->parentId
+                                            'currentItem' => $category
                                         ])
                                     </select>
                                 </div>

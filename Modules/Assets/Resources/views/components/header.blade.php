@@ -873,8 +873,8 @@
 									<ul class="nav nav-tabs">
 										<li><a href="https://erp.nhanh.vn/company">Công ty</a></li>
 										<li><a href="https://erp.nhanh.vn/hrm">Nhân sự</a></li>
-										<li class="active"><a href="https://erp.nhanh.vn/asset">Tài sản</a></li>
-										<li><a href="https://erp.nhanh.vn/document">Tài liệu</a></li>
+										<li class="active"><a href="{{ route('get.asset.manage.index') }}">Tài sản</a></li>
+										<li><a href="{{ route('get.document.document.index') }}">Tài liệu</a></li>
 										<li><a href="https://erp.nhanh.vn/accounting">Kế toán</a></li>
 										<li><a href="https://erp.nhanh.vn/work">Công việc</a></li>
 										<li><a href="https://erp.nhanh.vn/crm">Khách hàng</a></li>
@@ -968,16 +968,25 @@
 												<a data-toggle="dropdown" class="btn btn-link dropdown-toggle"
 													href="https://erp.nhanh.vn/asset/manage/index#">
 													<!-- 									<img src="/images/nhanh_16x16.png"> -->
-													<span class="name">huongbll</span> <span class="caret"></span> </a>
+													<span class="name">{{ Auth::user()->name }}</span> <span class="caret"></span> </a>
 												<ul role="menu" class="dropdown-menu">
-													<li><a href="https://erp.nhanh.vn/profile"> <i
-																class="fa fa-user"></i> <span class="text">Thông tin tài
-																khoản</span>
-														</a></li>
-													<li><a href="https://erp.nhanh.vn/user/signout"> <i
-																class="fa fa-power-off"></i> <span
-																class="text">Thoát</span>
-														</a></li>
+													<li>
+														<a href="https://erp.nhanh.vn/profile"> 
+															<i class="fa fa-user"></i> 
+															<span class="text">Thông tin tài khoản</span>
+														</a>
+													</li>
+													<li>
+														<a href="{{ route('logout') }}" onclick="
+																event.preventDefault();
+																document.getElementById('logout').submit()"> 
+															<i class="fa fa-power-off"></i> 
+															<span class="text">Thoát</span>
+														</a>
+													</li>
+													<form method="POST" action="{{ route('logout') }}" style="display: none" id="logout">
+														@csrf
+													</form>
 												</ul>
 											</div>
 										</div>

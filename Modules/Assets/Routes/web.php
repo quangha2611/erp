@@ -11,34 +11,37 @@
 |
 */
 
+
 Route::prefix('assets')->group(function() {
 
     Route::prefix('category')->group(function() {
-        Route::get('/', 'AssetsCategoryController@index')->name('get.asset.category.index');
+        Route::get('/', 'AssetsCategoryController@index')->name('get.asset.category.index')->middleware('auth');
     
-        Route::get('/create','AssetsCategoryController@create')->name('get.asset.category.create');
+        Route::get('/create','AssetsCategoryController@create')->name('get.asset.category.create')->middleware('auth');
 
-        Route::post('/store','AssetsCategoryController@store')->name('post.asset.category.store');
+        Route::post('/store','AssetsCategoryController@store')->name('post.asset.category.store')->middleware('auth');
     
-        Route::get('/edit/{id}','AssetsCategoryController@edit')->name('get.asset.category.edit');
+        Route::get('/edit/{id}','AssetsCategoryController@edit')->name('get.asset.category.edit')->middleware('auth');
 
-        Route::post('/update/{id}','AssetsCategoryController@update')->name('post.asset.category.update');
+        Route::post('/update/{id}','AssetsCategoryController@update')->name('post.asset.category.update')->middleware('auth');
 
-        Route::post('/destroy/{id}','AssetsCategoryController@destroy')->name('post.asset.category.destroy');
+        Route::post('/destroy','AssetsCategoryController@destroy')->name('post.asset.category.destroy')->middleware('auth');
 
-        Route::get('/filter','AssetsCategoryController@filter')->name('get.asset.category.filter');
+        Route::get('/filter','AssetsCategoryController@filter')->name('get.asset.category.filter')->middleware('auth');
     });
 
     Route::prefix('manage')->group(function() {
-        Route::get('/', 'AssetsManageController@index')->name('get.asset.manage.index');
+        Route::get('/', 'AssetsManageController@index')->name('get.asset.manage.index')->middleware('auth');
     
-        Route::get('/create','AssetsManageController@create')->name('get.asset.manage.create');
+        Route::get('/create','AssetsManageController@create')->name('get.asset.manage.create')->middleware('auth');
 
-        Route::post('/store','AssetsManageController@store')->name('post.asset.manage.store');
+        Route::post('/store','AssetsManageController@store')->name('post.asset.manage.store')->middleware('auth');
     
-        Route::get('/edit/{id}','AssetsManageController@edit')->name('get.asset.manage.edit');
+        Route::get('/edit/{id}','AssetsManageController@edit')->name('get.asset.manage.edit')->middleware('auth');
 
-        Route::get('/filter','AssetsManageController@filter')->name('get.asset.manage.filter');
+        Route::get('/filter','AssetsManageController@filter')->name('get.asset.manage.filter')->middleware('auth');
+
+        Route::get('/exportAll/{type}','AssetsManageController@exportAll')->name('get.asset.manage.exportAll')->middleware('auth');
 
     });
 

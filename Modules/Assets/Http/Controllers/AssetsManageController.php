@@ -5,55 +5,68 @@ namespace Modules\Assets\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Exports\AssetsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Auth;
+
 
 use Modules\Assets\Entities\Asset;
 use Modules\Assets\Entities\AssetCategory;
 use Modules\Assets\Entities\AssetStatus;
 use App\Company;
 
+use Modules\Assets\Repositories\AssetsManage\AssetsManageInterfaceRepository;
+use Modules\Assets\Repositories\AssetsManage\AssetsManageRepository;
+
 
 class AssetsManageController extends Controller
 {
+    protected $assets;
+
+    public function __construct(AssetsManageInterfaceRepository $assetsManageInterfaceRepository)
+    {
+        $this->assets = $assetsManageInterfaceRepository;
+    }
+
     public function index()
     {
         $companies = Company::all();
         $categories = AssetCategory::all();
 
-        $assets = Asset::all();
-        return view('assets::pages.manage.index',[
-            'assets' => $assets,
-            'categories' => $categories,
-            'companies' => $companies,
-            'currentCompanyId' => 0
-        ]);
+        $assets = $this->assets->index();
+        return view('assets::pages.manage.index',compact('assets','categories','companies'));
     }
+
+    public function exportAll($type)
+    {
+        $assets = $this->assets->index();
+
+        $data = [];
+
+        foreach($assets as $asset) {
+            array_push($data,[
+                $asset->id, 
+                $asset->name, 
+                Company::find($asset->companyId)->name, 
+                AssetCategory::find($asset->categoryId)->name,
+                $asset->code,
+                $asset->originalValue,
+                $asset->quantity,
+                AssetCategory::find($asset->deviceStatus)->name,
+                $asset->boughtDate,
+                $asset->warrantyMonths
+            ]);
+        }
+
+        $data = new AssetsExport($data);
+
+        return Excel::download($data, 'assets.'.$type);
+    }
+
 
     public function filter(Request $request) 
     {
-        $assets = Asset::query();
-        
-        if($request->companyId != null) {
-            $assets->where('companyId',$request->companyId);
-        }
-
-        if($request->id != null) {
-            $assets->where('id',$request->id);
-        }
-
-        if($request->createdByName != null) {
-            $assets->where('createdByName',$request->createdByName);
-        }
-
-        if($request->name != null) {
-            $assets->where('name',$request->name);
-        }
-
-        if($request->categoryId != null) {
-            $assets->where('categoryId',$request->categoryId);
-        }
-
-
-        dd($assets->get());
+        $this->assets->filter($request->all());
     }
 
     public function create()
@@ -93,7 +106,7 @@ class AssetsManageController extends Controller
         ]);
 
         // store
-        Asset::create( $request->all() );
+        $this->assets->store( $request->all() );
 
         // redirect
         if($request->afterSubmit == 'show') {

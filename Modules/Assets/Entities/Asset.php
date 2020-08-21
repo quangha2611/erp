@@ -17,6 +17,7 @@ class Asset extends Model
         'boughtDate',
         'manufactureDate',
         'expiredDate',
-        'warrantyMonths'
+        'warrantyMonths',
+        'author'
     ];
 }

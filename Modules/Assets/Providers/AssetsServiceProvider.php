@@ -4,6 +4,12 @@ namespace Modules\Assets\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Assets\Repositories\AssetsCategory\AssetsCategoryInterfaceRepository;
+use Modules\Assets\Repositories\AssetsCategory\AssetsCategoryRepository;
+use Modules\Assets\Repositories\AssetsManage\AssetsManageInterfaceRepository;
+use Modules\Assets\Repositories\AssetsManage\AssetsManageRepository;
+use Illuminate\Support\Facades\Auth;
+
 
 class AssetsServiceProvider extends ServiceProvider
 {
@@ -29,6 +35,7 @@ class AssetsServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+
     }
 
     /**
@@ -39,6 +46,8 @@ class AssetsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->app->bind(AssetsCategoryInterfaceRepository::class,AssetsCategoryRepository::class);
+        $this->app->bind(AssetsManageInterfaceRepository::class,AssetsManageRepository::class);
     }
 
     /**

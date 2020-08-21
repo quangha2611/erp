@@ -26,7 +26,7 @@ class CreateAssetsTable extends Migration
             $table->date('manufactureDate')->nullable()->default(null);
             $table->date('expiredDate')->nullable()->default(null);
             $table->integer('warrantyMonths')->nullable()->default(null);
-            // $table->integer('author');
+            $table->integer('author');
             $table->timestamps();
         });
     }

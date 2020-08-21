@@ -19,6 +19,7 @@ class CreateAssetCategoriesTable extends Migration
             $table->string('name');
             $table->string('parentId')->nullable()->default(null);
             $table->char('code')->nullable()->default(null);
+            $table->integer('author');
             $table->timestamps();
         });
     }

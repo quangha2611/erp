@@ -4,6 +4,10 @@ namespace Modules\Document\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Document\Repositories\DocumentCategory\DocumentCategoryInterfaceRepository;
+use Modules\Document\Repositories\DocumentCategory\DocumentCategoryRepository;
+use Modules\Document\Repositories\Document\DocumentInterfaceRepository;
+use Modules\Document\Repositories\Document\DocumentRepository;
 
 class DocumentServiceProvider extends ServiceProvider
 {
@@ -39,6 +43,8 @@ class DocumentServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->app->bind(DocumentCategoryInterfaceRepository::class,DocumentCategoryRepository::class);
+        $this->app->bind(DocumentInterfaceRepository::class,DocumentRepository::class);
     }
 
     /**

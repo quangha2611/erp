@@ -10,6 +10,7 @@ class AssetCategory extends Model
         'companyId',
         'name',
         'parentId',
-        'code'
+        'code',
+        'author'
     ];
 }
