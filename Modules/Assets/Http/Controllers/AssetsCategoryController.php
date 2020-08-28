@@ -37,9 +37,10 @@ class AssetsCategoryController extends Controller
         $categories = $this->assetsCategory->filter($request->all());
         $companies = Company::all();
 
-        $currentCompanyId = $request->companyId;
+        $currentCompany = Company::findOrFail($request->companyId);
 
-        return view('assets::pages.category.index',compact('categories','companies','currentCompanyId'));
+
+        return view('assets::pages.category.index',compact('categories','companies','currentCompany'));
     }
 
 
@@ -55,8 +56,8 @@ class AssetsCategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'min:6|max:255|unique:asset_categories|bail',
-            'code' => 'min:6|max:255|unique:asset_categories|bail',
+            'name' => 'min:3|max:255|unique:asset_categories|bail',
+            'code' => 'nullable|min:3|max:255|unique:asset_categories|bail',
         ]);
 
         if($validator->fails()) {
@@ -82,7 +83,7 @@ class AssetsCategoryController extends Controller
         $categories = $this->assetsCategory->index();
         $category = $this->assetsCategory->find($id);
         $companies = Company::all();
-        $currentCompany = Company::findOrFail($category->companyId)->name;
+        $currentCompany = Company::findOrFail($category->companyId);
 
         return view('assets::pages.category.edit',compact('categories','category','companies','currentCompany'));
     }

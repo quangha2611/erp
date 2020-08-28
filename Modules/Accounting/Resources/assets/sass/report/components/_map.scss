@@ -1,0 +1,73 @@
+.mapTooltip {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+    opacity: 0.9;
+    position: fixed;
+    padding: 10px;
+    z-index: 1000;
+    max-width: 200px;
+    display: none;
+    background-color: #f3f3f3;
+    border: 1px solid #fff;
+    color: #555;
+
+    span {
+        font-weight: 700;
+    }
+}
+
+.data-us-map {
+    .plotLegend {
+        margin-top: 50px;
+    }
+}
+
+.zoom-map {
+    position: relative;
+
+    .btn-group {
+        margin-bottom: 20px;
+    }
+}
+
+.map {
+    .zoomIn {
+        position: absolute;
+        left: 10px;
+        background: #fff;
+        width: 20px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 20px;
+        top: 60px;
+
+        &:hover {
+            background: #f7f7f7;
+        }
+    }
+
+    .zoomOut {
+        position: absolute;
+        left: 10px;
+        background: #fff;
+        width: 20px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 20px;
+        top: 85px;
+
+        &:hover {
+            background: #f7f7f7;
+        }
+    }
+}
+
+.map-custom-width {
+    width: 75%;
+
+    .map {
+        position: relative;
+        left: 20%;
+    }
+}

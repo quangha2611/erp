@@ -11,6 +11,7 @@ class AssetCategory extends Model
         'name',
         'parentId',
         'code',
-        'author'
+        'author',
+        'isDeleted'
     ];
 }

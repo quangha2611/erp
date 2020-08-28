@@ -31,10 +31,12 @@
                                 <div class="col-md-8">
                                     <select name="companyId" id="companyId" class="form-control" required>
                                         <option value="">- Công ty -</option>
+
                                         @include('assets::pages.category.include._inc_recursiveInput',[
                                             'data' => $companies,
                                             'parentId' => null,
                                             'note' => '--',
+                                            'currentItem' => $currentCompany
                                         ])
                                     </select></div>
                             </div>
@@ -49,7 +51,7 @@
                                 <div class="col-md-8">
                                     <select name="parentId" id="parentId" class="form-control">
                                     <option value="">- Danh mục -</option>
-                                        @include('assets::pages.category.include._inc_recursiveInput',[
+                                        @include('assets::pages.category.include._inc_recursiveParent',[
                                             'data' => $categories,
                                             'parentId' => null,
                                             'note' => '--',

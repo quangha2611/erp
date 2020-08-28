@@ -79,7 +79,11 @@ class DocumentCategoryController extends Controller
     
     public function edit($id)
     {
-        
+
+        $categories = $this->documentCategory->index();
+        $companies = Company::all();
+        $currentCategory = $this->documentCategory->find($id);
+        return view('document::pages.category.edit',compact('categories','companies','currentCategory'));
     }
 
    
@@ -89,8 +93,10 @@ class DocumentCategoryController extends Controller
     }
 
   
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $this->documentCategory->destroy($request->id);
+        
+        return redirect()->route('get.document.category.index');
     }
 }

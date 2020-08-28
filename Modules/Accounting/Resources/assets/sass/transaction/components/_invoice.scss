@@ -1,0 +1,101 @@
+.invoice-header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 50px;
+
+    ul {
+        text-align: right;
+
+        li {
+            padding: 0 15px;
+
+            &:not(:first-child) {
+                border-left: 1px solid #ddd;
+            }
+        }
+    }
+}
+
+.invoice-from-to {
+    margin-bottom: 50px;
+
+    .name {
+        margin-top: 15px;
+        font-size: 1.5em;
+        font-weight: 700;
+    }
+
+    address {
+        .contact {
+            margin-top: 10px;
+
+            p {
+                margin-bottom: 0;
+
+                span {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+.invoice-table {
+    tbody {
+        tr {
+            td {
+                &:last-child {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+.invoice-notes {
+    strong {
+        display: block;
+    }
+
+    p {
+        font-size: 0.75em;
+    }
+}
+
+.invoice-footer {
+    .right-col {
+        position: absolute;
+        right: 15px;
+    }
+}
+
+.invoice-total {
+    padding-right: 24px;
+
+    .row {
+        >div {
+            padding: 0;
+
+            &:first-child {
+                p {
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+
+    p {
+        &:last-child {
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            font-weight: 700;
+            font-size: 1.3em;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+}
+
+.invoice-buttons {
+    text-align: right;
+    margin-top: 50px;
+}

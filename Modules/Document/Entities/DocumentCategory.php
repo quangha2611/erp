@@ -10,6 +10,6 @@ class DocumentCategory extends Model
         'companyId',
         'departmentId',
         'parentId',
-        'name'
+        'name',
     ];
 }

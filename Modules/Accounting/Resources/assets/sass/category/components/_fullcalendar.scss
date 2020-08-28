@@ -1,0 +1,1016 @@
+/*!
+ * FullCalendar v2.1.1 Stylesheet
+ * Docs & License: http://arshaw.com/fullcalendar/
+ * (c) 2013 Adam Shaw
+ */
+/* Colors
+--------------------------------------------------------------------------------------------------*/
+/* Icons (inline elements with styled text that mock arrow icons)
+--------------------------------------------------------------------------------------------------*/
+/* Buttons (styled <button> tags, normalized to work cross-browser)
+--------------------------------------------------------------------------------------------------*/
+/* Firefox has an annoying inner border */
+/* icons in buttons */
+/*
+  button states
+  borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
+*/
+/* Buttons Groups
+--------------------------------------------------------------------------------------------------*/
+/*
+every button that is not first in a button group should scootch over one pixel and cover the
+previous button's border...
+*/
+/* Popover
+--------------------------------------------------------------------------------------------------*/
+/* unthemed */
+/* jqui themed */
+/* Misc Reusable Components
+--------------------------------------------------------------------------------------------------*/
+/* Tables
+--------------------------------------------------------------------------------------------------*/
+/* Fake Table Rows
+--------------------------------------------------------------------------------------------------*/
+/* Day Row (used within the header and the DayGrid)
+--------------------------------------------------------------------------------------------------*/
+/* highlighting cells */
+/*
+row content (which contains day/week numbers and events) as well as "helper" (which contains
+temporary rendered events).
+*/
+/* cells with events inside (so NOT the day number cell) */
+/* Scrolling Container
+--------------------------------------------------------------------------------------------------*/
+/* Global Event Styles
+--------------------------------------------------------------------------------------------------*/
+/* overpower some of bootstrap's and jqui's styles on <a> tags */
+/* DayGrid events
+----------------------------------------------------------------------------------------------------
+We use the full "fc-day-grid-event" class instead of using descendants because the event won't
+be a descendant of the grid when it is being dragged.
+*/
+/* events that are continuing to/from another week. kill rounded corners and butt up against edge */
+/* resize handle (outside of fc-content, so can go outside of bounds) */
+/* Event Limiting
+--------------------------------------------------------------------------------------------------*/
+/* "more" link that represents hidden events */
+/* popover that appears when "more" link is clicked */
+/* Toolbar
+--------------------------------------------------------------------------------------------------*/
+/* the things within each left/right/center section */
+/* the first thing within each left/center/right section */
+/* title text */
+/* button layering (for border precedence) */
+/* View Structure
+--------------------------------------------------------------------------------------------------*/
+/* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */
+/* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */
+/* scope positioning and z-index's for everything within the view */
+/* BasicView
+--------------------------------------------------------------------------------------------------*/
+/* day row structure */
+/* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
+/* week and day number styling */
+/* AgendaView all-day area
+--------------------------------------------------------------------------------------------------*/
+/* TimeGrid axis running down the side (for both the all-day area and the slot area)
+--------------------------------------------------------------------------------------------------*/
+/* TimeGrid Structure
+--------------------------------------------------------------------------------------------------*/
+/* so scroll container's z-index is below all-day */
+/* TimeGrid Slats (lines that run horizontally)
+--------------------------------------------------------------------------------------------------*/
+/* TimeGrid Highlighting Slots
+--------------------------------------------------------------------------------------------------*/
+/* TimeGrid Event Containment
+--------------------------------------------------------------------------------------------------*/
+/* TimeGrid Event Styling
+----------------------------------------------------------------------------------------------------
+We use the full "fc-time-grid-event" class instead of using descendants because the event won't
+be a descendant of the grid when it is being dragged.
+*/
+/* short mode, where time and title are on the same line */
+/* resizer */
+.fc {
+    direction: ltr;
+    text-align: left;
+
+    button {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        height: 2.1em;
+        padding: 0 .6em;
+        font-size: 1em;
+        white-space: nowrap;
+        cursor: pointer;
+
+        &::-moz-focus-inner {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fc-icon {
+            position: relative;
+            top: .05em;
+            margin: 0 .1em;
+        }
+    }
+
+    .fc-button-group {
+        >* {
+            float: left;
+            margin: 0 0 0 -1px;
+        }
+
+        > {
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    hr {
+        height: 0;
+        margin: 0;
+        padding: 0 0 2px;
+        border-style: solid;
+        border-width: 1px 0;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        border-spacing: 0;
+        font-size: 1em;
+    }
+
+    th {
+        text-align: center;
+        border-style: solid;
+        border-width: 1px;
+        padding: 0;
+        vertical-align: top;
+    }
+
+    td {
+        border-style: solid;
+        border-width: 1px;
+        padding: 0;
+        vertical-align: top;
+    }
+
+    td.fc-today {
+        border-style: double;
+    }
+
+    .fc-row {
+        border-style: solid;
+        border-width: 0;
+    }
+
+    .fc-toolbar {
+        >* {
+            >* {
+                float: left;
+                margin-left: .75em;
+            }
+
+            > {
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+    .fc-axis {
+        vertical-align: middle;
+        padding: 0 4px;
+        white-space: nowrap;
+    }
+}
+
+.fc-rtl {
+    text-align: right;
+
+    .fc-popover {
+        .fc-header {
+            .fc-close {
+                float: left;
+            }
+
+            .fc-title {
+                float: right;
+            }
+        }
+    }
+
+    .fc-day-grid-event.fc-not-end {
+        margin-left: 0;
+        border-left-width: 0;
+        padding-left: 1px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .fc-day-grid-event.fc-not-start {
+        margin-right: 0;
+        border-right-width: 0;
+        padding-right: 1px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .fc-day-grid-event {
+        .fc-resizer {
+            left: -3px;
+            cursor: w-resize;
+        }
+    }
+
+    .fc-basic-view {
+        .fc-day-number {
+            text-align: left;
+        }
+    }
+
+    .fc-axis {
+        text-align: left;
+    }
+
+    .fc-time-grid {
+        .fc-event-container {
+            margin: 0 2px 0 2.5%;
+        }
+    }
+}
+
+body {
+    .fc {
+        font-size: 1em;
+    }
+}
+
+.fc-unthemed {
+    th {
+        border-color: #ddd;
+    }
+
+    td {
+        border-color: #ddd;
+    }
+
+    hr {
+        border-color: #ddd;
+        background: #eee;
+    }
+
+    thead {
+        border-color: #ddd;
+    }
+
+    tbody {
+        border-color: #ddd;
+    }
+
+    .fc-row {
+        border-color: #ddd;
+    }
+
+    .fc-popover {
+        border-color: #ddd;
+        background-color: #fff;
+        border-width: 1px;
+        border-style: solid;
+
+        .fc-header {
+            background: #eee;
+
+            .fc-close {
+                color: #666;
+                font-size: 25px;
+                margin-top: 4px;
+            }
+        }
+    }
+
+    .fc-today {
+        background: #fcf8e3;
+    }
+}
+
+.fc-highlight {
+    background: #bce8f1;
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+
+.fc-icon {
+    display: inline-block;
+    font-size: 2em;
+    line-height: .5em;
+    height: .5em;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.fc-icon-left-single-arrow {
+    &:after {
+        content: "\02039";
+        font-weight: bold;
+    }
+}
+
+.fc-icon-right-single-arrow {
+    &:after {
+        content: "\0203A";
+        font-weight: bold;
+    }
+}
+
+.fc-icon-left-double-arrow {
+    &:after {
+        content: "\000AB";
+    }
+}
+
+.fc-icon-right-double-arrow {
+    &:after {
+        content: "\000BB";
+    }
+}
+
+.fc-icon-x {
+    &:after {
+        content: "\000D7";
+    }
+}
+
+.fc-state-default {
+    border: 1px solid;
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #333;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fc-state-default.fc-corner-left {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.fc-state-default.fc-corner-right {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.fc-state-hover {
+    color: #333333;
+    background-color: #e6e6e6;
+    color: #333333;
+    text-decoration: none;
+    background-position: 0 -15px;
+    -webkit-transition: background-position 0.1s linear;
+    -moz-transition: background-position 0.1s linear;
+    -o-transition: background-position 0.1s linear;
+    transition: background-position 0.1s linear;
+}
+
+.fc-state-down {
+    color: #333333;
+    background-color: #e6e6e6;
+    background-color: #cccccc;
+    background-image: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fc-state-active {
+    color: #333333;
+    background-color: #e6e6e6;
+    background-color: #cccccc;
+    background-image: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fc-state-disabled {
+    color: #333333;
+    background-color: #e6e6e6;
+    cursor: default;
+    background-image: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    box-shadow: none;
+}
+
+.fc-button-group {
+    display: inline-block;
+}
+
+.fc-popover {
+    position: absolute;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+
+    .fc-header {
+        padding: 2px 4px;
+
+        .fc-title {
+            margin: 0 2px;
+        }
+
+        .fc-close {
+            cursor: pointer;
+        }
+    }
+
+    >.ui-widget-header+.ui-widget-content {
+        border-top: 0;
+    }
+}
+
+.fc-ltr {
+    .fc-popover {
+        .fc-header {
+            .fc-title {
+                float: left;
+            }
+
+            .fc-close {
+                float: right;
+            }
+        }
+    }
+
+    .fc-day-grid-event.fc-not-start {
+        margin-left: 0;
+        border-left-width: 0;
+        padding-left: 1px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .fc-day-grid-event.fc-not-end {
+        margin-right: 0;
+        border-right-width: 0;
+        padding-right: 1px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .fc-day-grid-event {
+        .fc-resizer {
+            right: -3px;
+            cursor: e-resize;
+        }
+    }
+
+    .fc-basic-view {
+        .fc-day-number {
+            text-align: right;
+        }
+    }
+
+    .fc-axis {
+        text-align: right;
+    }
+
+    .fc-time-grid {
+        .fc-event-container {
+            margin: 0 2.5% 0 2px;
+        }
+    }
+}
+
+.fc-clear {
+    clear: both;
+}
+
+.fc-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    table {
+        height: 100%;
+    }
+}
+
+.fc-highlight-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.fc-helper-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.fc-row {
+    table {
+        border-left: 0 hidden transparent;
+        border-right: 0 hidden transparent;
+        border-bottom: 0 hidden transparent;
+    }
+
+    &:first-child {
+        table {
+            border-top: 0 hidden transparent;
+        }
+    }
+
+    position: relative;
+
+    .fc-bg {
+        z-index: 1;
+    }
+
+    .fc-highlight-skeleton {
+        z-index: 2;
+        bottom: 0;
+
+        table {
+            height: 100%;
+        }
+
+        td {
+            border-color: transparent;
+        }
+    }
+
+    .fc-content-skeleton {
+        position: relative;
+        z-index: 3;
+        padding-bottom: 2px;
+
+        td {
+            background: none;
+            border-color: transparent;
+            border-bottom: 0;
+        }
+
+        tbody {
+            td {
+                border-top: 0;
+            }
+        }
+    }
+
+    .fc-helper-skeleton {
+        z-index: 4;
+
+        td {
+            background: none;
+            border-color: transparent;
+            border-bottom: 0;
+        }
+
+        tbody {
+            td {
+                border-top: 0;
+            }
+        }
+    }
+}
+
+.fc-scroller {
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    >* {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+.fc-event {
+    position: relative;
+    display: block;
+    font-size: .85em;
+    line-height: 1.3;
+    border-radius: 3px;
+    border: 1px solid #3a87ad;
+    background-color: #3a87ad;
+    font-weight: normal;
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.ui-widget {
+    .fc-event {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    td.fc-axis {
+        font-weight: normal;
+    }
+}
+
+.fc-event[href] {
+    cursor: pointer;
+}
+
+.fc-event.fc-draggable {
+    cursor: pointer;
+}
+
+.fc-day-grid-event {
+    margin: 1px 2px 0;
+    padding: 0 1px;
+
+    >.fc-content {
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .fc-time {
+        font-weight: bold;
+    }
+
+    .fc-resizer {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 7px;
+    }
+}
+
+a.fc-more {
+    margin: 1px 3px;
+    font-size: .85em;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.fc-limited {
+    display: none;
+}
+
+.fc-day-grid {
+    .fc-row {
+        z-index: 1;
+    }
+}
+
+.fc-more-popover {
+    z-index: 2;
+    width: 220px;
+
+    .fc-event-container {
+        padding: 10px;
+    }
+}
+
+.fc-toolbar {
+    text-align: center;
+    margin-bottom: 1em;
+
+    .fc-left {
+        float: left;
+    }
+
+    .fc-right {
+        float: right;
+    }
+
+    .fc-center {
+        display: inline-block;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    button {
+        position: relative;
+
+        &:focus {
+            z-index: 5;
+        }
+    }
+
+    .fc-state-hover {
+        z-index: 2;
+    }
+
+    .ui-state-hover {
+        z-index: 2;
+    }
+
+    .fc-state-down {
+        z-index: 3;
+    }
+
+    .fc-state-active {
+        z-index: 4;
+    }
+
+    .ui-state-active {
+        z-index: 4;
+    }
+}
+
+.fc-view-container {
+    * {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+
+        &:before {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+
+        &:after {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+    }
+}
+
+.fc-view {
+    position: relative;
+    z-index: 1;
+
+    >table {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.fc-basicWeek-view {
+    .fc-content-skeleton {
+        padding-top: 1px;
+        padding-bottom: 1em;
+    }
+}
+
+.fc-basicDay-view {
+    .fc-content-skeleton {
+        padding-top: 1px;
+        padding-bottom: 1em;
+    }
+}
+
+.fc-basic-view {
+    tbody {
+        .fc-row {
+            min-height: 4em;
+        }
+    }
+
+    .fc-week-number {
+        padding: 0 2px;
+        text-align: center;
+
+        span {
+            display: inline-block;
+            min-width: 1.25em;
+        }
+    }
+
+    .fc-day-number {
+        padding: 0 2px;
+    }
+
+    td.fc-week-number {
+        span {
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+    }
+
+    td.fc-day-number {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+}
+
+.fc-row.fc-rigid {
+    overflow: hidden;
+
+    .fc-content-skeleton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+.fc-day-number.fc-other-month {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+.fc-agenda-view {
+    .fc-day-grid {
+        position: relative;
+        z-index: 2;
+
+        .fc-row {
+            min-height: 3em;
+
+            .fc-content-skeleton {
+                padding-top: 1px;
+                padding-bottom: 1em;
+            }
+        }
+    }
+}
+
+.fc-time-grid-container {
+    position: relative;
+    z-index: 1;
+}
+
+.fc-time-grid {
+    position: relative;
+    z-index: 1;
+    min-height: 100%;
+
+    table {
+        border: 0 hidden transparent;
+    }
+
+    >.fc-bg {
+        z-index: 1;
+    }
+
+    .fc-slats {
+        position: relative;
+        z-index: 2;
+    }
+
+    >hr {
+        position: relative;
+        z-index: 2;
+    }
+
+    .fc-highlight-skeleton {
+        z-index: 3;
+    }
+
+    .fc-content-skeleton {
+        position: absolute;
+        z-index: 4;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    >.fc-helper-skeleton {
+        z-index: 5;
+    }
+
+    .fc-highlight-container {
+        position: relative;
+    }
+
+    .fc-highlight {
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+
+    .fc-event-container {
+        position: relative;
+    }
+
+    .fc-event {
+        position: absolute;
+        z-index: 1;
+    }
+}
+
+.fc-slats {
+    td {
+        height: 1.5em;
+        border-bottom: 0;
+    }
+
+    .fc-minor {
+        td {
+            border-top-style: dotted;
+        }
+    }
+
+    .ui-widget-content {
+        background: none;
+    }
+}
+
+.fc-time-grid-event.fc-not-start {
+    border-top-width: 0;
+    padding-top: 1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.fc-time-grid-event.fc-not-end {
+    border-bottom-width: 0;
+    padding-bottom: 1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.fc-time-grid-event {
+    overflow: hidden;
+
+    >.fc-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .fc-time {
+        padding: 0 1px;
+        font-size: .85em;
+        white-space: nowrap;
+    }
+
+    .fc-title {
+        padding: 0 1px;
+    }
+
+    .fc-bg {
+        z-index: 1;
+        background: #fff;
+        opacity: .25;
+        filter: alpha(opacity=25);
+    }
+
+    .fc-resizer {
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 8px;
+        overflow: hidden;
+        line-height: 8px;
+        font-size: 11px;
+        font-family: monospace;
+        text-align: center;
+        cursor: s-resize;
+
+        &:after {
+            content: "=";
+        }
+    }
+}
+
+.fc-time-grid-event.fc-short {
+    .fc-content {
+        white-space: nowrap;
+    }
+
+    .fc-time {
+        display: inline-block;
+        vertical-align: top;
+
+        span {
+            display: none;
+        }
+
+        &:before {
+            content: attr(data-start);
+        }
+
+        &:after {
+            content: "\000A0-\000A0";
+        }
+    }
+
+    .fc-title {
+        display: inline-block;
+        vertical-align: top;
+        font-size: .85em;
+        padding: 0;
+    }
+}

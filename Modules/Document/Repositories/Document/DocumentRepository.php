@@ -38,6 +38,31 @@ class DocumentRepository extends BaseRepository implements DocumentInterfaceRepo
         return $documents;
     }
 
+
+    public function filter (array $attributes)
+    {
+        $documents =$this->model->query();
+        
+        if(isset($attributes['id']) && $attributes['id'] != null) {
+            $documents->where('id',$attributes['id']);
+        }
+
+        if(isset($attributes['name']) && $attributes['name'] != null) {
+            $documents->where('name',$attributes['name']);
+        }
+
+        if(isset($attributes['companyId']) && $attributes['companyId'] != null) {
+            $documents->where('companyId',$attributes['companyId']);
+        }
+
+        if(isset($attributes['categoryId']) && $attributes['categoryId'] != null) {
+            $documents->where('categoryId',$attributes['categoryId']);
+        }
+
+        return $documents->get();
+
+    }
+
     public function store(array $attributes)
     {
         $this->model->create($attributes);

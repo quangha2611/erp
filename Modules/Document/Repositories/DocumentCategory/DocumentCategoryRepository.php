@@ -16,7 +16,7 @@ class DocumentCategoryRepository extends BaseRepository implements DocumentCateg
 
     public function index()
     {
-        $categories = $this->model->all();
+        $categories = $this->model->where('isDeleted',false)->orderBy('id', 'desc')->get();
         
         foreach($categories as $category) {
             $category->companyId = Company::findOrFail($category->companyId)->name;
@@ -27,7 +27,7 @@ class DocumentCategoryRepository extends BaseRepository implements DocumentCateg
 
     public function paginate($pages)
     {
-        $categories = $this->model->paginate($pages);
+        $categories = $this->model->where('isDeleted',false)->orderBy('id', 'desc')->paginate($pages);
         
         foreach($categories as $category) {
             $category->companyId = Company::findOrFail($category->companyId)->name;
@@ -58,5 +58,24 @@ class DocumentCategoryRepository extends BaseRepository implements DocumentCateg
         // }
 
         return $categories->get();
+    }
+
+    public function destroy($id)
+    {
+        $categories = $this->model->all();
+
+        // //delete soft
+        // $this->model->find($id)->update(['isDeleted' => true]);
+        $temp = $this->model->find($id);
+        $temp->isDeleted = true;
+        $temp->save();
+    
+        //change parentId of children
+        foreach($categories as $category) {
+            if($category->parentId == $id) {
+                $category->parentId = $this->model->find($id)->parentId;
+                $category->save();
+            }
+        }
     }
 }

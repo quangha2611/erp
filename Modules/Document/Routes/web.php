@@ -20,6 +20,8 @@ Route::group(['prefix' => 'document', 'middleware' => ['auth']], function(){
         Route::get('/create','DocumentController@create')->name('get.document.document.create');
 
         Route::post('/store','DocumentController@store')->name('post.document.document.store');
+
+        Route::get('/filter','DocumentController@filter')->name('get.document.document.filter');
     });
 
     Route::prefix('category')->group(function(){
@@ -32,5 +34,8 @@ Route::group(['prefix' => 'document', 'middleware' => ['auth']], function(){
         Route::get('/edit/{id}','DocumentCategoryController@edit')->name('get.document.category.edit');
 
         Route::get('/filter','DocumentCategoryController@filter')->name('get.document.category.filter');
+
+        Route::post('/destroy','DocumentCategoryController@destroy')->name('post.document.category.destroy');
+
     });
 });
