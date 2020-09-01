@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 use App\Company;
+use App\User;
 use Modules\Document\Entities\DocumentFile;
 use Modules\Document\Entities\Document;
 use Modules\Document\Repositories\DocumentCategory\DocumentCategoryRepository;
@@ -66,7 +67,6 @@ class DocumentController extends Controller
                     'name' => $nameFile,
                     'document' => $document->id,
                 ]);
-
             }
         }
 
@@ -75,6 +75,32 @@ class DocumentController extends Controller
         } else {
             return redirect()->route('get.document.document.create');
         }
+    }
+
+
+    public function filter(Request $request)
+    {
+        $documents = $this->document->filter($request->all());
+        $companies = Company::all();
+
+        $documentCategory = new DocumentCategoryRepository();
+        $categories = $documentCategory->index();
+
+        foreach($documents as $document) {
+            $document->companyId = Company::findOrFail($document->companyId)->name;
+
+            //count file
+            $document->count_file = count(DocumentFile::where('document',$document->id)->get());
+
+            //change categoryid to categoryname
+            $documentCategory = new DocumentCategoryRepository;
+            $document->categoryId = $documentCategory->find($document->categoryId)->name;
+
+            //get author name
+            $document->author = User::find($document->author)->name;
+        }
+
+        return view('document::pages.document.index',compact('documents','companies','categories'));
     }
 
     /**

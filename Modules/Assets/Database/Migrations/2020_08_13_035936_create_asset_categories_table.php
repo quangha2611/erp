@@ -20,6 +20,7 @@ class CreateAssetCategoriesTable extends Migration
             $table->string('parentId')->nullable()->default(null);
             $table->char('code')->nullable()->default(null);
             $table->integer('author');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

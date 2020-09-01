@@ -27,6 +27,7 @@ class CreateAssetsTable extends Migration
             $table->date('expiredDate')->nullable()->default(null);
             $table->integer('warrantyMonths')->nullable()->default(null);
             $table->integer('author');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

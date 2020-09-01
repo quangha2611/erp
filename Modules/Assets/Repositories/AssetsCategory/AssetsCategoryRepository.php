@@ -20,8 +20,7 @@ class AssetsCategoryRepository extends BaseRepository implements AssetsCategoryI
 
     public function index()
     {
-        $categories = $this->model->all();
-        $companies = Company::all();
+        $categories = $this->model->where('isDeleted', false)->orderBy('id', 'desc')->get();
 
         // get name of company by id
         foreach($categories as $category) {
@@ -35,8 +34,7 @@ class AssetsCategoryRepository extends BaseRepository implements AssetsCategoryI
 
     public function paginate($pages)
     {
-        $categories = $this->model->paginate($pages);
-        $companies = Company::all();
+        $categories = $this->model->where('isDeleted', false)->orderBy('id', 'desc')->paginate($pages);
 
         // get name of company by id
         foreach($categories as $category) {
@@ -66,14 +64,17 @@ class AssetsCategoryRepository extends BaseRepository implements AssetsCategoryI
     {
         $categories = $this->model->all();
 
+        //delete soft
+        $this->model->find($id)->update(['isDeleted' => true]);
+    
+        //change parentId of children
         foreach($categories as $category) {
             if($category->parentId == $id) {
-                $category->parentId = null;
+                $category->parentId = $this->model->find($id)->parentId;
                 $category->save();
             }
         }
 
-        $this->model->find($id)->delete();
     }
     
 }

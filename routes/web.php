@@ -466,135 +466,135 @@ Route::prefix('crm')->group(function() {
 });
 
 // TÀI SẢN
-Route::prefix('asset')->group(function() {
-    Route::prefix('manage')->group(function() {
-        Route::get('index',function() {
-            return view('Layout.Asset.Manage.index');
-        })->name('assetManageIndex');
+// Route::prefix('asset')->group(function() {
+//     Route::prefix('manage')->group(function() {
+//         Route::get('index',function() {
+//             return view('Layout.Asset.Manage.index');
+//         })->name('assetManageIndex');
 
-        Route::get('add',function() {
-            return view('Layout.Asset.Manage.add');
-        })->name('assetManageAdd');
-    });
+//         Route::get('add',function() {
+//             return view('Layout.Asset.Manage.add');
+//         })->name('assetManageAdd');
+//     });
 
 
-    Route::prefix('category')->group(function() {
-        Route::get('index',function() {
-            return view('Layout.Asset.Category.index');
-        })->name('assetCategoryIndex');
+//     Route::prefix('category')->group(function() {
+//         Route::get('index',function() {
+//             return view('Layout.Asset.Category.index');
+//         })->name('assetCategoryIndex');
 
-        Route::get('add',function() {
-            return view('Layout.Asset.Category.add');
-        })->name('assetCategoryAdd');
+//         Route::get('add',function() {
+//             return view('Layout.Asset.Category.add');
+//         })->name('assetCategoryAdd');
 
-        Route::get('edit',function() {
-            return view('Layout.Asset.Category.edit');
-        })->name('assetCategoryEdit');
-    });
-});
+//         Route::get('edit',function() {
+//             return view('Layout.Asset.Category.edit');
+//         })->name('assetCategoryEdit');
+//     });
+// });
 
 //TÀI LIỆU CÔNG TY
-Route::prefix('document')->group(function() {
-    Route::prefix('document')->group(function(){
-        Route::get('index',function() {
-            return view('Layout.Document.Document.index');
-        })->name('documentDocumentIndex');
+// Route::prefix('document')->group(function() {
+//     Route::prefix('document')->group(function(){
+//         Route::get('index',function() {
+//             return view('Layout.Document.Document.index');
+//         })->name('documentDocumentIndex');
 
-        Route::get('add',function() {
-            return view('Layout.Document.Document.add');
-        })->name('documentDocumentAdd');
-    });
+//         Route::get('add',function() {
+//             return view('Layout.Document.Document.add');
+//         })->name('documentDocumentAdd');
+//     });
 
-    Route::prefix('category')->group(function(){
-        Route::get('index',function() {
-            return view('Layout.Document.Category.index');
-        })->name('documentCategoryIndex');
+//     Route::prefix('category')->group(function(){
+//         Route::get('index',function() {
+//             return view('Layout.Document.Category.index');
+//         })->name('documentCategoryIndex');
 
-        Route::get('add',function() {
-            return view('Layout.Document.Category.add');
-        })->name('documentCategoryAdd');
-    });
-});
+//         Route::get('add',function() {
+//             return view('Layout.Document.Category.add');
+//         })->name('documentCategoryAdd');
+//     });
+// });
 
 // KẾ TOÁN
-Route::prefix('accounting')->group(function() {
-    Route::prefix('transaction')->group(function(){
-        Route::get('myindex',function() {
-            return view('Layout.Accounting.Transaction.myindex');
-        })->name('accountingTransactionMyindex');
+// Route::prefix('accounting')->group(function() {
+//     Route::prefix('transaction')->group(function(){
+//         Route::get('myindex',function() {
+//             return view('Layout.Accounting.Transaction.myindex');
+//         })->name('accountingTransactionMyindex');
 
-        Route::get('addpaymentsimple',function() {
-            return view('Layout.Accounting.Transaction.addpaymentsimple');
-        })->name('accountingTransactionAddpaymentsimple');
+//         Route::get('addpaymentsimple',function() {
+//             return view('Layout.Accounting.Transaction.addpaymentsimple');
+//         })->name('accountingTransactionAddpaymentsimple');
 
-        Route::get('addrecieversimple',function() {
-            return view('Layout.Accounting.Transaction.addrecieversimple');
-        })->name('accountingTransactionAddrecieversimple');
+//         Route::get('addrecieversimple',function() {
+//             return view('Layout.Accounting.Transaction.addrecieversimple');
+//         })->name('accountingTransactionAddrecieversimple');
 
-        Route::get('view',function() {
-            return view('Layout.Accounting.Transaction.view');
-        })->name('accountingTransactionView');
+//         Route::get('view',function() {
+//             return view('Layout.Accounting.Transaction.view');
+//         })->name('accountingTransactionView');
 
-        Route::get('/',function() {
-            return view('Layout.Accounting.Transaction.index');
-        })->name('accountingTransaction');
+//         Route::get('/',function() {
+//             return view('Layout.Accounting.Transaction.index');
+//         })->name('accountingTransaction');
 
-        Route::get('addreqpayment',function() {
-            return view('Layout.Accounting.Transaction.addreqpayment');
-        })->name('accountingTransactionAddreqpayment');
-    }); 
+//         Route::get('addreqpayment',function() {
+//             return view('Layout.Accounting.Transaction.addreqpayment');
+//         })->name('accountingTransactionAddreqpayment');
+//     }); 
 
 
-    Route::prefix('expense')->group(function(){
-        Route::get('category',function() {
-            return view('Layout.Accounting.Expense.category');
-        })->name('accountingExpenseCategory');
+//     Route::prefix('expense')->group(function(){
+//         Route::get('category',function() {
+//             return view('Layout.Accounting.Expense.category');
+//         })->name('accountingExpenseCategory');
 
-        Route::get('addcategory',function() {
-            return view('Layout.Accounting.Expense.addcategory');
-        })->name('accountingExpenseAddcategory');
+//         Route::get('addcategory',function() {
+//             return view('Layout.Accounting.Expense.addcategory');
+//         })->name('accountingExpenseAddcategory');
 
-        Route::get('editcategory',function() {
-            return view('Layout.Accounting.Expense.editcategory');
-        })->name('accountingExpenseEditcategory');
-    }); 
+//         Route::get('editcategory',function() {
+//             return view('Layout.Accounting.Expense.editcategory');
+//         })->name('accountingExpenseEditcategory');
+//     }); 
 
-    Route::prefix('account')->group(function(){
-        Route::get('/',function() {
-            return view('Layout.Accounting.Account.index');
-        })->name('accountingAccount');
+//     Route::prefix('account')->group(function(){
+//         Route::get('/',function() {
+//             return view('Layout.Accounting.Account.index');
+//         })->name('accountingAccount');
         
-        Route::get('add',function() {
-            return view('Layout.Accounting.Account.add');
-        })->name('accountingAccountAdd');
+//         Route::get('add',function() {
+//             return view('Layout.Accounting.Account.add');
+//         })->name('accountingAccountAdd');
 
-        Route::get('edit',function() {
-            return view('Layout.Accounting.Account.edit');
-        })->name('accountingAccountEdit');
-    }); 
+//         Route::get('edit',function() {
+//             return view('Layout.Accounting.Account.edit');
+//         })->name('accountingAccountEdit');
+//     }); 
 
-    Route::prefix('report')->group(function(){
-        Route::get('/',function() {
-            return view('Layout.Accounting.Report.report');
-        })->name('accountingReport');
+//     Route::prefix('report')->group(function(){
+//         Route::get('/',function() {
+//             return view('Layout.Accounting.Report.report');
+//         })->name('accountingReport');
         
-        Route::get('expensecategory',function() {
-            return view('Layout.Accounting.Report.expensecategory');
-        })->name('accountingReportExpensecategory');
+//         Route::get('expensecategory',function() {
+//             return view('Layout.Accounting.Report.expensecategory');
+//         })->name('accountingReportExpensecategory');
 
-        Route::get('expensecategorybycreated',function() {
-            return view('Layout.Accounting.Report.expensecategorybycreated');
-        })->name('accountingReportExpensecategorybycreated');
+//         Route::get('expensecategorybycreated',function() {
+//             return view('Layout.Accounting.Report.expensecategorybycreated');
+//         })->name('accountingReportExpensecategorybycreated');
     
-        Route::get('transactionbycreated',function() {
-            return view('Layout.Accounting.Report.transactionbycreated');
-        })->name('accountingReportTransactionbycreated');
+//         Route::get('transactionbycreated',function() {
+//             return view('Layout.Accounting.Report.transactionbycreated');
+//         })->name('accountingReportTransactionbycreated');
 
-        Route::get('transactionbyapprovedbyid',function() {
-            return view('Layout.Accounting.Report.transactionbyapprovedbyid');
-        })->name('accountingReportTransactionbyapprovedbyid');
-    });
-});
+//         Route::get('transactionbyapprovedbyid',function() {
+//             return view('Layout.Accounting.Report.transactionbyapprovedbyid');
+//         })->name('accountingReportTransactionbyapprovedbyid');
+//     });
+// });
 
 // CẢI TIẾN
 Route::prefix('idea')->group(function() {

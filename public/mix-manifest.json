@@ -1,7 +1,12 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/document/document/app.js": "/js/document/document/app.js",
-    "/../../../../../../../css/document/document/style.css": "/../../../../../../../css/document/document/style.css",
-    "/css/document/document/style.css": "/css/document/document/style.css"
+    "/js/accounting/account/app.js": "/js/accounting/account/app.js",
+    "/js/accounting/transaction/app.js": "/js/accounting/transaction/app.js",
+    "/css/accounting/transaction/style.css": "/css/accounting/transaction/style.css",
+    "/css/accounting/account/style.css": "/css/accounting/account/style.css",
+    "/js/accounting/category/app.js": "/js/accounting/category/app.js",
+    "/css/accounting/category/style.css": "/css/accounting/category/style.css",
+    "/js/accounting/report/app.js": "/js/accounting/report/app.js",
+    "/css/accounting/report/style.css": "/css/accounting/report/style.css"
 }

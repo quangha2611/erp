@@ -15,8 +15,7 @@
         </ul>
         <div id="page-crm-contact">
             <div class="filterContainer">
-                <form method="GET" name="documentIndexFilter" class="form-inline" role="form"
-                    id="documentIndexFilter">
+                <form method="GET" name="documentIndexFilter" class="form-inline" role="form" id="documentIndexFilter" action="{{ route('get.document.document.filter') }}">
                     <div class="form-group"><select name="companyId" id="companyId"
                             class="form-control">
                             <option value="">- Công ty -</option>
@@ -116,13 +115,15 @@
                                 <a href="https://erp.nhanh.vn/document/document/view?id=822">
                                     {{ $document->name }}
                                 </a>
-                                <a ref="https://erp.nhanh.vn/document/document/view?id=822#files">
-                                    <span class="badge element-bg-color-blue" style="float:right;" data-toggle="tooltip" data-placement="top" data-original-title="Tổng số tệp tin">
-                                        {{ $document->count_file}}
-                                    </span>
-                                </a>
+                                @if($document->count_file > 0)
+                                    <a ref="https://erp.nhanh.vn/document/document/view?id=822#files">
+                                        <span class="badge element-bg-color-blue" style="float:right;" data-toggle="tooltip" data-placement="top" data-original-title="Tổng số tệp tin">
+                                            {{ $document->count_file}}
+                                        </span>
+                                    </a>
+                                @endif
                             </td>
-                            <td data-toggle="tooltip" data-placement="top" data-original-title="2019-09-16 15:46:45" class="colControls">
+                            <td data-toggle="tooltip" data-placement="top" data-original-title="{{ $document->created_at }}" class="colControls">
                                 {{ $document->author }}
                             </td>
                             <td class="colControls">

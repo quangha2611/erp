@@ -141,20 +141,24 @@
                             <td class="colControls">
                                 <div class="dropdown">
                                     <a class="fa fa-cogs fa-lg dropdown-toggle" data-toggle="dropdown"></a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="https://erp.nhanh.vn/document/category/edit?id=1">
-                                                <i class="fa fa-edit" style="margin-right:7px;margin-left:2px"></i>
-                                                Sửa danh mục
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://erp.nhanh.vn/document/category/index#" class="deleteCat" value="1">
-                                                <i class="fa fa-trash-o" style="margin-right:8px"></i>
-                                                Xoá danh mục
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <form action="{{ route('post.document.category.destroy') }}" method="POST">
+                                        @csrf
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li>
+                                                <a href="{{ route('get.document.category.edit',['id'=>$category->id]) }}">
+                                                    <i class="fa fa-edit" style="margin-right:7px;margin-left:2px"></i>
+                                                    Sửa danh mục
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://erp.nhanh.vn/document/category/index#" class="deleteCat" value="1" onclick="event.preventDefault(); deletedId = 'destroy'+{{ $category->id }}">
+                                                    <i class="fa fa-trash-o" style="margin-right:8px"></i>
+                                                    Xoá danh mục
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <input type="submit" style="display: none" name="id" id="{{ 'destroy'.$category->id }}" value="{{ $category->id }}">
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -178,7 +182,9 @@
                         <h4 class="modal-title">Xóa danh mục</h4>
                     </div>
                     <div class="modal-body"></div>
-                    <div class="modal-footer">
+                    <div class="modalFooter text-right" style="padding: 1rem">
+                        <button type="button" class="btn btn-primary confirm" onclick="document.getElementById(deletedId).click()">Xác nhận</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="document.getElementById('modalbox').style.display='none'">Đóng</button>
                     </div>
                 </div>
             </div>
@@ -193,6 +199,8 @@
         var usrCnf = {
             language: 'vi'
         };
+
+        var deletedId = 0;
     </script>
     <script type="text/javascript" src="{{ asset('/js/document/document/saved_resource') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/document/document/getfirebaseconfig') }}"></script>

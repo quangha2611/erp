@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+use Modules\Assets\Entities\AssetStatus;
+
 class AssetsStatusTableSeeder extends Seeder
 {
     /**
@@ -15,20 +17,15 @@ class AssetsStatusTableSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        // Model::unguard();
+        AssetStatus::query()->truncate();
 
         // $this->call("OthersTableSeeder");
-
-        DB::table('asset_statuses')->insert([
-            [
-                'name' => 'Tình trạng 1'
-            ], 
-            [
-                'name' => 'Tình trạng 2'
-            ],
-            [
-                'name' => 'Tình trạng 3'
-            ],    
+        AssetStatus::insert([
+            ['id'=>1, 'name'=>'Tình trạng 1'],
+            ['id'=>2, 'name'=>'Tình trạng 2'],
+            ['id'=>3, 'name'=>'Tình trạng 3'],
         ]);
+        
     }
 }

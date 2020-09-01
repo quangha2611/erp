@@ -36,4 +36,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function Transaction()
+    {
+        return $this->hasOne('Modules\Accounting\Entities\Transaction','id','author');
+    }
+
+    public function Account()
+    {
+        return $this->hasOne('Modules\Accounting\Entities\Account','id','author');
+    }
 }

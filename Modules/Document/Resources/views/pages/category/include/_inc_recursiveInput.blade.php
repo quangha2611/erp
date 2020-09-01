@@ -3,8 +3,8 @@
 {{-- in edit form has parentId --}}
 @if( isset($currentItem) )
     @foreach ($data as $item)
-        @if($item->parentId == $parentId && $item->id != $currentItem->id)
-            @if($item->id == $currentItem->parentId)
+        @if($item->parentId == $parentId)
+            @if($item->id == $currentItem->id)
                 <option value="{{ $item->id }}" selected> {{ $note.$item->name }} </option>
             @else
                 <option value="{{ $item->id }}"> {{ $note.$item->name }} </option>

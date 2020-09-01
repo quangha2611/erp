@@ -13,5 +13,6 @@ class Document extends Model
         'name',
         'content',
         'author',
+        'isDeleted'
     ];
 }

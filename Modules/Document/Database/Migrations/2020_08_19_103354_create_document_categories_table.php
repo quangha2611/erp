@@ -17,8 +17,9 @@ class CreateDocumentCategoriesTable extends Migration
             $table->id();
             $table->integer('companyId');
             $table->integer('departmentId')->nullable()->default(null);
-            $table->integer('parentId');
+            $table->integer('parentId')->nullable()->default(null);
             $table->string('name');
+            $table->boolean('isDeleted')->default(false);
             $table->timestamps();
         });
     }

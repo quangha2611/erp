@@ -21,11 +21,20 @@
                     <div class="form-group">
                         <select name="companyId" id="companyId" class="form-control" required>
                             <option value="">- Công ty -</option>
-                                @include('assets::pages.category.include._inc_recursiveInput',[
-                                    'data' => $companies,
-                                    'parentId' => null,
-                                    'note' => '--',
-                                ])
+                                @if( isset($currentCompany) )
+                                    @include('assets::pages.category.include._inc_recursiveInput',[
+                                        'data' => $companies,
+                                        'parentId' => null,
+                                        'note' => '--',
+                                        'currentItem' => $currentCompany
+                                    ])
+                                @else 
+                                    @include('assets::pages.category.include._inc_recursiveInput',[
+                                        'data' => $companies,
+                                        'parentId' => null,
+                                        'note' => '--',
+                                    ])
+                                @endif
                         </select>
                     </div>
                     <div class="form-group">
@@ -79,18 +88,15 @@
                                 <form action="{{ route('post.asset.category.destroy') }}" method="POST">
                                     @csrf
                                     <a href="{{ route('get.asset.category.edit', $category->id) }}" class="fa fa-edit edit-item"></a>
-                                    <label style="margin-left:5px; cursor: pointer" value="631" class="fa fa-trash-o delete del_Item" for="{{ 'destroy'.$category->id }}">
+                                    <label style="margin-left:5px; cursor: pointer" value="631" class="fa fa-trash-o delete del_Item" onclick="document.getElementById('modalbox').style.display='block'; deletedId = 'destroy'+{{ $category->id }}">
                                     </label>
-                                    <input type="submit" id="{{ 'destroy'.$category->id }}" style="display: none" name="id" value="{{ $category->id }}">
+                                    <input type="submit" style="display: none" name="id" id="{{ 'destroy'.$category->id }}" value="{{ $category->id }}">
                                 </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div class="row">
-                <div class="col-md-6 dgButtons"></div>
-            </div>
         </div>
         <div class="text-center">
             @if(isset($currentCompanyId))
@@ -100,40 +106,22 @@
             @endif
         </div>
         <!-- Dialog bootstrap -->
-        <div id="delModal" class="modal fade">
-            <div class="modal-dialog">
+        <div class="modal" tabindex="-1" role="dialog" id="modalbox">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">×</button>
-                        <h4 class="modal-title">Thông báo</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert alert-info alert-dismissable">Xác nhận xóa danh mục này
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary confirm">Xác nhận</button>
-                        <button type="button" class="btn btn-default"
-                            data-dismiss="modal">Đóng</button>
-                    </div>
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.getElementById('modalbox').style.display='none'">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-        </div>
-        <div id="alertModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">×</button>
-                        <h4 class="modal-title">Thông báo</h4>
-                    </div>
-                    <div class="modal-body"></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default reload"
-                            data-dismiss="modal">Đóng</button>
-                    </div>
+                <div class="modal-body">
+                    <p>Xác nhận xóa mục này</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById(deletedId).click()">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="document.getElementById('modalbox').style.display='none'">Close</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -148,6 +136,8 @@
 		var usrCnf = {
 			language: 'vi'
 		};
+
+        var deletedId = 0;
 	</script>
 	<script type="text/javascript" src="{{ asset('/js/asset/category/saved_resource') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/asset/category/getfirebaseconfig') }}"></script>
