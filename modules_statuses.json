@@ -3,5 +3,6 @@
     "Document": true,
     "Assets": true,
     "Auth": true,
-    "Accounting": true
+    "Accounting": true,
+    "Crm": true
 }

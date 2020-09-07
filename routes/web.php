@@ -18,7 +18,7 @@ Route::prefix('crm')->group(function() {
 
     // LỊCH LÀM VIỆC
     Route::prefix('calendar')->group(function () {
-        Route::get('index', function () {
+        Route::get('indexx', function () {
             return view('Layout.Crm.Calendar.index');
         })->name('calendarIndex');
     
@@ -37,7 +37,7 @@ Route::prefix('crm')->group(function() {
     
     // LỊCH SỬ CHĂM SÓC
     Route::prefix('activity')->group(function () {
-        Route::get('index', function () {
+        Route::get('indexx', function () {
             return view('Layout.Crm.Activity.index');
         })->name('activityIndex');
     
@@ -46,15 +46,15 @@ Route::prefix('crm')->group(function() {
         })->name('activityIndexvg');
     
         // Danh sach cuoc goi
-        Route::get('listcall', function() {
+        Route::get('listcallx', function() {
             return view('Layout.Crm.Activity.listcall');
         })->name('activityListcall');
     
-        Route::get('yourListcall', function() {
+        Route::get('yourListcallx', function() {
             return view('Layout.Crm.Activity.yourListcall');
         })->name('activityYourListcall');
     
-        Route::get('allListcall', function() {
+        Route::get('allListcallx', function() {
             return view('Layout.Crm.Activity.allListcall');
         })->name('activityAllListcall');
     
@@ -124,7 +124,7 @@ Route::prefix('crm')->group(function() {
         })->name('customerCompanysource');
     
         // Danh sach chung
-        Route::get('index', function () {
+        Route::get('indexx', function () {
             return view('Layout.Crm.Customer.index');
         })->name('customerIndex');
     

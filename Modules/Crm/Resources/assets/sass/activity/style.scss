@@ -1,0 +1,37 @@
+/* ==========Base========== */
+@import './base/_fontsize.scss';
+@import './base/_color';
+
+/* ==========Utils========== */
+@import './utils/_variables';
+
+/* ==========Layout========== */
+@import './layout/_header';
+@import './layout/_sidebar';
+@import './layout/_footer';
+@import './layout/_responsive.scss';
+@import './layout/a';
+
+/* ==========Components========== */
+@import './components/_button';
+@import './components/_input';
+@import './components/_label';
+@import './components/_widget';
+@import './components/_progress';
+@import './components/_select2';
+@import './components/_datetimepicker';
+@import './components/_range_slider';
+@import './components/_badge';
+@import './components/_switch';
+@import './components/_map';
+@import './components/_chart';
+@import './components/_taskStt';
+@import './components/_invoice';
+@import './components/_table';
+@import './components/_media';
+// @import './components/fullcalendar';
+
+/* ==========Vendor========== */
+@import './vendor/_bootstrap';
+@import './vendor/_jquery';
+@import './vendor/_fontawesome';

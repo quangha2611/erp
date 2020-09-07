@@ -1,0 +1,23 @@
+.media-object.img-thumbnail {
+    max-width: none;
+}
+
+.media-right {
+    padding-left: 10px;
+    display: table-cell;
+    vertical-align: top;
+}
+
+.media-left {
+    padding-right: 10px;
+    display: table-cell;
+    vertical-align: top;
+}
+
+.media-middle {
+    vertical-align: middle;
+}
+
+.media-bottom {
+    vertical-align: bottom;
+}

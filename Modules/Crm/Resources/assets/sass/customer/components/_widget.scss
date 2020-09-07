@@ -1,0 +1,301 @@
+.widget {
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-color: #d3d3d3;
+    border-color: $borderColor;
+
+    .widget-header {
+        padding: 0 10px;
+        height: 35px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #d3d3d3;
+        background-color: #eee;
+        background-color: $themeColor;
+        border-bottom-color: $borderColor;
+        color: #fff;
+
+        h3 {
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            font-family: "latobold";
+            font-size: 1.1em;
+            margin: 0;
+            line-height: 35px;
+            float: left;
+            white-space: nowrap;
+        }
+
+        .fa {
+            margin-right: 5px;
+        }
+
+        em {
+            float: left;
+            font-size: 0.9em;
+            color: #a4a4a4;
+            line-height: 35px;
+            margin-left: 4px;
+            color: #fff;
+        }
+
+        .btn-help {
+            float: left;
+            padding: 0;
+            position: relative;
+            top: 3px;
+            left: 3px;
+            color: #e14d4d;
+        }
+
+        .btn-group {
+            >a {
+                color: #555;
+                color: #fff;
+
+                &:hover {
+                    color: #ffc3c3;
+                }
+
+                &:focus {
+                    color: #ffc3c3;
+                }
+            }
+        }
+
+        .widget-header-toolbar {
+            float: right;
+            width: auto;
+            height: 35px;
+            border-left: 1px solid #ddd;
+            padding-left: 10px;
+            margin-left: 10px;
+            border-left-color: #9e1b1b;
+
+            >a {
+                margin-left: 5px;
+            }
+
+            .control-title {
+                font-size: 0.9em;
+                color: #a4a4a4;
+                position: relative;
+                top: 1px;
+                color: #fff;
+            }
+
+            .label {
+                position: relative;
+                top: 8px;
+            }
+
+            .toolbar-item-group {
+                padding-top: 0.3em;
+                height: 100%;
+
+                .label {
+                    position: relative;
+                    top: 1px;
+                }
+
+                .multiselect {
+                    margin-top: 0;
+                }
+            }
+
+            .btn {
+                display: -moz-inline-stack;
+                display: inline-block;
+                vertical-align: middle;
+                *vertical-align: auto;
+                zoom: 1;
+                *display: inline;
+                height: 25px;
+                margin-top: 5px;
+            }
+
+            .btn-borderless {
+                display: -moz-inline-stack;
+                display: inline-block;
+                vertical-align: middle;
+                *vertical-align: auto;
+                zoom: 1;
+                *display: inline;
+                height: 25px;
+                padding-top: 5px;
+
+                .fa {
+                    margin-right: 5px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+
+            .btn.btn-sm {
+                padding: 0 10px;
+
+                .fa {
+                    width: 10px;
+                    height: 12px;
+                }
+            }
+
+            .progress {
+                width: 150px;
+                height: 15px;
+                margin-bottom: 0;
+                margin-top: 10px;
+
+                .progress-bar {
+                    font-size: 10px;
+                    line-height: 1.5;
+                }
+            }
+        }
+
+        .widget-header-toolbar.btn-init-hide {
+            display: none;
+        }
+    }
+
+    .widget-content {
+        padding: 20px 10px;
+    }
+
+    .widget-footer {
+        padding: 7px 10px;
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: #f0f0f0;
+        background-color: #f7f7f7;
+    }
+}
+
+.widget.widget-table {
+    overflow: hidden;
+}
+
+.widget.widget-hide-header {
+    border: none;
+    background: none;
+}
+
+.widget.widget-focus-enabled {
+    z-index: 999;
+    position: relative;
+}
+
+.widget.real-time-chart {
+    .widget-content {
+        padding-right: 40px;
+    }
+
+    #demo-real-time-chart {
+        font-size: 12px;
+        padding-right: 40px;
+    }
+}
+
+.widget-header {
+    ul.nav {
+        margin-right: -11px;
+
+        >li {
+            >a {
+                padding: 6px 15px;
+                border-top: transparent;
+                line-height: 1.5;
+                margin-right: 0;
+                height: 35px;
+
+                &:hover {
+                    border-top: initial;
+                }
+            }
+        }
+    }
+}
+
+.widget-reminder {
+    .widget-content {
+        position: relative;
+        overflow: hidden;
+        padding: 20px;
+        background-color: #6393a7;
+        color: #fff;
+    }
+}
+
+.widget-header-toolbar {
+    .onoffswitch {
+        position: relative;
+        top: 2px;
+    }
+
+    .dropdown-menu {
+        font-size: 90%;
+    }
+
+    ul.multiselect-container {
+        >li {
+            >a {
+                line-height: 1.5;
+
+                label.radio {
+                    &:before {
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.widget-table {
+    .dgButtons {
+        padding-bottom: 12px;
+    }
+
+    .paginatorItem {
+        text-align: right;
+    }
+}
+
+.widget.widget-no-background {
+    background: none;
+}
+
+
+
+.widget-sparkline {
+    .sparkline-stat-item {
+        padding: 8px 0;
+        margin-bottom: 30px;
+
+        strong {
+            display: block;
+            font-size: 1.5em;
+            font-weight: 300;
+        }
+    }
+}
+
+
+.ui-datepicker.ui-widget {
+    .ui-widget-header {
+        color: #444;
+        font-weight: normal;
+    }
+}
+
+
+.row-widget {
+    margin-bottom: 0;
+}

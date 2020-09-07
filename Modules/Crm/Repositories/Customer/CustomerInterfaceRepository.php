@@ -1,0 +1,12 @@
+<?php
+
+namespace Modules\Crm\Repositories\Customer;
+
+use Modules\Crm\Repositories\BaseInterfaceRepository;
+
+interface CustomerInterfaceRepository extends BaseInterfaceRepository
+{
+    public function getCustomerByInfo($attribute);
+    
+    public function storeByCalendar(array $attributes);
+}

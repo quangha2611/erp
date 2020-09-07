@@ -50,8 +50,21 @@ class ReportController extends Controller
         // dd($transactions);
         // dd(date('d', strtotime($transactions[0]->applyDate)));
         // dd($funds[0]);
+        $currentDate = date('Y-m-d');
+        $countDay = cal_days_in_month(CAL_GREGORIAN,date('m'),date('Y'));
+        return view('accounting::pages.report.category',compact('companies','funds','types','transactions','currentDate','countDay'));
+    }
 
-        return view('accounting::pages.report.category',compact('companies','funds','types','transactions'));
+
+    public function filterCategory(Request $request)
+    {
+        $companies = Company::all();
+        $funds = $this->report->getDataFund();
+        $types = $this->report->getTransactionType();
+        $transactions = $this->transaction->filter(['accountId'=>1]);
+        $currentDate = '2020-'.$request->monthFilter.'-01';
+        $countDay = cal_days_in_month(CAL_GREGORIAN,date('m'),date('Y'));
+        return view('accounting::pages.report.category',compact('companies','funds','types','transactions','currentDate','countDay'));
     }
     
 }

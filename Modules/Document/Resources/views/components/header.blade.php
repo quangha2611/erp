@@ -877,7 +877,7 @@
 										<li class="active"><a href="{{ route('get.document.document.index') }}">Tài liệu</a></li>
 										<li><a href="{{ route('get.accounting.transaction.index') }}">Kế toán</a></li>
 										<li><a href="https://erp.nhanh.vn/work">Công việc</a></li>
-										<li><a href="https://erp.nhanh.vn/crm">Khách hàng</a></li>
+										<li><a href="{{ route('get.crm.calendar.index') }}">Khách hàng</a></li>
 										<li><a href="https://erp.nhanh.vn/idea">Cải tiến</a></li>
 									</ul>
 								</div>

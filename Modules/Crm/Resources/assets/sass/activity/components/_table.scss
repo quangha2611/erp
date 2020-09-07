@@ -1,0 +1,173 @@
+.editable[data-type="select"]+.editable-container {
+    .editable-input {
+        position: relative;
+
+        select {
+            padding: 5px 20px 5px 10px;
+            background-position: right 5px top 10px;
+        }
+    }
+}
+
+.editable[data-type="combodate"]+.editable-container {
+    .editable-input {
+        position: relative;
+        position: relative;
+
+        select {
+            padding: 5px 20px 5px 10px;
+            background-position: right 5px top 10px;
+            height: 31px;
+            position: relative;
+            top: -1px;
+        }
+    }
+}
+
+.editable-address {
+    display: block;
+    margin-bottom: 5px;
+
+    span {
+        width: 70px;
+        display: inline-block;
+    }
+}
+
+.table-dark-header {
+    >thead {
+        >tr {
+            background-color: #909090;
+            color: #fff;
+        }
+    }
+}
+
+.dataTables_length {
+    float: left;
+    margin-bottom: 5px;
+
+    label {
+        font-weight: normal;
+        font-size: 0.85em;
+    }
+}
+
+.dataTables_filter {
+    float: right;
+    margin-bottom: 5px;
+
+    label {
+        font-weight: normal;
+        font-size: 0.85em;
+    }
+}
+
+.dataTables_info {
+    font-weight: normal;
+    font-size: 0.85em;
+    line-height: 2.7em;
+}
+
+.dataTables_paginate {
+    font-weight: normal;
+    font-size: 0.85em;
+    text-align: right;
+
+    ul {
+        margin: 0;
+    }
+}
+
+.dataTables_scrollBody {
+    margin-bottom: 20px;
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table-sorting {
+        th {
+            &:after {
+                content: "";
+                height: 0;
+            }
+        }
+    }
+}
+
+.table-sorting {
+    .sorting_asc {
+        &:after {
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            font-family: FontAwesome;
+            content: "";
+            float: right;
+            content: "\f0de";
+        }
+    }
+
+    .sorting_desc {
+        &:after {
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            font-family: FontAwesome;
+            content: "";
+            float: right;
+            content: "\f0dd";
+        }
+    }
+
+    .sorting {
+        &:after {
+            display: -moz-inline-stack;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            zoom: 1;
+            *display: inline;
+            font-family: FontAwesome;
+            content: "";
+            float: right;
+            content: "\f0dc";
+        }
+    }
+
+    .sorting_asc_disabled {
+        &:after {
+            content: "\f0de";
+        }
+
+        color: #bbb;
+    }
+
+    .sorting_desc_disabled {
+        &:after {
+            content: "\f0dd";
+        }
+
+        color: #bbb;
+    }
+
+    thead {
+        th {
+            cursor: pointer;
+        }
+    }
+}
+
+
+
+.thead {
+    background: #f2f2f2;
+    font-weight: bold;
+}

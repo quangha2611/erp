@@ -78,5 +78,7 @@ Route::group(['prefix' => 'accounting', 'middleware' => ['auth']], function(){
         Route::get('/created','ReportController@reportCategoryByCreated')->name('get.accounting.report.categoryByCreated');
 
         Route::get('/category','ReportController@reportCategory')->name('get.accounting.report.category');
+
+        Route::get('/category/filter','ReportController@filterCategory')->name('get.accounting.report.filter.category');
     });
 });

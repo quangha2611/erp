@@ -15,13 +15,13 @@
         </ul>
         <div class="filterContainer">
             <form method="GET" name="crmReportEmployeesFilter" class="form-inline lolify"
-                role="form" id="crmReportEmployeesFilter">
+                role="form" id="crmReportEmployeesFilter" action="{{ route('get.accounting.report.filter.category') }}">
                 <div class="col-md-10 lolify-default">
 
                     <div class="form-group">
-                        <input type="text" name="daterangepicker" placeholder="Tháng"
+                        <input type="number" name="monthFilter" placeholder="Tháng"
                             data-date-format="MM/YYYY" id="daterangepicker"
-                            class="form-control hasDatepicker" value="07/2020"> </div>
+                            class="form-control hasDatepicker" value="{{ date('m',strtotime($currentDate)) }}" nim="1" max="12"> </div>
                     <div class="form-group">
                         <select name="companyId" id="companyId" class="form-control">
                             <option value="">- Công ty giao dịch -</option>
@@ -84,9 +84,11 @@
             <div class="lolify-left-menu" style="display: none;">
             </div>
         </div>
-        <div class="alert alert-info">Bạn đang xem thông tin quỹ <b class="text-danger">Tiền chuyển
-                khoản &gt; Khối KD độc lập (CK)</b>
-            <br> Tồn đầu kỳ: <b>297,438,021</b>
+        <div class="alert alert-info">Bạn đang xem thông tin quỹ 
+            <b class="text-danger">
+                {{ $funds[0]->name }}
+            </b>
+            <br> Tồn đầu kỳ: <b>{{ number_format($funds[0]->money) }}</b>
             <br> Tổng thu trong kỳ: <b>60,737,000</b>
             <br> Tổng chi trong kỳ: <b>90,960,480</b>
         </div>
@@ -128,12 +130,12 @@
                 </thead>
                 <tbody>
                     @php $fund = $funds[0] @endphp
-                    @for ($i = 1; $i < 31; $i++)
+                    @for ($i = 1; $i <= $countDay; $i++)
                         <tr class="even">
                             <td rowspan="">{{ $i }}</td>
                             @php $check = 0 @endphp
                             @foreach ($transactions as $transaction)
-                                @if(date('d', strtotime($transaction->applyDate)) ==  $i)
+                                @if(date('d', strtotime($transaction->applyDate)) ==  $i &&  date('m', strtotime($transaction->applyDate)) ==  date('m',strtotime($currentDate)))
                                     <td rowspan="">
                                         {{ number_format($fund->money) }}
                                     </td>

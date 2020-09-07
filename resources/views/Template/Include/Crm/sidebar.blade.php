@@ -27,7 +27,7 @@
                                 <li class=""><a class="" href="{{ route('activityIndex') }}"><i
                                             class="fa fa-cogs"></i> <span class="text">Quản trị hành
                                             động</span></a></li>
-                                <li class=""><a class="" href="{{ route('activityIndexvg') }}"><i
+                                <li class=""><a class="" href=""><i
                                             class="fa fa-list"></i> <span class="text">Lịch sử chăm
                                             sóc</span></a></li>
                             </ul>

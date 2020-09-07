@@ -1,0 +1,241 @@
+.btn-link.active {
+    outline: none;
+    text-decoration: none;
+}
+
+.btn-custom-primary {
+    background-color: #e24715;
+    border-color: #cb4013;
+    color: #fff;
+
+    &:hover {
+        background-color: #d94414;
+        color: #fff;
+    }
+
+    &:focus {
+        background-color: #d94414;
+        color: #fff;
+    }
+
+    &:active {
+        background-color: #d94414;
+        color: #fff;
+    }
+
+    .open {
+        .dropdown-toggle.btn-warning {
+            background-color: #d94414;
+            color: #fff;
+        }
+    }
+}
+
+.btn-custom-primary.active {
+    background-color: #d94414;
+    color: #fff;
+}
+
+.btn-custom-secondary {
+    background-color: #1caca0;
+    border-color: #18968c;
+    color: #fff;
+
+    &:hover {
+        background-color: #1ba398;
+        color: #fff;
+    }
+
+    &:focus {
+        background-color: #1ba398;
+        color: #fff;
+    }
+
+    &:active {
+        background-color: #1ba398;
+        color: #fff;
+    }
+
+    .open {
+        .dropdown-toggle.btn-warning {
+            background-color: #1ba398;
+            color: #fff;
+        }
+    }
+}
+
+.btn-custom-secondary.active {
+    background-color: #1ba398;
+    color: #fff;
+}
+
+
+.btn-pure {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+
+    &:focus {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #8c8c8c;
+    }
+
+    &:hover {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+
+    &:active {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+        background-image: none;
+
+        &:hover {
+            color: #333;
+            background-color: #d4d4d4;
+            border-color: #8c8c8c;
+        }
+
+        &:focus {
+            color: #333;
+            background-color: #d4d4d4;
+            border-color: #8c8c8c;
+        }
+    }
+
+    &:active.focus {
+        color: #333;
+        background-color: #d4d4d4;
+        border-color: #8c8c8c;
+    }
+
+    .badge {
+        color: #fff;
+        background-color: #333;
+    }
+}
+
+.btn-pure.focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+}
+
+.btn-pure.active {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    background-image: none;
+
+    &:hover {
+        color: #333;
+        background-color: #d4d4d4;
+        border-color: #8c8c8c;
+    }
+
+    &:focus {
+        color: #333;
+        background-color: #d4d4d4;
+        border-color: #8c8c8c;
+    }
+}
+
+.btn-pure.active.focus {
+    color: #333;
+    background-color: #d4d4d4;
+    border-color: #8c8c8c;
+}
+
+.btn-pure.disabled {
+    &:hover {
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    &:focus {
+        background-color: #fff;
+        border-color: #ccc;
+    }
+}
+
+.btn-pure[disabled] {
+    &:hover {
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    &:focus {
+        background-color: #fff;
+        border-color: #ccc;
+    }
+}
+
+.btn-pure.disabled.focus {
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-pure[disabled].focus {
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+
+.bootstrap-touchspin-prefix {
+    border-right: none;
+}
+
+.bootstrap-touchspin-postfix {
+    border-left: none;
+}
+
+.bootstrap-touchspin-prefix.btn-default {
+    color: #fff;
+}
+
+.bootstrap-touchspin-prefix.btn-primary {
+    color: #fff;
+}
+
+.bootstrap-touchspin-prefix.btn-success {
+    color: #fff;
+}
+
+.bootstrap-touchspin-prefix.btn-warning {
+    color: #fff;
+}
+
+.bootstrap-touchspin-prefix.btn-danger {
+    color: #fff;
+}
+
+.bootstrap-touchspin-prefix.btn-info {
+    color: #fff;
+}
+
+.bootstrap-touchspin-postfix.btn-default {
+    color: #fff;
+}
+
+.bootstrap-touchspin-postfix.btn-primary {
+    color: #fff;
+}
+
+.bootstrap-touchspin-postfix.btn-success {
+    color: #fff;
+}
+
+.bootstrap-touchspin-postfix.btn-warning {
+    color: #fff;
+}
+
+.bootstrap-touchspin-postfix.btn-danger {
+    color: #fff;
+}
+
+.bootstrap-touchspin-postfix.btn-info {
+    color: #fff;
+}

@@ -37,6 +37,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function calnedars()
+    {
+        return $this->belongsToMany('Modules/Crm/Entities/Calendar','calendar_user','user_id','calendar_id');
+    } 
 
     public function Transaction()
     {
@@ -47,4 +51,5 @@ class User extends Authenticatable
     {
         return $this->hasOne('Modules\Accounting\Entities\Account','id','author');
     }
+
 }
