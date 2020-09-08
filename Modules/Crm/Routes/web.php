@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'crm', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
     Route::prefix('/calendar')->group(function(){
         Route::get('/index','CalendarController@index')->name('get.crm.calendar.index');
 

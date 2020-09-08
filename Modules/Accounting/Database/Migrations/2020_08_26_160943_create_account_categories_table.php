@@ -20,6 +20,7 @@ class CreateAccountCategoriesTable extends Migration
             $table->integer('parentId')->nullable()->defaul(null);
             $table->string('code');
             $table->integer('author');
+            $table->boolean('isDeleted')->default(0);
             $table->timestamps();
         });
     }

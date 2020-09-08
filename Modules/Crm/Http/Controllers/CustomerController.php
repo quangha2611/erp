@@ -20,7 +20,6 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = $this->customer->index();
-        dd($customers);
         return view('crm::pages.customer.index');
     }
 

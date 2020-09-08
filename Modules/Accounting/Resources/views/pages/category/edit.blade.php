@@ -39,6 +39,9 @@
                                             'currentItem' => $currentCategory
                                         ])
                                     </select>
+                                    @error('companyId')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group">
@@ -47,6 +50,9 @@
                                 </label>
                                 <div class="col-md-8">
                                     <input type="text" name="name" maxlength="255" id="name" class="form-control" value="{{ $currentCategory->name }}">
+                                    @error('name')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group">
@@ -61,6 +67,7 @@
                                             'currentItem' => $currentCategory
                                         ])
                                     </select>
+                                    
                                 </div>
                             </div>
                             <div class="form-group">
@@ -69,6 +76,9 @@
                                 </label>
                                 <div class="col-md-8">
                                     <input type="text" name="code" maxlength="255" id="code" class="form-control" value="{{ $currentCategory->code }}">
+                                    @error('code')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <input type="hidden" name="id" id="id" value="{{$currentCategory->id}}">

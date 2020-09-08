@@ -23,10 +23,10 @@ class CustomerRepository extends BaseRepository implements CustomerInterfaceRepo
     public function storeByCalendar(array $attributes)
     {
         $newCutomer = $this->getModel();
-        $newCutomer->name = $attributes['customer_name'];
-        $newCutomer->phone = $attributes['customer_phone'];
-        $newCutomer->email = $attributes['customer_email'];
-        $newCutomer->website = $attributes['customer_website'];
+        $newCutomer->name = $attributes['name'];
+        $newCutomer->phone = $attributes['phone'];
+        $newCutomer->email = $attributes['email'];
+        $newCutomer->website = $attributes['website'];
         $newCutomer->save();
         return $newCutomer->phone;
     }

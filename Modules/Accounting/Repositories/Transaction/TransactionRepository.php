@@ -59,6 +59,8 @@ class TransactionRepository extends BaseRepository implements TransactionInterfa
     public function filter(array $attributes)
     {
         $transactions = $this->model->query();
+
+        $transactions->where('isDeleted',false);
         
         if(isset($attributes['companyId']) && $attributes['companyId'] != null) {
             $transactions->where('companyId',$attributes['companyId']);
@@ -98,6 +100,10 @@ class TransactionRepository extends BaseRepository implements TransactionInterfa
             $transactions->whereDate('applyDate','<=',$this->changeFormatDate($time[1]));
         }
 
+        if(isset($attributes['expenseCategoryId']) && $attributes['expenseCategoryId'] != null) {
+            $transactions->where('expenseCategoryId',$attributes['expenseCategoryId']);
+        }
+
         $data = $transactions->get();
 
         foreach($data as $transaction) {
@@ -106,6 +112,7 @@ class TransactionRepository extends BaseRepository implements TransactionInterfa
             $transaction->companyId = $transaction->company->name;
             $transaction->author = $transaction->user->name;
             $transaction->expenseCategoryId = $transaction->category->name;
+            $transaction->accountId = $transaction->fund->name;
         }
 
         return $data;

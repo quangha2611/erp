@@ -26,5 +26,8 @@ class DatabaseSeeder extends Seeder
         //ACCOUNTING
         $this->call(Modules\Accounting\Database\Seeders\AccountingDatabaseSeeder::class);
 
+        //CRM
+        $this->call(Modules\Crm\Database\Seeders\CrmDatabaseSeeder::class);
+
     }
 }

@@ -23,6 +23,7 @@
         <form id="activityPhonecall" enctype="multipart/form-data" name="activityPhonecall"
             method="post" action="{{ route('post.crm.calendar.update',$calendar->id) }}">
             @csrf
+            <input type="hidden" name="company_id" value="{{ $calendar->company_id }}">
             <div class="form-horizontal">
                 <div class="col-md-6" id="groupBasic">
                     <fieldset>
@@ -33,7 +34,11 @@
                                     class="required">*</span></label>
                             <div class="col-md-8">
                                 <input type="text" name="title" maxlength="255" id="title"
-                                    class="form-control" value="{{ $calendar->title }}"> </div>
+                                    class="form-control" value="{{ $calendar->title }}"> 
+                                @error('title')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -42,7 +47,11 @@
                             <div class="col-md-8">
                                 <input type="datetime-local" name="begin_date_time" maxlength="17"
                                     id="beginDateTime" class="form-control"
-                                    value="{{ substr(str_replace(' ','T',$calendar->begin_date_time),0,-3) }}"> </div>
+                                    value="{{ substr(str_replace(' ','T',$calendar->begin_date_time),0,-3) }}"> 
+                                @error('begin_date_time')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror    
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Đến lúc:</label>
@@ -73,6 +82,9 @@
                                         @endif
                                     @endforeach
                                 </select>
+                                @error('joins')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror 
                             </div>
                         </div>
                         <div class="form-group">

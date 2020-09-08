@@ -31,19 +31,21 @@ class CalendarService
             Session::flash('message', 'Không tồn tại khách hàng!');
             return false;
         }
-
+        
         // store new customer
         if($request->is_new_customer == 1) {
-            $request->customer_id = $this->customer->storeByCalendar($request->only(['customer_name','customer_phone','customer_email','customer_website']));
+            $request->customer_id = $this->customer->storeByCalendar($request->only(['name','phone','email','website']));
         }
 
         $request->merge([
-            'customer_id' => $this->customer->getCustomerByInfo($request->customer_id)->id,
+            'customer_id'     => $this->customer->getCustomerByInfo($request->customer_id)->id,
             'begin_date_time' => $this->formatDateTime($request->begin_date_time),
-            'end_date_time' => $this->formatDateTime($request->end_date_time),
+            'end_date_time'   => $this->formatDateTime($request->end_date_time),
         ]);
 
         $this->calendar->store($request->all());
+
+        return true;
     }
 
     public function formatDateTime($dateTime)

@@ -11,6 +11,7 @@ use App\Company;
 use Modules\Accounting\Services\Report\ReportService;
 use Modules\Accounting\Services\Category\CategoryService;
 use Modules\Accounting\Repositories\Transaction\TransactionRepository;
+use Modules\Accounting\Entities\Fund;
 
 class ReportController extends Controller
 {
@@ -47,12 +48,10 @@ class ReportController extends Controller
         $funds = $this->report->getDataFund();
         $types = $this->report->getTransactionType();
         $transactions = $this->transaction->filter(['accountId'=>1]);
-        // dd($transactions);
-        // dd(date('d', strtotime($transactions[0]->applyDate)));
-        // dd($funds[0]);
+        $currentFund = Fund::find(1);
         $currentDate = date('Y-m-d');
         $countDay = cal_days_in_month(CAL_GREGORIAN,date('m'),date('Y'));
-        return view('accounting::pages.report.category',compact('companies','funds','types','transactions','currentDate','countDay'));
+        return view('accounting::pages.report.category',compact('companies','funds','types','transactions','currentDate','countDay','currentFund'));
     }
 
 
@@ -61,10 +60,17 @@ class ReportController extends Controller
         $companies = Company::all();
         $funds = $this->report->getDataFund();
         $types = $this->report->getTransactionType();
-        $transactions = $this->transaction->filter(['accountId'=>1]);
+        if(isset($request->accountId)) {
+            $transactions = $this->transaction->filter(['accountId'=>$request->accountId]);
+        } else {
+            $transactions = $this->transaction->filter(['accountId'=>1]);
+        }
+
+        $currentFund = Fund::find($request->accountId);
+
         $currentDate = '2020-'.$request->monthFilter.'-01';
-        $countDay = cal_days_in_month(CAL_GREGORIAN,date('m'),date('Y'));
-        return view('accounting::pages.report.category',compact('companies','funds','types','transactions','currentDate','countDay'));
+        $countDay = cal_days_in_month(CAL_GREGORIAN,$request->monthFilter,date('Y'));
+        return view('accounting::pages.report.category',compact('companies','funds','types','transactions','currentDate','countDay','currentFund'));
     }
     
 }

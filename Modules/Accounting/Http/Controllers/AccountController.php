@@ -5,6 +5,8 @@ namespace Modules\Accounting\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Accounting\Services\Category\CategoryService;
+use Modules\Accounting\Http\Requests\AccountRequest;
 
 use Modules\Accounting\Services\Account\AccountService;
 
@@ -13,11 +15,13 @@ use Modules\Accounting\Entities\AccountType;
 
 class AccountController extends Controller
 {
-    protected $account;
+    protected $account, $category;
     
-    public function __construct (AccountService $accountService)
+    public function __construct (AccountService $accountService, CategoryService $categoryService)
     {
         $this->account = $accountService;
+        $this->category = $categoryService;
+
     }
 
     public function index()
@@ -41,11 +45,12 @@ class AccountController extends Controller
     {
         $companies = Company::all();
         $types = AccountType::all();
-        return view('accounting::pages.account.create',compact('companies','types'));
+        $categories = $this->category->index();
+        return view('accounting::pages.account.create',compact('companies','types','categories'));
     }
 
     
-    public function store(Request $request)
+    public function store(AccountRequest $request)
     {
         $this->account->store($request);
 
@@ -67,14 +72,19 @@ class AccountController extends Controller
     {
         $companies = Company::all();
         $types = AccountType::all();
-
+        $categories = $this->category->index();
         $currentAccount = $this->account->find($id);
-        return view('accounting::pages.account.edit',compact('companies','types','currentAccount'));
+        return view('accounting::pages.account.edit',compact('companies','types','currentAccount','categories'));
     }
 
     
-    public function update(Request $request)
+    public function update(AccountRequest $request)
     {
+        $request->rules = [
+            'companyId' => 'required',
+            'name'      => 'required|min:4',
+            'code'      => 'required|min:4',
+        ];
         $currentAccount = $this->account->update($request);
         return redirect()->route('get.accounting.account.index');
     }

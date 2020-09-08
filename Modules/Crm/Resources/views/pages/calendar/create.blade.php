@@ -34,14 +34,18 @@
                             <label class="col-md-4 control-label required">Công ty:<span
                                     class="required">*</span></label>
                             <div class="col-md-8">
-                                <select name="company_id" id="company_id" class="form-control" required>
+                                <select name="company_id" id="company_id" class="form-control" >
                                     <option value="">-Công ty-</option>
                                     @include('crm::pages.calendar.include._inc_recursiveInput',[
                                         'data' => $companies,
                                         'parentId' => null,
-                                        'note' => '--'
+                                        'note' => '--',
+                                        'currentItem' => ['id' => old('company_id'),]
                                     ])
                                 </select> 
+                                @error('company_id')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -49,7 +53,11 @@
                                     class="required">*</span></label>
                             <div class="col-md-8">
                                 <input type="text" name="title" maxlength="255" id="title"
-                                    class="form-control" value="" required> </div>
+                                    class="form-control" value="{{ old('title') }}" > 
+                                @error('title')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         <input type="hidden" name="accountId" id="accountId" value=""> 
                         <input type="hidden" name="contactId" id="contactId" value=""> 
@@ -60,13 +68,16 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-8">
-                                <input type="datetime-local" name="begin_date_time" maxlength="17" id="begin_date_time" class="form-control" value="" required> 
+                                <input type="datetime-local" name="begin_date_time" maxlength="17" id="begin_date_time" class="form-control" value="{{ old('begin_date_time') }}" > 
+                                @error('begin_date_time')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Đến lúc:</label>
                             <div class="col-md-8">
-                                <input type="datetime-local" name="end_date_time" maxlength="17" id="end_date_time" class="form-control" value="">
+                                <input type="datetime-local" name="end_date_time" maxlength="17" id="end_date_time" class="form-control" value="{{ old('end_date_time') }}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -77,26 +88,31 @@
                                 {{-- <input type="text" name="calendar_userIds" style="display:none;"
                                     id="calendar_userIds" class="form-control" value="5374"> --}}
                                 {{-- <div class="bootstrap-tagsinput" id="calendar_user_input"> --}}
-                                    <select class="js-example-basic-multiple form-control" name="joins[]" multiple>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
-                                    </select>
+                                <select class="js-example-basic-multiple form-control" name="joins[]" multiple>
+                                    @foreach ($users as $user) 
+                                        <option value="{{ $user->id }}" {{ (collect(old('joins'))->contains($user->id)) ? 'selected':'' }}> 
+                                            {{ $user->name }}
+                                        </option>  
+                                    @endforeach
+                                </select>
                                 {{-- </div> --}}
+                                @error('joins')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Địa điểm:</label>
                             <div class="col-md-8">
                                 <input type="text" name="location" maxlength="255" id="location"
-                                    class="form-control" value=""> </div>
+                                    class="form-control" value="{{ old('location') }}"> </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Ghi chú:</label>
                             <div class="col-md-8">
                                 <textarea name="description" class="form-control"
-                                    id="description"></textarea> </div>
+                                    id="description">{{ old('description') }}</textarea> </div>
                         </div>
 
                     </fieldset>
@@ -107,7 +123,8 @@
                             Thông tin khách hàng <i class="fa fa-exchange"></i>
                             <a class="addNewCustomer" title="" onclick="document.getElementById('is_new_customer').value = 1;
                                                                         document.getElementById('groupNewCustomer').style.display = 'block'
-                                                                        document.getElementById('groupTargetInfor').style.display = 'none'">
+                                                                        document.getElementById('groupTargetInfor').style.display = 'none'
+                                                                        document.getElementById('targetName').removeAttribute('required')">
                                 Tạo khách hàng mới 
                             </a>
                         </legend>
@@ -120,7 +137,7 @@
                                     <input type="text" name="customer_id" maxlength="255"
                                         placeholder="sdt, email, hoặc website của khách hàng"
                                         id="targetName" class="form-control ui-autocomplete-input"
-                                        value="" autocomplete="off"> <span
+                                        value="{{old('customer_id')}}" autocomplete="off" required> <span
                                         class="form-control-feedback targetName-check"></span>
                                 </div>
                                 <div>
@@ -182,7 +199,8 @@
                             Tạo khách hàng mới <i class="fa fa-exchange"></i>
                             <a class="backsystemCustomer" onclick="document.getElementById('is_new_customer').value = 0;
                             document.getElementById('groupNewCustomer').style.display = 'none'
-                            document.getElementById('groupTargetInfor').style.display = 'block'">
+                            document.getElementById('groupTargetInfor').style.display = 'block'
+                            document.getElementById('targetName').setAttribute('required', 'required')">
                             Dùng khách hàng cũ 
                         </a>
                         </legend>
@@ -191,7 +209,11 @@
                             <label class="col-md-4 control-label">
                                 Tên người dùng / doanh nghiệp:</label>
                             <div class="col-md-8">
-                            <input type="text" name="customer_name" maxlength="255" id="customer_name" class="form-control" value=""> </div>
+                                <input type="text" name="name" maxlength="255" id="name" class="form-control" value="{{ old('name') }}"> 
+                                @error('name')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         {{-- <div class="form-group">
                             <label class="col-md-4 control-label">Mobile:</label>
@@ -221,9 +243,13 @@
                             <div class="col-sm-8">
                                 <div class="col-md-6" style="padding-left: 0;">
                                     <div class="form-group has-feedback">
-                                        <input type="text" name="customer_phone" maxlength="15"
-                                            placeholder="Phone" id="customer_phone" class="form-control"
-                                            value=""> <span class="form-control-feedback"></span>
+                                        <input type="text" name="phone" maxlength="15"
+                                            placeholder="Phone" id="phone" class="form-control"
+                                            value="{{ old('phone') }}"> 
+                                        @error('phone')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                        <span class="form-control-feedback"></span>
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-6" style="padding-right: 0;">
@@ -241,9 +267,12 @@
                             <label class="col-md-4 control-label">Email:</label>
                             <div class="col-md-8">
                                 <div class="form-group has-feedback">
-                                    <input type="text" name="customer_email" maxlength="255"
-                                        id="customer_email" class="form-control" value=""> <span
+                                    <input type="text" name="email" maxlength="255"
+                                        id="email" class="form-control" value="{{ old('email') }}"> <span
                                         class="form-control-feedback"></span>
+                                    @error('email')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -251,8 +280,8 @@
                             <label class="col-md-4 control-label">Website:</label>
                             <div class="col-md-8">
                                 <div class="form-group has-feedback">
-                                    <input type="text" name="customer_website" maxlength="255"
-                                        id="customer_website" class="form-control" value=""> <span
+                                    <input type="text" name="website" maxlength="255"
+                                        id="website" class="form-control" value="{{ old('website') }}"> <span
                                         class="form-control-feedback"></span>
                                 </div>
 

@@ -21,11 +21,12 @@ class CreateTransactionsTable extends Migration
             $table->integer('accountId');
             $table->integer('amount');
             $table->string('link')->nullable();
+            $table->integer('expenseCategoryId');
             $table->string('description')->nullable();
             $table->integer('type');
-            $table->string('status');
+            $table->string('status')->default(1);
             $table->integer('author');
-            $table->boolean('isDeleted');
+            $table->boolean('isDeleted')->default(0);;
             $table->timestamps();
         });
     }

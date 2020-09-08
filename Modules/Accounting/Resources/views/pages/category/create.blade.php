@@ -30,14 +30,18 @@
                                     <span class="required">*</span> 
                                 </label>
                                 <div class="col-md-8">
-                                    <select name="companyId" id="companyId" class="form-control" required>
+                                    <select name="companyId" id="companyId" class="form-control" >
                                         <option value="">- Công ty -</option>
                                         @include('accounting::pages.category.include._inc_recursiveInput',[
                                             'data' => $companies,
                                             'parentId' => null,
-                                            'note' => '--'
+                                            'note' => '--',
+                                            'currentItem' => ['id'=>old('companyId')]
                                         ])
                                     </select>
+                                    @error('companyId')
+                                        <p style="color: red">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group">
@@ -45,7 +49,10 @@
                                     <span class="required">*</span> 
                                 </label>
                                 <div class="col-md-8">
-                                    <input type="text" name="name" maxlength="255" id="name" class="form-control" value="{{old('name')}}" required>
+                                    <input type="text" name="name" maxlength="255" id="name" class="form-control" value="{{old('name')}}" >
+                                    @error('name')
+                                        <p style="color: red">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group">
@@ -56,7 +63,8 @@
                                         @include('accounting::pages.category.include._inc_recursiveInput',[
                                             'data' => $categories,
                                             'parentId' => null,
-                                            'note' => '--'
+                                            'note' => '--',
+                                            'currentItem' => ['id'=>old('parentId')]
                                         ])
                                     </select>
                                 </div>
@@ -66,7 +74,7 @@
                                     <span class="required">*</span> 
                                 </label>
                                 <div class="col-md-8">
-                                    <input type="text" name="code" maxlength="255" id="code" class="form-control" value="{{old('code')}}" required>
+                                    <input type="text" name="code" maxlength="255" id="code" class="form-control" value="{{old('code')}}" >
                                     @error('code')
                                         <p style="color: red">{{ $message }}</p>
                                     @enderror

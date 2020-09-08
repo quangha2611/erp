@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 use Modules\Crm\Http\Requests\CalendarRequest;
 use Modules\Crm\Services\CalendarService;
@@ -56,9 +57,44 @@ class CalendarController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(CalendarRequest $request)
     {   
-        $this->calendar->store($request);
+        if ($request->is_new_customer == 1 ) {
+            $requestNewCustomer = new Request;
+            $requestNewCustomer->merge($request->only(['name','phone','email','website']));
+
+            $validator = Validator::make($requestNewCustomer->all(), [
+                'name'  => 'required|min:4',
+                'phone' => 'required|unique:customers',
+                'email' => 'required|unique:customers',
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'min'      => ':attribute tối thiểu :min ký tự',
+                'numeric'  => ':attribute phải là số ',
+                'unique'   => ':attribute không được trùng'
+            ],
+            [
+                'name'  => 'Tên khách hàng',
+                'phone' => 'Số điện thoại khách hàng',
+                'email' => 'Email khách hàng'
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()
+                            ->back()
+                            ->withErrors($validator)
+                            ->withInput($request->all());
+            }    
+        }
+
+
+        
+        $check = $this->calendar->store($request);
+        if($check == false) {
+            return redirect()->back()->withInput($request->all());
+        }
+
         return redirect()->route('get.crm.calendar.create');
     }
 
@@ -76,7 +112,7 @@ class CalendarController extends Controller
         return view('crm::pages.calendar.edit',compact('calendar','users'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CalendarRequest $request, $id)
     {
         $this->calendar->update($request, $id);
 

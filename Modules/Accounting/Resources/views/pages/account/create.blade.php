@@ -28,32 +28,57 @@
                             <div class="form-group"><label class="col-md-4 control-label required">Công
                                     ty: <span class="required">*</span></label>
                                 <div class="col-md-8"><select name="companyId" id="companyId"
-                                        class="form-control" required>
+                                        class="form-control" >
                                         <option value="" selected="selected">-Công ty-</option>
                                         @include('accounting::pages.account.include._inc_recursiveInput',[
                                             'data' => $companies,
                                             'parentId' => null,
-                                            'note' => '--'
+                                            'note' => '--',
+                                            'currentItem' => ['id'=>old('companyId')],
                                         ])
-                                    </select></div>
+                                    </select>
+                                    @error('companyId')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group"><label
                                     class="col-md-4 control-label required">Tên tài khoản: <span
                                         class="required">*</span> </label>
-                                <div class="col-md-8"><input type="text" name="name" maxlength="255"
-                                        id="name" class="form-control" value="" required></div>
+                                <div class="col-md-8">
+                                    <input type="text" name="name" maxlength="255"
+                                        id="name" class="form-control" value="{{ old('name') }}" >
+                                    @error('name')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group"><label class="col-md-4 control-label">Thuộc
                                     khoản mục:</label>
-                                <div class="col-md-8"><input type="text" name="parentName"
-                                        id="parentName" class="form-control ui-autocomplete-input"
-                                        value="" autocomplete="off"></div>
+                                <div class="col-md-8">
+                                    <select name="categoryId" id="categoryId" class="form-control">
+                                        <option value="">- Danh mục cha -</option>
+                                        @include('accounting::pages.category.include._inc_recursiveInput',[
+                                            'data' => $categories,
+                                            'parentId' => null,
+                                            'note' => '--',
+                                            'currentItem' => ['id'=>old('categoryId')]
+                                        ])
+                                    </select>
+                                    @error('categoryId')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div><input type="hidden" name="parentId" id="parentId" value="">
                             <div class="form-group"><label
                                     class="col-md-4 control-label required">Mã code: <span
                                         class="required">*</span> </label>
                                 <div class="col-md-8"><input type="text" name="code" maxlength="255"
-                                        id="code" class="form-control" value="" required></div>
+                                        id="code" class="form-control" value="{{old('code')}}" >
+                                    @error('code')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group"><label class="col-md-4 control-label">Hình
                                     thức:</label>

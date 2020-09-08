@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 
+use Modules\Accounting\Http\Requests\TransactionRequest;
 use Modules\Accounting\Repositories\Transaction\TransactionInterfaceRepository;
 use Modules\Accounting\Entities\TransactionFile;
 use Modules\Accounting\Entities\Transaction;
@@ -125,7 +126,7 @@ class TransactionController extends Controller
         return view('accounting::pages.transaction.createReciever',compact('companies','categories','funds'));
     }
    
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
         $request->merge([
             'amount' => str_replace(',','',$request->amount)
@@ -162,22 +163,33 @@ class TransactionController extends Controller
     public function edit($id)
     {
         $currentTransaction = Transaction::find($id);
+        $companies = Company::all();
+        $status = TransactionStatus::all();
+        $categories = $this->category->index();
+        $funds = Fund::all();
         if($currentTransaction->author != Auth::user()->id) {
             return redirect()->route('get.accounting.transaction.index');
         }
         // dd($currentTransaction);
         $companies = Company::all();
         $currentCompany = Company::find($currentTransaction->companyId);
-        return view('accounting::pages.transaction.edit',compact('companies','currentTransaction','currentCompany'));
+        $currentFund = Fund::find($currentTransaction->accountId);
+        $currentCategories = AccountCategory::find($currentTransaction->expenseCategoryId);
+        return view('accounting::pages.transaction.edit',compact('currentTransaction','companies','currentCompany','categories','currentCategories','funds','currentFund'));
     }
 
     public function filter(Request $request)
     {
-
         $companies = Company::all();
         $status = TransactionStatus::all();
+        $transactions = $this->transaction->index();
+        $categories = $this->category->index();
+        $funds = Fund::all();
+
 
         $type='all';
+        $types = TransactionType::all();
+
 
         $user = User::where('name',$request->author)->take(1)->get();
         if(count($user) != 0) {
@@ -195,11 +207,11 @@ class TransactionController extends Controller
         // data to export excel
         $data = $this->getDataExcel($transactions);
 
-        return view('accounting::pages.transaction.index',compact('transactions','type','companies','status'));
+        return view('accounting::pages.transaction.index',compact('transactions','type','companies','status','categories','types','funds'));
     }
 
     
-    public function update(Request $request)
+    public function update(TransactionRequest $request)
     {
         $this->transaction->update($request->id,$request->all());
         return redirect()->route('get.accounting.transaction.index');

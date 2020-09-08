@@ -29,14 +29,18 @@
                                 <span class="required">*</span> 
                             </label>
                             <div class="col-md-8">
-                                <select name="companyId" id="companyId" class="form-control" required>
+                                <select name="companyId" id="companyId" class="form-control" >
                                     <option value="">- Công ty yêu cầu -</option>
                                     @include('accounting::pages.transaction.include._inc_recursiveInput',[
                                         'data' => $companies,
                                         'parentId' => null,
                                         'note' => '--',
+                                        'currentItem' => ['id' => old('companyId')]
                                     ])
                                 </select>
+                                @error('companyId')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -44,7 +48,7 @@
                                 <span class="required">*</span> 
                             </label>
                             <div class="col-md-8">
-                                <select name="departmentId" id="departmentId" class="form-control" required>
+                                <select name="departmentId" id="departmentId" class="form-control" >
                                     <option value="">- Phòng ban -</option>
                                     <option value="388">Giám đốc</option>
                                     <option value="940">Kế toán</option>
@@ -59,6 +63,9 @@
                                     <option value="1206">-- Đào tạo ngoại bộ Westart</option>
                                     <option value="1272">Dự Án Westay</option>
                                 </select>
+                                @error('departmentId')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -66,7 +73,10 @@
                                 <span class="required">*</span> 
                             </label>
                             <div class="col-md-8">
-                                <input type="date" name="applyDate" class="form-control" id="applyDate" value="">
+                                <input type="date" name="applyDate" class="form-control" id="applyDate" value="{{ old('applyDate') }}">
+                                @error('applyDate')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -74,12 +84,19 @@
                                 <span class="required">*</span> 
                             </label>
                             <div class="col-md-8">
-                                <select name="accountId" id="accountId" class="form-control" tabindex="-1" aria-hidden="true" required>
+                                <select name="accountId" id="accountId" class="form-control" tabindex="-1" aria-hidden="true" >
                                     <option value="">- Quỹ -</option>
                                     @foreach ($funds as $fund)
-                                        <option value="{{ $fund->id }}">{{ $fund->name }}</option>
+                                        @if ($fund->id == old('accountId'))
+                                            <option value="{{ $fund->id }}" selected>{{ $fund->name }}</option>
+                                        @else 
+                                            <option value="{{ $fund->id }}">{{ $fund->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
+                                @error('accountId')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -87,14 +104,18 @@
                                 <span class="required">*</span> 
                             </label>
                             <div class="col-md-8">
-                                <select name="expenseCategoryId" id="expenseCategoryId" class="form-control" tabindex="-1" aria-hidden="true" required>
+                                <select name="expenseCategoryId" id="expenseCategoryId" class="form-control" tabindex="-1" aria-hidden="true" >
                                     <option value="">- Khoản mục -</option>
                                     @include('accounting::pages.transaction.include._inc_recursiveInput',[
                                         'data' => $categories,
                                         'parentId' => null,
-                                        'note' => '--'
+                                        'note' => '--',
+                                        'currentItem' => ['id'=>old('expenseCategoryId')]
                                     ])
                                 </select>
+                                @error('expenseCategoryId')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -102,19 +123,22 @@
                                 <span class="required">*</span> 
                             </label>
                             <div class="col-md-8">
-                                <input type="text" name="amount" class="intAutoNumeric form-control" id="amount" value="" required>
+                                <input type="text" name="amount" class="intAutoNumeric form-control" id="amount" value="{{ old('amount') }}" >
+                                @error('amount')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Link Đối Soát:</label>
                             <div class="col-md-8">
-                                <textarea name="link" class="form-control" id="link"></textarea>
+                                <textarea name="link" class="form-control" id="link">{{ old('link') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Nội dung/ Ghi chú:</label>
                             <div class="col-md-8">
-                                <textarea name="description" class="form-control" id="description"></textarea>
+                                <textarea name="description" class="form-control" id="description">{{ old('description') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group">

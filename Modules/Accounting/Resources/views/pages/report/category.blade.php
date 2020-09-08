@@ -7,7 +7,6 @@
 @section('title', 'ERP-Báo cáo theo khoản mục thu chi')
 
 @section('content-page')
-
     <div class="col-md-10 content-wrapper">
         <ul class="breadcrumb">
             <li><a href="https://erp.nhanh.vn/"><i class="fa fa-home"></i></a></li>
@@ -38,7 +37,11 @@
                             aria-hidden="true">
                             <option value="">- Quỹ -</option>
                             @foreach ($funds as $fund)
-                                <option value="{{ $fund->id }}">{{ $fund->name }}</option>
+                                @if( $currentFund->id == $fund->id)
+                                    <option value="{{ $fund->id }}" selected>{{ $fund->name }}</option>
+                                @else
+                                    <option value="{{ $fund->id }}">{{ $fund->name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -47,28 +50,7 @@
                             class="form-control btn btn-primary" value="Lọc"> </div>
 
                 </div>
-                <div class="col-md-2 lolify-control">
-                    <div class="btn-group pull-right lolify-features" data-toggle="tooltip"
-                        data-placement="top" title="" data-original-title="Chức năng, thao tác"
-                        aria-describedby="tooltip198839">
-                        <button class="btn dropdown-toggle" type="button" aria-haspopup="true"
-                            aria-expanded="false" data-toggle="dropdown">
-                            <span class="fa fa-cog"></span> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a
-                                    href="https://erp.nhanh.vn/accounting/report/expensecategory?daterangepicker=07%2F2020&amp;companyId=10&amp;accountId=880&amp;submit=L%E1%BB%8Dc&amp;format=excel"><i
-                                        class="fa fa-download fa-lg"></i> Xuất excel</a></li>
-                        </ul>
-                    </div>
-
-
-                    <button class="btn  pull-right lolify-showextend" type="button"
-                        data-toggle="tooltip" data-placement="top" title=""
-                        data-original-title="bộ lọc nâng cao">
-                        <span class="fa fa-th"></span>
-                    </button>
-                </div>
+               
                 <div class="col-md-12 lolify-extend" style="">
                     <div class="form-group">
                         <select name="contractStatus" id="contractStatus" class="form-control">
@@ -86,11 +68,9 @@
         </div>
         <div class="alert alert-info">Bạn đang xem thông tin quỹ 
             <b class="text-danger">
-                {{ $funds[0]->name }}
+                {{ $currentFund->name }}
             </b>
-            <br> Tồn đầu kỳ: <b>{{ number_format($funds[0]->money) }}</b>
-            <br> Tổng thu trong kỳ: <b>60,737,000</b>
-            <br> Tổng chi trong kỳ: <b>90,960,480</b>
+            <br> Tồn đầu kỳ: <b>{{ number_format($currentFund->money) }}</b>
         </div>
         <div class="dgContainer">
             <div style="display: none; width: 1556px;" class="stickyHeader">
@@ -129,7 +109,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php $fund = $funds[0] @endphp
+                    @php $fund = $currentFund @endphp
                     @for ($i = 1; $i <= $countDay; $i++)
                         <tr class="even">
                             <td rowspan="">{{ $i }}</td>

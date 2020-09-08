@@ -55,7 +55,7 @@ Route::group(['prefix' => 'accounting', 'middleware' => ['auth']], function(){
 
     });
 
-    Route::prefix('report')->group(function(){
+    Route::prefix('category')->group(function(){
         Route::get('/','CategoryController@index')->name('get.accounting.category.index');
 
         Route::get('/create','CategoryController@create')->name('get.accounting.category.create');
