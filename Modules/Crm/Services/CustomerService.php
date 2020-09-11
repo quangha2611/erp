@@ -20,6 +20,11 @@ class CustomerService
         return $this->customer->all();
     }
 
+    public function find($id)
+    {
+        return $this->customer->find($id);
+    }
+
 }
 
 ?>

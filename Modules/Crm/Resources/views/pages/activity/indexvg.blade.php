@@ -155,45 +155,78 @@
                 </div>
                 <table id="dgActivityHistory" class="table table">
                     <tbody>
+                        @foreach ($activities as $activity)
+                            @switch($activity->action_id)
+                                @case(1)
+                                    <tr class="even">
+                                        <td><i class="fa fa-calendar"></i></td>
+                                        <td>
+                                            <p>
+                                                <a href="" class="text-primary">{{ $activity->user->name }}</a>
+                                            </p>
+                                            <p class="text-muted fontsize-85">{{ $activity->created_at }}</p>
+                                        </td>
+                                        <td>
+                                            <p>Đặt lịch 
+                                                <a href="" class="text-primary">{{ $activity->customer->name }}</a>
+                                            </p>
+                                            <p><b>Địa chỉ gặp: </b>{{ $activity->calendar->location }}</p>
+                                            <p>
+                                                <b>Thành viên: </b>
+                                                @foreach ($activity->calendar->users as $user)
+                                                    {{ $user->name.', ' }}
+                                                @endforeach
+                                            </p>
+                                            <p><b>Ghi chú: </b>{{ $activity->calendar->description }}</p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <b>Đặt lịch: </b>
+                                                <a href="" class="text-primary">{{ $activity->calendar->begin_date_time }}</a></p>
+                                        </td>
+                                        <td class="col-align-right">
+                    
+                                        </td>
+                                    </tr>
+                                    @break
+                                @case(2)
+                                    
+                                    @break
+                                @case(3)
+                                    
+                                    @break
+                                @case(4)
+                                    
+                                    @break
+                                @default
+                                    
+                            @endswitch
+                        @endforeach
                         <tr class="even">
                             <td><i class="fa fa-chain"></i></td>
                             <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="text-muted fontsize-85">10:46 09/07</p>
+                                <p>
+                                    <a href="https://erp.nhanh.vn/crm/activity/indexvg#" class="text-primary">{{ $activity->user->name }}</a>
+                                </p>
+                                <p class="text-muted fontsize-85">{{ $activity->create_at }}</p>
                             </td>
                             <td>
-                                <p>Bàn giao <a href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
+                                <p>
+                                    {{ $activity->action->name }}
+                                    <a href="https://erp.nhanh.vn/crm/account/view?id=21810" class="text-primary">{{ $activity->customer->name }}</a>
+                                </p>
                             </td>
                             <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Nhận
-                                            chăm sóc khi tạo thông tin</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-chain"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="text-muted fontsize-85">09:25 10/07</p>
-                            </td>
-                            <td>
-                                <p>Bàn giao <a href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Nhận
-                                            chăm sóc khi tạo hợp đồng 62733</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
+                                <p>
+                                    <b>Người dùng: </b>
+                                    <a href="https://erp.nhanh.vn/crm/activity/indexvg#" class="text-primary">Đỗ Thị Thanh Nhàn</a>
+                                </p>
+                                <p class="fontsize-90">
+                                    <i class="fa fa-quote-left"></i> 
+                                    <b> <i>Nhận chăm sóc khi tạo thông tin</i></b>
+                                    <br> 
+                                    <i class="fa fa-quote-right"></i>
+                                </p>
                             </td>
                             <td class="col-align-right"></td>
                         </tr>
@@ -212,86 +245,6 @@
                             <td>
                                 <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Tạo
                                             mới hợp đồng 62733</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="text-muted fontsize-85">13:54 10/07</p>
-                            </td>
-                            <td>
-                                <p>Sửa hợp đồng <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Sửa
-                                            hợp đồng 62733</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="text-muted fontsize-85">13:54 10/07</p>
-                            </td>
-                            <td>
-                                <p>Sửa hợp đồng <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Sửa
-                                            hợp đồng 62733</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-chain"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">21:16 10/07</p>
-                            </td>
-                            <td>
-                                <p>Bàn giao <a href="https://erp.nhanh.vn/crm/lead/view?id=405963"
-                                        class="text-primary">Công ty cổ phần Vnp Group</a></p>
-                            </td>
-                            <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Nhận
-                                            chăm sóc khi tạo thông tin</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa fa-chain"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">21:32 10/07</p>
-                            </td>
-                            <td>
-                                <p>Bàn giao <a href="https://erp.nhanh.vn/crm/lead/view?id=405964"
-                                        class="text-primary">Công ty cổ phần Vnp Group</a></p>
-                            </td>
-                            <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Nhận
-                                            chăm sóc khi tạo thông tin</i></b><br> <i
                                         class="fa fa-quote-right"></i></p>
                             </td>
                             <td class="col-align-right"></td>
@@ -321,44 +274,6 @@
                             <td class="col-align-right"></td>
                         </tr>
                         <tr class="even">
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">21:50 10/07</p>
-                            </td>
-                            <td>
-                                <p>Khảo sát sau gặp <a
-                                        href="https://erp.nhanh.vn/crm/lead/view?id=405964"
-                                        class="text-primary">Công ty cổ phần Vnp Group</a></p>
-                            </td>
-                            <td>
-                                <p><b>Kết quả: </b>Thành công</p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> Khảo sát sau
-                                    gặp <i class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">07:40 11/07</p>
-                            </td>
-                            <td>
-                                <p>Khảo sát trước gặp <a
-                                        href="https://erp.nhanh.vn/crm/lead/view?id=405964"
-                                        class="text-primary">Công ty cổ phần Vnp Group</a></p>
-                            </td>
-                            <td>
-                                <p><b>Kết quả: </b>Thành công</p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> Khảo sát
-                                    trước gặp <i class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
                             <td><i class="fa fa-calendar"></i></td>
                             <td>
                                 <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
@@ -380,297 +295,6 @@
                             <td class="col-align-right"><a
                                     href="https://erp.nhanh.vn/crm/activity/update?id=3046522"
                                     class="fa fa-edit"></a></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-phone-square"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">14:16 13/07</p>
-                            </td>
-                            <td>
-                                <p>Yêu cầu gọi điện <a
-                                        href="https://erp.nhanh.vn/crm/lead/view?id=405964"
-                                        class="text-primary">Công ty cổ phần Vnp Group</a></p>
-                                <p><b>Địa chỉ gặp: </b></p>
-                                <p><b>Thành viên: </b>Đỗ Thị Thanh Nhàn</p>
-                                <p><b>Ghi chú: </b></p>
-                            </td>
-                            <td>
-                                <p><b>Đặt lịch: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">14:16 13/07</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Yêu
-                                            cầu gọi cho khách</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa fa-chain"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">22:32 13/07</p>
-                            </td>
-                            <td>
-                                <p>Bàn giao <a href="https://erp.nhanh.vn/crm/lead/view?id=406317"
-                                        class="text-primary">Công ty cổ phần Vnp Group</a></p>
-                            </td>
-                            <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Nhận
-                                            chăm sóc khi tạo thông tin</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-phone-square"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">22:32 13/07</p>
-                            </td>
-                            <td>
-                                <p>Yêu cầu gọi điện <a
-                                        href="https://erp.nhanh.vn/crm/lead/view?id=406317"
-                                        class="text-primary">Công ty cổ phần Vnp Group</a></p>
-                                <p><b>Địa chỉ gặp: </b></p>
-                                <p><b>Thành viên: </b>Ứng Đình Hướng</p>
-                                <p><b>Ghi chú: </b></p>
-                            </td>
-                            <td>
-                                <p><b>Đặt lịch: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">22:32 13/07</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Yêu
-                                            cầu gọi cho thông tin vừa nhập</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa fa-phone-square"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">10:10 14/07</p>
-                            </td>
-                            <td>
-                                <p>Yêu cầu gọi điện <a
-                                        href="https://erp.nhanh.vn/crm/lead/view?id=406317"
-                                        class="text-primary">Công ty cổ phần Vnp Group</a></p>
-                                <p><b>Địa chỉ gặp: </b></p>
-                                <p><b>Thành viên: </b>Đỗ Thị Thanh Nhàn</p>
-                                <p><b>Ghi chú: </b></p>
-                            </td>
-                            <td>
-                                <p><b>Đặt lịch: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">10:10 14/07</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Yêu
-                                            cầu gọi cho khách</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-chain"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="text-muted fontsize-85">10:19 14/07</p>
-                            </td>
-                            <td>
-                                <p>Bàn giao <a href="https://erp.nhanh.vn/crm/lead/view?id=406392"
-                                        class="text-primary">Nguyễn Thị Hoa</a></p>
-                            </td>
-                            <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Nhận
-                                            chăm sóc khi tạo thông tin</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">11:31 14/07</p>
-                            </td>
-                            <td>
-                                <p>Cập nhật Level khách hàng <a
-                                        href="https://erp.nhanh.vn/crm/lead/view?id=406392"
-                                        class="text-primary">Nguyễn Thị Hoa</a></p>
-                            </td>
-                            <td>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> Cập nhật
-                                    trạng thái <b>L1B - Thông tin sai</b> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-chain"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">11:31 14/07</p>
-                            </td>
-                            <td>
-                                <p>Bàn giao <a href="https://erp.nhanh.vn/crm/lead/view?id=406392"
-                                        class="text-primary">Nguyễn Thị Hoa</a></p>
-                            </td>
-                            <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="text-muted fontsize-85">11:05 15/07</p>
-                            </td>
-                            <td>
-                                <p>Sửa hợp đồng <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Sửa
-                                            hợp đồng 62733</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="text-muted fontsize-85">11:09 15/07</p>
-                            </td>
-                            <td>
-                                <p>Sửa hợp đồng <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Sửa
-                                            hợp đồng 62733</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Đỗ Thị Thanh Nhàn</a></p>
-                                <p class="text-muted fontsize-85">11:50 15/07</p>
-                            </td>
-                            <td>
-                                <p>Sửa hợp đồng <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Sửa
-                                            hợp đồng 62733</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-money"></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">13:19 15/07</p>
-                            </td>
-                            <td>
-                                <p>Tạo thanh toán <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Thêm
-                                            phiếu thu 76350</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">13:57 15/07</p>
-                            </td>
-                            <td>
-                                <p>Sửa thanh toán <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>Sửa
-                                            phiếu thu 76350</i></b><br> <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">19:43 20/07</p>
-                            </td>
-                            <td>
-                                <p>Thêm nhận xét <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> Good <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
-                        </tr>
-                        <tr class="even">
-                            <td><i class="fa "></i></td>
-                            <td>
-                                <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="text-muted fontsize-85">19:43 20/07</p>
-                            </td>
-                            <td>
-                                <p>Thêm nhận xét <a
-                                        href="https://erp.nhanh.vn/crm/account/view?id=21810"
-                                        class="text-primary">CÔNG TY TNHH AUCO</a></p>
-                            </td>
-                            <td>
-                                <p><b>Người dùng: </b><a
-                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                        class="text-primary">Nguyễn Văn Hưng</a></p>
-                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> Tốt <i
-                                        class="fa fa-quote-right"></i></p>
-                            </td>
-                            <td class="col-align-right"></td>
                         </tr>
                     </tbody>
                 </table>

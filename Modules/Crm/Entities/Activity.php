@@ -8,7 +8,11 @@ class Activity extends Model
 {
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'action_id',
+        'calendar_id',
+        'customer_id',
+        'author',
     ];
 
     public function calendar()

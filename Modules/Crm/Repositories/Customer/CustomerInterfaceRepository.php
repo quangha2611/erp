@@ -9,4 +9,6 @@ interface CustomerInterfaceRepository extends BaseInterfaceRepository
     public function getCustomerByInfo($attribute);
     
     public function storeByCalendar(array $attributes);
+
+    public function updateLevel($newLevel, $id);
 }

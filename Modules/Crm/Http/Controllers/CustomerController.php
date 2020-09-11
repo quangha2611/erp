@@ -7,20 +7,24 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 use Modules\Crm\Services\CustomerService;
+use Modules\Crm\Services\CustomerLevelService;
 
 class CustomerController extends Controller
 {
     protected $customer;
+    protected $customerLevel;
 
-    public function __construct (CustomerService $customer)
+    public function __construct (CustomerService $customer, CustomerLevelService $customerLevel)
     {
         $this->customer = $customer;
+        $this->customerLevel = $customerLevel;
     }
 
     public function index()
     {
         $customers = $this->customer->index();
-        return view('crm::pages.customer.index');
+        $customerLevels = $this->customerLevel->all();
+        return view('crm::pages.customer.index', compact('customers','customerLevels'));
     }
 
     /**

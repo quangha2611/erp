@@ -29,4 +29,9 @@ class Customer extends Model
     {
         return $this->belongsTo('Modules\Crm\Entities\CustomerType','type_id','id');
     }
+
+    public function level()
+    {
+        return $this->belongsTo('Modules\Crm\Entities\CustomerLevel', 'level_id','id');
+    }
 }

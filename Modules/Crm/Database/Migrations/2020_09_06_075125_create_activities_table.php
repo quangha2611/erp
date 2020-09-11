@@ -21,7 +21,7 @@ class CreateActivitiesTable extends Migration
             $table->integer('calendar_id')->default(0);
             $table->integer('customer_id');
             $table->integer('author');
-            $table->boolean('is_deleted');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

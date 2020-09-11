@@ -230,30 +230,16 @@
                             <i class="fa fa-list"></i> Tất cả
                         </a>
                     </li>
-                    <li class=""><a href="{{ route('customerIndexL0') }}">L0 -
-                            Cần xử lý<span style="margin:0 2px;" class="badge stage20"
-                                data-toggle="tooltip" data-title="Số lượng khách">3</span></a></li>
-                    <li class=""><a href="{{ route('customerIndexL2A') }}">L2A
-                            - Có nhu cầu<span style="margin:0 2px;" class="badge stage23"
-                                data-toggle="tooltip" data-title="Số lượng khách"></span></a></li>
-                    <li class=""><a href="{{ route('customerIndexL3') }}">L3 -
-                            Đã hẹn<span style="margin:0 2px;" class="badge stage25"
-                                data-toggle="tooltip" data-title="Số lượng khách"></span></a></li>
-                    <li class=""><a href="{{ route('customerIndexL4') }}">L4 -
-                            Đã gặp<span style="margin:0 2px;" class="badge stage26"
-                                data-toggle="tooltip" data-title="Số lượng khách"></span></a></li>
-                    <li class=""><a href="{{ route('customerIndexL5A1') }}">L5A1
-                            - Dùng thử<span style="margin:0 2px;" class="badge stage27"
-                                data-toggle="tooltip" data-title="Số lượng khách"></span></a></li>
-                    <li class=""><a href="{{ route('customerIndexL5A2') }}">L5A2
-                            - Có yêu cầu<span style="margin:0 2px;" class="badge stage28"
-                                data-toggle="tooltip" data-title="Số lượng khách"></span></a></li>
-                    <li class=""><a href="{{ route('customerIndexL6A') }}">L6A
-                            - Ký hợp đồng<span style="margin:0 2px;" class="badge stage29"
-                                data-toggle="tooltip" data-title="Số lượng khách">1</span></a></li>
-                    <li class=""><a href="{{ route('customerIndexL7A') }}">L7A
-                            - Đã triển khai<span style="margin:0 2px;" class="badge stage31"
-                                data-toggle="tooltip" data-title="Số lượng khách"></span></a></li>
+                    @foreach ($customerLevels as $levelParent)
+                        @if ($levelParent->parent_id == null)
+                            <li class="">
+                                <a href="{{ route('customerIndexL0') }}">
+                                    {{ $levelParent->code.'-'.$levelParent->name }}
+                                    <span style="margin:0 2px;" class="badge stage20" data-toggle="tooltip" data-title="Số lượng khách">3</span>
+                                </a>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
 
@@ -318,596 +304,117 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="colCheckbox"><input data-id="405449" class="cb leadCb"
-                                    type="checkbox"></td>
-                            <td class="colControls"><a data-toggle="tooltip"
-                                    data-original-title="Ngày tạo:2020-07-09 10:46:36"
-                                    href="https://erp.nhanh.vn/crm/account/view?id=21810">405449</a>
-                            </td>
-                            <td class="colControls">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown"
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="fa fa-plus-circle icon"></a>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addmeeting?accountId=21810">
-                                                <i class="fa fa-users"></i> Thêm cuộc gặp
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addphonecall?accountId=21810">
-                                                <i class="fa fa-phone"></i> Thêm cuộc gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addcalendar?accountId=21810">
-                                                <i class="fa fa-calendar"></i> Đặt lịch
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?accountId=21810">
-                                                <i class="fa fa-phone-square"></i> Yêu cầu gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/contract/add?accountId=21810">
-                                                <i class="fa fa-book"></i> Tạo hợp đồng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/adddeploy?accountId=21810">
-                                                <i class="fa fa-cogs"></i> Thêm triển khai
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/requirement/add?accountId=21810">
-                                                <i class="fa fa-cog"></i> Thêm yêu cầu
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="editDescription" data-leadid="405449"
-                                                data-description="" href="javascript:;">
-                                                <i class="fa fa-edit"></i> Sửa ghi chú
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div><a class="fa fa-users assignLead"
-                                        title="Quản lí người phụ trách" data-id="405449"></a></div>
-                                <div><a class="fa  fa-thumb-tack discard" title="Hủy chăm sóc"
-                                        data-id="405449"></a></div><span data-id="405449"
-                                    data-toggle="tooltip" data-title="Cập nhật Level khách hàng"
-                                    style="cursor:pointer"
-                                    class="updateOpportunityStatus icon fa fa-refresh text-success"></span>
-                            </td>
-                            <td>
-                                <div class="item-block"><a
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="label btn-info crm-type">Khách hàng</a></div>
-                                <div class="line-break"></div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-building-o"></i></div>
-                                    <div class="item-infor">Công ty</div>
-                                </div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-user"></i></div>
-                                    <div class="item-infor"><a
-                                            href="https://erp.nhanh.vn/crm/account/view?id=21810">CÔNG
-                                            TY TNHH AUCO</a></div>
-                                </div>
-                                <div data-toggle="tooltip" data-title="Cấp độ khách hàng"
-                                    class="opportunityStatus405449">
+                        @foreach ($customers as $customer)
+                            <tr class="even">
+                                <td class="colCheckbox"><input data-id="406392" class="cb leadCb"
+                                        type="checkbox"></td>
+                                <td class="colControls"><p data-toggle="tooltip"
+                                        data-original-title="Ngày tạo:{{ $customer->created_at }}"
+                                        >{{ $customer->id }}</p>
+                                </td>
+                                <td class="colControls">
+                                    <div class="dropdown">
+                                        <a data-toggle="dropdown"
+                                            href="https://erp.nhanh.vn/crm/customer/index#"
+                                            class="fa fa-plus-circle icon"></a>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                            <li>
+                                                <a class=""
+                                                    href="{{ route('get.crm.activity.addMeting', ['id'=>$customer->id]) }}">
+                                                    <i class="fa fa-users"></i> Thêm cuộc gặp
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class=""
+                                                    href="{{ route('get.crm.activity.addPhoneCall', ['id'=>$customer->id]) }}">
+                                                    <i class="fa fa-phone"></i> Thêm cuộc gọi
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class=""
+                                                    href="{{ route('get.crm.activity.addCalendar', ['id'=>$customer->id]) }}">
+                                                    <i class="fa fa-calendar"></i> Đặt lịch
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class=""
+                                                    href="">
+                                                    <i class="fa fa-phone-square"></i> Yêu cầu gọi
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class=""
+                                                    href="https://erp.nhanh.vn/crm/contract/add?leadId=406392">
+                                                    <i class="fa fa-book"></i> Tạo hợp đồng
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class=""
+                                                    href="https://erp.nhanh.vn/crm/requirement/add?leadId=406392">
+                                                    <i class="fa fa-cog"></i> Thêm yêu cầu
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="editDescription" data-leadid="406392"
+                                                    data-description="" href="javascript:;">
+                                                    <i class="fa fa-edit"></i> Sửa ghi chú
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div><a class="fa fa-users assignLead"
+                                            title="Quản lí người phụ trách" data-id="406392"></a></div>
+                                    <div><a class="fa  fa-thumb-tack discard" title="Hủy chăm sóc"
+                                            data-id="406392"></a></div><span data-id="406392"
+                                        data-toggle="tooltip" data-title="Cập nhật Level khách hàng"
+                                        style="cursor:pointer"
+                                        class="updateOpportunityStatus icon fa fa-refresh text-success"></span>
+                                </td>
+                                <td>
                                     <div class="item-block">
-                                        <div class="item-icon"><i
-                                                class="fa fa-level-up text-success"></i></div>
-                                        <div class="item-infor"><span class="text text-success">L6A
-                                                - Đã ký hợp đồng <i style="cursor:pointer;"
-                                                    data-status="29" data-leadid="405449"
-                                                    class="fa fa-times text-danger removeOpportunityStatus"></i></span>
+                                        <a class="label btn-default crm-type">Thông tin</a>
+                                    </div>
+                                    <div class="line-break"></div>
+                                    <div class="item-block">
+                                        <div class="item-icon"><i class="fa fa-arrow-right"></i></div>
+                                        <div class="item-infor">{{ $customer->type->name }}</div>
+                                    </div>
+                                    <div class="item-block">
+                                        <div class="item-icon"><i class="fa fa-user"></i></div>
+                                        <div class="item-infor"><a
+                                                href="https://erp.nhanh.vn/crm/lead/view?id=406392">{{ $customer->name }}</a></div>
+                                    </div>
+                                    <div data-toggle="tooltip" data-title="Cấp độ khách hàng"
+                                        class="opportunityStatus406392">
+                                        <div class="item-block">
+                                            <div class="item-icon"><i
+                                                    class="fa fa-level-up text-success"></i></div>
+                                            <div class="item-infor"><span class="text text-success">{{ $customer->level->code.' '.$customer->level->name }} <i style="cursor:pointer;"
+                                                        data-status="22" data-leadid="406392"
+                                                        class="fa fa-times text-danger removeOpportunityStatus"></i></span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="col-assignedTo">
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-flag-o"></i> Đỗ Thị Thanh Nhàn</div>
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-flag-o"></i> Nguyễn Văn Hưng</div>
-                                <div title="Người tạo">
-                                    <i class="fa fa-github-alt" data-toggle="tooltip"
-                                        data-original-title="Ngày tạo: 2020-07-09 10:46:36 "></i> Đỗ
-                                    Thị Thanh Nhàn</div>
-                            </td>
-                            <td>
-                                <p style="font-style: italic;"> - Doanh thu tạo: <b>1.595.000</b>
-                                </p>
-                                <p style="font-style: italic;"> - Đã thanh toán: <b
-                                        class="text-success">1.595.000</b></p>
-                                <p style="font-style: italic;"> - Ngày tạo hợp đồng đầu tiên:
-                                    <b>10/07/2020</b></p>
-                                <p style="font-style: italic;"> - Thời gian chốt: <b>1 ngày</b></p>
-                                <ul class="td-history">
-                                    <li class="last"><a class="text-info"
-                                            href="https://erp.nhanh.vn/crm/activity/history?accountId=21810">Xem
-                                            chi tiết 15 hành động</a></li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="colCheckbox"><input data-id="406392" class="cb leadCb"
-                                    type="checkbox"></td>
-                            <td class="colControls"><a data-toggle="tooltip"
-                                    data-original-title="Ngày tạo:2020-07-14 10:19:17"
-                                    href="https://erp.nhanh.vn/crm/lead/view?id=406392">406392</a>
-                            </td>
-                            <td class="colControls">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown"
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="fa fa-plus-circle icon"></a>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addmeeting?leadId=406392">
-                                                <i class="fa fa-users"></i> Thêm cuộc gặp
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addphonecall?leadId=406392">
-                                                <i class="fa fa-phone"></i> Thêm cuộc gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addcalendar?leadId=406392">
-                                                <i class="fa fa-calendar"></i> Đặt lịch
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?leadId=406392">
-                                                <i class="fa fa-phone-square"></i> Yêu cầu gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/contract/add?leadId=406392">
-                                                <i class="fa fa-book"></i> Tạo hợp đồng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/requirement/add?leadId=406392">
-                                                <i class="fa fa-cog"></i> Thêm yêu cầu
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="editDescription" data-leadid="406392"
-                                                data-description="" href="javascript:;">
-                                                <i class="fa fa-edit"></i> Sửa ghi chú
-                                            </a>
-                                        </li>
+                                </td>
+                                <td class="col-assignedTo">
+                                    <div data-toggle="tooltip" title="123job.vn | 123Job"><i
+                                            class="fa fa-flag-o"></i> Đỗ Thị Thanh Nhàn</div>
+                                    <div data-toggle="tooltip" title="123job.vn | 123Job"><i
+                                            class="fa fa-flag-o"></i> Nguyễn Văn Hưng</div>
+                                    <div title="Người tạo">
+                                        <i class="fa fa-github-alt" data-toggle="tooltip"
+                                            data-original-title="Ngày tạo: 2020-07-14 10:19:17 "></i> Đỗ
+                                        Thị Thanh Nhàn</div>
+                                </td>
+                                <td>
+                                    <ul class="td-history">
+                                        <li class="last"><a class="text-info"
+                                                href="https://erp.nhanh.vn/crm/activity/history?leadId=406392">Xem
+                                                chi tiết 3 hành động</a></li>
                                     </ul>
-                                </div>
-                                <div><a class="fa fa-users assignLead"
-                                        title="Quản lí người phụ trách" data-id="406392"></a></div>
-                                <div><a class="fa  fa-thumb-tack discard" title="Hủy chăm sóc"
-                                        data-id="406392"></a></div><span data-id="406392"
-                                    data-toggle="tooltip" data-title="Cập nhật Level khách hàng"
-                                    style="cursor:pointer"
-                                    class="updateOpportunityStatus icon fa fa-refresh text-success"></span>
-                            </td>
-                            <td>
-                                <div class="item-block"><a
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="label btn-default crm-type">Thông tin</a></div>
-                                <div class="line-break"></div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-arrow-right"></i></div>
-                                    <div class="item-infor">Cá nhân</div>
-                                </div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-user"></i></div>
-                                    <div class="item-infor"><a
-                                            href="https://erp.nhanh.vn/crm/lead/view?id=406392">Nguyễn
-                                            Thị Hoa</a></div>
-                                </div>
-                                <div data-toggle="tooltip" data-title="Cấp độ khách hàng"
-                                    class="opportunityStatus406392">
-                                    <div class="item-block">
-                                        <div class="item-icon"><i
-                                                class="fa fa-level-up text-danger"></i></div>
-                                        <div class="item-infor"><span class="text text-danger">L1B -
-                                                Thông tin sai <i style="cursor:pointer;"
-                                                    data-status="22" data-leadid="406392"
-                                                    class="fa fa-times text-danger removeOpportunityStatus"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="col-assignedTo">
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-flag-o"></i> Đỗ Thị Thanh Nhàn</div>
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-flag-o"></i> Nguyễn Văn Hưng</div>
-                                <div title="Người tạo">
-                                    <i class="fa fa-github-alt" data-toggle="tooltip"
-                                        data-original-title="Ngày tạo: 2020-07-14 10:19:17 "></i> Đỗ
-                                    Thị Thanh Nhàn</div>
-                            </td>
-                            <td>
-                                <ul class="td-history">
-                                    <li class="last"><a class="text-info"
-                                            href="https://erp.nhanh.vn/crm/activity/history?leadId=406392">Xem
-                                            chi tiết 3 hành động</a></li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="colCheckbox"><input data-id="406317" class="cb leadCb"
-                                    type="checkbox"></td>
-                            <td class="colControls"><a data-toggle="tooltip"
-                                    data-original-title="Ngày tạo:2020-07-13 22:32:53"
-                                    href="https://erp.nhanh.vn/crm/lead/view?id=406317">406317</a>
-                            </td>
-                            <td class="colControls">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown"
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="fa fa-plus-circle icon"></a>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addmeeting?leadId=406317">
-                                                <i class="fa fa-users"></i> Thêm cuộc gặp
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addphonecall?leadId=406317">
-                                                <i class="fa fa-phone"></i> Thêm cuộc gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addcalendar?leadId=406317">
-                                                <i class="fa fa-calendar"></i> Đặt lịch
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?leadId=406317">
-                                                <i class="fa fa-phone-square"></i> Yêu cầu gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/contract/add?leadId=406317">
-                                                <i class="fa fa-book"></i> Tạo hợp đồng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/requirement/add?leadId=406317">
-                                                <i class="fa fa-cog"></i> Thêm yêu cầu
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="editDescription" data-leadid="406317"
-                                                data-description="" href="javascript:;">
-                                                <i class="fa fa-edit"></i> Sửa ghi chú
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div><a class="fa fa-users assignLead"
-                                        title="Quản lí người phụ trách" data-id="406317"></a></div>
-                                <div><a class="fa  fa-thumb-tack discard" title="Hủy chăm sóc"
-                                        data-id="406317"></a></div><span data-id="406317"
-                                    data-toggle="tooltip" data-title="Cập nhật Level khách hàng"
-                                    style="cursor:pointer"
-                                    class="updateOpportunityStatus icon fa fa-refresh text-success"></span>
-                            </td>
-                            <td>
-                                <div class="item-block"><a
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="label btn-default crm-type">Thông tin</a></div>
-                                <div class="line-break"></div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-building-o"></i></div>
-                                    <div class="item-infor">Công ty</div>
-                                </div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-user"></i></div>
-                                    <div class="item-infor"><a
-                                            href="https://erp.nhanh.vn/crm/lead/view?id=406317">Công
-                                            ty cổ phần Vnp Group</a></div>
-                                </div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-globe"></i></div>
-                                    <div class="item-infor">123job.vn</div>
-                                </div>
-                                <div data-toggle="tooltip" data-title="Cấp độ khách hàng"
-                                    class="opportunityStatus406317">
-                                    <div class="item-block">
-                                        <div class="item-icon"><i
-                                                class="fa fa-level-up text-info"></i></div>
-                                        <div class="item-infor"><span class="text text-info">L0 -
-                                                Cần xử lý <i style="cursor:pointer;"
-                                                    data-status="20" data-leadid="406317"
-                                                    class="fa fa-times text-danger removeOpportunityStatus"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-block">
-                                    <b>Nguồn: </b>Data bàn giao - Fanpage</div>
-                                <div class="item-block">
-                                    <b>Tham chiếu: </b>Khach comment tren he thong</div>
-                            </td>
-                            <td class="col-assignedTo">
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-flag-o"></i> Nguyễn Văn Hưng</div>
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-headphones"></i> Ứng Đình Hướng</div>
-                                <div title="Người tạo">
-                                    <i class="fa fa-github-alt" data-toggle="tooltip"
-                                        data-original-title="Ngày tạo: 2020-07-13 22:32:53 "></i>
-                                    Nguyễn Văn Hưng</div>
-                            </td>
-                            <td>
-                                <ul class="td-history">
-                                    <li class="last"><a class="text-info"
-                                            href="https://erp.nhanh.vn/crm/activity/history?leadId=406317">Xem
-                                            chi tiết 3 hành động</a></li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr class="even">
-                            <td class="colCheckbox"><input data-id="405964" class="cb leadCb"
-                                    type="checkbox"></td>
-                            <td class="colControls"><a data-toggle="tooltip"
-                                    data-original-title="Ngày tạo:2020-07-10 21:32:31"
-                                    href="https://erp.nhanh.vn/crm/lead/view?id=405964">405964</a>
-                            </td>
-                            <td class="colControls">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown"
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="fa fa-plus-circle icon"></a>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addmeeting?leadId=405964">
-                                                <i class="fa fa-users"></i> Thêm cuộc gặp
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addphonecall?leadId=405964">
-                                                <i class="fa fa-phone"></i> Thêm cuộc gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addcalendar?leadId=405964">
-                                                <i class="fa fa-calendar"></i> Đặt lịch
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?leadId=405964">
-                                                <i class="fa fa-phone-square"></i> Yêu cầu gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/contract/add?leadId=405964">
-                                                <i class="fa fa-book"></i> Tạo hợp đồng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/requirement/add?leadId=405964">
-                                                <i class="fa fa-cog"></i> Thêm yêu cầu
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="editDescription" data-leadid="405964"
-                                                data-description="" href="javascript:;">
-                                                <i class="fa fa-edit"></i> Sửa ghi chú
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div><a class="fa fa-users assignLead"
-                                        title="Quản lí người phụ trách" data-id="405964"></a></div>
-                                <div><a class="fa  fa-thumb-tack discard" title="Hủy chăm sóc"
-                                        data-id="405964"></a></div><span data-id="405964"
-                                    data-toggle="tooltip" data-title="Cập nhật Level khách hàng"
-                                    style="cursor:pointer"
-                                    class="updateOpportunityStatus icon fa fa-refresh text-success"></span>
-                            </td>
-                            <td>
-                                <div class="item-block"><a
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="label btn-default crm-type">Thông tin</a></div>
-                                <div class="line-break"></div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-building-o"></i></div>
-                                    <div class="item-infor">Công ty</div>
-                                </div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-user"></i></div>
-                                    <div class="item-infor"><a
-                                            href="https://erp.nhanh.vn/crm/lead/view?id=405964">Công
-                                            ty cổ phần Vnp Group</a></div>
-                                </div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-globe"></i></div>
-                                    <div class="item-infor">123job.vn</div>
-                                </div>
-                                <div data-toggle="tooltip" data-title="Cấp độ khách hàng"
-                                    class="opportunityStatus405964">
-                                    <div class="item-block">
-                                        <div class="item-icon"><i
-                                                class="fa fa-level-up text-info"></i></div>
-                                        <div class="item-infor"><span class="text text-info">L0 -
-                                                Cần xử lý <i style="cursor:pointer;"
-                                                    data-status="20" data-leadid="405964"
-                                                    class="fa fa-times text-danger removeOpportunityStatus"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-block">
-                                    <b>Nguồn: </b>Data bàn giao - Fanpage</div>
-                                <div class="item-block">
-                                    <b>Tham chiếu: </b>Inbox fanpage</div>
-                            </td>
-                            <td class="col-assignedTo">
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-flag-o"></i> Nguyễn Văn Hưng</div>
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-headphones"></i> Nguyễn Văn Hưng</div>
-                                <div title="Người tạo">
-                                    <i class="fa fa-github-alt" data-toggle="tooltip"
-                                        data-original-title="Ngày tạo: 2020-07-10 21:32:31 "></i>
-                                    Nguyễn Văn Hưng</div>
-                            </td>
-                            <td>
-                                <ul class="td-history">
-                                    <li class="last"><a class="text-info"
-                                            href="https://erp.nhanh.vn/crm/activity/history?leadId=405964">Xem
-                                            chi tiết 5 hành động</a></li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="colCheckbox"><input data-id="405963" class="cb leadCb"
-                                    type="checkbox"></td>
-                            <td class="colControls"><a data-toggle="tooltip"
-                                    data-original-title="Ngày tạo:2020-07-10 21:16:23"
-                                    href="https://erp.nhanh.vn/crm/lead/view?id=405963">405963</a>
-                            </td>
-                            <td class="colControls">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown"
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="fa fa-plus-circle icon"></a>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addmeeting?leadId=405963">
-                                                <i class="fa fa-users"></i> Thêm cuộc gặp
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addphonecall?leadId=405963">
-                                                <i class="fa fa-phone"></i> Thêm cuộc gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addcalendar?leadId=405963">
-                                                <i class="fa fa-calendar"></i> Đặt lịch
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/activity/addrequestphonecall?leadId=405963">
-                                                <i class="fa fa-phone-square"></i> Yêu cầu gọi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/contract/add?leadId=405963">
-                                                <i class="fa fa-book"></i> Tạo hợp đồng
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class=""
-                                                href="https://erp.nhanh.vn/crm/requirement/add?leadId=405963">
-                                                <i class="fa fa-cog"></i> Thêm yêu cầu
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="editDescription" data-leadid="405963"
-                                                data-description="" href="javascript:;">
-                                                <i class="fa fa-edit"></i> Sửa ghi chú
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div><a class="fa fa-users assignLead"
-                                        title="Quản lí người phụ trách" data-id="405963"></a></div>
-                                <div><a class="fa  fa-thumb-tack discard" title="Hủy chăm sóc"
-                                        data-id="405963"></a></div><span data-id="405963"
-                                    data-toggle="tooltip" data-title="Cập nhật Level khách hàng"
-                                    style="cursor:pointer"
-                                    class="updateOpportunityStatus icon fa fa-refresh text-success"></span>
-                            </td>
-                            <td>
-                                <div class="item-block"><a
-                                        href="https://erp.nhanh.vn/crm/customer/index#"
-                                        class="label btn-default crm-type">Thông tin</a></div>
-                                <div class="line-break"></div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-building-o"></i></div>
-                                    <div class="item-infor">Công ty</div>
-                                </div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-user"></i></div>
-                                    <div class="item-infor"><a
-                                            href="https://erp.nhanh.vn/crm/lead/view?id=405963">Công
-                                            ty cổ phần Vnp Group</a></div>
-                                </div>
-                                <div class="item-block">
-                                    <div class="item-icon"><i class="fa fa-globe"></i></div>
-                                    <div class="item-infor">123job.vn</div>
-                                </div>
-                                <div data-toggle="tooltip" data-title="Cấp độ khách hàng"
-                                    class="opportunityStatus405963">
-                                    <div class="item-block">
-                                        <div class="item-icon"><i
-                                                class="fa fa-level-up text-info"></i></div>
-                                        <div class="item-infor"><span class="text text-info">L0 -
-                                                Cần xử lý <i style="cursor:pointer;"
-                                                    data-status="20" data-leadid="405963"
-                                                    class="fa fa-times text-danger removeOpportunityStatus"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-block">
-                                    <b>Nguồn: </b>Seeding/ Inbox/ Spam</div>
-                                <div class="item-block">
-                                    <b>Tham chiếu: </b>Inbox fanpage</div>
-                            </td>
-                            <td class="col-assignedTo">
-                                <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                        class="fa fa-flag-o"></i> Nguyễn Văn Hưng</div>
-                                <div title="Người tạo">
-                                    <i class="fa fa-github-alt" data-toggle="tooltip"
-                                        data-original-title="Ngày tạo: 2020-07-10 21:16:23 "></i>
-                                    Nguyễn Văn Hưng</div>
-                            </td>
-                            <td>
-                                <ul class="td-history">
-                                    <li class="last"><a class="text-info"
-                                            href="https://erp.nhanh.vn/crm/activity/history?leadId=405963">Xem
-                                            chi tiết 2 hành động</a></li>
-                                </ul>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="row">

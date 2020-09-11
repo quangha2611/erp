@@ -31,5 +31,12 @@ class CustomerRepository extends BaseRepository implements CustomerInterfaceRepo
         return $newCutomer->phone;
     }
 
+    public function updateLevel($newLevel, $id)
+    {
+        $customer = $this->model->find($id);
+        $customer->level_id = $newLevel;
+        $customer->save();
+    }
+
     
 }

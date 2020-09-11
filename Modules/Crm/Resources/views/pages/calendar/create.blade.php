@@ -102,10 +102,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Địa điểm:</label>
+                            <label class="col-md-4 control-label required">Địa điểm:
+                                <span class="required">*</span>
+                            </label>
                             <div class="col-md-8">
                                 <input type="text" name="location" maxlength="255" id="location"
-                                    class="form-control" value="{{ old('location') }}"> </div>
+                                    class="form-control" value="{{ old('location') }}"> 
+                                @error('location')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="form-group">

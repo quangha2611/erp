@@ -87,8 +87,6 @@ class CalendarController extends Controller
                             ->withInput($request->all());
             }    
         }
-
-
         
         $check = $this->calendar->store($request);
         if($check == false) {

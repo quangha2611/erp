@@ -19,11 +19,11 @@ class ActivityRepository extends BaseRepository implements ActivityInterfaceRepo
 
     public function listcall()
     {
-        return $this->model->where('action_id',2)->get();
+        return $this->model->where('action_id',4)->get();
     }
 
     public function yourListcall()
     {
-        return $this->model->where('action_id',2)->where('author', Auth::user()->id)->get();
+        return $this->model->where('action_id',4)->where('author', Auth::user()->id)->get();
     }
 }

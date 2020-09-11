@@ -18,7 +18,8 @@ class CalendarRequest extends FormRequest
             'company_id'      => 'required',
             'title'           => 'required|min:4',
             'begin_date_time' => 'required',
-            'joins'           => 'required'
+            'joins'           => 'required',
+            'location'        => 'required'
         ];
     }
 
@@ -29,6 +30,7 @@ class CalendarRequest extends FormRequest
             'title'           => 'Tiêu đề',
             'begin_date_time' => 'Thời gian bắt đầu',
             'joins'           => 'Người tham gia',
+            'location'        => 'Địa điểm',
         ];
     }
 

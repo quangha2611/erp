@@ -123,7 +123,7 @@ taskStt8			 col-sm-6">Tất cả</a>
                         <td>
                             <div class="item-block"><a
                                     href="https://erp.nhanh.vn/crm/lead/desk?id=406317"
-                                    class="label btn-default crm-type">Thông tin</a></div>
+                                    class="label btn-default crm-type">{{ $activity->customer->type->name }}</a></div>
                             <div class="item-block">
                                 <div class="item-icon"><i class="fa fa-user"></i></div>
                                 <div class="item-infor">

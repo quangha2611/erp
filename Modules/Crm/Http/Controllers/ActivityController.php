@@ -5,28 +5,39 @@ namespace Modules\Crm\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
+
+use App\User;
+use Modules\Crm\Http\Requests\CalendarRequest;
+use Modules\Crm\Http\Requests\PhoneCallRequest;
 
 use Modules\Crm\Services\ActivityService;
+use Modules\Crm\Services\CustomerService;
+use Modules\Crm\Services\CalendarService;
 
 class ActivityController extends Controller
 {
     protected $activity;
+    protected $customer;
+    protected $calendar;
 
-    public function __construct(ActivityService $activity) 
+    public function __construct(ActivityService $activity, CustomerService $customer, CalendarService $calendar) 
     {
-        $this->activity = $activity;
+        $this->activity      = $activity;
+        $this->customer      = $customer;
+        $this->calendar      = $calendar;
     }
     
     public function index()
     {
         $activities = $this->activity->getAll();
-        // dd($activities);
         return view('crm::pages.activity.index',compact('activities'));
     }
 
     public function indexvg()
     {
-        return view('crm::pages.activity.indexvg');
+        $activities = $this->activity->getAll();
+        return view('crm::pages.activity.indexvg',compact('activities'));
     }
 
     public function listcall()
@@ -76,11 +87,92 @@ class ActivityController extends Controller
         return redirect()->route('get.crm.activity.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
+    public function addMeeting($id)
+    {
+        $users = User::all();
+        $customerLevels = $this->activity->getDataCustomerLevel();
+        $customer = $this->customer->find($id);
+
+        return view('crm::pages.activity.addMeeting',compact('users','customer','customerLevels'));
+    }
+
+    public function storeMeeting(CalendarRequest $request)
+    {
+        $this->activity->storeMeeting($request);
+        return redirect()->route('get.crm.customer.index');
+    }
+
+
+    public function addCalendar($id)
+    {
+        $users = User::all();
+        $customer = $this->customer->find($id);
+
+        return view('crm::pages.activity.addCalendar',compact('users','customer'));
+    }
+
+    public function storeCalendar(CalendarRequest $request)
+    {
+        $this->activity->storeCalendar($request->all());
+        return redirect()->route('get.crm.customer.index');
+    }
+
+    public function addPhoneCall($id)
+    {
+        $phoneCallResults = $this->activity->getDataPhoneCallResult();
+        $customerLevels = $this->activity->getDataCustomerLevel();
+        $users = User::all();
+        $customer = $this->customer->find($id);
+
+        return view('crm::pages.activity.addPhoneCall',compact('users','customer','customerLevels','phoneCallResults'));
+    }
+
+    public function storePhoneCall(PhoneCallRequest $request)
+    {
+        // validate new calendar
+        if ($request->create_new_calendar == 1) {
+            $requestNewCalendar = new Request;
+            $requestNewCalendar->merge([
+                'calendar_title' => $request->calendar_title,
+                'location' => $request->calendar_location,
+                'joins' => $request->joins,
+                'begin_date_time' => $request->calendar_begin_date_time,
+                'end_date_time' => $request->calendar_end_date_time,
+                'descrition' => $request->calendar_description,
+                'company_id' => $request->company_id]);
+            
+            $validator = Validator::make($requestNewCalendar->all(), [
+                'company_id'      => 'required',
+                'calendar_title'  => 'required|min:4',
+                'begin_date_time' => 'required',
+                'joins'           => 'required',
+                'location'        => 'required'
+            ],
+            [
+                'required'        => ':attribute không được để trống',
+                'min'             => ':attribute phải ít nhất :min ký tự',
+            ],
+            [
+                'company_id'      => 'Công ty',
+                'calendar_title'  => 'Tiêu đề sự kiện',
+                'begin_date_time' => 'Thời gian bắt đầu',
+                'joins'           => 'Người tham gia',
+                'location'        => 'Địa điểm hẹn',
+            ]);
+            
+            if ($validator->fails()) {
+                return redirect()
+                            ->back()
+                            ->withErrors($validator)
+                            ->withInput($request->all());
+            }    
+        }
+
+        $this->activity->storePhoneCall($request->all());
+
+        return redirect()->route('get.crm.customer.index');  
+    }
+
     public function destroy($id)
     {
         //

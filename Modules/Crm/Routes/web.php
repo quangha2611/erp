@@ -42,6 +42,20 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::get('/edit/{id}','ActivityController@edit')->name('get.crm.activity.edit');
 
         Route::post('/update/{id}','ActivityController@update')->name('post.crm.activity.update');
+
+        Route::get('/addMeeting/{id}','ActivityController@addMeeting')->name('get.crm.activity.addMeting');
+
+        Route::post('/storeMeeting','ActivityController@storeMeeting')->name('post.crm.activity.storeMeting');
+
+        Route::get('/addCalendar/{id}','ActivityController@addCalendar')->name('get.crm.activity.addCalendar');
+
+        Route::post('/storeCalendar','ActivityController@storeCalendar')->name('post.crm.activity.storeCalendar');
+
+        Route::get('/addPhoneCall/{id}','ActivityController@addPhoneCall')->name('get.crm.activity.addPhoneCall');
+
+        Route::post('/storePhoneCall','ActivityController@storePhoneCall')->name('post.crm.activity.storePhoneCall');
+
+
     });
 
     Route::prefix('/customer')->group(function(){

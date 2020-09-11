@@ -220,32 +220,34 @@
                                         <div class="actResult">
                                             <b>Tiêu đề: </b>
                                             <label>
-                                                {{ $activity->calendar->title }}
+                                                {{ $activity->title }}
                                             </label>
                                             <br>
                                             <b>Kết quả: </b>
                                             <label>---</label>
                                             <br>
-                                            <div class="actResult">
-                                                <b>Lịch: </b>
-                                                <label>{{ $activity->calendar->begin_date_time }}</label> 
-                                                <i class="fa fa-arrow-right"></i>
-                                                {{ $activity->calendar->end_date_time }}
+                                            @if ($activity->calendar_id != 0)
                                                 <div class="actResult">
-                                                    <b> Giao cho:
-                                                    </b>
-                                                    @foreach($activity->calendar->users as $user)
-                                                        <span class="text-success " title="{{ $user->name }}">
-                                                            {{ $user->name }}
-                                                        </span>
-                                                        ,&nbsp;
-                                                    @endforeach
+                                                    <b>Lịch: </b>
+                                                    <label>{{ $activity->calendar->begin_date_time }}</label> 
+                                                    <i class="fa fa-arrow-right"></i>
+                                                    {{ $activity->calendar->end_date_time }}
+                                                    <div class="actResult">
+                                                        <b> Giao cho:
+                                                        </b>
+                                                        @foreach($activity->calendar->users as $user)
+                                                            <span class="text-success " title="{{ $user->name }}">
+                                                                {{ $user->name }}
+                                                            </span>
+                                                            ,&nbsp;
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="line-break"></div>
+                                                    <b>Ghi chú:</b>
+                                                    <label>{{ $activity->content}}</label>
+                                                    <br>
                                                 </div>
-                                                <div class="line-break"></div>
-                                                <b>Ghi chú:</b>
-                                                <label>{{ $activity->content}}</label>
-                                                <br>
-                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>

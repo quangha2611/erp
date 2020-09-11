@@ -23,6 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('website')->nullable();
             $table->integer('type_id')->default(1);
             $table->integer('level_id')->default(1);
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

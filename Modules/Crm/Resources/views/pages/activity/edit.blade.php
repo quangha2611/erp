@@ -58,7 +58,7 @@
                     <ul class="accountInfor">
                         <li>
                             <div class="col-md-4 ">Loại:</div>
-                            <div class="col-md-8 accountInfor-content">Thông tin</div>
+                            <div class="col-md-8 accountInfor-content">{{ $activity->customer->type->name }}</div>
                             <div style="clear: both"></div>
                         </li>
                         <li>

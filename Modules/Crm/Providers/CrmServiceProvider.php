@@ -9,8 +9,12 @@ use Modules\Crm\Repositories\Calendar\CalendarInterfaceRepository;
 use Modules\Crm\Repositories\Calendar\CalendarRepository;
 use Modules\Crm\Repositories\Customer\CustomerInterfaceRepository;
 use Modules\Crm\Repositories\Customer\CustomerRepository;
+use Modules\Crm\Repositories\CustomerLevel\CustomerLevelInterfaceRepository;
+use Modules\Crm\Repositories\CustomerLevel\CustomerLevelRepository;
 use Modules\Crm\Repositories\Activity\ActivityInterfaceRepository;
 use Modules\Crm\Repositories\Activity\ActivityRepository;
+use Modules\Crm\Repositories\PhoneCallResult\PhoneCallResultInterfaceRepository;
+use Modules\Crm\Repositories\PhoneCallResult\PhoneCallResultRepository;
 
 class CrmServiceProvider extends ServiceProvider
 {
@@ -49,6 +53,8 @@ class CrmServiceProvider extends ServiceProvider
         $this->app->bind(CalendarInterfaceRepository::class, CalendarRepository::class);
         $this->app->bind(CustomerInterfaceRepository::class, CustomerRepository::class);
         $this->app->bind(ActivityInterfaceRepository::class, ActivityRepository::class);
+        $this->app->bind(CustomerLevelInterfaceRepository::class, CustomerLevelRepository::class);
+        $this->app->bind(PhoneCallResultInterfaceRepository::class, PhoneCallResultRepository::class);
     }
 
     protected function registerConfig()
