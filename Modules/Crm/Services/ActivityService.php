@@ -7,6 +7,7 @@ use Modules\Crm\Repositories\Activity\ActivityInterfaceRepository;
 use Modules\Crm\Repositories\Calendar\CalendarInterfaceRepository;
 use Modules\Crm\Repositories\Customer\CustomerInterfaceRepository;
 use Modules\Crm\Repositories\PhoneCallResult\PhoneCallResultInterfaceRepository;
+use Modules\Crm\Repositories\PhoneCall\PhoneCallInterfaceRepository;
 use Modules\Crm\Repositories\CustomerLevel\CustomerLevelInterfaceRepository;
 
 
@@ -16,14 +17,16 @@ class ActivityService
     protected $calendar;
     protected $customer;
     protected $phoneCallResult;
+    protected $phoneCall;
     protected $customerLevel;
 
-    public function __construct(ActivityInterfaceRepository $activity, CalendarInterfaceRepository $calendar, CustomerInterfaceRepository $customer, PhoneCallResultInterfaceRepository $phoneCallResult, CustomerLevelInterfaceRepository $customerLevel)
+    public function __construct(ActivityInterfaceRepository $activity, CalendarInterfaceRepository $calendar, CustomerInterfaceRepository $customer, PhoneCallResultInterfaceRepository $phoneCallResult, CustomerLevelInterfaceRepository $customerLevel, PhoneCallInterfaceRepository $phoneCall)
     {
         $this->activity        = $activity;
         $this->calendar        = $calendar;
         $this->customer        = $customer;
         $this->phoneCallResult = $phoneCallResult;
+        $this->phoneCall       = $phoneCall;
         $this->customerLevel   = $customerLevel;
     }
 
@@ -89,15 +92,19 @@ class ActivityService
         } else {
             $newCalendar = ['id'=>0];
         }
+
+        //store phone call 
+        $newPhoneCall = $this->phoneCall->store($attributes);
         
         // Add new activity
         $this->activity->store([
-            'customer_id' => $attributes['customer_id'], 
-            'title'       => $attributes['title'],
-            'content'     => $attributes['content'],
-            'action_id'   => $attributes['action_id'],
-            'calendar_id' => $newCalendar['id'], 
-            'author'      => $attributes['author'],
+            'customer_id'   => $attributes['customer_id'], 
+            'title'         => $attributes['title'],
+            'content'       => $attributes['content'],
+            'action_id'     => $attributes['action_id'],
+            'calendar_id'   => $newCalendar['id'], 
+            'phone_call_id' => $newPhoneCall->id,
+            'author'        => $attributes['author'],
         ]);
 
         // Update customer's level

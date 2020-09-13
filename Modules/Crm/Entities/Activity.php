@@ -11,6 +11,7 @@ class Activity extends Model
         'content',
         'action_id',
         'calendar_id',
+        'phone_call_id',
         'customer_id',
         'author',
     ];
@@ -18,6 +19,11 @@ class Activity extends Model
     public function calendar()
     {
         return $this->belongsTo('Modules\Crm\Entities\Calendar','calendar_id','id');
+    }
+
+    public function phoneCall()
+    {
+        return $this->belongsTo('Modules\Crm\Entities\PhoneCall','phone_call_id','id');
     }
 
     public function action()

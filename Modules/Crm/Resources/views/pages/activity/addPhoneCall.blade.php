@@ -78,13 +78,13 @@
                             <label class="col-md-4 control-label required">Kết quả:<span
                                     class="required">*</span> </label>
                             <div class="col-md-8">
-                                <select name="result" id="result" class="form-control">
+                                <select name="result_id" id="result_id" class="form-control">
                                     <option value="">- Kết quả -</option>
                                     @foreach ($phoneCallResults as $result)
                                         <option value="{{ $result->id }}" {{ $result->id == old('result') ? 'selected' : ''}}>{{ $result->name }}</option>
                                     @endforeach
                                 </select> 
-                                @error('result')
+                                @error('result_id')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>

@@ -93,7 +93,13 @@ class CalendarController extends Controller
             return redirect()->back()->withInput($request->all());
         }
 
-        return redirect()->route('get.crm.calendar.create');
+        if ($request->after_submit == "continue") {
+            return redirect()->route('get.crm.calendar.create');
+        } 
+        
+        if ($request->after_submit == "show_index") {
+            return redirect()->route('get.crm.calendar.personal');
+        }
     }
 
     

@@ -18,7 +18,7 @@ class CreatePhoneCallsTable extends Migration
             $table->string('title');
             $table->integer('direction');
             $table->integer('status_id');
-            $table->string('result_id');
+            $table->string('result_id')->nullable();
             $table->string('content');
             $table->integer('author');
             $table->integer('customer_id');

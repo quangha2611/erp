@@ -19,6 +19,7 @@ class CreateActivitiesTable extends Migration
             $table->integer('action_id');
             $table->string('content')->nullable();
             $table->integer('calendar_id')->default(0);
+            $table->integer('phone_call_id')->default(0);
             $table->integer('customer_id');
             $table->integer('author');
             $table->boolean('is_deleted')->default(0);

@@ -224,7 +224,7 @@
                                             </label>
                                             <br>
                                             <b>Kết quả: </b>
-                                            <label>---</label>
+                                            <label>{{ $activity->phone_call_id != 0 ? $activity->phoneCall->result->name : '---' }}</label>
                                             <br>
                                             @if ($activity->calendar_id != 0)
                                                 <div class="actResult">
