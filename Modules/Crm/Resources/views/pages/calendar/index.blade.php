@@ -15,25 +15,33 @@
         </ul>
         <div class="filterContainer">
             <form method="GET" name="crmCalendarFilter" class="form-inline" role="form"
-                id="crmCalendarFilter">
-                <div class="form-group"><select name="companyId" id="companyId"
+                id="crmCalendarFilter" action="{{ route('get.crm.calendar.filter') }}">
+                @csrf
+                <div class="form-group"><select name="company_id" id="companyId"
                         class="form-control">
-                        <option value="391" selected="selected">123job.vn</option>
+                        <option value="">Công ty</option>
+                        @include('crm::pages.calendar.include._inc_recursiveInput', [
+                            'data' => $companies,
+                            'parentId' => null,
+                            'note' => '--',
+                        ])
                     </select></div>
-                <div class="form-group"><input type="text" name="daterange" maxlength="11"
+                <div class="form-group">
+                    <input type="datetime-local" name="begin_date_time" maxlength="11"
                         placeholder="Thời điểm bắt đầu" id="daterange" class="form-control"
-                        value=""></div>
-                <div class="form-group"><input type="text" name="userName" maxlength="255"
+                        value="">
+                </div>
+                {{-- <div class="form-group"><input type="text" name="userName" maxlength="255"
                         placeholder="Thành viên" id="userName"
                         class="form-control ui-autocomplete-input" value="" autocomplete="off">
-                </div> <input type="hidden" name="userId" id="userId" class="form-control" value="">
-                <div class="form-group"><select name="status" id="status" class="form-control">
+                </div> <input type="hidden" name="userId" id="userId" class="form-control" value=""> --}}
+                {{-- <div class="form-group"><select name="status" id="status" class="form-control">
                         <option value="">- Trạng thái -</option>
                         <option value="1" selected="selected">Mới</option>
                         <option value="2">Đang làm</option>
                         <option value="3">Đã xong</option>
                         <option value="4">Hủy</option>
-                    </select></div>
+                    </select></div> --}}
                 <div class="form-group"><input name="submit" type="submit" id="btnFilterCrmContact"
                         class="form-control btn btn-primary" value="Lọc"></div>
             </form>

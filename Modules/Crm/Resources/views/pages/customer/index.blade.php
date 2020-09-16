@@ -225,17 +225,16 @@
             </div>
             <div class="page-overview" style="margin: 20px 0px;">
                 <ul class="nav nav-tabs">
-                    <li class="active ">
-                        <a href="{{ route('customerIndex') }}">
+                    <li class="{!! $currentLevel == 0 ? 'active' : '' !!}">
+                        <a href="{{ route('get.crm.customer.index') }}">
                             <i class="fa fa-list"></i> Tất cả
                         </a>
                     </li>
                     @foreach ($customerLevels as $levelParent)
                         @if ($levelParent->parent_id == null)
-                            <li class="">
-                                <a href="{{ route('customerIndexL0') }}">
+                            <li class="{!! $currentLevel == $levelParent->id ? 'active' : '' !!}">
+                                <a href="{{ route('get.crm.customer.index2',['parentLevel' => $levelParent->id]) }}">
                                     {{ $levelParent->code.'-'.$levelParent->name }}
-                                    <span style="margin:0 2px;" class="badge stage20" data-toggle="tooltip" data-title="Số lượng khách">3</span>
                                 </a>
                             </li>
                         @endif
@@ -252,20 +251,15 @@
                     <span class="fa fa-book" style="margin-right:5px"></span>Xuất Excel <span
                         class="caret"></span>
                 </button>
-                <ul class="dropdown-menu"></ul>
-            </div>
-            <div class="btn-group lolify-features" data-toggle="tooltip" data-placement="top"
-                title="Hành động" style="margin-left: 5px">
-                <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                    aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-                    <span class="fa fa-cogs" style="margin-right:5px"></span>Hành động <span
-                        class="caret"></span>
-                </button>
                 <ul class="dropdown-menu">
-                    <li><a href="javascript:;" id="updateLevelCustomerBtn"><i
-                                class="fa fa-refresh"></i> Cập nhật level khách hàng</a></li>
+                    <li>
+                        <a href="{{ route('get.crm.customer.excel') }}" id="">
+                            <i class="fa fa-file-excel-o"></i> Xuất toàn bộ
+                        </a>
+                    </li>
                 </ul>
-            </div><a style="margin-left:5px;float:right;"
+            </div>
+            <a style="margin-left:5px;float:right;"
                 href="https://erp.nhanh.vn/crm/customer/companysource"><i
                     class="fa fa-hand-o-right"></i> Xem thông tin nguồn công ty cung cấp</a>
             <div class="dgContainer">
@@ -294,8 +288,6 @@
                 <table id="dgCrmLead" class="table table-bordered">
                     <thead>
                         <tr class="even">
-                            <th class="colCheckbox"><input type="checkbox" class="cb"
-                                    id="cbCheckAll"></th>
                             <th>ID</th>
                             <th>Tác vụ</th>
                             <th>Thông tin</th>
@@ -306,8 +298,6 @@
                     <tbody>
                         @foreach ($customers as $customer)
                             <tr class="even">
-                                <td class="colCheckbox"><input data-id="406392" class="cb leadCb"
-                                        type="checkbox"></td>
                                 <td class="colControls"><p data-toggle="tooltip"
                                         data-original-title="Ngày tạo:{{ $customer->created_at }}"
                                         >{{ $customer->id }}</p>
@@ -338,7 +328,7 @@
                                             </li>
                                             <li>
                                                 <a class=""
-                                                    href="">
+                                                    href="{{ route('get.crm.activity.addRequestCall', ['id'=>$customer->id]) }}">
                                                     <i class="fa fa-phone-square"></i> Yêu cầu gọi
                                                 </a>
                                             </li>
@@ -410,7 +400,7 @@
                                     <ul class="td-history">
                                         <li class="last"><a class="text-info"
                                                 href="https://erp.nhanh.vn/crm/activity/history?leadId=406392">Xem
-                                                chi tiết 3 hành động</a></li>
+                                                chi tiết {{ $customer->countActivity }} hành động</a></li>
                                     </ul>
                                 </td>
                             </tr>

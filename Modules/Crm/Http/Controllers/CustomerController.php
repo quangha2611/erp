@@ -5,6 +5,8 @@ namespace Modules\Crm\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CustomerExport;
 
 use Modules\Crm\Services\CustomerService;
 use Modules\Crm\Services\CustomerLevelService;
@@ -24,13 +26,54 @@ class CustomerController extends Controller
     {
         $customers = $this->customer->index();
         $customerLevels = $this->customerLevel->all();
-        return view('crm::pages.customer.index', compact('customers','customerLevels'));
+        $currentLevel = 0;
+     
+        return view('crm::pages.customer.index', compact('customers','customerLevels','currentLevel'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
+    public function index2($parentLevel)
+    {   
+        $customers = $this->customer->getindex2($parentLevel);
+
+        $customerLevels = $this->customerLevel->all();
+        $currentLevel = $parentLevel;
+     
+        return view('crm::pages.customer.index', compact('customers','customerLevels','currentLevel'));
+    }
+
+
+    public function getDataExcel($customers)
+    {
+        $data = [];
+        foreach($customers as $customer) {
+            array_push($data,[
+                $customer->id,
+                $customer->name,
+                $customer->company->name,
+                $customer->major,
+                $customer->phone,
+                $customer->email,
+                $customer->website,
+                $customer->type->name,
+                $customer->level->name,
+            ]);
+        }
+
+        return $data;
+    }
+
+    public function excel()
+    {
+        $customers = $this->customer->index();
+        // data to export excel
+        $data = $this->getDataExcel($customers);
+
+        $data = new CustomerExport($data);
+
+        return Excel::download($data, 'customers.xlsx');  
+    }
+    
+
     public function create()
     {
         return view('crm::create');

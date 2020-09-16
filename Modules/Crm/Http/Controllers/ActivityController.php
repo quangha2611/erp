@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\User;
 use Modules\Crm\Http\Requests\CalendarRequest;
 use Modules\Crm\Http\Requests\PhoneCallRequest;
+use Modules\Crm\Http\Requests\RequestCallRequest;
 
 use Modules\Crm\Services\ActivityService;
 use Modules\Crm\Services\CustomerService;
@@ -171,6 +172,20 @@ class ActivityController extends Controller
         $this->activity->storePhoneCall($request->all());
 
         return redirect()->route('get.crm.customer.index');  
+    }
+
+    public function addRequestCall($id)
+    {
+        $users = User::all();
+        $customer = $this->customer->find($id);
+
+        return view('crm::pages.activity.addRequestCall',compact('users','customer'));
+    }
+
+    public function storeRequestCall(RequestCallRequest $request)
+    {
+        // dd($request->all());
+        $this->activity->storeRequestCall($request->all());
     }
 
     public function destroy($id)

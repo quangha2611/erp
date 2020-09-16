@@ -26,4 +26,8 @@ class ActivityRepository extends BaseRepository implements ActivityInterfaceRepo
     {
         return $this->model->where('action_id',4)->where('author', Auth::user()->id)->get();
     }
+
+    public function filter(array $attributes) {
+        return $this->model->where('customer_id', $attributes['customer_id'])->get();
+    }
 }

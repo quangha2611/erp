@@ -20,4 +20,9 @@ class PhoneCall extends Model
     {
         return $this->belongsTo('Modules\Crm\Entities\PhoneCallResult','result_id','id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'author', 'id');
+    }
 }

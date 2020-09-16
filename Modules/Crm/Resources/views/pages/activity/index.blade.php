@@ -184,7 +184,9 @@
                                 <td>
                                     <div class="colType">
                                         <div class="actType btn-default"><i
-                                                class="fa fa-phone-square"></i>{{ $activity->action->name }}</div>
+                                                class="fa {{ $activity->action_id == 1 ? 'fa-calendar' : 'fa-phone-square' }}"></i>
+                                                {{ $activity->action->name }}
+                                        </div>
                                         <div class="actStatus btn-success" title="Thành công"><i
                                                 class="fa fa-check"></i></div>
                                     </div>
@@ -214,6 +216,27 @@
                                             </div>
                                         </div>
                                     @endif
+
+                                    @if ($activity->request_call_id != 0)
+                                        <div class="colResult">
+                                            <div class="line-break"></div>
+                                            <div class="actResult">
+                                                <b class="text-primary">
+                                                    <i class="fa fa-calendar"></i> 
+                                                    Tạo lịch: </b>{{ $activity->requestCall->request_time_call }} 
+                                                    - {{ $activity->title }}
+                                                <div class="actResult">
+                                                    <b class="text-primary">
+                                                        <i class="fa fa-github-alt"></i> 
+                                                        Thành viên:
+                                                    </b>
+                                                    <span class="text-success " title="{{ $activity->requestCall->teleSale->name }}">
+                                                        {{ $activity->requestCall->teleSale->name }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="colResult">
@@ -223,9 +246,11 @@
                                                 {{ $activity->title }}
                                             </label>
                                             <br>
-                                            <b>Kết quả: </b>
-                                            <label>{{ $activity->phone_call_id != 0 ? $activity->phoneCall->result->name : '---' }}</label>
-                                            <br>
+                                            @if ($activity->phone_call_id != 0)
+                                                <b>Kết quả: </b>
+                                                <label>{{ $activity->phone_call_id != 0 ? $activity->phoneCall->result->name : '---' }}</label>
+                                                <br>
+                                            @endif
                                             @if ($activity->calendar_id != 0)
                                                 <div class="actResult">
                                                     <b>Lịch: </b>
@@ -241,6 +266,23 @@
                                                             </span>
                                                             ,&nbsp;
                                                         @endforeach
+                                                    </div>
+                                                    <div class="line-break"></div>
+                                                    <b>Ghi chú:</b>
+                                                    <label>{{ $activity->content}}</label>
+                                                    <br>
+                                                </div>
+                                            @endif
+
+                                            @if ($activity->request_call_id != 0)
+                                                <div class="actResult">
+                                                    <b>Lịch: </b>
+                                                    <label>{{ $activity->requestCall->request_time_call }}</label> 
+                                                    <div class="actResult">
+                                                        <b> Giao cho:</b>
+                                                        <span class="text-success " title="{{ $activity->requestCall->teleSale->name }}">
+                                                            {{ $activity->requestCall->teleSale->name }}
+                                                        </span>
                                                     </div>
                                                     <div class="line-break"></div>
                                                     <b>Ghi chú:</b>

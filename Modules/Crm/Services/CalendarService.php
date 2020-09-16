@@ -76,4 +76,13 @@ class CalendarService
     {
         $this->calendar->destroy($id);
     }
+
+    public function filter(array $attributes)
+    {
+        if (isset($attributes['begin_date_time']) && $attributes['begin_date_time'] != null) {
+            $attributes['begin_date_time'] = $this->formatDateTime($attributes['begin_date_time']);
+        }
+        
+        return $this->calendar->filter($attributes);
+    }
 }

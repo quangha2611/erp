@@ -17,6 +17,8 @@ use Modules\Crm\Repositories\PhoneCallResult\PhoneCallResultInterfaceRepository;
 use Modules\Crm\Repositories\PhoneCallResult\PhoneCallResultRepository;
 use Modules\Crm\Repositories\PhoneCall\PhoneCallInterfaceRepository;
 use Modules\Crm\Repositories\PhoneCall\PhoneCallRepository;
+use Modules\Crm\Repositories\RequestCall\RequestCallInterfaceRepository;
+use Modules\Crm\Repositories\RequestCall\RequestCallRepository;
 
 class CrmServiceProvider extends ServiceProvider
 {
@@ -58,6 +60,7 @@ class CrmServiceProvider extends ServiceProvider
         $this->app->bind(CustomerLevelInterfaceRepository::class, CustomerLevelRepository::class);
         $this->app->bind(PhoneCallResultInterfaceRepository::class, PhoneCallResultRepository::class);
         $this->app->bind(PhoneCallInterfaceRepository::class, PhoneCallRepository::class);
+        $this->app->bind(RequestCallInterfaceRepository::class, RequestCallRepository::class);
     }
 
     protected function registerConfig()

@@ -26,7 +26,8 @@ class CalendarController extends Controller
     public function index()
     {
         $calendars = $this->calendar->getAll();
-        return view('crm::pages.calendar.index',compact('calendars'));
+        $companies = Company::where('isDeleted', 0)->get();
+        return view('crm::pages.calendar.index',compact('calendars', 'companies'));
     }
 
     public function personal()
@@ -129,5 +130,13 @@ class CalendarController extends Controller
         $this->calendar->destroy($request->id);
 
         return redirect()->route('get.crm.calendar.index');
+    }
+
+
+    public function filter(Request $request)
+    {
+        $calendars = $this->calendar->filter($request->all());
+        $companies = Company::where('isDeleted', 0)->get();
+        return view('crm::pages.calendar.index',compact('calendars', 'companies'));
     }
 }

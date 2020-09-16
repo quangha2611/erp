@@ -116,10 +116,10 @@ taskStt8			 col-sm-6">Tất cả</a>
                                 title="Thực hiện cuộc gọi"
                                 href="https://erp.nhanh.vn/crm/activity/addphonecall?fromId=3047677"></a>
                         </td>
-                        <td>{{ $activity->calendar->begin_date_time }} <i class="fa fa-arrow-right"></i> 
-                            {{ $activity->calendar->begin_date_time }}
+                        <td>
+                            {{ $activity->requestCall->request_time_call }}
                             <br>
-                            {{ $activity->calendar->title }}
+                            {{ $activity->title }}
                         </td>
                         <td>
                             <div class="item-block"><a
@@ -152,11 +152,6 @@ taskStt8			 col-sm-6">Tất cả</a>
                         </td>
                         <td>
                             <div title="{{ $activity->created_at }}">{{ $activity->user->name }}</div> 
-                            @foreach ($activity->calendar->users as $user)
-                                <i class="fa  fa-hand-o-right"></i> 
-                                {{ $user->name }}
-                                <br>    
-                            @endforeach
                         </td>
                         <td>
                             <div class="col-description"></div>

@@ -10,4 +10,6 @@ interface CalendarInterfaceRepository extends BaseInterfaceRepository
 
     public function storeByPhoneCall(array $attributes);
 
+    public function filter(array $attributes);
+
 }

@@ -26,6 +26,8 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::post('/update/{id}','CalendarController@update')->name('post.crm.calendar.update');
 
         Route::post('/destroy','CalendarController@destroy')->name('post.crm.calendar.destroy');
+
+        Route::get('/filter','CalendarController@filter')->name('get.crm.calendar.filter');
     });
 
     Route::prefix('/activity')->group(function(){
@@ -55,10 +57,19 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
 
         Route::post('/storePhoneCall','ActivityController@storePhoneCall')->name('post.crm.activity.storePhoneCall');
 
+        Route::get('/addRequestCall/{id}','ActivityController@addRequestCall')->name('get.crm.activity.addRequestCall');
+
+        Route::post('/storeRequestCall','ActivityController@storeRequestCall')->name('post.crm.activity.storeRequestCall');
+
 
     });
 
     Route::prefix('/customer')->group(function(){
         Route::get('/index','CustomerController@index')->name('get.crm.customer.index');
+
+        Route::get('/index/{parentLevel}','CustomerController@index2')->name('get.crm.customer.index2');
+        
+        Route::get('/excel','CustomerController@excel')->name('get.crm.customer.excel');
+        
     });
 });

@@ -8,4 +8,6 @@ interface ActivityInterfaceRepository extends BaseInterfaceRepository
 {
  
     public function listcall();
+
+    public function filter(array $attributes);
 }

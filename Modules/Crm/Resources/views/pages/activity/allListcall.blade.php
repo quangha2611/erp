@@ -56,12 +56,12 @@
     <div class="page-overview">
         <div style="margin-bottom: 20px;" class="btn-group btn-group-justified">
             <a href="{{ route('get.crm.activity.listcall') }}" class="btn
-taskStt8			  col-sm-6">Danh sách cần gọi</a>
+            taskStt8		  col-sm-6">Danh sách cần gọi</a>
 
             <a href="{{ route('get.crm.activity.yourListcall') }}" class="btn 
 taskStt8			 col-sm-6">Danh sách bạn tạo</a>
             <a href="{{ route('get.crm.activity.allListcall') }}" class="btn 
-btn-success			 col-sm-6">Tất cả</a>
+            btn-success	 			 col-sm-6">Tất cả</a>
         </div>
     </div>
     <!-- <div class="page-overview">
@@ -116,15 +116,15 @@ btn-success			 col-sm-6">Tất cả</a>
                                 title="Thực hiện cuộc gọi"
                                 href="https://erp.nhanh.vn/crm/activity/addphonecall?fromId=3047677"></a>
                         </td>
-                        <td>{{ $activity->calendar->begin_date_time }} <i class="fa fa-arrow-right"></i> 
-                            {{ $activity->calendar->begin_date_time }}
+                        <td>
+                            {{ $activity->requestCall->request_time_call }}
                             <br>
-                            {{ $activity->calendar->title }}
+                            {{ $activity->title }}
                         </td>
                         <td>
                             <div class="item-block"><a
                                     href="https://erp.nhanh.vn/crm/lead/desk?id=406317"
-                                    class="label btn-default crm-type">Thông tin</a></div>
+                                    class="label btn-default crm-type">{{ $activity->customer->type->name }}</a></div>
                             <div class="item-block">
                                 <div class="item-icon"><i class="fa fa-user"></i></div>
                                 <div class="item-infor">
@@ -152,11 +152,6 @@ btn-success			 col-sm-6">Tất cả</a>
                         </td>
                         <td>
                             <div title="{{ $activity->created_at }}">{{ $activity->user->name }}</div> 
-                            @foreach ($activity->calendar->users as $user)
-                                <i class="fa  fa-hand-o-right"></i> 
-                                {{ $user->name }}
-                                <br>    
-                            @endforeach
                         </td>
                         <td>
                             <div class="col-description"></div>

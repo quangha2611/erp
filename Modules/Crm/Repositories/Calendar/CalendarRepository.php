@@ -44,4 +44,18 @@ class CalendarRepository extends BaseRepository implements CalendarInterfaceRepo
         return $newCalendar;
     }
 
+    public function filter(array $attributes)
+    {
+        $calendars = $this->model->query();
+        if (isset($attributes['company_id']) && $attributes['company_id'] != null) {
+            $calendars->where('company_id', $attributes['company_id']);
+        }
+
+        if (isset($attributes['begin_date_time']) && $attributes['begin_date_time'] != null) {
+            $calendars->where('begin_date_time', '>', $attributes['begin_date_time']);
+        }
+
+        return $calendars->get();
+    }
+
 }

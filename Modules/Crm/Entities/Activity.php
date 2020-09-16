@@ -12,6 +12,7 @@ class Activity extends Model
         'action_id',
         'calendar_id',
         'phone_call_id',
+        'request_call_id',
         'customer_id',
         'author',
     ];
@@ -39,5 +40,10 @@ class Activity extends Model
     public function user()
     {
         return $this->belongsTo('App\User','author','id');
+    }
+
+    public function requestCall()
+    {
+        return $this->belongsto('Modules\Crm\Entities\RequestCall', 'request_call_id', 'id');
     }
 }

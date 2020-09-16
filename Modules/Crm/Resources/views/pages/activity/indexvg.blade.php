@@ -190,19 +190,72 @@
                                     </tr>
                                     @break
                                 @case(2)
-                                    
+                                    <tr>
+                                        <td><i class="fa fa-phone-square"></i></td>
+                                        <td>
+                                            <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
+                                                    class="text-primary">{{ $activity->phoneCall->user->name }}</a></p>
+                                            <p class="text-muted fontsize-85">21:32 10/07</p>
+                                        </td>
+                                        <td>
+                                            <p>Gọi điện <a
+                                                    href="https://erp.nhanh.vn/crm/lead/view?id=405964"
+                                                    class="text-primary">{{ $activity->customer->name }}</a></p>
+                                            @if( $activity->calendar_id != 0)
+                                                <p><b>Địa chỉ gặp: </b>{{ $activity->calendar->location }}</p>
+                                                <p>
+                                                    <b>Thành viên: </b>
+                                                    @foreach ($activity->calendar->users as $user)
+                                                        {{ $user->name.', ' }}
+                                                    @endforeach
+                                                </p>
+                                            @endif
+                                            <p><b>Ghi chú: </b></p>
+                                        </td>
+                                        <td>
+                                            @if( $activity->calendar_id != 0)
+                                                <p><b>Đặt lịch: </b><a
+                                                        href="https://erp.nhanh.vn/crm/activity/indexvg#"
+                                                        class="text-primary">{{ $activity->calendar->begin_date_time }}</a></p>
+                                                <p class="fontsize-90"><i class="fa fa-quote-left"></i> <b><i>{{ $activity->calendar->title }}</i></b><br> <i
+                                                        class="fa fa-quote-right"></i></p>
+                                            @endif
+                                        </td>
+                                        <td class="col-align-right"></td>
+                                    </tr>
                                     @break
                                 @case(3)
                                     
                                     @break
                                 @case(4)
-                                    
+                                    <tr>
+                                        <td><i class="fa fa-phone-square"></i></td>
+                                        <td>
+                                            <p>
+                                                <a href="" class="text-primary">{{ $activity->requestCall->teleSale->name}}</a>
+                                            </p>
+                                            <p class="text-muted fontsize-85">21:32 10/07</p>
+                                        </td>
+                                        <td>
+                                            <p>Yêu cầu gọi điện 
+                                                <a href="" class="text-primary">{{ $activity->customer->name}}</a>
+                                            </p>
+                                            <p><b>Ghi chú: </b>{{ $activity->title }}</p>
+                                        </td>
+                                        <td>
+                                            <p><b>Đặt lịch: </b><a
+                                                    href=""
+                                                    class="text-primary"></a></p>
+                                            
+                                        </td>
+                                        <td class="col-align-right"></td>
+                                    </tr>
                                     @break
                                 @default
                                     
                             @endswitch
                         @endforeach
-                        <tr class="even">
+                        {{-- <tr class="even">
                             <td><i class="fa fa-chain"></i></td>
                             <td>
                                 <p>
@@ -295,7 +348,7 @@
                             <td class="col-align-right"><a
                                     href="https://erp.nhanh.vn/crm/activity/update?id=3046522"
                                     class="fa fa-edit"></a></td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
                 <div class="row">

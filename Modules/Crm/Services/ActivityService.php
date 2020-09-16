@@ -8,6 +8,7 @@ use Modules\Crm\Repositories\Calendar\CalendarInterfaceRepository;
 use Modules\Crm\Repositories\Customer\CustomerInterfaceRepository;
 use Modules\Crm\Repositories\PhoneCallResult\PhoneCallResultInterfaceRepository;
 use Modules\Crm\Repositories\PhoneCall\PhoneCallInterfaceRepository;
+use Modules\Crm\Repositories\RequestCall\RequestCallInterfaceRepository;
 use Modules\Crm\Repositories\CustomerLevel\CustomerLevelInterfaceRepository;
 
 
@@ -18,16 +19,18 @@ class ActivityService
     protected $customer;
     protected $phoneCallResult;
     protected $phoneCall;
+    protected $requestCall;
     protected $customerLevel;
 
-    public function __construct(ActivityInterfaceRepository $activity, CalendarInterfaceRepository $calendar, CustomerInterfaceRepository $customer, PhoneCallResultInterfaceRepository $phoneCallResult, CustomerLevelInterfaceRepository $customerLevel, PhoneCallInterfaceRepository $phoneCall)
+    public function __construct(ActivityInterfaceRepository $activity, CalendarInterfaceRepository $calendar, CustomerInterfaceRepository $customer, PhoneCallResultInterfaceRepository $phoneCallResult, CustomerLevelInterfaceRepository $customerLevel, PhoneCallInterfaceRepository $phoneCall,  RequestCallInterfaceRepository $requestCall)
     {
-        $this->activity        = $activity;
-        $this->calendar        = $calendar;
-        $this->customer        = $customer;
-        $this->phoneCallResult = $phoneCallResult;
-        $this->phoneCall       = $phoneCall;
-        $this->customerLevel   = $customerLevel;
+        $this->activity          = $activity;
+        $this->calendar          = $calendar;
+        $this->customer          = $customer;
+        $this->phoneCallResult   = $phoneCallResult;
+        $this->phoneCall         = $phoneCall;
+        $this->requestCall       = $requestCall;
+        $this->customerLevel     = $customerLevel;
     }
 
     public function getAll() 
@@ -111,6 +114,34 @@ class ActivityService
         if( isset($attributes['update_customer_level'])) {
             $this->customer->updateLevel($attributes['level_id'], $attributes['customer_id']);
         }
+    }
+
+
+    public function storeRequestCall(array $attributes)
+    {
+        $currentDate = date('Y-m-d');
+        if($attributes['request_time_call'] == 0) {
+            $attributes['request_time_call'] = $currentDate;
+        }
+
+        if($attributes['request_time_call'] == 1) {
+            $attributes['request_time_call'] = date('Y-m-d', strtotime($currentDate. ' + 1 days'));
+        }
+
+        if($attributes['request_time_call'] == 2) {
+            $attributes['request_time_call'] = date('Y-m-d', strtotime($currentDate. ' + 2 days'));
+        }
+
+        if($attributes['request_time_call'] == 7) {
+            $attributes['request_time_call'] = date('Y-m-d', strtotime($currentDate. ' + 1 week'));
+        }
+
+        $newRequestCall = $this->requestCall->store($attributes);
+        $attributes['request_call_id'] = $newRequestCall->id;
+        $this->activity->store($attributes);
+
+        // dd('ok');
+        return redirect()->route('get.crm.activity.listcall');
     }
 
     public function getDataPhoneCallResult()
