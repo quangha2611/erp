@@ -22,13 +22,29 @@
     <form method="post" action="{{ route('post.crm.activity.storeCalendar') }}">
         @csrf
         <input type="hidden" name="customer_id" value="{{ $customer->id }}">
-        <input type="hidden" name="company_id" value="{{ $customer->company_id }}">
         <input type="hidden" name="author" value="{{ Auth::user()->id }}">
         <div class="form-horizontal">
             <div class="col-md-6" id="groupBasic">
                 <fieldset>
                     <legend>Thông tin sự kiện</legend>
-
+                    <div class="form-group">
+                        <label class="col-md-4 control-label required">Công ty:<span
+                                class="required">*</span></label>
+                        <div class="col-md-8">
+                            <select name="company_id" id="company_id" class="form-control" >
+                                <option value="">-Công ty-</option>
+                                @include('crm::pages.calendar.include._inc_recursiveInput',[
+                                    'data' => $companies,
+                                    'parentId' => null,
+                                    'note' => '--',
+                                    'currentItem' => ['id' => old('company_id'),]
+                                ])
+                            </select> 
+                            @error('company_id')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label required">Tiêu đề:<span
                                 class="required">*</span></label>

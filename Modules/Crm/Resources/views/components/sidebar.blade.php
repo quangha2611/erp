@@ -44,7 +44,7 @@
                                             class="fa fa-refresh"></i> <span class="text">Trạng thái thông
                                             tin</span></a></li>
                                 <li class=""><a class=""
-                                    href="{{ route('customerCompanysource') }}"><i
+                                        href="{{ route('get.crm.customer.companyResource') }}"><i
                                         class="fa fa-list"></i> <span class="text">Thông tin nguồn công
                                         ty</span></a></li>
                                 <li class=""><a class=""
@@ -54,7 +54,7 @@
                                 <li class=""><a class="" href="{{ route('leadSearch') }}"><i
                                             class="fa fa-check"></i> <span class="text">Kiểm tra thông tin
                                             tồn tại</span></a></li>
-                                <li class=""><a class="" href="{{ route('leadAdd') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.lead.add') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Nhập thông
                                             tin</span></a></li>
                             </ul>

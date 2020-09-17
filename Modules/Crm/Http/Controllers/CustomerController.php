@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CustomerExport;
+use Modules\Crm\Http\Requests\CustomerRequest;
 
 use Modules\Crm\Services\CustomerService;
 use Modules\Crm\Services\CustomerLevelService;
+use Modules\Crm\Entities\CustomerMajor;
+use Modules\Crm\Entities\CustomerSource;
 
 class CustomerController extends Controller
 {
@@ -41,6 +44,25 @@ class CustomerController extends Controller
         return view('crm::pages.customer.index', compact('customers','customerLevels','currentLevel'));
     }
 
+    public function add ()
+    {
+        $majors = CustomerMajor::all();
+        $sources = CustomerSource::all();
+        return view('crm::pages.lead.add', compact('majors', 'sources'));
+    }
+
+    public function store(CustomerRequest $request) 
+    {
+        // dd($request->all());
+        $this->customer->store($request->all());
+
+        if ($request->afterSubmit == 'continue') {
+            return redirect()->route('get.crm.lead.add');
+        }
+
+        return redirect()->route('get.crm.customer.index');
+    }
+
 
     public function getDataExcel($customers)
     {
@@ -49,7 +71,7 @@ class CustomerController extends Controller
             array_push($data,[
                 $customer->id,
                 $customer->name,
-                $customer->company->name,
+                $customer->company,
                 $customer->major,
                 $customer->phone,
                 $customer->email,
@@ -72,6 +94,26 @@ class CustomerController extends Controller
 
         return Excel::download($data, 'customers.xlsx');  
     }
+
+
+    public function companyResource()
+    {
+        $customers = $this->customer->index();
+        $customerLevels = $this->customerLevel->all();
+        $currentLevel = 0;
+
+        return view('crm::pages.customer.companyResource', compact('customers','customerLevels','currentLevel'));
+    }
+
+    public function companyResource2($parentLevel)
+    {
+        $customers = $this->customer->getindex2($parentLevel);
+
+        $customerLevels = $this->customerLevel->all();
+        $currentLevel = 0;
+
+        return view('crm::pages.customer.companyResource', compact('customers','customerLevels','currentLevel'));
+    }
     
 
     public function create()
@@ -79,52 +121,25 @@ class CustomerController extends Controller
         return view('crm::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+    
     public function show($id)
     {
         return view('crm::show');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+    
     public function edit($id)
     {
         return view('crm::edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
+   
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
+    
     public function destroy($id)
     {
         //

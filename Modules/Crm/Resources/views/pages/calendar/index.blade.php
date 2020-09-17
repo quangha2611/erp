@@ -134,8 +134,10 @@
                                         <div class="item-infor">{{ $calendar->customer->name }}</div>
                                     </div>
                                     <div class="item-block">
-                                        <div class="item-icon"><i class="fa fa-building-o"></i></div>
-                                        <div class="item-infor">{{ $calendar->customer->company->name }}</div>
+                                        @if ($calendar->customer->company != null)
+                                            <div class="item-icon"><i class="fa fa-building-o"></i></div>
+                                            <div class="item-infor">{{ $calendar->customer->company }}</div>
+                                        @endif
                                     </div>
                                     <div>
                                         <i class="fa fa-file-text"
@@ -143,11 +145,13 @@
                                             data-toggle="tooltip" data-placement="top"></i><span
                                             class="label label-success industries-item"
                                             style="margin-left:5px;margin-right:5pxcoler:#ccc">
-                                            {{ $calendar->customer->major }}</span>
+                                            {{ $calendar->customer->major->name }}</span>
                                         </div>
                                     <div class="item-block">
-                                        <div class="item-icon"><i class="fa fa-globe"></i></div>
-                                        <div class="item-infor">{{ $calendar->customer->website }}</div>
+                                        @if ($calendar->customer->website != null)
+                                            <div class="item-icon"><i class="fa fa-globe"></i></div>
+                                            <div class="item-infor">{{ $calendar->customer->website }}</div>
+                                        @endif
                                     </div>
                                     <div class="item-block">
                                         <div class="item-icon"><i class="fa fa-phone"></i></div>

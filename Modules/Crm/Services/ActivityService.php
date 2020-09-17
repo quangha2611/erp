@@ -62,7 +62,7 @@ class ActivityService
     public function storeMeeting(CalendarRequest $request)
     {
         // Add new calendar
-        $newCalendar = $this->calendar->storeByMeeting($request->only(['customer_id', 'company_id', 'title', 'begin_date_time','end_date_time' ,'joins', 'location','author']));
+        $newCalendar = $this->calendar->storeByMeeting($request->only(['customer_id', 'company_id', 'title', 'begin_date_time','end_date_time' ,'joins', 'location','author', 'description']));
 
         // Add new activity
         $request->merge(['calendar_id' => $newCalendar->id]);
@@ -84,7 +84,7 @@ class ActivityService
             // Add new calendar
             $newCalendar = $this->calendar->storeByPhoneCall([
                 'customer_id'     => $attributes['customer_id'], 
-                'company_id'     => $attributes['company_id'], 
+                'company_id'      => $attributes['company_id'], 
                 'title'           => $attributes['calendar_title'], 
                 'begin_date_time' => $attributes['calendar_begin_date_time'],
                 'end_date_time'   => $attributes['calendar_end_date_time'] ,

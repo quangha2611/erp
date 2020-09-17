@@ -6,23 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    protected $fillable = [
-        'name',
-        'phone',
-        'email',
-        'company_id',
-        'website',
-        'major'
+    protected $guarded = [
+        'afterSubmit',
+        'btnSubmit'
     ];
 
     public function calendar()
     {
         return $this->hasOne('Modules\Crm\Entities\Calendar','id','customer_id');
-    }
-
-    public function company()
-    {
-        return $this->belongsTo('App\Company','company_id','id');
     }
 
     public function type()
@@ -33,5 +24,13 @@ class Customer extends Model
     public function level()
     {
         return $this->belongsTo('Modules\Crm\Entities\CustomerLevel', 'level_id','id');
+    }
+
+    public function source() {
+        return $this->belongsTo('Modules\Crm\Entities\CustomerSource', 'source_id', 'id');
+    }
+
+    public function major() {
+        return $this->belongsTo('Modules\Crm\Entities\CustomerMajor', 'major_id', 'id');
     }
 }

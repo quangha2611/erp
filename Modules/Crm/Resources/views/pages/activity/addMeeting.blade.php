@@ -27,7 +27,6 @@
             action="{{ route('post.crm.activity.storeMeting') }}"
             enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="company_id" value="{{ $customer->company_id }}">
             <input type="hidden" name="customer_id" value="{{ $customer->id }}">
             <input type="hidden" name="action_id" value="1">
             <input type="hidden" name="author" value="{{ Auth::user()->id }}">
@@ -35,6 +34,24 @@
                 <div class="col-md-6">
                     <fieldset>
                         <legend>Thông tin chung</legend>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label required">Công ty:<span
+                                    class="required">*</span></label>
+                            <div class="col-md-8">
+                                <select name="company_id" id="company_id" class="form-control" >
+                                    <option value="">-Công ty-</option>
+                                    @include('crm::pages.calendar.include._inc_recursiveInput',[
+                                        'data' => $companies,
+                                        'parentId' => null,
+                                        'note' => '--',
+                                        'currentItem' => ['id' => old('company_id'),]
+                                    ])
+                                </select> 
+                                @error('company_id')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label required">Tiêu đề: <span
                                 class="required">*</span></label>
@@ -98,7 +115,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="col-md-4 control-label">Tình trạng gặp:</label>
                             <div class="col-md-8">
                                 <select name="" id="status" class="form-control">
@@ -107,7 +124,6 @@
                                     <option value="2">Không gặp được</option>
                                 </select> </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-md-4 control-label">Kết quả:</label>
                             <div class="col-md-8">
@@ -199,12 +215,12 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label class="col-md-4 control-label ">Nội dung: </label>
                             <div class="col-md-8">
-                                <textarea name="content" class="form-control"
-                                    id="content">{{ old('content') }}</textarea> </div>
+                                <textarea name="description" class="form-control"
+                                    id="description">{{ old('description') }}</textarea> </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Level khách hàng</label>

@@ -36,7 +36,8 @@
                     <fieldset>
                         <legend>Thông tin chung</legend>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Tiêu đề:</label>
+                            <label class="col-md-4 control-label required">Tiêu đề:<span
+                                class="required">*</span></label>
                             <div class="col-md-8">
                                 <input type="text" name="title" maxlength="255" id="title"
                                     class="form-control" value="{{ old('title') }}"> 
@@ -81,7 +82,7 @@
                                 <select name="result_id" id="result_id" class="form-control">
                                     <option value="">- Kết quả -</option>
                                     @foreach ($phoneCallResults as $result)
-                                        <option value="{{ $result->id }}" {{ $result->id == old('result') ? 'selected' : ''}}>{{ $result->name }}</option>
+                                        <option value="{{ $result->id }}" {{ $result->id == old('result_id') ? 'selected' : ''}}>{{ $result->name }}</option>
                                     @endforeach
                                 </select> 
                                 @error('result_id')
@@ -170,8 +171,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Tạo lịch:</label>
                             <div class="col-md-8">
-                                <input type="checkbox" name="create_new_calendar" id="createCalendar" value="1"> 
-                                
+                                <input type="checkbox" name="create_new_calendar" id="createCalendar" value="1" {!! old('create_new_calendar') == 1 ? 'checked' : '' !!}> 
                             </div>
                         </div>
                         <div class="form-group">
@@ -180,7 +180,7 @@
                             </label>
                             <div class="col-md-8">
                                 <textarea name="content" class="form-control"
-                                    id="content">{{ old('title') }}</textarea> 
+                                    id="content">{{ old('content') }}</textarea> 
                                 @error('content')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
@@ -198,6 +198,24 @@
                 <div class="col-md-6 hide-element" id="groupCalendar">
                     <fieldset>
                         <legend>Thông tin cuộc hẹn</legend>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label required">Công ty:<span
+                                    class="required">*</span></label>
+                            <div class="col-md-8">
+                                <select name="company_id" id="company_id" class="form-control" >
+                                    <option value="">-Công ty-</option>
+                                    @include('crm::pages.calendar.include._inc_recursiveInput',[
+                                        'data' => $companies,
+                                        'parentId' => null,
+                                        'note' => '--',
+                                        'currentItem' => ['id' => old('company_id'),]
+                                    ])
+                                </select> 
+                                @error('company_id')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label required">Tiêu đề:<span
                                     class="required">*</span></label>
@@ -445,16 +463,19 @@
             $('.select2-container').attr('style', 'width: 100% !important');;
         });
 
+        if (document.getElementById('createCalendar').checked == true) {
+            document.getElementById('groupCalendar').style.display = 'block';
+        }
 
         statusPhoneCall = document.getElementById('status_id');
         
         statusPhoneCall.addEventListener('change', function () {
             if(statusPhoneCall.value==2) {
-                document.getElementById('result').style.display = 'none';
-                document.getElementById('result').value = 0;
+                document.getElementById('result_id').style.display = 'none';
+                document.getElementById('result_id').value = 0;
             } else {
-                document.getElementById('result').style.display = 'block';
-                document.getElementById('result').value = null;
+                document.getElementById('result_id').style.display = 'block';
+                document.getElementById('result_id').value = null;
             }
         })
         

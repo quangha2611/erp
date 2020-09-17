@@ -51,6 +51,10 @@ class CustomerService
         return $data;
     }
 
+    public function store(array $attributes) {
+        $this->customer->store($attributes);
+    }
+
 }
 
 ?>

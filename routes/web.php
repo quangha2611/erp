@@ -77,7 +77,7 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Lead.search');
         })->name('leadSearch');
     
-        Route::get('add', function () {
+        Route::get('addx', function () {
             return view('Layout.Crm.Lead.add');
         })->name('leadAdd');
     });

@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 
 use App\User;
+use App\Company;
 use Modules\Crm\Http\Requests\CalendarRequest;
 use Modules\Crm\Http\Requests\PhoneCallRequest;
 use Modules\Crm\Http\Requests\RequestCallRequest;
@@ -91,10 +92,11 @@ class ActivityController extends Controller
     public function addMeeting($id)
     {
         $users = User::all();
+        $companies = Company::all();
         $customerLevels = $this->activity->getDataCustomerLevel();
         $customer = $this->customer->find($id);
 
-        return view('crm::pages.activity.addMeeting',compact('users','customer','customerLevels'));
+        return view('crm::pages.activity.addMeeting',compact('users','customer','customerLevels','companies'));
     }
 
     public function storeMeeting(CalendarRequest $request)
@@ -107,9 +109,10 @@ class ActivityController extends Controller
     public function addCalendar($id)
     {
         $users = User::all();
+        $companies = Company::all();
         $customer = $this->customer->find($id);
 
-        return view('crm::pages.activity.addCalendar',compact('users','customer'));
+        return view('crm::pages.activity.addCalendar',compact('users','customer','companies'));
     }
 
     public function storeCalendar(CalendarRequest $request)
@@ -123,12 +126,13 @@ class ActivityController extends Controller
         $phoneCallResults = $this->activity->getDataPhoneCallResult();
         $customerLevels = $this->activity->getDataCustomerLevel();
         $users = User::all();
+        $companies = Company::all();
         $customer = $this->customer->find($id);
 
-        return view('crm::pages.activity.addPhoneCall',compact('users','customer','customerLevels','phoneCallResults'));
+        return view('crm::pages.activity.addPhoneCall',compact('users','customer','customerLevels','phoneCallResults', 'companies'));
     }
 
-    public function storePhoneCall(PhoneCallRequest $request)
+    public function storePhoneCall(PhoneCallRequest $request, CalendarRequest $b)
     {
         // validate new calendar
         if ($request->create_new_calendar == 1) {

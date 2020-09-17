@@ -70,6 +70,16 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::get('/index/{parentLevel}','CustomerController@index2')->name('get.crm.customer.index2');
         
         Route::get('/excel','CustomerController@excel')->name('get.crm.customer.excel');
+
+        Route::get('/companyResource', 'CustomerController@companyResource')->name('get.crm.customer.companyResource');
+
+        Route::get('/companyResource/{parentLevel}', 'CustomerController@companyResource2')->name('get.crm.customer.companyResource2');
         
+    });
+
+    Route::prefix('/lead')->group(function(){
+        Route::get('/add','CustomerController@add')->name('get.crm.lead.add');
+
+        Route::post('/store','CustomerController@store')->name('post.crm.lead.store'); 
     });
 });
