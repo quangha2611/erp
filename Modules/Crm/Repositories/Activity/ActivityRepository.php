@@ -32,6 +32,39 @@ class ActivityRepository extends BaseRepository implements ActivityInterfaceRepo
         return $this->model->where('customer_id', $attributes['customer_id'])->get();
     }
 
+    public function filterListCall(array $attributes) {
+        $activities = $this->model->query();
+        
+        $activities->where('action_id',4);
+
+        if (isset($attributes['account_id'])) {
+            $activities->where('customer_id', $attributes['account_id']);
+        }
+
+        if (isset($attributes['author'])) {
+            $activities->where('author', $attributes['author']);
+        }
+
+        if (isset($attributes['date']) && $attributes['date'] != null) {
+            $activities->where('created_at', '>=', $attributes['from_date'])
+                        ->where('created_at', '<=', $attributes['to_date']);
+        }
+
+        if (isset($attributes['tele_sale'])) {
+            $data = [];
+            $acts = $activities->get();
+            foreach($acts as $act) {
+                if($act->requestCall->tele_sale_id == $attributes['tele_sale']) {
+                    array_push($data, $act);
+                }
+            }
+             return $data;
+        }
+
+        return $activities->get();
+
+    } 
+
     public function filterIndex(array $attributes) {
 
         $activities = $this->model->query();

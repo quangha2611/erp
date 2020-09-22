@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-12 lolify-extend" style="">
                         <div class="form-group">
-                            <select name="crm_type" id="crm_type" class="form-control">
+                            <select name="type_id" id="crm_type" class="form-control">
                                 <option value="">- Loại -</option>
                                 @foreach ($customerTypes as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -126,13 +126,13 @@
                                 class="form-control ui-autocomplete-input" value=""
                                 autocomplete="off"> </div>
                         <div class="form-group">
-                            <input type="text" name="mobile" maxlength="11" placeholder="Mobile"
-                                id="mobile" class="form-control" value=""> </div>
+                            <input type="text" name="phone" maxlength="11" placeholder="Phone"
+                                id="phone" class="form-control" value=""> </div>
                         <div class="form-group">
                             <input type="text" name="email" maxlength="255" placeholder="Email"
                                 id="email" class="form-control" value=""> </div>
                         <div class="form-group">
-                            <select name="source" id="source" class="form-control">
+                            <select name="source_id" id="source_id" class="form-control">
                                 <option value="">- Nguồn -</option>
                                 @foreach ($customerSources as $source)
                                     <option value="{{ $source->id }}">{{ $source->name }}</option>
@@ -140,14 +140,14 @@
                             </select> 
                         </div>
                         <div class="form-group">
-                            <input type="text" name="rangeCreatedDate" placeholder="Ngày tạo"
+                            <input type="text" name="create_date" placeholder="Ngày tạo"
                                 class="form-control date-range-picker" id="rangeCreatedDate"
                                 value=""> </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <input type="text" name="rangeLastActivityDate"
                                 placeholder="Ngày chăm sóc cuối cùng"
                                 class="form-control date-range-picker" id="rangeLastActivityDate"
-                                value=""> </div>
+                                value=""> </div> --}}
                         <div class="form-group">
                             <input type="text" name="notCareRangeActivityDate"
                                 placeholder="Ngày không chăm sóc"
@@ -313,7 +313,13 @@
                                 </td>
                                 <td>
                                     <div class="item-block">
-                                        <a class="label btn-default crm-type">Thông tin</a>
+                                        @if ($customer->is_account == 0)
+                                            <a class="label btn-default crm-type">Thông tin</a>
+                                        @endif
+
+                                        @if ($customer->is_account == 1)
+                                            <a class="label btn-primary crm-type">Khách hàng</a>
+                                        @endif
                                     </div>
                                     <div class="line-break"></div>
                                     <div class="item-block">
@@ -351,7 +357,7 @@
                                 <td>
                                     <ul class="td-history">
                                         <li class="last"><a class="text-info"
-                                                href="https://erp.nhanh.vn/crm/activity/history?leadId=406392">Xem
+                                                href="{{ 'http://127.0.0.1:8000/crm/activity/filter?account_id='.$customer->id }}">Xem
                                                 chi tiết {{ $customer->countActivity }} hành động</a></li>
                                     </ul>
                                 </td>

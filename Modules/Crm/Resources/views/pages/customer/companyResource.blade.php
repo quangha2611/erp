@@ -16,7 +16,7 @@
         <div id="page-crm-contact">
             <div class="filterContainer">
                 <form method="GET" name="crmContactFilter" class="form-inline lolify" role="form"
-                    id="crmContactFilter" action="{{ route('get.crm.customer.filter') }}">
+                    id="crmContactFilter" action="{{ route('get.crm.customer.filterCompanyResource') }}">
                     <div class="col-md-10 lolify-default">
                         <div class="form-group">
                             <input type="text" name="info" maxlength="255"
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-md-12 lolify-extend" style="">
                         <div class="form-group">
-                            <select name="crm_type" id="crm_type" class="form-control">
+                            <select name="type_id" id="crm_type" class="form-control">
                                 <option value="">- Loại -</option>
                                 @foreach ($customerTypes as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -127,13 +127,13 @@
                                 class="form-control ui-autocomplete-input" value=""
                                 autocomplete="off"> </div>
                         <div class="form-group">
-                            <input type="text" name="mobile" maxlength="11" placeholder="Mobile"
-                                id="mobile" class="form-control" value=""> </div>
+                            <input type="text" name="phone" maxlength="11" placeholder="Phone"
+                                id="phone" class="form-control" value=""> </div>
                         <div class="form-group">
                             <input type="text" name="email" maxlength="255" placeholder="Email"
                                 id="email" class="form-control" value=""> </div>
                         <div class="form-group">
-                            <select name="source" id="source" class="form-control">
+                            <select name="source_id" id="source_id" class="form-control">
                                 <option value="">- Nguồn -</option>
                                 @foreach ($customerSources as $source)
                                     <option value="{{ $source->id }}">{{ $source->name }}</option>
@@ -141,21 +141,21 @@
                             </select> 
                         </div>
                         <div class="form-group">
-                            <input type="text" name="rangeCreatedDate" placeholder="Ngày tạo"
+                            <input type="text" name="create_date" placeholder="Ngày tạo"
                                 class="form-control date-range-picker" id="rangeCreatedDate"
                                 value=""> </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <input type="text" name="rangeLastActivityDate"
                                 placeholder="Ngày chăm sóc cuối cùng"
                                 class="form-control date-range-picker" id="rangeLastActivityDate"
-                                value=""> </div>
+                                value=""> </div> --}}
                         <div class="form-group">
                             <input type="text" name="notCareRangeActivityDate"
                                 placeholder="Ngày không chăm sóc"
                                 class="form-control date-range-picker" id="notCareRangeActivityDate"
                                 value=""> </div>
                         <div class="form-group">
-                            <input type="text" name="createdByName" maxlength="255"
+                            <input type="text" name="author" maxlength="255"
                                 placeholder="Người tạo" id="createdByName"
                                 class="form-control ui-autocomplete-input" value=""
                                 autocomplete="off"> 
@@ -321,14 +321,15 @@
                                     </div>
                                 </td>
                                 <td class="col-assignedTo">
-                                    <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                            class="fa fa-flag-o"></i> Đỗ Thị Thanh Nhàn</div>
-                                    <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                            class="fa fa-flag-o"></i> Nguyễn Văn Hưng</div>
+                                    @foreach ($customer->users as $user)
+                                        <div data-toggle="tooltip" title="123job.vn | 123Job">
+                                            <i class="fa fa-flag-o"></i> {{ $user->name }}
+                                        </div>
+                                    @endforeach
                                     <div title="Người tạo">
                                         <i class="fa fa-github-alt" data-toggle="tooltip"
-                                            data-original-title="Ngày tạo: 2020-07-14 10:19:17 "></i> Đỗ
-                                        Thị Thanh Nhàn</div>
+                                            data-original-title="{{ 'Ngày tạo: '.$customer->created_at }} "></i> {{ $customer->user->name }}
+                                    </div>
                                 </td>
                                 <td>
                                     <ul class="td-history">

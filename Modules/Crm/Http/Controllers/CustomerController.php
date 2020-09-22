@@ -185,6 +185,16 @@ class CustomerController extends Controller
         return view('crm::pages.customer.index', compact('customers','customerLevels','currentLevel', 'customerTypes', 'customerSources'));
     }
 
+    public function filterCompanyResource(Request $request)
+    {
+        $customers = $this->customer->filter($request->all());
+        $customerLevels = $this->customerLevel->all();
+        $customerTypes = CustomerType::all();
+        $customerSources = CustomerSource::all();
+        $currentLevel = 0;
+        return view('crm::pages.customer.companyResource', compact('customers','customerLevels','currentLevel', 'customerTypes', 'customerSources'));
+    }
+
     
     public function show(Request $request)
     {

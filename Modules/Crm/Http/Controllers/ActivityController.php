@@ -85,6 +85,13 @@ class ActivityController extends Controller
         return view('crm::pages.activity.index',compact('activities', 'actions'));
     }
 
+    public function filterListCall (Request $request)
+    {
+        $activities = $this->activity->filterListCall($request->all());
+
+        return view('crm::pages.activity.listcall',compact('activities'));
+    }
+
     public function edit($id)
     {
         $activity = $this->activity->find($id);

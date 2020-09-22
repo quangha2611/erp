@@ -72,6 +72,29 @@ class ActivityService
         return $this->activity->filterIndex($attributes);
     }
 
+    public function filterListCall(array $attributes) 
+    {
+        // get id of author
+        if ( isset($attributes['author']) && $attributes['author'] != null) {
+            $author = User::where('name', $attributes['author'])->first();
+            $author != null ? $attributes['author'] = $author->id : $attributes['author'] = 0;
+        }
+
+        // get id of tele sale
+        if ( isset($attributes['tele_sale']) && $attributes['tele_sale'] != null) {
+            $teleSale = User::where('name', $attributes['tele_sale'])->first();
+            $teleSale != null ? $attributes['tele_sale'] = $teleSale->id : $attributes['tele_sale'] = 0;
+        }
+
+        // get limit of date
+        if ( isset($attributes['date']) && $attributes['date'] != null) {
+            $attributes['from_date'] = $this->fomartDate(explode(" - ", $attributes['date'])[0]);
+            $attributes['to_date']   = $this->fomartDate(explode(" - ", $attributes['date'])[1]);  
+        }
+
+        return $this->activity->filterListCall($attributes);
+    }
+
     public function fomartDate($date)
     {
         $array = explode("/", $date);

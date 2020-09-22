@@ -424,7 +424,7 @@
                             <td class="">
                                 <ul class="td-history">
                                     <li class="last"><a class="text-info"
-                                            href="https://erp.nhanh.vn/crm/activity/history?accountId=21810">Xem
+                                            href="{{ 'http://127.0.0.1:8000/crm/activity/filter?account_id='.$customer->id }}">Xem
                                             chi tiết {{$customer->countActivity}} hành động</a></li>
                                 </ul>
                             </td>

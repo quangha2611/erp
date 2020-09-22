@@ -71,7 +71,7 @@
                                     <i class="fa fa-list"> </i> 
                                     <span class="text">Khách hàng đang chăm sóc</span></a>
                                 </li>
-                                <li class=""><a class="" href="{{ route('customerFreelistvg') }}">
+                                <li class=""><a class="" href="{{ route('get.crm.customer.freeCustomer') }}">
                                     <i class="fa fa-list"></i> 
                                     <span class="text">Khách hàng đang thả nổi</span></a>
                                 </li>

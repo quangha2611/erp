@@ -62,6 +62,9 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::post('/storeRequestCall','ActivityController@storeRequestCall')->name('post.crm.activity.storeRequestCall');
 
         Route::get('/filter', 'ActivityController@filter')->name('get.crm.activity.filter');
+
+        Route::get('/filterListCall','ActivityController@filterListCall')->name('get.crm.activity.filterListCall');
+
     });
 
     Route::prefix('/customer')->group(function(){
@@ -76,6 +79,8 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::get('/excel','CustomerController@excel')->name('get.crm.customer.excel');
 
         Route::get('/filter','CustomerController@filter')->name('get.crm.customer.filter');
+
+        Route::get('/filterCompanyResource','CustomerController@filterCompanyResource')->name('get.crm.customer.filterCompanyResource');
 
         Route::get('/companyResource', 'CustomerController@companyResource')->name('get.crm.customer.companyResource');
 

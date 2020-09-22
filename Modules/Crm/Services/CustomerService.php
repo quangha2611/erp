@@ -98,8 +98,25 @@ class CustomerService
 
     public function filter(array $attributes)
     {
+        // get limit of create date
+        if ( isset($attributes['create_date']) && $attributes['create_date'] != null) {
+            $attributes['create_from_date'] = $this->fomartDate(explode(" - ", $attributes['create_date'])[0]);
+            $attributes['create_to_date']   = $this->fomartDate(explode(" - ", $attributes['create_date'])[1]);
+
+        }
         $customers = $this->customer->filter($attributes);
+
+        foreach ($customers as $customer) {
+            $customer['countActivity'] = count($this->activity->filter(['customer_id' => $customer->id]));
+        }
+        
         return $customers;
+    }
+
+    public function fomartDate($date)
+    {
+        $array = explode("/", $date);
+        return "$array[2]-$array[1]-$array[0]";
     }
 
     public function getAccount()

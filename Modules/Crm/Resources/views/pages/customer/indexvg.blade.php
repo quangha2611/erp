@@ -216,7 +216,7 @@
                                 <ul class="media-list">
 
                                     <li class="media">
-                                        <a href="https://erp.nhanh.vn/crm/lead/view?id=405449&amp;tab=activities"
+                                        <a href="{{ 'http://127.0.0.1:8000/crm/activity/filter?account_id='.$customer->id }}"
                                             class="center-block text-muted">Xem tổng cộng {{ $customer->countActivity }} hành
                                             động.</a>
                                     </li>
@@ -234,7 +234,7 @@
                             href="#" onclick="event.preventDefault(); customerId = 'customer_{{ $customer->id }}'; document.getElementById(customerId).classList.toggle('in');">Xem
                                 tóm tắt <i class="fa  fa-angle-down"></i></a>&nbsp;&nbsp;&nbsp;<a
                                 class="text-muted"
-                                href="https://erp.nhanh.vn/crm/account/view?id=21810">Xem chi tiết <i
+                                href="{{ route('get.crm.customer.detail', ['id' => $customer->id]) }}">Xem chi tiết <i
                                     class="fa fa-external-link"></i></a>
                         </div>
                         <div class="clearfix"></div>

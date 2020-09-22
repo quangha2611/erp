@@ -65,6 +65,13 @@ class CustomerRepository extends BaseRepository implements CustomerInterfaceRepo
                     ->get();
         }
 
+        if (isset($attributes['author']) && $attributes['author'] != null) {
+            $author = DB::table('users')->where('users.name','like','%'.$attributes['author'].'%')->get();
+            foreach($author as $x) {
+                $customer->orWhere('author',$x->id);
+            }
+        }
+
         if (isset($attributes['id']) && $attributes['id'] != null) {
             $customer->where('id',$attributes['id']);
         }
@@ -85,11 +92,9 @@ class CustomerRepository extends BaseRepository implements CustomerInterfaceRepo
             $customer->where('email',$attributes['email']);
         }
 
-        if (isset($attributes['author']) && $attributes['author'] != null) {
-            $author = DB::table('users')->where('users.name','like','%'.$attributes['author'].'%')->get();
-            foreach($author as $x) {
-                $customer->orWhere('author',$x->id);
-            }
+        if (isset($attributes['create_date']) && $attributes['create_date'] != null) {
+            $customer->where('created_at', '>=', $attributes['create_from_date'])
+                    ->where('created_at', '<=', $attributes['create_to_date']);
         }
      
         return $customer->get();

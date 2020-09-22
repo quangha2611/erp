@@ -15,37 +15,38 @@
     </ul>
     <div class="filterContainer">
         <form method="GET" name="crmActivityListcall" class="form-inline" role="form"
-            id="crmActivityListcall">
-            <div class="form-group"><select name="companyId" id="companyId"
+            id="crmActivityListcall" action="{{ route('get.crm.activity.filterListCall') }}">
+            @csrf
+            {{-- <div class="form-group"><select name="companyId" id="companyId"
                     class="form-control">
                     <option value="391" selected="selected">123job.vn</option>
-                </select></div>
+                </select></div> --}}
             <div class="form-group"><select name="loadType" id="loadType" class="form-control">
                     <option value="">- Loại yêu cầu -</option>
                     <option value="request">Yêu cầu gọi</option>
                     <option value="calendar">Lịch gọi</option>
                 </select></div>
-            <div class="form-group"><input type="text" name="accountInfor"
+            <div class="form-group"><input type="text" name="account_info"
                     placeholder="Thông tin khách hàng"
                     title="Nhập vào tên, email, sdt hoặc website của khách hàng" maxlength="255"
                     id="accountInfor" class="form-control" value=""></div> <input type="hidden"
                 name="assignToId" id="assignToId" class="form-control" value="">
-            <div class="form-group"><input type="text" name="assignToName"
+            <div class="form-group"><input type="text" name="tele_sale"
                     placeholder="Người được giao việc" maxlength="225" id="assignToName"
                     class="form-control ui-autocomplete-input" value="" autocomplete="off">
             </div> <input type="hidden" name="createdById" id="createdById" class="form-control"
                 value="">
-            <div class="form-group"><input type="text" name="createdByName"
+            <div class="form-group"><input type="text" name="author"
                     placeholder="Người tạo" maxlength="225" id="createdByName"
                     class="form-control ui-autocomplete-input" value="" autocomplete="off">
             </div>
-            <div class="form-group"><input type="text" name="daterangepicker"
-                    class="form-control date-range-picker" placeholder="Thời gian"
+            <div class="form-group"><input type="text" name="date"
+                    class="form-control date-range-picker" placeholder="Thời gian tạo"
                     id="daterangepicker" value=""></div>
-            <div class="form-group"><select name="crm_type" id="crm_type" class="form-control">
+            <div class="form-group"><select name="is_account"" id="crm_type" class="form-control">
                     <option value="">- Loại khách hàng -</option>
-                    <option value="lead">Thông tin</option>
-                    <option value="account">Khách hàng</option>
+                    <option value="0">Thông tin</option>
+                    <option value="1">Khách hàng</option>
                     <option value="contact">Liên hệ</option>
                 </select></div> <input type="hidden" name="pageType" id="pageType"
                 class="form-control" value="-1">
