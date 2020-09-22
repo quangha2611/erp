@@ -51,7 +51,7 @@
                                         href="{{ route('get.crm.activity.listcall') }}"><i
                                             class="fa fa-headphones"></i> <span class="text">Danh sách yêu
                                             cầu gọi</span></a></li>
-                                <li class=""><a class="" href="{{ route('leadSearch') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.lead.search') }}"><i
                                             class="fa fa-check"></i> <span class="text">Kiểm tra thông tin
                                             tồn tại</span></a></li>
                                 <li class=""><a class="" href="{{ route('get.crm.lead.add') }}"><i
@@ -63,11 +63,11 @@
                                     class="fa fa-users"></i> <span class="text">Khách hàng</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu">
-                                <li class=""><a class="" href="{{ route('accountIndex') }}">
+                                <li class=""><a class="" href="{{ route('get.crm.account.index') }}">
                                     <i class="fa fa-list"> </i> 
                                     <span class="text">Danh sách KH (Nhanh)</span></a>
                                 </li>
-                                <li class=""><a class="" href="{{ route('customerIndexvg') }}">
+                                <li class=""><a class="" href="{{ route('get.crm.customer.indexvg') }}">
                                     <i class="fa fa-list"> </i> 
                                     <span class="text">Khách hàng đang chăm sóc</span></a>
                                 </li>

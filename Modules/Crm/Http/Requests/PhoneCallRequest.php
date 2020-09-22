@@ -12,7 +12,6 @@ class PhoneCallRequest extends FormRequest
             'title'     => 'required|min:4',
             'direction' => 'required',
             'status_id' => 'required',
-            'result_id' => 'required',
             'content'   => 'required',
         ];
     }
@@ -23,7 +22,6 @@ class PhoneCallRequest extends FormRequest
             'title'     => 'Tiêu đề',
             'direction' => 'Chiều gọi',
             'status_id' => 'Tình trạng gọi',
-            'result_id' => 'Kết quả',
             'content'   => 'Nội dung'
         ];
     }

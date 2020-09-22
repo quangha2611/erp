@@ -76,6 +76,16 @@ class ActivityService
     {
         // Add new calendar
         $this->calendar->store($attributes);
+
+        // $this->activity->store([
+        //     'customer_id'   => $attributes['customer_id'], 
+        //     'title'         => $attributes['title'],
+        //     'content'       => $attributes['content'],
+        //     'action_id'     => $attributes['action_id'],
+        //     'calendar_id'   => $newCalendar['id'], 
+        //     'phone_call_id' => $newPhoneCall->id,
+        //     'author'        => $attributes['author'],
+        // ]);
     }
 
     public function storePhoneCall(array $attributes)
@@ -139,9 +149,8 @@ class ActivityService
         $newRequestCall = $this->requestCall->store($attributes);
         $attributes['request_call_id'] = $newRequestCall->id;
         $this->activity->store($attributes);
-
+        return true;
         // dd('ok');
-        return redirect()->route('get.crm.activity.listcall');
     }
 
     public function getDataPhoneCallResult()

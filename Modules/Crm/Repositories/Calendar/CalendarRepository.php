@@ -21,6 +21,7 @@ class CalendarRepository extends BaseRepository implements CalendarInterfaceRepo
     {
         $newCalendar = $this->model->create($attributes);
         $newCalendar->users()->attach($attributes['joins']);
+        return $newCalendar;
     }
 
     public function update(array $attributes, $id)

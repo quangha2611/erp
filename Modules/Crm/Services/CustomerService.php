@@ -29,6 +29,31 @@ class CustomerService
         return $customers;
     }
 
+    // history activity
+    public function indexvg()
+    {
+        $customers = $this->customer->allvg();
+
+        foreach ($customers as $customer) {
+            $customer['lastActivity']   = $this->activity->lastActivity(['customer_id' => $customer->id]);
+            $customer['countActivity'] = count($this->activity->filter(['customer_id' => $customer->id]));
+        }
+
+        return $customers;
+    }
+
+    public function freeCustomer()
+    {
+        $customers = $this->customer->freeCustomer();
+
+        foreach ($customers as $customer) {
+            $customer['lastActivity']   = $this->activity->lastActivity(['customer_id' => $customer->id]);
+            $customer['countActivity'] = count($this->activity->filter(['customer_id' => $customer->id]));
+        }
+
+        return $customers;
+    }
+
     public function find($id)
     {
         return $this->customer->find($id);
@@ -51,10 +76,49 @@ class CustomerService
         return $data;
     }
 
-    public function store(array $attributes) {
+    public function update(array $attributes) {
+        $this->customer->update($attributes, $attributes['id']);
+    }
+
+    public function store(array $attributes) 
+    {
         $this->customer->store($attributes);
     }
 
+    public function findByInfo(array $attributes) 
+    {
+        $customer = $this->customer->findByInfo($attributes);
+        return $customer;
+    }
+
+    public function destroy($id) 
+    {
+        $this->customer->destroy($id);
+    }
+
+    public function filter(array $attributes)
+    {
+        $customers = $this->customer->filter($attributes);
+        return $customers;
+    }
+
+    public function getAccount()
+    {
+        $customers = $this->customer->getAccount();
+
+        foreach ($customers as $customer) {
+            $customer['countActivity'] = count($this->activity->filter(['customer_id' => $customer->id]));
+        }
+
+        return $customers;
+    }
+
+    public function detail($id)
+    {
+        $customer = $this->customer->find($id);
+        $customer['activities'] = $this->activity->getListActivity($id);
+        return $customer;
+    }
 }
 
 ?>

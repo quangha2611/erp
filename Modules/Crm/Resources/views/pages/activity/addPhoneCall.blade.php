@@ -171,7 +171,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Tạo lịch:</label>
                             <div class="col-md-8">
-                                <input type="checkbox" name="create_new_calendar" id="createCalendar" value="1" {!! old('create_new_calendar') == 1 ? 'checked' : '' !!}> 
+                                <input type="checkbox" name="create_new_calendar" id="createCalendar" value="1" {!! old('create_new_calendar') ? 'checked' : '' !!}> 
                             </div>
                         </div>
                         <div class="form-group">
@@ -460,25 +460,20 @@
 
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
-            $('.select2-container').attr('style', 'width: 100% !important');;
+            $('.select2-container').attr('style', 'width: 100% !important');
         });
 
         if (document.getElementById('createCalendar').checked == true) {
-            document.getElementById('groupCalendar').style.display = 'block';
+            document.getElementById('groupCalendar').classList.remove("hide-element");
         }
-
-        statusPhoneCall = document.getElementById('status_id');
         
-        statusPhoneCall.addEventListener('change', function () {
-            if(statusPhoneCall.value==2) {
+        document.getElementById('status_id').addEventListener('change', function () {
+            if (document.getElementById('status_id').value == 2) {
                 document.getElementById('result_id').style.display = 'none';
-                document.getElementById('result_id').value = 0;
             } else {
                 document.getElementById('result_id').style.display = 'block';
-                document.getElementById('result_id').value = null;
             }
-        })
-        
+        });
     </script>
     <script type="text/javascript" src="{{ asset('js/crm/activity/saved_resource')}}"></script>
     <script type="text/javascript" src="{{ asset('js/crm/activity/getfirebaseconfig')}}"></script>

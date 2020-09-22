@@ -80,7 +80,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Nội dung:</label>
                             <div class="col-md-9" id="commentArea">
-                                <textarea name="content" id="editor">{{old('content')}}</textarea>
+                                <textarea name="content" style="width: 100%; height: 250px">{{old('content')}}</textarea>
                             </div>
                         </div>
 

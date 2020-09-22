@@ -137,7 +137,7 @@ taskStt8			 col-sm-6">Tất cả</a>
                                 <div class="item-icon"><i class="fa fa-building-o"></i></div>
                                 <div class="item-infor">
                                     <a href="https://erp.nhanh.vn/crm/lead/view?id=406317">
-                                        {{ $activity->customer->company->name }}
+                                        {{ $activity->customer->company }}
                                     </a>
                                 </div>
                             </div>

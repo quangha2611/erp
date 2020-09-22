@@ -37,9 +37,9 @@ abstract class BaseRepository implements BaseInterfaceRepository
 
     public function destroy($id)
     {
-        $calendar = $this->model->find($id);
-        $calendar->is_deleted = 1;
-        $calendar->save();
+        $model = $this->model->find($id);
+        $model->is_deleted = 1;
+        $model->save();
     }
 
 }

@@ -8,15 +8,17 @@ use Modules\Crm\Http\Requests\CalendarRequest;
 
 use Modules\Crm\Repositories\Calendar\CalendarInterfaceRepository;
 use Modules\Crm\Repositories\Customer\CustomerInterfaceRepository;
+use Modules\Crm\Repositories\Activity\ActivityInterfaceRepository;
 
 class CalendarService 
 {
-    protected $calendar, $customer;
+    protected $calendar, $customer, $activity;
 
-    public function __construct(CalendarInterfaceRepository $calendar, CustomerInterfaceRepository $customer)
+    public function __construct(CalendarInterfaceRepository $calendar, CustomerInterfaceRepository $customer, ActivityInterfaceRepository $activity)
     {
         $this->calendar = $calendar;
         $this->customer = $customer;
+        $this->activity = $activity;
     }
 
     public function getAll()
@@ -43,8 +45,15 @@ class CalendarService
             'end_date_time'   => $this->formatDateTime($request->end_date_time),
         ]);
 
-        $this->calendar->store($request->all());
-
+        $newCalendar = $this->calendar->store($request->all());
+        $this->activity->store([
+            'title'       => $request->title,
+            'content'     => $request->description,
+            'action_id'   => 1,
+            'calendar_id' => $newCalendar->id,
+            'customer_id' => $request->customer_id,
+            'author'      => $request->author,
+        ]);
         return true;
     }
 

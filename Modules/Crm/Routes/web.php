@@ -67,13 +67,23 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
     Route::prefix('/customer')->group(function(){
         Route::get('/index','CustomerController@index')->name('get.crm.customer.index');
 
+        Route::get('/indexvg','CustomerController@indexvg')->name('get.crm.customer.indexvg');
+
+        Route::get('/freeCustomer','CustomerController@freeCustomer')->name('get.crm.customer.freeCustomer');
+
         Route::get('/index/{parentLevel}','CustomerController@index2')->name('get.crm.customer.index2');
         
         Route::get('/excel','CustomerController@excel')->name('get.crm.customer.excel');
 
+        Route::get('/filter','CustomerController@filter')->name('get.crm.customer.filter');
+
         Route::get('/companyResource', 'CustomerController@companyResource')->name('get.crm.customer.companyResource');
 
         Route::get('/companyResource/{parentLevel}', 'CustomerController@companyResource2')->name('get.crm.customer.companyResource2');
+
+        Route::post('/destroy/{id}', 'CustomerController@destroy')->name('post.crm.customer.destroy');
+
+        Route::get('/detail/{id}', 'CustomerController@detail')->name('get.crm.customer.detail');
         
     });
 
@@ -81,5 +91,17 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::get('/add','CustomerController@add')->name('get.crm.lead.add');
 
         Route::post('/store','CustomerController@store')->name('post.crm.lead.store'); 
+
+        Route::get('/search','CustomerController@search')->name('get.crm.lead.search');
+
+        Route::get('/show','CustomerController@show')->name('get.crm.lead.show');
+    });
+
+    Route::prefix('/account')->group(function(){
+        Route::get('/index','CustomerController@AccountIndex')->name('get.crm.account.index');
+
+        Route::get('/edit/{id}', 'CustomerController@edit')->name('get.crm.account.edit');
+
+        Route::post('/update/{id}', 'CustomerController@update')->name('post.crm.account.update');
     });
 });

@@ -8,7 +8,7 @@ class Customer extends Model
 {
     protected $guarded = [
         'afterSubmit',
-        'btnSubmit'
+        'btnSubmit',
     ];
 
     public function calendar()
@@ -26,11 +26,28 @@ class Customer extends Model
         return $this->belongsTo('Modules\Crm\Entities\CustomerLevel', 'level_id','id');
     }
 
-    public function source() {
+    public function source() 
+    {
         return $this->belongsTo('Modules\Crm\Entities\CustomerSource', 'source_id', 'id');
     }
 
-    public function major() {
+    public function major() 
+    {
         return $this->belongsTo('Modules\Crm\Entities\CustomerMajor', 'major_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'author', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('Modules\Crm\Entities\CustomerStatus', 'customer_status', 'id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User','customer_user','customer_id','user_id');
+    } 
 }

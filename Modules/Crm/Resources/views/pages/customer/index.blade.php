@@ -3,7 +3,7 @@
 @section('title','ERP-Danh sách chung')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/crm/calendar/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/crm/customer/style.css') }}" type="text/css">
 @endsection
 
 @section('content-page')
@@ -15,16 +15,10 @@
         <div id="page-crm-contact">
             <div class="filterContainer">
                 <form method="GET" name="crmContactFilter" class="form-inline lolify" role="form"
-                    id="crmContactFilter">
+                    id="crmContactFilter" action="{{ route('get.crm.customer.filter') }}">
                     <div class="col-md-10 lolify-default">
-
-                        <input type="hidden" name="companyId" id="companyId" class="form-control"
-                            value="391"> <input type="hidden" name="assignedToId" id="assignedToId"
-                            class="form-control" value=""> <input type="hidden"
-                            name="isSourceCompany" id="isSourceCompany" class="form-control"
-                            value="">
                         <div class="form-group">
-                            <input type="text" name="q" maxlength="255"
+                            <input type="text" name="info" maxlength="255"
                                 placeholder="Từ khóa (tên, website, số điện thoại, email, mã số thuế, CMND)"
                                 style="width:430px" id="q" class="form-control" value=""> </div>
                         <input type="hidden" name="createdById" id="createdById"
@@ -48,18 +42,13 @@
                         <div class="form-group">
                             <select name="crm_type" id="crm_type" class="form-control">
                                 <option value="">- Loại -</option>
-                                <option value="lead">Thông tin</option>
-                                <option value="opportunity">Cơ hội</option>
-                                <option value="account">Khách hàng</option>
-                                <option value="contact">Liên hệ</option>
+                                @foreach ($customerTypes as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
                             </select> </div>
                         <div class="form-group">
                             <input type="text" name="id" maxlength="15" placeholder="ID Thông tin"
                                 id="id" class="form-control" value=""> </div>
-                        <div class="form-group">
-                            <input type="text" name="accountId" maxlength="15"
-                                placeholder="ID khách hàng" id="accountId" class="form-control"
-                                value=""> </div>
                         <div class="form-group">
                             <input type="text" name="address" maxlength="255" placeholder="Địa chỉ"
                                 id="address" class="form-control" value=""> </div>
@@ -145,26 +134,11 @@
                         <div class="form-group">
                             <select name="source" id="source" class="form-control">
                                 <option value="">- Nguồn -</option>
-                                <option value="1">Data bàn giao - FB ADS</option>
-                                <option value="26">Data bàn giao - Fanpage</option>
-                                <option value="25">Data bàn giao - Google Ads</option>
-                                <option value="22">Data bàn giao - SEO</option>
-                                <option value="19">Data bàn giao- Hotline</option>
-                                <option value="8">Data bàn giao - Không có mã</option>
-                                <option value="11">Data bàn giao - Email marketing</option>
-                                <option value="21">Data bàn giao - SĐT quét từ QC</option>
-                                <option value="3">Data bàn giao - Được giới thiệu</option>
-                                <option value="12">Hội thảo, sự kiện, đi thị trường</option>
-                                <option value="13">Khách tự liên hệ kinh doanh</option>
-                                <option value="15">Kinh doanh được giới thiệu</option>
-                                <option value="17">TeleSale</option>
-                                <option value="24">Seeding/ Inbox/ Spam</option>
-                                <option value="100">Khác</option>
-                            </select> </div>
-                        <div class="form-group">
-                            <input type="text" name="sourceReference" maxlength="255"
-                                placeholder="Chi tiết nguồn" id="sourceReference"
-                                class="form-control" value=""> </div>
+                                @foreach ($customerSources as $source)
+                                    <option value="{{ $source->id }}">{{ $source->name }}</option>
+                                @endforeach 
+                            </select> 
+                        </div>
                         <div class="form-group">
                             <input type="text" name="rangeCreatedDate" placeholder="Ngày tạo"
                                 class="form-control date-range-picker" id="rangeCreatedDate"
@@ -180,42 +154,11 @@
                                 class="form-control date-range-picker" id="notCareRangeActivityDate"
                                 value=""> </div>
                         <div class="form-group">
-                            <input type="text" name="createdByName" maxlength="255"
+                            <input type="text" name="author" maxlength="255"
                                 placeholder="Người tạo" id="createdByName"
                                 class="form-control ui-autocomplete-input" value=""
-                                autocomplete="off"> </div>
-                        <div class="form-group">
-                            <select name="campaignId" id="campaignId" class="form-control">
-                                <option value="">- Chiến dịch -</option>
-                            </select> </div>
-                        <div class="form-group">
-                            <select name="emailStatus" id="emailStatus" class="form-control">
-                                <option value="">- Trạng thái Email-</option>
-                                <option value="-1">Chưa có email</option>
-                                <option value="1">Đã có email</option>
-                            </select> </div>
-                        <div class="form-group">
-                            <select name="saleStage" id="saleStage" class="form-control">
-                                <option value="">- Level Khách hàng -</option>
-                                <option value="20">L0 - Cần xử lý</option>
-                                <option value="22">L1B - Thông tin sai</option>
-                                <option value="23">L2A - Có nhu cầu</option>
-                                <option value="24">L2B1 - Không có nhu cầu</option>
-                                <option value="34">L2B2 - Đã dùng PM khác</option>
-                                <option value="25">L3A - Đã hẹn</option>
-                                <option value="26">L4A - Đã gặp</option>
-                                <option value="27">L5A1 - Dùng thử</option>
-                                <option value="28">L5A2 - Có yêu cầu</option>
-                                <option value="29">L6A - Đã ký hợp đồng</option>
-                                <option value="30">L6B1 - Từ chối, giá đắt</option>
-                                <option value="35">L6B2 - PM không phù hợp</option>
-                                <option value="36">L6B3 - Không phản hồi</option>
-                                <option value="31">L7A - Đã triển khai</option>
-                                <option value="32">L8A - Đã bán chéo</option>
-                                <option value="33">L9A - Đã tái ký</option>
-                                <option value="37">L9B1 - Ngừng kinh doanh</option>
-                                <option value="38">L9B2 - Dùng PM khác</option>
-                            </select> </div>
+                                autocomplete="off"> 
+                        </div>
 
                     </div>
                 </form>
@@ -260,7 +203,7 @@
                 </ul>
             </div>
             <a style="margin-left:5px;float:right;"
-                href="https://erp.nhanh.vn/crm/customer/companysource"><i
+                href="{{ route('get.crm.customer.companyResource') }}"><i
                     class="fa fa-hand-o-right"></i> Xem thông tin nguồn công ty cung cấp</a>
             <div class="dgContainer">
                 <div style="display: none; width: 1556px;" class="stickyHeader">
@@ -298,9 +241,11 @@
                     <tbody>
                         @foreach ($customers as $customer)
                             <tr class="even">
-                                <td class="colControls"><p data-toggle="tooltip"
-                                        data-original-title="Ngày tạo:{{ $customer->created_at }}"
-                                        >{{ $customer->id }}</p>
+                                <td class="colControls">
+                                    <p data-toggle="tooltip"
+                                        data-original-title="Ngày tạo:{{ $customer->created_at }}">
+                                        {{ $customer->id }}
+                                    </p>
                                 </td>
                                 <td class="colControls">
                                     <div class="dropdown">
@@ -352,11 +297,17 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div><a class="fa fa-users assignLead"
-                                            title="Quản lí người phụ trách" data-id="406392"></a></div>
-                                    <div><a class="fa  fa-thumb-tack discard" title="Hủy chăm sóc"
-                                            data-id="406392"></a></div><span data-id="406392"
-                                        data-toggle="tooltip" data-title="Cập nhật Level khách hàng"
+                                    <div>
+                                        <a class="fa fa-users assignLead" title="Quản lí người phụ trách" data-id="406392"></a>
+                                    </div>
+                                    <div>
+                                        <form action="{{ route('post.crm.customer.destroy', ['id' => $customer->id]) }}" method="POST">
+                                            @csrf
+                                            <a class="fa  fa-thumb-tack discard" title="Hủy chăm sóc" data-id="406392" onclick="event.preventDefault();document.getElementById('modalbox').style.display='block'; deletedId = 'destroy'+{{ $customer->id }}"></a>
+                                            <input type="submit" style="display: none" id="{{ 'destroy'.$customer->id }}">
+                                        </form>
+                                    </div>
+                                    <span data-id="406392" data-toggle="tooltip" data-title="Cập nhật Level khách hàng"
                                         style="cursor:pointer"
                                         class="updateOpportunityStatus icon fa fa-refresh text-success"></span>
                                 </td>
@@ -387,14 +338,15 @@
                                     </div>
                                 </td>
                                 <td class="col-assignedTo">
-                                    <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                            class="fa fa-flag-o"></i> Đỗ Thị Thanh Nhàn</div>
-                                    <div data-toggle="tooltip" title="123job.vn | 123Job"><i
-                                            class="fa fa-flag-o"></i> Nguyễn Văn Hưng</div>
+                                    @foreach ($customer->users as $user)
+                                        <div data-toggle="tooltip" title="123job.vn | 123Job">
+                                            <i class="fa fa-flag-o"></i> {{ $user->name }}
+                                        </div>
+                                    @endforeach
                                     <div title="Người tạo">
                                         <i class="fa fa-github-alt" data-toggle="tooltip"
-                                            data-original-title="Ngày tạo: 2020-07-14 10:19:17 "></i> Đỗ
-                                        Thị Thanh Nhàn</div>
+                                            data-original-title="{{ 'Ngày tạo: '.$customer->created_at }} "></i> {{ $customer->user->name }}
+                                    </div>
                                 </td>
                                 <td>
                                     <ul class="td-history">
@@ -416,7 +368,27 @@
             </div>
         </div>
 
-        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog">
+        <div class="modal" tabindex="-1" role="dialog" id="modalbox">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.getElementById('modalbox').style.display='none'">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Xác nhận xóa mục này</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById(deletedId).click()">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="document.getElementById('modalbox').style.display='none'">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="modal fade" id="errorModal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -954,7 +926,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <style>
             #updateOpportunityModal hr {
                 margin-top: 10px;
@@ -1105,7 +1077,7 @@
             language: 'vi'
         };
 
-        var deletedId = '';
+        var deletedId = 0;
     </script>
     <script type="text/javascript" src="{{ asset('js/crm/customer/saved_resource') }}"></script>
     <script type="text/javascript" src="{{ asset('js/crm/customer/firebase-app.js') }}"></script>

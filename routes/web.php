@@ -73,7 +73,7 @@ Route::prefix('crm')->group(function() {
     
     // THÔNG TIN
     Route::prefix('lead')->group(function () {
-        Route::get('search', function () {
+        Route::get('searchx', function () {
             return view('Layout.Crm.Lead.search');
         })->name('leadSearch');
     
@@ -84,7 +84,7 @@ Route::prefix('crm')->group(function() {
     
     // KHÁCH HÀNG
     Route::prefix('account')->group(function () {
-        Route::get('index', function () {
+        Route::get('indexx', function () {
             return view('Layout.Crm.Account.index');
         })->name('accountIndex');
     
@@ -95,7 +95,7 @@ Route::prefix('crm')->group(function() {
 
     // KHÁCH HÀNG 
     Route::prefix('customer')->group(function () {
-        Route::get('indexvg', function() {
+        Route::get('indexvgx', function() {
             return view('Layout.Crm.Customer.indexvg');
         })->name('customerIndexvg');
     

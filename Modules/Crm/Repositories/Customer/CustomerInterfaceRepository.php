@@ -11,4 +11,13 @@ interface CustomerInterfaceRepository extends BaseInterfaceRepository
     public function storeByCalendar(array $attributes);
 
     public function updateLevel($newLevel, $id);
+
+    public function getAccount();
+
+    public function allvg();
+
+    public function detail($id);
+    
+    public function freeCustomer();
+
 }

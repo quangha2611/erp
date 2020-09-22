@@ -23,8 +23,8 @@ class CustomerExport implements FromArray, WithHeadings, ShouldAutoSize
             'Công ty',
             'Chuyên ngành',
             'Điện thoại',
-            'Giá trị',
             'Email',
+            'Địa chỉ',
             'Website',
             'Loại khách hàng',
             'Level'

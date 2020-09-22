@@ -16,16 +16,10 @@
         <div id="page-crm-contact">
             <div class="filterContainer">
                 <form method="GET" name="crmContactFilter" class="form-inline lolify" role="form"
-                    id="crmContactFilter">
+                    id="crmContactFilter" action="{{ route('get.crm.customer.filter') }}">
                     <div class="col-md-10 lolify-default">
-
-                        <input type="hidden" name="companyId" id="companyId" class="form-control"
-                            value="319"> <input type="hidden" name="assignedToId" id="assignedToId"
-                            class="form-control" value=""> <input type="hidden"
-                            name="isSourceCompany" id="isSourceCompany" class="form-control"
-                            value="">
                         <div class="form-group">
-                            <input type="text" name="q" maxlength="255"
+                            <input type="text" name="info" maxlength="255"
                                 placeholder="Từ khóa (tên, website, số điện thoại, email, mã số thuế, CMND)"
                                 style="width:430px" id="q" class="form-control" value=""> </div>
                         <input type="hidden" name="createdById" id="createdById"
@@ -49,18 +43,13 @@
                         <div class="form-group">
                             <select name="crm_type" id="crm_type" class="form-control">
                                 <option value="">- Loại -</option>
-                                <option value="lead">Thông tin</option>
-                                <option value="opportunity">Cơ hội</option>
-                                <option value="account">Khách hàng</option>
-                                <option value="contact">Liên hệ</option>
+                                @foreach ($customerTypes as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
                             </select> </div>
                         <div class="form-group">
                             <input type="text" name="id" maxlength="15" placeholder="ID Thông tin"
                                 id="id" class="form-control" value=""> </div>
-                        <div class="form-group">
-                            <input type="text" name="accountId" maxlength="15"
-                                placeholder="ID khách hàng" id="accountId" class="form-control"
-                                value=""> </div>
                         <div class="form-group">
                             <input type="text" name="address" maxlength="255" placeholder="Địa chỉ"
                                 id="address" class="form-control" value=""> </div>
@@ -146,26 +135,11 @@
                         <div class="form-group">
                             <select name="source" id="source" class="form-control">
                                 <option value="">- Nguồn -</option>
-                                <option value="1">Data bàn giao - FB ADS</option>
-                                <option value="26">Data bàn giao - Fanpage</option>
-                                <option value="25">Data bàn giao - Google Ads</option>
-                                <option value="22">Data bàn giao - SEO</option>
-                                <option value="19">Data bàn giao- Hotline</option>
-                                <option value="8">Data bàn giao - Không có mã</option>
-                                <option value="11">Data bàn giao - Email marketing</option>
-                                <option value="21">Data bàn giao - SĐT quét từ QC</option>
-                                <option value="3">Data bàn giao - Được giới thiệu</option>
-                                <option value="12">Hội thảo, sự kiện, đi thị trường</option>
-                                <option value="13">Khách tự liên hệ kinh doanh</option>
-                                <option value="15">Kinh doanh được giới thiệu</option>
-                                <option value="17">TeleSale</option>
-                                <option value="24">Seeding/ Inbox/ Spam</option>
-                                <option value="100">Khác</option>
-                            </select> </div>
-                        <div class="form-group">
-                            <input type="text" name="sourceReference" maxlength="255"
-                                placeholder="Chi tiết nguồn" id="sourceReference"
-                                class="form-control" value=""> </div>
+                                @foreach ($customerSources as $source)
+                                    <option value="{{ $source->id }}">{{ $source->name }}</option>
+                                @endforeach 
+                            </select> 
+                        </div>
                         <div class="form-group">
                             <input type="text" name="rangeCreatedDate" placeholder="Ngày tạo"
                                 class="form-control date-range-picker" id="rangeCreatedDate"
@@ -184,39 +158,8 @@
                             <input type="text" name="createdByName" maxlength="255"
                                 placeholder="Người tạo" id="createdByName"
                                 class="form-control ui-autocomplete-input" value=""
-                                autocomplete="off"> </div>
-                        <div class="form-group">
-                            <select name="campaignId" id="campaignId" class="form-control">
-                                <option value="">- Chiến dịch -</option>
-                            </select> </div>
-                        <div class="form-group">
-                            <select name="emailStatus" id="emailStatus" class="form-control">
-                                <option value="">- Trạng thái Email-</option>
-                                <option value="-1">Chưa có email</option>
-                                <option value="1">Đã có email</option>
-                            </select> </div>
-                        <div class="form-group">
-                            <select name="saleStage" id="saleStage" class="form-control">
-                                <option value="">- Level Khách hàng -</option>
-                                <option value="20">L0 - Cần xử lý</option>
-                                <option value="22">L1B - Thông tin sai</option>
-                                <option value="23">L2A - Có nhu cầu</option>
-                                <option value="24">L2B1 - Không có nhu cầu</option>
-                                <option value="34">L2B2 - Đã dùng PM khác</option>
-                                <option value="25">L3A - Đã hẹn</option>
-                                <option value="26">L4A - Đã gặp</option>
-                                <option value="27">L5A1 - Dùng thử</option>
-                                <option value="28">L5A2 - Có yêu cầu</option>
-                                <option value="29">L6A - Đã ký hợp đồng</option>
-                                <option value="30">L6B1 - Từ chối, giá đắt</option>
-                                <option value="35">L6B2 - PM không phù hợp</option>
-                                <option value="36">L6B3 - Không phản hồi</option>
-                                <option value="31">L7A - Đã triển khai</option>
-                                <option value="32">L8A - Đã bán chéo</option>
-                                <option value="33">L9A - Đã tái ký</option>
-                                <option value="37">L9B1 - Ngừng kinh doanh</option>
-                                <option value="38">L9B2 - Dùng PM khác</option>
-                            </select> </div>
+                                autocomplete="off"> 
+                        </div>
 
                     </div>
                 </form>

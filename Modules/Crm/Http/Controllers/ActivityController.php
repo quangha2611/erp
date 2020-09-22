@@ -132,8 +132,27 @@ class ActivityController extends Controller
         return view('crm::pages.activity.addPhoneCall',compact('users','customer','customerLevels','phoneCallResults', 'companies'));
     }
 
-    public function storePhoneCall(PhoneCallRequest $request, CalendarRequest $b)
+    public function storePhoneCall(PhoneCallRequest $request)
     {
+        //check call result
+        if ($request->status_id == 1) {
+            $validator = Validator::make($request->all(), [
+                'result_id' => 'required',
+            ],
+            [
+                'required'  => ':attribute không được để trống',
+            ],
+            [
+                'result_id' => 'Kết quả',
+            ]);
+            
+            if ($validator->fails()) {
+                return redirect()
+                            ->back()
+                            ->withErrors($validator)
+                            ->withInput($request->all());
+            }   
+        }
         // validate new calendar
         if ($request->create_new_calendar == 1) {
             $requestNewCalendar = new Request;
@@ -190,6 +209,9 @@ class ActivityController extends Controller
     {
         // dd($request->all());
         $this->activity->storeRequestCall($request->all());
+
+        return redirect()->route('get.crm.activity.index');  
+
     }
 
     public function destroy($id)

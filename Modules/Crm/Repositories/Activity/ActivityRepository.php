@@ -30,4 +30,14 @@ class ActivityRepository extends BaseRepository implements ActivityInterfaceRepo
     public function filter(array $attributes) {
         return $this->model->where('customer_id', $attributes['customer_id'])->get();
     }
+
+    public function lastActivity($id)
+    {
+        return $this->model->where('customer_id', $id)->orderByRaw('id', 'DESC')->first();
+    }
+
+    public function getListActivity($id)
+    {
+        return $this->model->where('customer_id',$id)->orderByRaw('id', 'DESC')->get();
+    }
 }

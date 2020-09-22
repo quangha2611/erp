@@ -29,7 +29,7 @@ class CreateCustomersTable extends Migration
             $table->string('company')->nullable();
             $table->string('position')->nullable();
             $table->string('department')->nullable();
-            $table->string('identification')->nullable();
+            $table->string('identification');
             $table->string('identification_place')->nullable();
             $table->string('identification_date')->nullable();
             $table->string('taxcode')->nullable();
@@ -37,6 +37,10 @@ class CreateCustomersTable extends Migration
             $table->string('website')->nullable();
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();
+
+            $table->boolean('is_account')->default(0);
+            $table->integer('customer_status')->nullable();
+            $table->integer('author');
         });
     }
 

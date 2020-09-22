@@ -20,13 +20,8 @@ class CustomerRequest extends FormRequest
             'major_id'        => 'required',
             'email'           => 'required|unique:customers',
             'source_id'       => 'required',
-            
-            'company'         => 'min:4',
-            'position'        => 'min:3',
-            'department'      => 'min:3',
-            'identification' => 'min:10',
-            'taxcode'         => 'min:8',
-            'address'         => 'min:5',
+            'identification'  => 'required|min:10|unique:customers',
+            'address'         => 'required|min:5',
         ];
     }
 
@@ -38,11 +33,7 @@ class CustomerRequest extends FormRequest
             'major_id'        => 'Chuyên ngành',
             'email'           => 'Email',
             'source_id'       => 'Nguồn thông tin',
-            
-            'company'         => 'Công ty',
-            'position'        => 'Chức vụ',
-            'department'      => 'Phòng ban',
-            'identification' => 'CMND',
+            'identification'  => 'CMND',
             'taxcode'         => 'Mã số thuế ',
             'address'         => 'Địa chỉ',
         ];

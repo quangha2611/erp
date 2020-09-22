@@ -22,6 +22,7 @@
 
         <form id="crmLead" name="crmLead" method="post" action="{{ route('post.crm.lead.store') }}">
             @csrf
+            <input type="hidden" name="author" value="{{ Auth::user()->id }}">
             <div class="form-horizontal">
                 <div class="col-md-6">
                     <fieldset>
@@ -33,8 +34,8 @@
                                 <div class="type-content content">
                                     <select name="type_id" id="type" class="type form-control">
                                         <option value="">- Loại -</option>
-                                        <option value="1" {!! old('type_id') == 1 ? 'selected' : '' !!}>Công ty</option>
-                                        <option value="2" {!! old('type_id') == 2 ? 'selected' : '' !!}>Cá nhân</option>
+                                        <option value="1" {!! old('type_id') == 1 ? 'selected' : '' !!}>Cá nhân</option>
+                                        <option value="2" {!! old('type_id') == 2 ? 'selected' : '' !!}>Công ty</option>
                                     </select>
                                     @error('type_id')
                                         <p class="text-danger">{{ $message }}</p>
@@ -234,7 +235,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Nguồn:</label>
+                            <label class="col-md-4 control-label">Nguồn: <span
+                                style="color: red;" class="required">*</span></label>
                             <div class="col-md-8">
                                 <select name="source_id" id="source" class="form-control">
                                     <option value="">- Nguồn -</option>
@@ -326,7 +328,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">CMND:</label>
+                            <label class="col-md-4 control-label">CMND: <span
+                                style="color:red;" class="required">*</span></label>
                             <div class="col-md-8">
                                 <div class="identification-content content">
                                     <div class="input-group">
@@ -363,7 +366,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Mã số thuế:</label>
+                            <label class="col-md-4 control-label">Mã số thuế:<span style="color:red;" class="required">*</span></label>
                             <div class="col-md-8">
                                 <div class="content">
                                     <div class="input-group">
@@ -380,7 +383,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Địa chỉ: </label>
+                            <label class="col-md-4 control-label">Địa chỉ: <span
+                                style="color:red;" class="required">*</span></label>
                             <div class="col-md-8">
                                 <div class="address-content content">
                                     <input type="text" name="address" maxlength="255"
