@@ -14,4 +14,6 @@ interface ActivityInterfaceRepository extends BaseInterfaceRepository
     public function lastActivity($id);
 
     public function getListActivity($id);
+
+    public function filterIndex(array $attributes);
 }

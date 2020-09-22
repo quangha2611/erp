@@ -61,7 +61,7 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
 
         Route::post('/storeRequestCall','ActivityController@storeRequestCall')->name('post.crm.activity.storeRequestCall');
 
-
+        Route::get('/filter', 'ActivityController@filter')->name('get.crm.activity.filter');
     });
 
     Route::prefix('/customer')->group(function(){

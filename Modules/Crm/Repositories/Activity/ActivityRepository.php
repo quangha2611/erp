@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Modules\Crm\Repositories\BaseRepository;
 use Modules\Crm\Repositories\Activity\ActivityInterfaceRepository;
+use Illuminate\Support\Facades\DB;
 
 use Modules\Crm\Entities\Activity;
 
@@ -29,6 +30,41 @@ class ActivityRepository extends BaseRepository implements ActivityInterfaceRepo
 
     public function filter(array $attributes) {
         return $this->model->where('customer_id', $attributes['customer_id'])->get();
+    }
+
+    public function filterIndex(array $attributes) {
+
+        $activities = $this->model->query();
+
+        if (isset($attributes['id']) && $attributes['id'] != null) {
+            $activities->where('id', $attributes['id']);
+        }
+
+        if (isset($attributes['account_id']) && $attributes['account_id'] != null) {
+            $activities->where('customer_id', $attributes['account_id']);
+        }
+
+        if (isset($attributes['author']) && $attributes['author'] != null) {
+            $activities->where('author', $attributes['author']);
+        }
+
+        if (isset($attributes['date']) && $attributes['date'] != null) {
+            $activities->where('created_at', '>=', $attributes['from_date'])
+                        ->where('created_at', '<=', $attributes['to_date']);
+        }
+
+        if (isset($attributes['action_id']) && $attributes['action_id'] != null) {
+            $activities->where('action_id', $attributes['action_id']);
+        }
+
+        if (isset($attributes['account_info']) && $attributes['account_info'] != null) {
+            $customers = DB::table('customers')->where('customers.name','like','%'.$attributes['account_info'].'%')->get();
+            foreach($customers as $customer) {
+                $activities->orWhere('customer_id',$customer->id);
+            }
+        }
+
+        return $activities->get();
     }
 
     public function lastActivity($id)

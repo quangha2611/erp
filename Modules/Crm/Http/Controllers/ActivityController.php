@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\User;
 use App\Company;
+use Modules\Crm\Entities\Action;
 use Modules\Crm\Http\Requests\CalendarRequest;
 use Modules\Crm\Http\Requests\PhoneCallRequest;
 use Modules\Crm\Http\Requests\RequestCallRequest;
@@ -32,8 +33,9 @@ class ActivityController extends Controller
     
     public function index()
     {
+        $actions = Action::all();
         $activities = $this->activity->getAll();
-        return view('crm::pages.activity.index',compact('activities'));
+        return view('crm::pages.activity.index',compact('activities', 'actions'));
     }
 
     public function indexvg()
@@ -74,6 +76,13 @@ class ActivityController extends Controller
     public function show($id)
     {
         return view('crm::show');
+    }
+
+    public function filter(Request $request)
+    {
+        $activities = $this->activity->filter($request->all());
+        $actions = Action::all();
+        return view('crm::pages.activity.index',compact('activities', 'actions'));
     }
 
     public function edit($id)

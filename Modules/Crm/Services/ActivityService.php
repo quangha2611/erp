@@ -2,6 +2,7 @@
 
 namespace Modules\Crm\Services;
 
+use App\User;
 use Modules\Crm\Http\Requests\CalendarRequest;
 use Modules\Crm\Repositories\Activity\ActivityInterfaceRepository;
 use Modules\Crm\Repositories\Calendar\CalendarInterfaceRepository;
@@ -10,7 +11,6 @@ use Modules\Crm\Repositories\PhoneCallResult\PhoneCallResultInterfaceRepository;
 use Modules\Crm\Repositories\PhoneCall\PhoneCallInterfaceRepository;
 use Modules\Crm\Repositories\RequestCall\RequestCallInterfaceRepository;
 use Modules\Crm\Repositories\CustomerLevel\CustomerLevelInterfaceRepository;
-
 
 class ActivityService 
 {
@@ -53,6 +53,30 @@ class ActivityService
     {
         return $this->activity->find($id);
     } 
+
+    public function filter(array $attributes)
+    {
+        // get limit of date
+        if ( isset($attributes['date']) && $attributes['date'] != null) {
+            $attributes['from_date'] = $this->fomartDate(explode(" - ", $attributes['date'])[0]);
+            $attributes['to_date']   = $this->fomartDate(explode(" - ", $attributes['date'])[1]);  
+        }
+
+        // get id of author
+        if ( isset($attributes['author']) && $attributes['author'] != null) {
+            $author = User::where('name', $attributes['author'])->first();
+            $author != null ? $attributes['author'] = $author->id : $attributes['author'] = 0;
+        }
+
+
+        return $this->activity->filterIndex($attributes);
+    }
+
+    public function fomartDate($date)
+    {
+        $array = explode("/", $date);
+        return "$array[2]-$array[1]-$array[0]";
+    }
 
     public function update(array $attributes, $id)
     {

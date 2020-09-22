@@ -16,84 +16,47 @@
         <div id="page-crm-contact">
             <div class="filterContainer">
                 <form method="GET" name="crmContactFilter" class="form-inline" role="form"
-                    id="crmContactFilter"><input type="hidden" name="companyId" id="companyId"
-                        class="form-control" value="391">
-                    <div class="form-group"><select name="departmentId" id="departmentId"
+                    id="crmContactFilter" action="{{ route('get.crm.activity.filter') }}">
+                    @csrf
+                    {{-- <div class="form-group"><select name="departmentId" id="departmentId"
                             class="form-control">
                             <option value="">- Phòng ban -</option>
                             <option value="1437">123Job</option>
                             <option value="1475">Kinh doanh 123Job</option>
-                        </select></div>
+                        </select></div> --}}
                     <div class="form-group"><input type="text" name="id" placeholder="ID"
                             maxlength="15" id="id" class="form-control" value=""></div>
-                    <div class="form-group"><input type="text" name="leadId"
+                    {{-- <div class="form-group"><input type="text" name="leadId"
                             placeholder="ID thông tin" maxlength="15" id="leadId"
-                            class="form-control" value=""></div>
-                    <div class="form-group"><input type="text" name="accountId"
+                            class="form-control" value=""></div> --}}
+                    <div class="form-group"><input type="text" name="account_id"
                             placeholder="ID khách hàng" maxlength="15" id="accountId"
                             class="form-control" value=""></div>
-                    <div class="form-group"><input type="text" name="accountInfor"
+                    <div class="form-group"><input type="text" name="account_info"
                             placeholder="Thông tin khách hàng"
                             title="Nhập vào tên, email, sdt hoặc website của khách hàng"
                             maxlength="15" id="accountInfor" class="form-control" value=""></div>
                     <input type="hidden" name="createdById" id="createdById" class="form-control"
                         value="">
-                    <div class="form-group"><input type="text" name="createdByName"
-                            placeholder="Nhân viên" maxlength="225" id="createdByName"
+                    <div class="form-group"><input type="text" name="author"
+                            placeholder="Người tạo" maxlength="225" id="createdByName"
                             class="form-control ui-autocomplete-input" value="" autocomplete="off">
                     </div>
-                    <div class="form-group"><input type="text" name="daterangepicker"
+                    <div class="form-group"><input type="text" name="date"
                             class="form-control date-range-picker" placeholder="Thời gian"
                             id="daterangepicker" value=""></div>
                     <div class="form-group"><input type="text" name="content" placeholder="Ghi chú"
                             maxlength="15" id="content" class="form-control" value=""></div>
-                    <div class="form-group"><select name="type" id="type" class="form-control">
+                    <div class="form-group">
+                        <select name="action_id" id="type" class="form-control">
                             <option value="">- Hành động -</option>
-                            <option value="1">Gặp mặt</option>
-                            <option value="2">Gọi điện</option>
-                            <option value="3">Công việc</option>
-                            <option value="4">Triển khai</option>
-                            <option value="5">Đặt lịch</option>
-                            <option value="6">Yêu cầu gọi điện</option>
-                            <option value="7">Bàn giao</option>
-                            <option value="8">Nhận chăm sóc</option>
-                            <option value="9">Tạo hợp đồng</option>
-                            <option value="10">Tạo thanh toán</option>
-                            <option value="11">Giải phóng</option>
-                            <option value="12">Bỏ quyền chăm sóc</option>
-                            <option value="13">Hệ thống tự giải phóng</option>
-                            <option value="14">Tạo thành khách hàng</option>
-                            <option value="33">Gửi Email</option>
-                            <option value="34">Gửi tin nhắn SMS</option>
-                            <option value="31">Đến gặp</option>
-                            <option value="32">Gọi điện</option>
-                            <option value="35">Thu tiền</option>
-                            <option value="36">Hoàn duyệt phiếu thu</option>
-                            <option value="99">Thao tác Khác</option>
-                            <option value="37">Sửa gian hàng </option>
-                            <option value="15">Thêm hợp đồng</option>
-                            <option value="16">Thêm phiếu thu</option>
-                            <option value="17">Chuyển thành cơ hội</option>
-                            <option value="19">Sửa thông tin</option>
-                            <option value="20">Đăng kí dùng thử</option>
-                            <option value="21">Khách hàng yêu cầu tính năng</option>
-                            <option value="22">Sửa khách hàng</option>
-                            <option value="23">Sửa hợp đồng</option>
-                            <option value="24">Sửa thanh toán</option>
-                            <option value="25">Duyệt hợp đồng</option>
-                            <option value="26">Hủy hợp đồng</option>
-                            <option value="30">Hoàn duyệt hợp đồng</option>
-                            <option value="27">Duyệt phiếu thu</option>
-                            <option value="28">Hủy phiếu thu</option>
-                            <option value="29">Thêm yêu cầu thực hiện dịch vụ</option>
-                            <option value="38">Thêm nhận xét</option>
-                            <option value="39">Khảo sát trước gặp</option>
-                            <option value="40">Khảo sát sau gặp</option>
-                            <option value="41">Ý kiến khách hàng</option>
-                            <option value="42">Khảo sát khách hàng</option>
-                            <option value="43">Cập nhật Level khách hàng</option>
-                        </select></div>
-                    <div class="form-group"><select name="result" id="result" class="form-control">
+                            @foreach ($actions as $action)
+                                <option value="{{ $action->id }}">{{ $action->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    {{-- <div class="form-group">
+                        <select name="result" id="result" class="form-control">
                             <option value="">- Kết quả -</option>
                             <option value="1">Khách từ chối</option>
                             <option value="2">Khách suy nghĩ - hẹn gặp sau</option>
@@ -101,8 +64,9 @@
                             <option value="7">Khách có yêu cầu riêng cần trao đổi thêm</option>
                             <option value="6">Thành công - chốt hợp đồng</option>
                             <option value="200">Khác</option>
-                        </select></div>
-                    <div class="form-group"><select name="reasonId" id="reasonId"
+                        </select>
+                    </div> --}}
+                    {{-- <div class="form-group"><select name="reasonId" id="reasonId"
                             class="form-control">
                             <option value="">- Lý do từ chối -</option>
                             <option value="12">Khách chưa có nhu cầu</option>
@@ -120,7 +84,8 @@
                             <option value="2">Khách muốn mua đứt (không muốn trả phí hàng tháng)
                             </option>
                             <option value="1">Giá đắt</option>
-                        </select></div>
+                        </select>
+                    </div> --}}
                     <div class="form-group"><input name="submit" type="submit"
                             id="btnFilterCrmContact" class="form-control btn btn-primary"
                             value="Lọc"></div>
@@ -248,7 +213,7 @@
                                             <br>
                                             @if ($activity->phone_call_id != 0)
                                                 <b>Kết quả: </b>
-                                                <label>{{ $activity->phone_call_id != 0 ? $activity->phoneCall->result->name : '---' }}</label>
+                                                <label>{{ $activity->phoneCall->result_id != NULL ? $activity->phoneCall->result->name : '---' }}</label>
                                                 <br>
                                             @endif
                                             @if ($activity->calendar_id != 0)
