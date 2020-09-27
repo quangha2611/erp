@@ -50,4 +50,9 @@ class Customer extends Model
     {
         return $this->belongsToMany('App\User','customer_user','customer_id','user_id');
     } 
+
+    public function contatcts()
+    {
+        return $this->hasMany('Modules\Crm\Entities\Contact', 'id', 'customer_id');
+    }
 }

@@ -216,7 +216,7 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Contact.edit');
         })->name('contactEdit');
     
-        Route::get('add', function () {
+        Route::get('addx', function () {
             return view('Layout.Crm.Contact.add');
         })->name('contactAdd');
     });
@@ -249,11 +249,11 @@ Route::prefix('crm')->group(function() {
     
     // HỢP ĐỒNG
     Route::prefix('contract')->group(function () {
-        Route::get('index', function () {
+        Route::get('indexx', function () {
             return view('Layout.Crm.Contract.index');
         })->name('contractIndex');
     
-        Route::get('transaction', function () {
+        Route::get('transactionx', function () {
             return view('Layout.Crm.Contract.transaction');
         })->name('contractTransaction');
     

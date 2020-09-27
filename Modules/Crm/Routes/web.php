@@ -89,6 +89,10 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::post('/destroy/{id}', 'CustomerController@destroy')->name('post.crm.customer.destroy');
 
         Route::get('/detail/{id}', 'CustomerController@detail')->name('get.crm.customer.detail');
+
+        Route::get('/listDistrict', 'CustomerController@listDistrict')->name('get.crm.customer.listDistrict');
+
+        Route::get('/infoCustomer', 'CustomerController@infoCustomer')->name('get.crm.customer.infoCustomer');
         
     });
 
@@ -109,4 +113,39 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
 
         Route::post('/update/{id}', 'CustomerController@update')->name('post.crm.account.update');
     });
+
+    Route::prefix('/contact')->group(function(){
+        Route::get('/','ContactController@index')->name('get.crm.contact.index');
+
+        Route::get('/add','ContactController@create')->name('get.crm.contact.add');
+
+        Route::post('/store','ContactController@store')->name('post.crm.contact.store');
+
+        Route::post('/destroy/{id}','ContactController@destroy')->name('post.crm.contact.destroy');
+
+        Route::get('/edit/{id}','ContactController@edit')->name('get.crm.contact.edit');
+    });
+
+    Route::prefix('/contract')->group(function(){
+        Route::post('/test','ContractController@test')->name('test');
+
+        Route::get('/index','ContractController@index')->name('get.crm.contract.index');
+
+        Route::get('/show','ContractController@show')->name('get.crm.contract.show');
+
+        Route::get('/create','ContractController@create')->name('get.crm.contract.create');
+
+        Route::post('/store','ContractController@store')->name('post.crm.contract.store');
+
+        Route::get('/getListProductsByCompany','ContractController@getListProductsByCompany');
+
+        Route::get('/infoProduct','ContractController@infoProduct'); 
+
+        Route::get('/infoEmployee','ContractController@infoEmployee'); 
+
+        Route::get('/transaction','ContractController@transaction')->name('get.crm.contract.transaction');
+
+        Route::get('/showtransaction','ContractController@showTransaction')->name('get.crm.contract.showtransaction');
+    });
 });
+

@@ -4,7 +4,7 @@ namespace Modules\Crm\Services;
 
 use Modules\Crm\Repositories\Customer\CustomerInterfaceRepository;
 use Modules\Crm\Repositories\Activity\ActivityInterfaceRepository;
-
+use Modules\Crm\Entities\CustomerMajor;
 
 class CustomerService 
 {
@@ -135,6 +135,11 @@ class CustomerService
         $customer = $this->customer->find($id);
         $customer['activities'] = $this->activity->getListActivity($id);
         return $customer;
+    }
+
+    public function getMajor()
+    {
+        return CustomerMajor::all();
     }
 }
 

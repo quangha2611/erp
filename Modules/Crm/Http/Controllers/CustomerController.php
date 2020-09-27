@@ -76,7 +76,14 @@ class CustomerController extends Controller
     {
         $majors = CustomerMajor::all();
         $sources = CustomerSource::all();
-        return view('crm::pages.lead.add', compact('majors', 'sources'));
+        $citys = json_decode(file_get_contents('https://thongtindoanhnghiep.co/api/city'))->LtsItem;
+        return view('crm::pages.lead.add', compact('majors', 'sources', 'citys'));
+    }
+
+    public function listDistrict (Request $request)
+    {
+        $districts = json_decode(file_get_contents('https://thongtindoanhnghiep.co/api/city/'.$request->city.'/district'));
+        return $districts;
     }
 
     public function store(CustomerRequest $request) 
@@ -209,7 +216,7 @@ class CustomerController extends Controller
     
     public function edit($id)
     {
-        $customer = $this->customer->find($id);
+        
         $majors = CustomerMajor::all();
         $sources = CustomerSource::all();
         return view('crm::pages.account.edit', compact('customer', 'majors', 'sources'));
@@ -321,5 +328,10 @@ class CustomerController extends Controller
     {
         $customer = $this->customer->detail($id);
         return view('crm::pages.customer.detail', compact(['customer']));
+    }
+
+    public function infoCustomer(Request $request)
+    {
+        return json_encode($customer = $this->customer->find($request->id));
     }
 }

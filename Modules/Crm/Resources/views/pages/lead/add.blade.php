@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/crm/lead/style.css') }}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 @endsection
 
 @section('content-page')
@@ -125,71 +126,13 @@
                                     class="form-control" tabindex="-1"
                                     aria-hidden="true">
                                     <option value="">- Thành phố -</option>
-                                    <option value="2">Hà Nội</option>
-                                    <option value="3">Hồ Chí Minh</option>
-                                    <option value="4">An Giang</option>
-                                    <option value="5">Bà Rịa - Vũng Tàu</option>
-                                    <option value="6">Bắc Ninh</option>
-                                    <option value="7">Bắc Giang</option>
-                                    <option value="8">Bình Dương</option>
-                                    <option value="9">Bình Định</option>
-                                    <option value="10">Bình Phước</option>
-                                    <option value="11">Bình Thuận</option>
-                                    <option value="13">Bến Tre</option>
-                                    <option value="14">Bắc Cạn</option>
-                                    <option value="15">Cần Thơ</option>
-                                    <option value="17">Khánh Hòa</option>
-                                    <option value="19">Thừa Thiên Huế</option>
-                                    <option value="20">Lào Cai</option>
-                                    <option value="21">Quảng Ninh</option>
-                                    <option value="22">Đồng Nai</option>
-                                    <option value="23">Nam Định</option>
-                                    <option value="24">Cà Mau</option>
-                                    <option value="25">Cao Bằng</option>
-                                    <option value="26">Gia Lai</option>
-                                    <option value="27">Hà Giang</option>
-                                    <option value="28">Hà Nam</option>
-                                    <option value="30">Hà Tĩnh</option>
-                                    <option value="31">Hải Dương</option>
-                                    <option value="32">Hải Phòng</option>
-                                    <option value="33">Hoà Bình</option>
-                                    <option value="34">Hưng Yên</option>
-                                    <option value="35">Kiên Giang</option>
-                                    <option value="36">Kon Tum</option>
-                                    <option value="37">Lai Châu</option>
-                                    <option value="38">Lâm Đồng</option>
-                                    <option value="39">Lạng Sơn</option>
-                                    <option value="40">Long An</option>
-                                    <option value="41">Nghệ An</option>
-                                    <option value="42">Ninh Bình</option>
-                                    <option value="43">Ninh Thuận</option>
-                                    <option value="44">Phú Thọ</option>
-                                    <option value="45">Phú Yên</option>
-                                    <option value="46">Quảng Bình</option>
-                                    <option value="47">Quảng Nam</option>
-                                    <option value="48">Quảng Ngãi</option>
-                                    <option value="49">Quảng Trị</option>
-                                    <option value="50">Sóc Trăng</option>
-                                    <option value="51">Sơn La</option>
-                                    <option value="52">Tây Ninh</option>
-                                    <option value="53">Thái Bình</option>
-                                    <option value="54">Thái Nguyên</option>
-                                    <option value="55">Thanh Hoá</option>
-                                    <option value="56">Tiền Giang</option>
-                                    <option value="57">Trà Vinh</option>
-                                    <option value="58">Tuyên Quang</option>
-                                    <option value="59">Vĩnh Long</option>
-                                    <option value="60">Vĩnh Phúc</option>
-                                    <option value="61">Yên Bái</option>
-                                    <option value="62">Đắc Lắc</option>
-                                    <option value="64">Đồng Tháp</option>
-                                    <option value="65">Đà Nẵng</option>
-                                    <option value="66">Buôn Mê Thuột</option>
-                                    <option value="67">Đắc Nông</option>
-                                    <option value="68">Hậu Giang</option>
-                                    <option value="70">Bạc Liêu</option>
-                                    <option value="71">Điện Biên</option>
+                                    @for( $i = 0; $i < count($citys); $i++)
+                                        <option value="{{ $citys[$i]->ID }}">{{ $citys[$i]->Title }}</option>
+                                    @endfor
                                 </select>
+                                @error('city_id')
+                                    <p class="text-danger">{{$message}}</p>
+                                @enderror
                             </div>
                         </div>
 
@@ -202,35 +145,6 @@
                                     class="form-control" tabindex="-1"
                                     aria-hidden="true">
                                     <option value="">- Quận huyện -</option>
-                                    <option value="1">Quận Hoàng Mai</option>
-                                    <option value="2">Quận Ba Đình</option>
-                                    <option value="3">Quận Long Biên</option>
-                                    <option value="4">Quận Cầu Giấy</option>
-                                    <option value="5">Quận Đống Đa</option>
-                                    <option value="6">Quận Hai Bà Trưng</option>
-                                    <option value="7">Quận Hoàn Kiếm</option>
-                                    <option value="8">Quận Tây Hồ</option>
-                                    <option value="9">Quận Thanh Xuân</option>
-                                    <option value="10">Huyện Ba Vì</option>
-                                    <option value="11">Huyện Chương Mỹ</option>
-                                    <option value="12">Huyện Đan Phượng</option>
-                                    <option value="15">Huyện Gia Lâm</option>
-                                    <option value="16">Huyện Hoài Đức</option>
-                                    <option value="17">Huyện Mê Linh</option>
-                                    <option value="18">Huyện Mỹ Đức</option>
-                                    <option value="19">Huyện Phú Xuyên</option>
-                                    <option value="20">Huyện Phúc Thọ</option>
-                                    <option value="21">Huyện Quốc Oai</option>
-                                    <option value="22">Huyện Sóc Sơn</option>
-                                    <option value="23">Huyện Thạch Thất</option>
-                                    <option value="24">Huyện Thanh Oai</option>
-                                    <option value="25">Huyện Thanh Trì</option>
-                                    <option value="26">Huyện Thường Tín</option>
-                                    <option value="27">Huyện Từ Liêm</option>
-                                    <option value="28">Huyện Ứng Hòa</option>
-                                    <option value="63">Quận Hà Đông</option>
-                                    <option value="555">Huyện Đông Anh</option>
-                                    <option value="697">Thị xã Sơn Tây</option>
                                 </select>
                             </div>
                         </div>
@@ -530,7 +444,32 @@
         var usrCnf = {
             language: 'vi'
         };
+
+        $(document).ready(function(){
+
+            $('#cityId').change(function(){ 
+                var city = $(this).val(); 
+                if(city != '') 
+                {
+                    var _token = $('input[name="_token"]').val(); 
+                    $.ajax({
+                        url:"{{ route('get.crm.customer.listDistrict') }}", 
+                        method:"GET", 
+                        data:{city:city, _token:_token},
+                        success:function(data){ 
+                            // console.log(data);
+                            innerDistrict = "<option value=\"\">- Quận huyện -</option>";
+                            for(var i=0; i<data.length; i++) {
+                                innerDistrict = innerDistrict + "<option value=\"" + data[i].ID + "\">- " + data[i].Title + "-</option>";
+                            }
+                            $('#districtId').html(innerDistrict);
+                        }
+                    });
+                }
+            });
+        })
     </script>
+
     <script type="text/javascript" src="{{ asset('js/crm/lead/saved_resource') }}"></script>
     <script type="text/javascript" src="{{ asset('js/crm/lead/firebase-app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/crm/lead/firebase-messaging.js') }}"></script>

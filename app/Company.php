@@ -21,4 +21,6 @@ class Company extends Model
     {
         return $this->hasOne('Modules\Accounting\Entities\Category','id','companyId');
     }
+
+    
 }

@@ -130,10 +130,10 @@
                                     class="fa fa-user"></i> <span class="text">Liên hệ</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="{{ route('contactIndex') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.contact.index') }}"><i
                                             class="fa fa-list "></i> <span class="text">Danh sách liên
                                             hệ</span></a></li>
-                                <li class=""><a class="" href="{{ route('contactAdd') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.contact.add') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Thêm liên
                                             hệ</span></a></li>
                             </ul>
@@ -184,14 +184,14 @@
                                     class="fa fa-book"></i> <span class="text">Hợp đồng</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="{{ route('contractIndex') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.contract.index') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách hợp
                                             đồng</span></a></li>
                                 <li class=""><a class=""
-                                        href="{{ route('contractTransaction') }}"><i
+                                        href="{{ route('get.crm.contract.transaction') }}"><i
                                             class="fa fa-money"></i> <span class="text">Danh sách thanh
                                             toán</span></a></li>
-                                <li class=""><a class="" href="{{ route('contractAdd') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.contract.create') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Thêm hợp
                                             đồng</span></a></li>
                                 <li class=""><a class=""

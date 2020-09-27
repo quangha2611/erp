@@ -1,6 +1,6 @@
 @extends('Layout.master')
 
-@section('title','Danh sách requirement')
+@section('title','ERP-Yêu cầu gắn hợp đồng')
     
 @section('css')
 	<link rel="stylesheet" href="{{ asset('asset/css/crm/requirement/style.css') }}" type="text/css">

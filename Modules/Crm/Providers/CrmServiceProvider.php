@@ -19,6 +19,15 @@ use Modules\Crm\Repositories\PhoneCall\PhoneCallInterfaceRepository;
 use Modules\Crm\Repositories\PhoneCall\PhoneCallRepository;
 use Modules\Crm\Repositories\RequestCall\RequestCallInterfaceRepository;
 use Modules\Crm\Repositories\RequestCall\RequestCallRepository;
+use Modules\Crm\Repositories\Contact\ContactInterfaceRepository;
+use Modules\Crm\Repositories\Contact\ContactRepository;
+use Modules\Crm\Repositories\Contract\ContractInterfaceRepository;
+use Modules\Crm\Repositories\Contract\ContractRepository;
+use Modules\Crm\Repositories\Product\ProductInterfaceRepository;
+use Modules\Crm\Repositories\Product\ProductRepository;
+use Modules\Crm\Repositories\ContractDetail\ContractDetailRepository;
+use Modules\Crm\Repositories\ContractDetail\ContractDetailInterfaceRepository;
+
 
 class CrmServiceProvider extends ServiceProvider
 {
@@ -61,6 +70,10 @@ class CrmServiceProvider extends ServiceProvider
         $this->app->bind(PhoneCallResultInterfaceRepository::class, PhoneCallResultRepository::class);
         $this->app->bind(PhoneCallInterfaceRepository::class, PhoneCallRepository::class);
         $this->app->bind(RequestCallInterfaceRepository::class, RequestCallRepository::class);
+        $this->app->bind(ContactInterfaceRepository::class, ContactRepository::class);
+        $this->app->bind(ContractDetailInterfaceRepository::class, ContractDetailRepository::class);
+        $this->app->bind(ContractInterfaceRepository::class, ContractRepository::class);
+        $this->app->bind(ProductInterfaceRepository::class, ProductRepository::class);
     }
 
     protected function registerConfig()

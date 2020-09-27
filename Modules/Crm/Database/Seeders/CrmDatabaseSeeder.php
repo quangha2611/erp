@@ -26,5 +26,6 @@ class CrmDatabaseSeeder extends Seeder
         $this->call(CustomerMajorTableSeeder::class);
         $this->call(CustomerUserTableSeeder::class);
         $this->call(CustomerStatusTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
     }
 }

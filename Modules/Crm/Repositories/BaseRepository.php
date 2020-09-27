@@ -17,7 +17,7 @@ abstract class BaseRepository implements BaseInterfaceRepository
 
     public function all()
     {
-        return $this->model->where('is_deleted',false)->get();
+        return $this->model->where('is_deleted',false)->orderBy('id', 'desc')->get();
     }
 
     public function store(array $attributes)

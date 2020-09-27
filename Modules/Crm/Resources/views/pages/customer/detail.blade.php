@@ -144,7 +144,7 @@
                             </dl>
                             <dl class="data-row col-md-6">
                                 <dt>Người đại diện:</dt>
-                                <dd></dd>
+                                <dd>{{ $customer->name}}</dd>
                             </dl>
 
 
