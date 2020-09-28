@@ -33,9 +33,34 @@ class ContractDetailRepository extends BaseRepository implements ContractDetailI
                                      ->get();
         $listOfProduct = [];
         foreach($products as $product) {
-            array_push($listOfProduct, DB::table('products')->find($product->product_id)->name);
+            array_push($listOfProduct, [
+                'id'     => $product->product_id, 
+                'name'   => DB::table('products')->find($product->product_id)->name,
+                'amount' => $product->amount,
+                'vat'    => DB::table('products')->find($product->product_id)->vat,
+                'price'  => DB::table('products')->find($product->product_id)->price,
+            ]);
         }
         return $listOfProduct;
+    }
+
+    public function getContractListOfEmployee($contract_id) {
+        $employees = DB::table('contract_details')->where('contract_id', $contract_id)->get();
+        $listOfEmployee = [];
+        foreach($employees as $employee) {
+            array_push($listOfEmployee, [
+                'id'      => $employee->employee_id, 
+                'name'    => DB::table('users')->find($employee->employee_id)->name,
+                'percent' => $employee->percent,
+                'product' => [
+                    'amount' => $employee->amount,
+                    'vat'    => DB::table('products')->find($employee->product_id)->vat,
+                    'price'  => DB::table('products')->find($employee->product_id)->price, 
+                    'name'   => DB::table('products')->find($employee->product_id)->name, 
+                ]
+            ]);
+        }
+        return $listOfEmployee;
     }
 
 

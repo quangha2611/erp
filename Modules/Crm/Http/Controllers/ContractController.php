@@ -86,9 +86,13 @@ class ContractController extends Controller
     }
 
     
-    public function show()
+    public function show($id)
     {
-        return view('crm::pages.contract.show');
+        $contract = $this->contract->find($id);
+        $dataView = [
+            'contract' =>$contract,
+        ];
+        return view('crm::pages.contract.detail')->with($dataView);
     }
 
     

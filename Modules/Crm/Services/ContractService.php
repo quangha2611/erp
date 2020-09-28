@@ -27,7 +27,16 @@ class ContractService
         foreach($contracts as $contract) {
             $contract['listOfProduct'] = $this->contractDetail->getContractListOfProduct($contract->id);
         }
+
         return $contracts;
+    }
+
+    public function find($id)
+    {
+        $contract = $this->contract->find($id);
+        $contract['listOfProduct'] = $this->contractDetail->getContractListOfProduct($contract->id);
+        $contract['listOfEmployee'] = $this->contractDetail->getContractListOfEmployee($contract->id);
+        return $contract;
     }
 
     public function store(array $attributes)

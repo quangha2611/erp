@@ -816,10 +816,10 @@
                 @foreach($contracts as $contract)
                     <tr class="">
                         <td class="AttId" style="display: table-cell;"><a class="text-info"
-                                href="https://erp.nhanh.vn/crm/contract/detail?id=63312">{{$contract->id}}</a>
+                                href="{{ route('get.crm.contract.show',['id' => $contract->id]) }}">{{$contract->id}}</a>
                         </td>
                         <td style="max-width: 200px; display: table-cell;" class="AttCustomerName">
-                            <a href="https://erp.nhanh.vn/crm/lead/view?id=407346">
+                            <a href="{{ route('get.crm.customer.detail', ['id' => $contract->customer->id]) }}">
                                 <span data-toggle="tooltip" data-title="Phạm Thị An">
                                     {{ $contract->customer->name }}
                                 </span>
@@ -842,7 +842,7 @@
                             @foreach($contract->listOfProduct as $product)
                                 <div>
                                     <a style="color: #F73838;" href="https://erp.nhanh.vn/crm/contract/detail?id=63312">
-                                        {{ $product }}
+                                        {{ $product['name'] }}
                                     </a>
                                 </div>
                             @endforeach

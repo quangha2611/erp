@@ -131,7 +131,7 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
 
         Route::get('/index','ContractController@index')->name('get.crm.contract.index');
 
-        Route::get('/show','ContractController@show')->name('get.crm.contract.show');
+        Route::get('/show/{id}','ContractController@show')->name('get.crm.contract.show');
 
         Route::get('/create','ContractController@create')->name('get.crm.contract.create');
 

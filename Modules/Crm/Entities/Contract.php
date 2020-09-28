@@ -34,4 +34,14 @@ class Contract extends Model
     {
         return $this->belongsTo('App\User','author','id');
     }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company','company_id','id');
+    }
+
+    public function major()
+    {
+        return $this->belongsTo('Modules\Crm\Entities\CustomerMajor','major_id','id');
+    }
 }
