@@ -27,6 +27,8 @@ use Modules\Crm\Repositories\Product\ProductInterfaceRepository;
 use Modules\Crm\Repositories\Product\ProductRepository;
 use Modules\Crm\Repositories\ContractDetail\ContractDetailRepository;
 use Modules\Crm\Repositories\ContractDetail\ContractDetailInterfaceRepository;
+use Modules\Crm\Repositories\ContractTransaction\ContractTransactionRepository;
+use Modules\Crm\Repositories\ContractTransaction\ContractTransactionInterfaceRepository;
 
 
 class CrmServiceProvider extends ServiceProvider
@@ -73,6 +75,7 @@ class CrmServiceProvider extends ServiceProvider
         $this->app->bind(ContactInterfaceRepository::class, ContactRepository::class);
         $this->app->bind(ContractDetailInterfaceRepository::class, ContractDetailRepository::class);
         $this->app->bind(ContractInterfaceRepository::class, ContractRepository::class);
+        $this->app->bind(ContractTransactionInterfaceRepository::class, ContractTransactionRepository::class);
         $this->app->bind(ProductInterfaceRepository::class, ProductRepository::class);
     }
 

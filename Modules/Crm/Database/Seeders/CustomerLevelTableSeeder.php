@@ -25,7 +25,9 @@ class CustomerLevelTableSeeder extends Seeder
             ['id' => 2, 'code' => 'L2', 'name' => 'Level 2', 'parent_id' => null],
             ['id' => 3, 'code' => 'L3', 'name' => 'Level 3', 'parent_id' => null],
             ['id' => 4, 'code' => 'L4', 'name' => 'Level 4', 'parent_id' => null],
+        ]);
 
+        CustomerLevel::insert([
             ['id' => 5, 'code' => 'L1A', 'name' => 'Level 1A', 'parent_id' => 1],
             ['id' => 6, 'code' => 'L2A', 'name' => 'Level 2A', 'parent_id' => 2],
             ['id' => 7, 'code' => 'L3A', 'name' => 'Level 3A', 'parent_id' => 3],

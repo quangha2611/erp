@@ -6,7 +6,11 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Company;
+use App\Exports\ContractExport;
 use App\User;
+use Maatwebsite\Excel\Facades\Excel;
+use Modules\Crm\Entities\ContractType;
+use Modules\Crm\Entities\ContractSignType;
 use Modules\Crm\Http\Requests\ContractRequest;
 
 use Modules\Crm\Entities\CustomerMajor;
@@ -15,8 +19,7 @@ use Modules\Crm\Services\CustomerService;
 use Modules\Crm\Services\ProductService;
 
 class ContractController extends Controller
-{
-    
+{   
     protected $contract, $customer, $product;
     public function __construct(ContractService $contract,
                                 CustomerService $customer,
@@ -25,34 +28,44 @@ class ContractController extends Controller
         $this->contract = $contract;
         $this->customer = $customer;
         $this->product  = $product;
+
+        //update contract expried
+        $contract->updateContractExpried();
     }
 
     public function index()
     {
-        $contracts = $this->contract->all();
-        // foreach($contracts as $contract) {
-        //     dd($contract);
-        // }
+        $contracts     = $this->contract->all();
+        $contractTypes = ContractType::all(); 
         $dataView = [
-            'contracts' => $contracts
+            'contracts'     => $contracts,
+            'contractTypes' => $contractTypes
         ];
         
         return view('crm::pages.contract.index')->with($dataView);
     }
 
+    public function exportExcel()
+    {
+        return Excel::download(new ContractExport($this->contract), 'orders.xlsx');
+    }
     
     public function create()
     {
-        $customers      = $this->customer->getAccount();
-        $customerMajors = $this->customer->getMajor();
-        $companies      = Company::all();
-        $users          = User::all();
+        $customers         = $this->customer->getAccount();
+        $customerMajors    = $this->customer->getMajor();
+        $companies         = Company::all();
+        $users             = User::all();
+        $contractTypes     = ContractType::all(); 
+        $contractSignTypes = ContractSignType::all(); 
 
         $viewData = [
-            'customers'      => $customers,
-            'customerMajors' => $customerMajors,
-            'companies'      => $companies,
-            'users'          => $users
+            'customers'         => $customers,
+            'customerMajors'    => $customerMajors,
+            'companies'         => $companies,
+            'users'             => $users,
+            'contractTypes'     => $contractTypes,
+            'contractSignTypes' => $contractSignTypes
         ];
 
         return view('crm::pages.contract.create')->with($viewData);
@@ -115,11 +128,42 @@ class ContractController extends Controller
 
     public function transaction()
     {
-        return view('crm::pages.contract.transaction');
+        $contractTransactions = $this->contract->getAllTransaction();
+        // dd($contractTransactions[0]->is_checked);
+        $dataView = [
+            'contractTransactions' => $contractTransactions,
+        ];
+
+        return view('crm::pages.contract.transaction')->with($dataView);
     }
 
-    public function showTransaction()
+    public function showTransaction($id)
     {
-        return view('crm::pages.contract.showTransaction');
+        // dd($id);
+        $contractTransaction = $this->contract->findTransaction($id);
+        $dataView = [
+            'contractTransaction' => $contractTransaction,
+        ];
+        // dd($contractTransaction->contract);
+        return view('crm::pages.contract.showTransaction')->with($dataView);;
+    }
+
+    public function checkTransaction(Request $request, $id)
+    {
+        //check transaction
+        $this->contract->checkTransaction($request->only(['checker_id', 'checker_time', 'is_checked']), $id);
+
+        //check contract
+        $this->contract->update($request->only(['is_checked']), $request->contract_id);
+
+        return back();
+    }
+
+    public function printContract($id)
+    {
+        $this->contract->printContract($id);
+        $fileName = 'contract'.$id.'.docx';
+        return view('crm::pages.contract.preview',compact('fileName'));
+
     }
 }

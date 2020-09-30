@@ -35,27 +35,30 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <i class="fa fa-plus-square icon text-success"></i>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a
-                                href="https://erp.nhanh.vn/crm/contract/addscheduce?contractId=63312">Thêm
-                                lịch hẹn thanh toán</a></li>
-                        <li><a class="share-contract-btn"
-                                href="https://erp.nhanh.vn/crm/contract/detail?id=63312#"
-                                data-link="/crm/contract/detail?id=63312&amp;token=4961f246e2c5ab1b84b19dc51701b8de">Lấy
-                                link chia sẻ</a></li>
+                    <ul class="dropdown-menu" style="right: 0 !important; left: unset !important">
+                        <li>
+                            <a href="https://erp.nhanh.vn/crm/contract/addscheduce?contractId=63312">
+                                Thêm lịch hẹn thanh toán
+                            </a>
+                        </li>
+                        <li>
+                            <a class="share-contract-btn" href="https://erp.nhanh.vn/crm/contract/detail?id=63312#"
+                                data-link="/crm/contract/detail?id=63312&amp;token=4961f246e2c5ab1b84b19dc51701b8de">
+                                Lấy link chia sẻ
+                            </a>
+                        </li>
                     </ul>
 
-                </div>&nbsp;<a
-                    href="https://erp.nhanh.vn/crm/contract/loadtemplatecontract?contractId=63312"
+                </div>&nbsp;
+                <a href="{{ route('get.crm.contract.preview',['id'=>$contract->id]) }}"
                     data-toggle="tooltip" data-original-title="In hợp đồng" class="btn btn-default">
-                    <i class="fa fa-print icon text-info"></i></a>&nbsp;<a class="btn btn-default"
-                    data-toggle="tooltip" data-original-title="Duyệt hợp đồng"
-                    href="https://erp.nhanh.vn/crm/contract/approve?id=63312">
-                    <i class="fa fa-check icon text-success"></i></a>&nbsp;<a id="delete-item"
-                    data-id="63312" href="https://erp.nhanh.vn/crm/contract/detail?id=63312#"
+                    <i class="fa fa-print icon text-info"></i>
+                </a>&nbsp;
+                <a id="delete-item" data-id="63312" href="https://erp.nhanh.vn/crm/contract/detail?id=63312#"
                     class="btn btn-default" data-toggle="tooltip"
                     data-original-title="Hủy hợp đồng">
-                    <i class="fa fa-minus-circle icon text-danger"></i></a>
+                    <i class="fa fa-minus-circle icon text-danger"></i>
+                </a>
             </div>
 
         </div>
@@ -65,9 +68,17 @@
             <div class="form-horizontal">
                 <fieldset style="width:100%;">
                     <div class="col-md-6">
-                        <legend>Hợp đồng <span style="font-size: 12px;font-style: italic"
-                                class="text-danger">(<i class="fa fa-warning"></i> Chưa thanh
-                                toán)</span> </legend>
+                        <legend>Hợp đồng 
+                            <span style="font-size: 12px;font-style: italic" class="{{$contract->is_checked == 0 ? 'text-danger' : 'text-success'}}">
+                                (
+                                    @if ($contract->is_checked == 0)
+                                        <i class="fa fa-warning"></i> Chưa thanh toán
+                                    @else 
+                                        <i class="fa fa-check"></i> Đã thanh toán
+                                    @endif
+                                )
+                            </span> 
+                        </legend>
                         <div class="form-group">
                             <div class="col-xs-4">Công ty kí:</div>
                             <div class="col-xs-8">
@@ -99,7 +110,7 @@
                             <div class="col-xs-4">Loại HĐ:</div>
                             <div class="col-xs-8">
                                 <span>
-                                    <b>{{$contract->contract_type}} ({{$contract->sign_type}})</b>
+                                    <b>{{ $contract->type->name }} ({{ $contract->signType->name }} )</b>
                                 </span>
                             </div>
                         </div>
@@ -398,11 +409,20 @@
                                 </tr>
                                 <tr>
                                     <td colspan="7" style="text-align: left"><b>Đã trả</b></td>
-                                    <td class="col-align-right"></td>
+                                    @if($contract->is_checked == 1)
+                                        <td class="col-align-right">{{ number_format($totalAllMoney) }}</td>
+                                    @else
+                                        <td class="col-align-right">0</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td colspan="7" style="text-align: left"><b>Còn lại</b></td>
-                                    <td class="col-align-right">{{ number_format($totalAllMoney) }}</td>
+                                    @if($contract->is_checked == 1)
+                                        <td class="col-align-right">0</td>
+                                    @else
+                                        <td class="col-align-right">{{ number_format($totalAllMoney) }}</td>
+                                    @endif
+
                                 </tr>
                             </tbody>
                         </table>

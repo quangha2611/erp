@@ -46,9 +46,12 @@
                         <span class="fa fa-cog"></span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="https://erp.nhanh.vn/crm/contract/index#"
-                                class="exportExcel"><i class="fa fa-file-excel-o"></i> Xuất
-                                excel trang hiện tại</a></li>
+                        <li>
+                            <a href="{{ route('get.crm.contract.exportExcel') }}" lass="exportExcel" target="_blank">
+                                <i class="fa fa-file-excel-o"></i> 
+                                Xuất excel trang hiện tại
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -59,7 +62,7 @@
                     <span class="fa fa-th"></span>
                 </button>
             </div>
-            <div class="col-md-12 lolify-extend" style="">
+            <div class="col-md-12 lolify-extend" style="display: none">
                 <div class="form-group">
                     <input type="text" name="customerName" maxlength="225"
                         placeholder="Khách hàng hệ thống" data-toggle="tooltip"
@@ -204,15 +207,9 @@
                 <div class="form-group">
                     <select name="serviceType" id="serviceType" class="form-control">
                         <option value="">- Loại -</option>
-                        <option value="1">HĐ dịch vụ</option>
-                        <option value="3">HĐ đặt cọc</option>
-                        <option value="4">HĐ phụ lục</option>
-                        <option value="5">HĐ đại lý</option>
-                        <option value="6">HĐ Hợp tác</option>
-                        <option value="7">HĐ Marketing</option>
-                        <option value="8">HĐ Cộng tác viên</option>
-                        <option value="9">HĐ Phần cứng</option>
-                        <option value="10">HĐ vận chuyển</option>
+                        @foreach ($contractTypes as $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        @endforeach
                     </select> </div>
                 <div class="form-group">
                     <select name="typeAccount" id="typeAccount" class="form-control">
@@ -813,7 +810,17 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $totalAllContractValue = 0; 
+                    $totalAllContractValueChecked = 0;
+                @endphp
                 @foreach($contracts as $contract)
+                    @php
+                        $totalAllContractValue += intval($contract->totalValue); 
+                        if ($contract->is_checked == 1) {
+                            $totalAllContractValueChecked += intval($contract->totalValue); 
+                        }
+                    @endphp
                     <tr class="">
                         <td class="AttId" style="display: table-cell;"><a class="text-info"
                                 href="{{ route('get.crm.contract.show',['id' => $contract->id]) }}">{{$contract->id}}</a>
@@ -834,9 +841,14 @@
                             </label>
                         </td>
                         <td class="AttAmount colNb" style="display: table-cell;">{{ number_format($contract->totalValue) }}</td>
-                        <td class="AttPaid colNb" style="display: table-cell;"><a
-                                style="color: #F73838;"
-                                href="https://erp.nhanh.vn/crm/contract/transaction?contractId=63312">0</a>
+                        <td class="AttPaid colNb" style="display: table-cell;">
+                            <p style="color: #F73838;">
+                                @if ($contract->is_checked == 1)
+                                    {{ number_format($contract->totalValue) }}
+                                @else
+                                    0
+                                @endif
+                            </p>
                         </td>
                         <td style="max-width: 160px; display: table-cell;" class="AttProduct">
                             @foreach($contract->listOfProduct as $product)
@@ -851,16 +863,16 @@
                             <div data-toggle="tooltip" data-original-title="Ngày tạo: {{ $contract->created_at }} ">
                                 <i class="fa fa-github-alt"></i> {{ $contract->user->name }}</div>
                         </td>
-                        <td class="colStatus AttType" style="display: table-cell;">{{ $contract->sign_type }}</td>
+                        <td class="colStatus AttType" style="display: table-cell;">{{ $contract->signType->name }}</td>
                         <td style="text-align: center; display: table-cell;" class="colStatus AttApprovedById">
-                            <a data-toggle="tooltip" title="" data-original-title="Bấm để duyệt">
+                            <a data-toggle="tooltip" title="">
                                 @if($contract->is_checked == 0)
-                                    <b>Chưa duyệt</b>
+                                    <b data-original-title="Bấm để duyệt">Chưa duyệt</b>
                                 @else
                                     <span class="text-success" data-toggle="tooltip" title="" data-original-title="Đã duyệt">
-                                        Nguyễn Hoàng Long
+                                        {{ $contract->transaction->checker->name }}
                                         <br>
-                                        <i class=" text-muted fontsize-85">16:32 24/07</i>
+                                        <i class=" text-muted fontsize-85">{{ $contract->transaction->checker_time }}</i>
                                     </span>
                                 @endif
                             </a>
@@ -881,10 +893,14 @@
                 <tr>
                     <td><b>Tổng</b></td>
                     <td></td>
-                    <td class="AttAmount colNb" style="display: table-cell;"><b>291.848.900</b>
+                    <td class="AttAmount colNb" style="display: table-cell;"><b>{{ number_format($totalAllContractValue) }}</b>
                     </td>
-                    <td class="AttAmount colNb" style="display: table-cell;"><b>81.937.000</b>
+                    <td class="AttAmount colNb" style="display: table-cell;"><b>{{ number_format($totalAllContractValueChecked) }}</b>
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                 </tr>
             </tbody>

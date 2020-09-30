@@ -27,5 +27,8 @@ class CrmDatabaseSeeder extends Seeder
         $this->call(CustomerUserTableSeeder::class);
         $this->call(CustomerStatusTableSeeder::class);
         $this->call(ProductTableSeeder::class);
+        $this->call(ContractTypeTableSeeder::class);
+        $this->call(ContractSignTypeTableSeeder::class);
+        $this->call(ContractTransactionTableSeeder::class);
     }
 }

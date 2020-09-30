@@ -15,11 +15,9 @@ class ContractRepository extends BaseRepository implements ContractInterfaceRepo
 
     public function store(array $attributes)
     {
-        // dd($attributes);
         $newContract = $this->model->create($attributes);
         return $newContract;
     }
-
 }
 
 

@@ -2,18 +2,23 @@
 
 namespace Modules\Crm\Services;
 
+use Illuminate\Support\Facades\Storage;
 use Modules\Crm\Repositories\Contract\ContractInterfaceRepository;
 use Modules\Crm\Repositories\ContractDetail\ContractDetailInterfaceRepository;
+use Modules\Crm\Repositories\ContractTransaction\ContractTransactionInterfaceRepository;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class ContractService
 {
-    protected $contract, $contractDetail; 
+    protected $contract, $contractDetail, $contractTransaction; 
 
     public function __construct(ContractInterfaceRepository $contract,
-                                ContractDetailInterfaceRepository $contractDetail)
+                                ContractDetailInterfaceRepository $contractDetail,
+                                ContractTransactionInterfaceRepository $contractTransaction)
     {
-        $this->contract       = $contract;
-        $this->contractDetail = $contractDetail;
+        $this->contract            = $contract;
+        $this->contractDetail      = $contractDetail;
+        $this->contractTransaction = $contractTransaction;
     }
 
     public function all()
@@ -63,5 +68,56 @@ class ContractService
 
     }
 
+
+    public function getAllTransaction()
+    {
+        $contractTransactions = $this->contractTransaction->all();
+        foreach( $contractTransactions as $contractTransaction ) {
+            // $contractTransaction->contract['listOfProduct']  = $this->contractDetail->getContractListOfProduct($contractTransaction->contract->id);
+            // $contractTransaction->contract['listOfEmployee'] = $this->contractDetail->getContractListOfEmployee($contractTransaction->contract->id);
+            $contractTransaction->contract['totalValue']     = $this->contractDetail->getContractTotalValue($contractTransaction->contract->id);
+
+        }
+        return $contractTransactions;
+    }
+
+    public function findTransaction($id)
+    {
+        $contractTransaction = $this->contractTransaction->find($id);
+
+        $contractTransaction->contract['listOfProduct']  = $this->contractDetail->getContractListOfProduct($contractTransaction->contract->id);
+        $contractTransaction->contract['listOfEmployee'] = $this->contractDetail->getContractListOfEmployee($contractTransaction->contract->id);
+        $contractTransaction->contract['totalValue']     = $this->contractDetail->getContractTotalValue($contractTransaction->contract->id);
+        return $contractTransaction;
+    }
+
+    public function checkTransaction(array $attributes, $id)
+    {
+        $this->contractTransaction->update($attributes, $id);
+    }
+
+    public function update(array $attributes, $id)
+    {
+        $this->contract->update($attributes, $id);
+    }
+
+    public function updateContractExpried()
+    {
+        // $this->contract->updateContractExpried();
+    }
+
+    public function printContract($id)
+    {
+        $templateProcessor = new TemplateProcessor('storage/crm/template/contract.docx');
+
+        $templateProcessor->setValues(
+            [
+                'test' => 'alo',
+            ]
+        );
+
+        $templateProcessor->saveAs('storage/crm/template/contract'.$id.'.docx');
+
+    }
 
 }

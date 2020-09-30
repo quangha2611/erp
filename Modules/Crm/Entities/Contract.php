@@ -16,6 +16,7 @@ class Contract extends Model
         'expired_date', // Ngày kết thúc
         'contract_type', // Loại hợp đồng
         'sign_type', // Hình thức ký
+        'is_checked',
         'description',
         'author',
     ];
@@ -43,5 +44,20 @@ class Contract extends Model
     public function major()
     {
         return $this->belongsTo('Modules\Crm\Entities\CustomerMajor','major_id','id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('Modules\Crm\Entities\ContractType','contract_type', 'id');
+    }
+
+    public function signType()
+    {
+        return $this->belongsTo('Modules\Crm\Entities\ContractSignType','sign_type', 'id');
+    }
+
+    public function transaction()
+    {
+        return $this->belongsTo('Modules\Crm\Entities\ContractTransaction', 'id', 'contract_id');
     }
 }

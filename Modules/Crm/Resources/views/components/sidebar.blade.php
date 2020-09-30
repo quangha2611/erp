@@ -81,51 +81,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class=""><a class="js-sub-menu-toggle" rel="/crm/service/index"><i
-                                    class="fa fa-home"></i> <span class="text">Gian hàng</span> <i
-                                    class="toggle-icon fa fa-angle-left"></i></a>
-                            <ul class="sub-menu ">
-                                <li class=""><a class="" href="{{ route('serviceIndex') }}"><i
-                                            class="fa fa-list"></i> <span class="text">Danh sách Gian
-                                            hàng</span></a></li>
-                                <li class=""><a class="" href="{{ route('serviceExpried') }}"><i
-                                            class="fa fa-list"></i> <span class="text">Gian hàng sắp hết
-                                            hạn</span></a></li>
-                                <li class=""><a class=""
-                                        href="{{ route('serviceExpriedDate') }}"><i
-                                            class="fa fa-list"></i> <span class="text">Gian hàng hết
-                                            hạn</span></a></li>
-                                <li class=""><a class=""
-                                        href="{{ route('serviceIndexuser') }}"><i
-                                            class="fa fa-user"></i> <span class="text">Gian hàng bạn chăm
-                                            sóc</span></a></li>
-                            </ul>
-                        </li>
-                        <li class=""><a class="js-sub-menu-toggle" rel="/crm/auction/index"><i
-                                    class="fa fa-gavel"></i> <span class="text">Đấu giá</span> <i
-                                    class="toggle-icon fa fa-angle-left"></i></a>
-                            <ul class="sub-menu ">
-                                <li class=""><a class="" href="{{ route('auctionJoin') }}"><i
-                                            class="fa fa-users"></i> <span class="text">Tham gia đấu
-                                            giá</span></a></li>
-                                <li class=""><a class=""
-                                        href="{{ route('auctionIndexuser') }}"><i
-                                            class="fa fa-user"></i> <span class="text">Phiên đấu giá bạn
-                                            tham gia</span></a></li>
-                                <li class=""><a class="" href="{{ route('auctionAdd') }}"><i
-                                            class="fa fa-plus"></i> <span class="text">Thêm phiên đấu
-                                            giá</span></a></li>
-                            </ul>
-                        </li>
-                        <li class=""><a class="js-sub-menu-toggle" rel="/crm/keyword/index"><i
-                                    class="fa fa-search"></i> <span class="text">Từ khóa</span> <i
-                                    class="toggle-icon fa fa-angle-left"></i></a>
-                            <ul class="sub-menu ">
-                                <li class=""><a class="" href="{{ route('keywordIndex') }}""><i
-                                            class="fa fa-list"></i> <span class="text">Danh sách từ
-                                            khóa</span></a></li>
-                            </ul>
-                        </li>
                         <li class=""><a class="js-sub-menu-toggle" rel="/crm/contact/index"><i
                                     class="fa fa-user"></i> <span class="text">Liên hệ</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
@@ -138,7 +93,7 @@
                                             hệ</span></a></li>
                             </ul>
                         </li>
-                        <li class=""><a class="js-sub-menu-toggle" rel="/crm/requirement/indexvg"><i
+                        {{-- <li class=""><a class="js-sub-menu-toggle" rel="/crm/requirement/indexvg"><i
                                     class="fa fa-cogs"></i> <span class="text">Thực hiện dịch vụ VG</span>
                                 <i class="toggle-icon fa fa-angle-left"></i></a>
                                 <ul class="sub-menu">
@@ -179,7 +134,7 @@
                                             class="fa fa-bar-chart-o"></i> <span class="text">Yêu cầu task khách hàng</span> </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class=""><a class="js-sub-menu-toggle" rel="/crm/contract/index"><i
                                     class="fa fa-book"></i> <span class="text">Hợp đồng</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>

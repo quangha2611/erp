@@ -21,7 +21,7 @@ class ContractDetailRepository extends BaseRepository implements ContractDetailI
                                      ->get();
         $totalValue = 0;
         foreach($products as $product) {
-            $totalValue += DB::table('products')->find($product->product_id)->price * $product->amount;
+            $totalValue += DB::table('products')->find($product->product_id)->price * $product->amount * (DB::table('products')->find($product->product_id)->vat + 100) / 100;
         }
         return $totalValue;
     }

@@ -20,4 +20,8 @@ interface CustomerInterfaceRepository extends BaseInterfaceRepository
     
     public function freeCustomer();
 
+    public function filter(array $attributes);
+
+    public function findByInfo(array $attributes);
+
 }

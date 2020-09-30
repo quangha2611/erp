@@ -359,15 +359,9 @@
                                     <select name="contract_type" id="serviceType"
                                         class="inputRequired form-control">
                                         <option value="">- Loại HĐ -</option>
-                                        <option value="1">HĐ dịch vụ</option>
-                                        <option value="3">HĐ đặt cọc</option>
-                                        <option value="4">HĐ phụ lục</option>
-                                        <option value="5">HĐ đại lý</option>
-                                        <option value="6">HĐ Hợp tác</option>
-                                        <option value="7">HĐ Marketing</option>
-                                        <option value="8">HĐ Cộng tác viên</option>
-                                        <option value="9">HĐ Phần cứng</option>
-                                        <option value="10">HĐ vận chuyển</option>
+                                        @foreach ($contractTypes as $type)
+                                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                        @endforeach
                                     </select> 
                                     @error('contract_type')
                                         <p class="text-danger">{{$message}}</p>
@@ -381,10 +375,9 @@
                                 <div class="col-md-8">
                                     <select name="sign_type" id="type" class="form-control">
                                         <option value="">- Hình thức kí -</option>
-                                        <option value="1">Kí mới</option>
-                                        <option value="2">Tái kí</option>
-                                        <option value="3">Mở rộng</option>
-                                        <option value="4">Bán chéo</option>
+                                        @foreach ($contractSignTypes as $signType)
+                                            <option value="{{ $signType->id }}">{{ $signType->name }}</option>
+                                        @endforeach
                                     </select> 
                                     @error('sign_type')
                                         <p class="text-danger">{{$message}}</p>

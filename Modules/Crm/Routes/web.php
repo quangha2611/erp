@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +12,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
     Route::prefix('/calendar')->group(function(){
@@ -127,7 +130,7 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
     });
 
     Route::prefix('/contract')->group(function(){
-        Route::post('/test','ContractController@test')->name('test');
+        Route::get('/export','ContractController@exportExcel')->name('get.crm.contract.exportExcel');
 
         Route::get('/index','ContractController@index')->name('get.crm.contract.index');
 
@@ -145,7 +148,11 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
 
         Route::get('/transaction','ContractController@transaction')->name('get.crm.contract.transaction');
 
-        Route::get('/showtransaction','ContractController@showTransaction')->name('get.crm.contract.showtransaction');
+        Route::get('/showtransaction/{id}','ContractController@showTransaction')->name('get.crm.contract.showtransaction');
+   
+        Route::post('/checktransaction/{id}','ContractController@checkTransaction')->name('post.crm.contract.checktransaction');
+
+        Route::get('/printContract/{id}','ContractController@printContract')->name('get.crm.contract.preview');
     });
 });
 

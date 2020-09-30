@@ -15,12 +15,10 @@ class CustomerMajorTableSeeder extends Seeder
 
         // $this->call("OthersTableSeeder");
         CustomerMajor::query()->truncate();
-
-        CustomerMajor::insert([
-            ['id' => 1, 'name' => 'Chuyên ngành 1',],
-            ['id' => 2, 'name' => 'Chuyên ngành 2',],
-            ['id' => 3, 'name' => 'Chuyên ngành 3',],
-            ['id' => 4, 'name' => 'Chuyên ngành 4',],
-        ]);
+        for($i=1; $i<=15; $i++) {
+            CustomerMajor::insert([
+                ['name' => 'Chuyên ngành '.$i,],
+            ]);
+        }
     }
 }

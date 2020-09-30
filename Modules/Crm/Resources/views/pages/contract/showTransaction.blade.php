@@ -23,10 +23,19 @@
         <em>Các trường có dấu * là bắt buộc phải nhập</em>
         <div style="float:right;" class="bt-group">
 
-
-            <a href="https://erp.nhanh.vn/crm/contract/confirmtransaction?id=76816"
-                data-toggle="tooltip" data-original-title="Duyệt phiếu thu"
-                class="btn btn-warning"><i class="fa fa-check"></i></a>
+            @if($contractTransaction->is_checked == 0)
+                <a href="#" data-toggle="tooltip" data-original-title="Duyệt phiếu thu" class="btn btn-warning"  onclick="event.preventDefault() ,document.getElementById('checkTransaction').click()">
+                    <i class="fa fa-check"></i>
+                </a>
+                <form action="{{ route('post.crm.contract.checktransaction', ['id' => $contractTransaction->id]) }}" method="POST" onsubmit="return confirm('Sure?')" style="display: none">
+                    @csrf
+                    <input type="hidden" name="checker_id" value="{{Auth::user()->id}}"/>
+                    <input type="hidden" name="checker_time" value="{{ date("Y-m-d H:i:s") }}"/>
+                    <input type="hidden" name="is_checked" value="1"/>
+                    <input type="hidden" name="contract_id" value="{{$contractTransaction->contract_id}}">
+                    <input type="submit" id="checkTransaction"/>
+                </form>
+            @endif
             <a href="https://erp.nhanh.vn/crm/contract/edittransaction?id=76816"
                 data-toggle="tooltip" data-original-title="Sửa phiếu thu"
                 class="btn btn-warning"><i class="fa fa-edit"></i></a>
@@ -39,7 +48,7 @@
             <fieldset style="width:100%;">
                 <input type="hidden" name="status" value="" id="status">
 
-                <div class="col-md-6 col-xs-12">
+                <div class="col-md-6">
                     <legend>Thanh toán</legend>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Ngày tính doanh số: </label>
@@ -51,37 +60,41 @@
                         <label class="col-md-4 ">Loại phiếu: </label>
                         <div class="col-md-8">
                             <span class=" ">
-                                Phiếu thu </span>
+                                Phiếu thu 
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Hình thức thanh toán: </label>
                         <div class="col-md-8">
                             <span class=" ">
-                                Chuyển khoản </span>
+                                @if($contractTransaction->type_id == 0)
+                                    {{ 'Tiền mặt' }}
+                                @else
+                                    {{ 'Chuyển khoản' }}
+                                @endif
+                            </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label class="col-md-4 col-xs-4">Quỹ: </label>
                         <div class="col-md-8">
                             <span class=" ">
                                 Nhanh HCM 2019 (Chuyển khoản) </span>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Số tiền: </label>
                         <div class="col-md-8">
                             <span class=" ">
-                                <b>6.000.000</b>
+                                <b>{{ number_format($contractTransaction->contract['totalValue']) }}</b>
                             </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4"> Mô tả: </label>
                         <div class="col-md-8">
-                            <div rows="4" cols="" name="description" class=" -refixheight ">TCB
-                                23/07/2020 FT20205A04010690\XNV 6.000.000 (B/O CTY TNHH SCCV)
-                                HBSCCV- 0908481124- TTHD SO 63135</div>
+                            <div rows="4" cols="" name="description" class=" -refixheight ">{{ $contractTransaction->description }}</div>
                         </div>
                     </div>
 
@@ -95,51 +108,44 @@
                             Tên khách hàng:
                         </label>
                         <div class="col-md-8">
-                            <a href="https://erp.nhanh.vn/crm/lead/view?id=404816">CÔNG TY TNHH
-                                SCCV</a>
+                            <a href="https://erp.nhanh.vn/crm/lead/view?id=404816">{{ $contractTransaction->contract->customer->name }}</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">
                             Loại khách hàng:
                         </label>
-                        <div class="col-md-8">
-                            Công ty </div>
+                        <div class="col-md-8">{{ $contractTransaction->contract->customer->type->name }}</div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">
                             Số điện thoại:
                         </label>
-                        <div class="col-md-8">
-                            0908481124 </div>
+                        <div class="col-md-8">{{ $contractTransaction->contract->customer->phone }}</div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">
                             Email:
                         </label>
-                        <div class="col-md-8">
-                            sccvtrading@gmail.com </div>
+                        <div class="col-md-8">{{ $contractTransaction->contract->customer->email }}</div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">
                             Địa chỉ:
                         </label>
-                        <div class="col-md-8 ">
-                            159/74/32 Trần Văn Đang, Phường 11, Q.3, TPHCM, Việt Nam </div>
+                        <div class="col-md-8 ">{{ $contractTransaction->contract->customer->address }} </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">
                             CMND:
                         </label>
-                        <div class="col-md-8">
-                            - - </div>
+                        <div class="col-md-8">{{ $contractTransaction->contract->customer->identification }}</div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">
                             Mã số thuế:
                         </label>
-                        <div class="col-md-8">
-                            0315679811 </div>
+                        <div class="col-md-8">{{ $contractTransaction->contract->customer->type->taxcode }}</div>
                     </div>
                 </div>
 
@@ -148,68 +154,69 @@
 
                 <div class="col-md-6">
                     <legend>Hợp đồng
-                        (<a href="https://erp.nhanh.vn/crm/contract/detail?id=63135">
-                            63135 </a>)
+                        (<a href="https://erp.nhanh.vn/crm/contract/detail?id=63135">{{ $contractTransaction->contract->id }}</a>)
                     </legend>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Giá trị:</label>
                         <div class="col-md-8">
                             <a target="_blank"
                                 href="https://erp.nhanh.vn/crm/contract/detail?id=63135">
-                                6.000.000 </a>
+                                {{ number_format($contractTransaction->contract['totalValue']) }} </a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Loại HĐ:</label>
                         <div class="col-md-8">
-                            <span class=" ">
-                                HĐ dịch vụ </span>
+                            <span class=" ">{{ $contractTransaction->contract->type->name }}</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Hình thức kí:</label>
                         <div class="col-md-8">
-                            <span class=" ">
-                                Kí mới </span>
+                            <span class=" ">{{ $contractTransaction->contract->signType->name }}</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Ngày bắt đầu:</label>
                         <div class="col-md-8">
-                            <span class=" ">
-                                27/07/2020 </span>
+                            <span class=" ">{{ $contractTransaction->contract->start_date }}</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Ngày kết thúc:</label>
                         <div class="col-md-8">
-                            <span class=" ">
-                                27/07/2021 </span>
+                            <span class=" ">{{ $contractTransaction->contract->end_date }}</span>
                         </div>
                     </div>
 
                 </div>
-                <div class="col-md-6 col-xs-12">
-                    <legend>Tình trạng duyệt <i class="text-info"
-                            style="font-size: 14px;">(Mới)</i></legend>
+                <div class="col-md-6">
+                    <legend>Tình trạng duyệt</legend>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Người duyệt/ hủy: </label>
                         <div class="col-md-8">
-                            <span class="text-info"></span>
+                            <span class="text-info">
+                                @if ($contractTransaction->checker_id != null)
+                                    {{ $contractTransaction->checker->name }}
+                                @endif
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Người tạo: </label>
                         <div class="col-md-8">
                             <span class="">
-                                <b>Huỳnh Ngọc Hải</b><br> Nhanh HCM - Nhóm KD9_ThưNTA | Vật giá
-                                - Hồ Chí Minh</span>
+                                <b>{{ $contractTransaction->user->name }}</b></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 col-xs-4">Ngày duyệt/ hủy: </label>
                         <div class="col-md-8">
-                            <span class=""></span>
+                            <span class="">
+                                @if ($contractTransaction->checker_time != null)
+                                    {{ $contractTransaction->checker_time }}
+                                @endif
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -258,14 +265,17 @@
                                 <tr></tr>
                             </thead>
                             <tbody>
-                                <tr class="even">
-                                    <td>Gói Premium - QLBH</td>
-                                    <td class="col-align-right">6.000.000</td>
-                                    <td class="col-align-right">100%</td>
-                                </tr>
+                                @foreach ($contractTransaction->contract['listOfProduct'] as $product)
+                                    <tr class="even">
+                                        <td>{{ $product['name'] }}</td>
+                                        <td class="col-align-right">{{ number_format(intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) }}</td>
+                                        <td class="col-align-right">{{ round((intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) 
+                                                                        *100 / intval($contractTransaction->contract['totalValue'])).'%' }}</td>
+                                    </tr>
+                                @endforeach
                                 <tr class="success">
                                     <td><b>Tổng</b></td>
-                                    <td class="col-align-right ">6.000.000</td>
+                                    <td class="col-align-right ">{{ number_format($contractTransaction->contract['totalValue']) }}</td>
                                     <td class="col-align-right ">100%</td>
                                 </tr>
                             </tbody>
@@ -283,7 +293,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>STT</th>
+                                <th>ID</th>
                                 <th>Sản phẩm</th>
                                 <th class="colNb">Số lượng</th>
                                 <th class="colNb">Số tháng</th>
@@ -295,17 +305,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Gói Premium - QLBH</td>
-                                <td class="colNb">1</td>
-                                <td class="colNb">12</td>
-                                <td class="colNb">500.000</td>
-                                <td class="colNb"></td>
-                                <td class="colNb"></td>
-                                <td class="colNb">3</td>
-                                <td class="colNb">6.000.000</td>
-                            </tr>
+                            @foreach ($contractTransaction->contract['listOfProduct'] as $product)
+                                <tr>
+                                    <td>{{ $product['id'] }}</td>
+                                    <td>{{ $product['name'] }}</td>
+                                    <td class="colNb">{{ $product['amount'] }}</td>
+                                    <td class="colNb">12</td>
+                                    <td class="colNb">{{ number_format($product['price']) }}</td>
+                                    <td class="colNb">{{ $product['vat'] }}</td>
+                                    <td class="colNb"></td>
+                                    <td class="colNb"></td>
+                                    <td class="colNb">{{ number_format(intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) }}</td>
+                                </tr>
+                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div>
@@ -352,14 +365,17 @@
                                 <tr></tr>
                             </thead>
                             <tbody>
-                                <tr class="even">
-                                    <td>Gói Premium - QLBH</td>
-                                    <td class="col-align-right">6.000.000</td>
-                                    <td class="col-align-right">100%</td>
-                                </tr>
+                                @foreach ($contractTransaction->contract['listOfProduct'] as $product)
+                                    <tr class="even">
+                                        <td>{{ $product['name'] }}</td>
+                                        <td class="col-align-right">{{ number_format(intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) }}</td>
+                                        <td class="col-align-right">{{ round((intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) 
+                                                                        *100 / intval($contractTransaction->contract['totalValue'])).'%' }}</td>
+                                    </tr>
+                                @endforeach
                                 <tr class="success">
                                     <td><b>Tổng</b></td>
-                                    <td class="col-align-right ">6.000.000</td>
+                                    <td class="col-align-right ">{{ number_format($contractTransaction->contract['totalValue']) }}</td>
                                     <td class="col-align-right ">100%</td>
                                 </tr>
                             </tbody>
@@ -610,7 +626,7 @@
             </fieldset>
         </div>
     </form>
-    <div class="modal fade" id="errorModal">
+    {{-- <div class="modal fade" id="errorModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -629,7 +645,7 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <div id="myModal" class="modal fade">
+    <div id="modalCheck" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -889,7 +905,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <script>
         var contractId = '63135';
@@ -991,6 +1007,9 @@
             top: 30px;
             padding: 10px;
             min-width: 250px;
+        }
+        .table-bordered > tbody > tr > td, .table > tbody > tr > td, .table > thead > tr > th {
+            text-align: center !important;
         }
     </style>
 </div>
