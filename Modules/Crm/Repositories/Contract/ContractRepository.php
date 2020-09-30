@@ -18,6 +18,19 @@ class ContractRepository extends BaseRepository implements ContractInterfaceRepo
         $newContract = $this->model->create($attributes);
         return $newContract;
     }
+
+    public function updateContractExpried()
+    {
+        $today = date("Y-m-d");
+        $this->model->where('expired_date','<',$today)->update(['is_deleted' => 1]);
+        return true;
+    }
+
+    public function expired()
+    {
+        $contracts = $this->model->where('is_deleted',false)->orderBy('expired_date', 'desc')->get();
+        return $contracts;
+    }
 }
 
 

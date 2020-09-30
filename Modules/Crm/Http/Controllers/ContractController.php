@@ -159,6 +159,15 @@ class ContractController extends Controller
         return back();
     }
 
+    public function contractExpired()
+    {
+        $contracts = $this->contract->expired();
+        $dataView  = [
+            'contracts' => $contracts,
+        ]; 
+        return view('crm::pages.contract.expired')->with($dataView);
+    }
+
     public function printContract($id)
     {
         $this->contract->printContract($id);

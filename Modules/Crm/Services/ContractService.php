@@ -103,7 +103,7 @@ class ContractService
 
     public function updateContractExpried()
     {
-        // $this->contract->updateContractExpried();
+        $this->contract->updateContractExpried();
     }
 
     public function printContract($id)
@@ -118,6 +118,11 @@ class ContractService
 
         $templateProcessor->saveAs('storage/crm/template/contract'.$id.'.docx');
 
+    }
+
+    public function expired()
+    {
+        return $this->contract->expired();
     }
 
 }

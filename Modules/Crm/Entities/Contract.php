@@ -17,6 +17,7 @@ class Contract extends Model
         'contract_type', // Loại hợp đồng
         'sign_type', // Hình thức ký
         'is_checked',
+        'is_deleted',
         'description',
         'author',
     ];

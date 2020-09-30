@@ -6,7 +6,9 @@ use  Modules\Crm\Repositories\BaseInterfaceRepository;
 
 interface ContractInterfaceRepository extends BaseInterfaceRepository
 {
+    public function updateContractExpried();
 
+    public function expired();
 }
 
 

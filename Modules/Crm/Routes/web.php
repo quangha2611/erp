@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -152,7 +150,8 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
    
         Route::post('/checktransaction/{id}','ContractController@checkTransaction')->name('post.crm.contract.checktransaction');
 
+        Route::get('/expired','ContractController@contractExpired')->name('get.crm.contract.contractexpired');
+
         Route::get('/printContract/{id}','ContractController@printContract')->name('get.crm.contract.preview');
     });
 });
-
