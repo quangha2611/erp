@@ -29,7 +29,8 @@ use Modules\Crm\Repositories\ContractDetail\ContractDetailRepository;
 use Modules\Crm\Repositories\ContractDetail\ContractDetailInterfaceRepository;
 use Modules\Crm\Repositories\ContractTransaction\ContractTransactionRepository;
 use Modules\Crm\Repositories\ContractTransaction\ContractTransactionInterfaceRepository;
-
+use Modules\Crm\Repositories\Template\TemplateInterfaceRepository;
+use Modules\Crm\Repositories\Template\TemplateRepository;
 
 class CrmServiceProvider extends ServiceProvider
 {
@@ -77,6 +78,7 @@ class CrmServiceProvider extends ServiceProvider
         $this->app->bind(ContractInterfaceRepository::class, ContractRepository::class);
         $this->app->bind(ContractTransactionInterfaceRepository::class, ContractTransactionRepository::class);
         $this->app->bind(ProductInterfaceRepository::class, ProductRepository::class);
+        $this->app->bind(TemplateInterfaceRepository::class, TemplateRepository::class);
     }
 
     protected function registerConfig()

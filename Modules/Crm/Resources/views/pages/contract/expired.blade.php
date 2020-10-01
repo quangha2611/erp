@@ -1597,7 +1597,7 @@
                         </td>
                         <td class="col-align-left text-success"><a
                                 href="https://erp.nhanh.vn/crm/contract/detail?id=5584"><i
-                                    class="fa fa-check text-success"></i> 27/05/2106</a></td>
+                                    class="fa fa-check text-success"></i>{{ $contract->expired_date }}</a></td>
                         <td class="col-align-left">{{ $contract->type->name }} ({{ $contract->signType->name }})</td>
                         <td class="col-align-left"></td>
                     </tr>
@@ -1605,7 +1605,7 @@
             </tbody>
             <tbody id="monthLeft" class="hide">
                 @foreach ($contracts as $contract)
-                    @if ( strtotime($contract->expired_date) - strtotime(date('Y-m-d')) < 30 )
+                    @if ( (strtotime($contract->expired_date) - strtotime(date('Y-m-d')))/60/60/24 < 30 )
                         <tr class="">
                             <td class="">
                                 <div class="dropdown">

@@ -6,19 +6,22 @@ use Illuminate\Support\Facades\Storage;
 use Modules\Crm\Repositories\Contract\ContractInterfaceRepository;
 use Modules\Crm\Repositories\ContractDetail\ContractDetailInterfaceRepository;
 use Modules\Crm\Repositories\ContractTransaction\ContractTransactionInterfaceRepository;
+use Modules\Crm\Repositories\Template\TemplateInterfaceRepository;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class ContractService
 {
-    protected $contract, $contractDetail, $contractTransaction; 
+    protected $contract, $contractDetail, $contractTransaction, $template; 
 
     public function __construct(ContractInterfaceRepository $contract,
                                 ContractDetailInterfaceRepository $contractDetail,
-                                ContractTransactionInterfaceRepository $contractTransaction)
+                                ContractTransactionInterfaceRepository $contractTransaction,
+                                TemplateInterfaceRepository $template)
     {
         $this->contract            = $contract;
         $this->contractDetail      = $contractDetail;
         $this->contractTransaction = $contractTransaction;
+        $this->template            = $template;
     }
 
     public function all()
@@ -108,21 +111,35 @@ class ContractService
 
     public function printContract($id)
     {
-        $templateProcessor = new TemplateProcessor('storage/crm/template/contract.docx');
+        //get contract
+        $contract = $this->contract->find($id);
+
+        //insert data
+        $templateProcessor = new TemplateProcessor('storage/crm/contract/template/'.$contract->type->template->name.'.docx');
 
         $templateProcessor->setValues(
             [
-                'test' => 'alo',
+                'data' => 'Data from contract'.$id,
             ]
         );
-
-        $templateProcessor->saveAs('storage/crm/template/contract'.$id.'.docx');
+        //download contract 
+        $templateProcessor->saveAs('storage/crm/contract/download/contract'.$id.'.docx');
 
     }
 
     public function expired()
     {
         return $this->contract->expired();
+    }
+
+    public function getAllContractTemplate()
+    {
+        return $this->template->all();
+    }
+
+    public function storeTemplate(array $attributes)
+    {
+        return $this->template->store($attributes);
     }
 
 }

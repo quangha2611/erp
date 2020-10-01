@@ -154,15 +154,15 @@
                                             class="fa fa-calendar"></i> <span class="text">Lịch hẹn thanh
                                             toán</span></a></li>
                                 <li class=""><a class=""
-                                        href="{{ route('customerProductexpried') }}"><i
+                                        href="{{ route('get.crm.contract.contractexpired') }}"><i
                                             class="fa fa-clock-o"></i> <span class="text">Các hợp đồng hết
                                             hạn</span></a></li>
                                 <li class=""><a class=""
-                                        href="{{ route('contractTemplate') }}"><i
+                                        href="{{ route('get.crm.contract.template') }}"><i
                                             class="fa fa-list"></i> <span class="text">Danh sách mẫu
                                             in</span></a></li>
                                 <li class=""><a class=""
-                                        href="{{ route('contractAddTemplate') }}"><i
+                                        href="{{ route('get.crm.contract.addTemplate') }}"><i
                                             class="fa fa-plus"></i> <span class="text">Thêm mẫu
                                             in</span></a></li>
                             </ul>

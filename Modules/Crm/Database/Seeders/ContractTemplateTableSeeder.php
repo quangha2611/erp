@@ -4,9 +4,10 @@ namespace Modules\Crm\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Crm\Entities\ContractTemplate;
 use Modules\Crm\Entities\ContractType;
 
-class ContractTypeTableSeeder extends Seeder
+class ContractTemplateTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,11 +19,12 @@ class ContractTypeTableSeeder extends Seeder
         Model::unguard();
 
         // $this->call("OthersTableSeeder");
-        ContractType::query()->truncate();
-
-        for ($i=1; $i<=10; $i++) {
-            ContractType::insert([
-                ['name' => 'Loại hợp đồng '.$i, 'template_id' => rand(1,3)],
+        ContractTemplate::query()->truncate();
+        for($i=1; $i<=3; $i++) {
+            ContractTemplate::insert([
+                'name' => 'template'.$i,
+                'company_id' => rand(1,7),
+                'contract_type_id' => rand(1,10),
             ]);
         }
     }

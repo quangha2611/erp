@@ -152,6 +152,15 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
 
         Route::get('/expired','ContractController@contractExpired')->name('get.crm.contract.contractexpired');
 
-        Route::get('/printContract/{id}','ContractController@printContract')->name('get.crm.contract.preview');
+        Route::get('/printContract/{id}','ContractController@printContract');
+
+        Route::get('/template','ContractController@template')->name('get.crm.contract.template');
+
+        Route::get('/template/download/{template_id}','ContractController@downloadTemplate')->name('get.crm.contract.downloadTemplate');
+
+        Route::get('/template/add','ContractController@addTemplate')->name('get.crm.contract.addTemplate');
+
+        Route::post('/template/store','ContractController@storeTemplate')->name('post.crm.contract.storeTemplate');
+
     });
 });

@@ -171,8 +171,39 @@ class ContractController extends Controller
     public function printContract($id)
     {
         $this->contract->printContract($id);
-        $fileName = 'contract'.$id.'.docx';
-        return view('crm::pages.contract.preview',compact('fileName'));
+    }
 
+    public function template()
+    {
+        $templates = $this->contract->getAllContractTemplate();
+        $dataView = [
+            'templates' => $templates,
+        ];
+        return view('crm::pages.contract.template')->with($dataView);
+    }
+
+    public function downloadTemplate($id)
+    {
+        return response()->download(public_path().'/storage/crm/contract/template/template'.$id.'.docx');
+    }
+
+    public function addTemplate()
+    {
+        $companies = Company::all();
+        $dataView = [
+            'companies' => $companies,
+        ];
+        return view('crm::pages.contract.addTemplate')->with($dataView);
+    }
+
+
+    public function storeTemplate(Request $request)
+    {
+        $this->contract->storeTemplate($request->all());
+        if( $request->afterSubmit == 'continue') {
+            return redirect()->route('get.crm.contract.addTemplate');
+        } else {
+            return redirect()->route('get.crm.contract.template');
+        }
     }
 }
