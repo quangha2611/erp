@@ -22,7 +22,7 @@ class ContractTypeTableSeeder extends Seeder
 
         for ($i=1; $i<=10; $i++) {
             ContractType::insert([
-                ['name' => 'Loại hợp đồng '.$i, 'template_id' => rand(1,3)],
+                ['name' => 'Loại hợp đồng '.$i],
             ]);
         }
     }

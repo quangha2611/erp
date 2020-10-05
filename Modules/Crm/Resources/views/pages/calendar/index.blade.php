@@ -131,12 +131,12 @@
                                 <td>
                                     <div class="item-block">
                                         <div class="item-icon"><i class="fa fa-user"></i></div>
-                                        <div class="item-infor">{{ $calendar->customer->name }}</div>
+                                        <div class="item-infor">{{ $calendar->activity->customer->name }}</div>
                                     </div>
                                     <div class="item-block">
-                                        @if ($calendar->customer->company != null)
+                                        @if ($calendar->activity->customer->company != null)
                                             <div class="item-icon"><i class="fa fa-building-o"></i></div>
-                                            <div class="item-infor">{{ $calendar->customer->company }}</div>
+                                            <div class="item-infor">{{ $calendar->activity->customer->company }}</div>
                                         @endif
                                     </div>
                                     <div>
@@ -145,17 +145,17 @@
                                             data-toggle="tooltip" data-placement="top"></i><span
                                             class="label label-success industries-item"
                                             style="margin-left:5px;margin-right:5pxcoler:#ccc">
-                                            {{ $calendar->customer->major->name }}</span>
+                                            {{ $calendar->activity->customer->major->name }}</span>
                                         </div>
                                     <div class="item-block">
-                                        @if ($calendar->customer->website != null)
+                                        @if ($calendar->activity->customer->website != null)
                                             <div class="item-icon"><i class="fa fa-globe"></i></div>
-                                            <div class="item-infor">{{ $calendar->customer->website }}</div>
+                                            <div class="item-infor">{{ $calendar->activity->customer->website }}</div>
                                         @endif
                                     </div>
                                     <div class="item-block">
                                         <div class="item-icon"><i class="fa fa-phone"></i></div>
-                                        <div class="item-infor">{{ $calendar->customer->phone }}</div>
+                                        <div class="item-infor">{{ $calendar->activity->customer->phone }}</div>
                                     </div>
                                 </td>
                                 <td title="88229">{{ $calendar->title }}</td>

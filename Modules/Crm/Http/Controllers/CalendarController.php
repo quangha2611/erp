@@ -26,6 +26,7 @@ class CalendarController extends Controller
     public function index()
     {
         $calendars = $this->calendar->getAll();
+//        dd($calendars[4]->activity->customer->name);
         $companies = Company::where('isDeleted', 0)->get();
         return view('crm::pages.calendar.index',compact('calendars', 'companies'));
     }

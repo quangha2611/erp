@@ -17,7 +17,6 @@ class CreateRequestCallsTable extends Migration
             $table->id();
             $table->date('request_time_call');
             $table->integer('tele_sale_id');
-            $table->integer('author');
             $table->boolean('isDeleted')->default(0);
             $table->timestamps();
         });

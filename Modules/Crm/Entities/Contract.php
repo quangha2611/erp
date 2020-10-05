@@ -19,6 +19,7 @@ class Contract extends Model
         'is_checked',
         'is_deleted',
         'description',
+        'total_value',
         'author',
     ];
 

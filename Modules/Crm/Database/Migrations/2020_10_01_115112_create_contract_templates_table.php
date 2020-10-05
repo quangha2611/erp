@@ -16,7 +16,7 @@ class CreateContractTemplatesTable extends Migration
         Schema::create('contract_templates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('conpany_id');
+            $table->integer('company_id');
             $table->integer('contract_type_id');
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();

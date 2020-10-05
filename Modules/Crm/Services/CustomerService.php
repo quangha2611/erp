@@ -130,6 +130,12 @@ class CustomerService
         return $customers;
     }
 
+    public function getAllAccount()
+    {
+        $accounts = $this->customer->getAccount();
+        return $accounts;
+    }
+
     public function detail($id)
     {
         $customer = $this->customer->find($id);

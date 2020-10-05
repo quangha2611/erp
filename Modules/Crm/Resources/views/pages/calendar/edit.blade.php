@@ -114,19 +114,19 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">ID:</label>
                             <div class="col-md-8">
-                                <span id="target-id">{{$calendar->customer->id}}</span>
+                                <span id="target-id">{{$calendar->activity->customer->id}}</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Tên:</label>
                             <div class="col-md-8">
-                                <span id="target-name">{{$calendar->customer->name}}</span>
+                                <span id="target-name">{{$calendar->activity->customer->name}}</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Website:</label>
                             <div class="col-md-8">
-                                <span id="target-website">{{$calendar->customer->website}}</span>
+                                <span id="target-website">{{$calendar->activity->customer->website}}</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -138,13 +138,13 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Phone:</label>
                             <div class="col-md-8">
-                                <span id="target-phone">{{$calendar->customer->phone}}</span>
+                                <span id="target-phone">{{$calendar->activity->customer->phone}}</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Email:</label>
                             <div class="col-md-8">
-                                <span id="target-type">{{$calendar->customer->email}}</span>
+                                <span id="target-type">{{$calendar->activity->customer->email}}</span>
                             </div>
                         </div>
                     </fieldset>

@@ -10,6 +10,6 @@ class ContractType extends Model
 
     public function template()
     {
-        return $this->hasOne('Modules\Crm\Entities\ContractTemplate','id', 'template_id');
+        return $this->hasOne('Modules\Crm\Entities\ContractTemplate','contract_type_id', 'id');
     }
 }

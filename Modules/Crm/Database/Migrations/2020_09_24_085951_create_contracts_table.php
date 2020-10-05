@@ -25,6 +25,7 @@ class CreateContractsTable extends Migration
             $table->integer('contract_type'); // Loại hợp đồng
             $table->integer('sign_type'); // Hình thức ký
             $table->string('description')->nullable();
+            $table->integer('total_value');
             $table->integer('author');
             $table->boolean('is_checked')->default(0); // Duyệt chưa
             $table->boolean('is_deleted')->default(0);

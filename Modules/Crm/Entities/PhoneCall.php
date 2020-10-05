@@ -12,8 +12,6 @@ class PhoneCall extends Model
         'status_id',
         'result_id',
         'content',
-        'author',
-        'customer_id'
     ];
 
     public function result()
@@ -21,8 +19,4 @@ class PhoneCall extends Model
         return $this->belongsTo('Modules\Crm\Entities\PhoneCallResult','result_id','id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'author', 'id');
-    }
 }

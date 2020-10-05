@@ -473,7 +473,7 @@
                                         <tr>
                                             <td class="colNb" colspan="8"><b>Tổng</b></td>
                                             <td class="colNb">
-                                                <input type="text" disabled value="0" name="value" id="totalMoneyAll">
+                                                <input type="text" readonly name="total_value" id="totalMoneyAll">
                                             </td>
                                             <td class=""></td>
                                         </tr>

@@ -128,9 +128,11 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
     });
 
     Route::prefix('/contract')->group(function(){
+        Route::get('/index','ContractController@index')->name('get.crm.contract.index');
+
         Route::get('/export','ContractController@exportExcel')->name('get.crm.contract.exportExcel');
 
-        Route::get('/index','ContractController@index')->name('get.crm.contract.index');
+        Route::get('/filter','ContractController@filter')->name('get.crm.contract.filter');
 
         Route::get('/show/{id}','ContractController@show')->name('get.crm.contract.show');
 
@@ -152,7 +154,7 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
 
         Route::get('/expired','ContractController@contractExpired')->name('get.crm.contract.contractexpired');
 
-        Route::get('/printContract/{id}','ContractController@printContract');
+        Route::get('/printContract/{id}','ContractController@printContract')->name('get.crm.contract.preview');
 
         Route::get('/template','ContractController@template')->name('get.crm.contract.template');
 
@@ -162,5 +164,9 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
 
         Route::post('/template/store','ContractController@storeTemplate')->name('post.crm.contract.storeTemplate');
 
+    });
+
+    Route::prefix('/report')->group(function () {
+        Route::get('/','ReportController@index');
     });
 });

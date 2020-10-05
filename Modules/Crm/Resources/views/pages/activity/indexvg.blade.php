@@ -194,7 +194,7 @@
                                         <td><i class="fa fa-phone-square"></i></td>
                                         <td>
                                             <p><a href="https://erp.nhanh.vn/crm/activity/indexvg#"
-                                                    class="text-primary">{{ $activity->phoneCall->user->name }}</a></p>
+                                                    class="text-primary">{{ $activity->user->name }}</a></p>
                                             <p class="text-muted fontsize-85">21:32 10/07</p>
                                         </td>
                                         <td>

@@ -14,6 +14,7 @@ use Modules\Crm\Entities\ContractSignType;
 use Modules\Crm\Http\Requests\ContractRequest;
 
 use Modules\Crm\Entities\CustomerMajor;
+use Modules\Crm\Entities\CustomerSource;
 use Modules\Crm\Services\ContractService;
 use Modules\Crm\Services\CustomerService;
 use Modules\Crm\Services\ProductService;
@@ -37,11 +38,37 @@ class ContractController extends Controller
     {
         $contracts     = $this->contract->all();
         $contractTypes = ContractType::all(); 
+        $companies     = Company::all();
+        $signTypes     = ContractSignType::all();
+        $customerResources = CustomerSource::all();
+
         $dataView = [
-            'contracts'     => $contracts,
-            'contractTypes' => $contractTypes
+            'contracts'         => $contracts,
+            'contractTypes'     => $contractTypes,
+            'companies'         => $companies,
+            'signTypes'         => $signTypes,
+            'customerResources' => $customerResources
         ];
-        
+
+        return view('crm::pages.contract.index')->with($dataView);
+    }
+
+    public function filter(Request $request)
+    {
+        $contracts = $this->contract->filter($request->all());
+        $contractTypes = ContractType::all(); 
+        $companies     = Company::all();
+        $signTypes     = ContractSignType::all();
+        $customerResources = CustomerSource::all();
+
+        $dataView = [
+            'contracts'         => $contracts,
+            'contractTypes'     => $contractTypes,
+            'companies'         => $companies,
+            'signTypes'         => $signTypes,
+            'customerResources' => $customerResources
+        ];
+
         return view('crm::pages.contract.index')->with($dataView);
     }
 
@@ -52,7 +79,7 @@ class ContractController extends Controller
     
     public function create()
     {
-        $customers         = $this->customer->getAccount();
+        $customers         = $this->customer->getAllAccount();
         $customerMajors    = $this->customer->getMajor();
         $companies         = Company::all();
         $users             = User::all();

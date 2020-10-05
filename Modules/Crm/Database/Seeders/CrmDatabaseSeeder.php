@@ -31,5 +31,10 @@ class CrmDatabaseSeeder extends Seeder
         $this->call(ContractSignTypeTableSeeder::class);
         $this->call(ContractTransactionTableSeeder::class);
         $this->call(ContractTemplateTableSeeder::class);
+        $this->call(ActivityTableSeeder::class);
+        $this->call(PhoneCallTableSeeder::class);
+        $this->call(CalendarTableSeeder::class);
+        $this->call(RequestCallTableSeeder::class);
+        $this->call(CalendarUserTableSeeder::class);
     }
 }

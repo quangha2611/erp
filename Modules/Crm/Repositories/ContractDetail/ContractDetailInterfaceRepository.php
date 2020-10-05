@@ -6,9 +6,9 @@ use  Modules\Crm\Repositories\BaseInterfaceRepository;
 
 interface ContractDetailInterfaceRepository extends BaseInterfaceRepository
 {
-    public function getContractTotalValue($contract_id);
-
     public function getContractListOfProduct($contract_id);
+
+    public function getContractListOfProductNoValue($contract_id);
 
     public function getContractListOfEmployee($contract_id);
 }

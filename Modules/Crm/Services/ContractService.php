@@ -6,34 +6,52 @@ use Illuminate\Support\Facades\Storage;
 use Modules\Crm\Repositories\Contract\ContractInterfaceRepository;
 use Modules\Crm\Repositories\ContractDetail\ContractDetailInterfaceRepository;
 use Modules\Crm\Repositories\ContractTransaction\ContractTransactionInterfaceRepository;
+use Modules\Crm\Repositories\Customer\CustomerInterfaceRepository;
 use Modules\Crm\Repositories\Template\TemplateInterfaceRepository;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class ContractService
 {
-    protected $contract, $contractDetail, $contractTransaction, $template; 
+    protected $contract, $contractDetail, $contractTransaction, $template, $customer;
 
     public function __construct(ContractInterfaceRepository $contract,
                                 ContractDetailInterfaceRepository $contractDetail,
                                 ContractTransactionInterfaceRepository $contractTransaction,
-                                TemplateInterfaceRepository $template)
+                                TemplateInterfaceRepository $template,
+                                CustomerInterfaceRepository $customer)
     {
         $this->contract            = $contract;
         $this->contractDetail      = $contractDetail;
         $this->contractTransaction = $contractTransaction;
         $this->template            = $template;
+        $this->customer            = $customer;
     }
 
     public function all()
     {
         $contracts = $this->contract->all();
-        // get total value 
-        foreach($contracts as $contract) {
-            $contract['totalValue'] = $this->contractDetail->getContractTotalValue($contract->id);
-        }
+
         // get list of product
         foreach($contracts as $contract) {
-            $contract['listOfProduct'] = $this->contractDetail->getContractListOfProduct($contract->id);
+            $contract['listOfProduct'] = $this->contractDetail->getContractListOfProductNoValue($contract->id);
+        }
+
+        return $contracts;
+    }
+
+    public function filter(array $attributes)
+    {
+        if (isset($attributes['info_customer']) && $attributes['info_customer'] != NULL) {
+            $customer = $this->customer->findByInfo(['info_customer' => $attributes['info_customer']]);
+            if($customer != NULL) {
+                $attributes['customer_id'] = $customer->id;
+            } else {
+                $attributes['customer_id'] = 0;
+            }
+        }
+        $contracts = $this->contract->filter($attributes);
+        foreach($contracts as $contract) {
+            $contract['listOfProduct'] = $this->contractDetail->getContractListOfProductNoValue($contract->id);
         }
 
         return $contracts;
@@ -48,7 +66,7 @@ class ContractService
     }
 
     public function store(array $attributes)
-    {   
+    {
         //store new contract
         $newContract = $this->contract->store($attributes);
 
@@ -58,9 +76,11 @@ class ContractService
                 if ($attributes['employee_product_product'][$j] == $attributes['contract_product'][$i]) {
                     array_push($contractDetails, [
                         'contract_id' => $newContract->id,
-                        'product_id'  => $attributes['contract_product'][$i] + 0, 
+                        'product_id'  => $attributes['contract_product'][$i] + 0,
+                        'product_name'=> $attributes['product_name'][$i],
                         'amount'      => $attributes['contract_product_amount'][$i] + 0,
                         'employee_id' => str_replace("x", "", $attributes['employee_product_employee'][$j]) + 0,
+                        'employee_name' => $attributes['employee_name'][$i],
                         'percent'     => $attributes['employee_product_percent'][$j] + 0,
                     ]);
                 }
@@ -76,10 +96,7 @@ class ContractService
     {
         $contractTransactions = $this->contractTransaction->all();
         foreach( $contractTransactions as $contractTransaction ) {
-            // $contractTransaction->contract['listOfProduct']  = $this->contractDetail->getContractListOfProduct($contractTransaction->contract->id);
-            // $contractTransaction->contract['listOfEmployee'] = $this->contractDetail->getContractListOfEmployee($contractTransaction->contract->id);
-            $contractTransaction->contract['totalValue']     = $this->contractDetail->getContractTotalValue($contractTransaction->contract->id);
-
+            $contractTransaction->contract['totalValue']     = $contractTransaction->contract->total_value;
         }
         return $contractTransactions;
     }
@@ -90,7 +107,6 @@ class ContractService
 
         $contractTransaction->contract['listOfProduct']  = $this->contractDetail->getContractListOfProduct($contractTransaction->contract->id);
         $contractTransaction->contract['listOfEmployee'] = $this->contractDetail->getContractListOfEmployee($contractTransaction->contract->id);
-        $contractTransaction->contract['totalValue']     = $this->contractDetail->getContractTotalValue($contractTransaction->contract->id);
         return $contractTransaction;
     }
 
@@ -115,7 +131,7 @@ class ContractService
         $contract = $this->contract->find($id);
 
         //insert data
-        $templateProcessor = new TemplateProcessor('storage/crm/contract/template/'.$contract->type->template->name.'.docx');
+        $templateProcessor = new TemplateProcessor('storage/crm/contract/template/template'.$contract->type->template->id.'.docx');
 
         $templateProcessor->setValues(
             [
@@ -141,5 +157,6 @@ class ContractService
     {
         return $this->template->store($attributes);
     }
+
 
 }

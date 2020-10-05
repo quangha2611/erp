@@ -9,7 +9,6 @@ class RequestCall extends Model
     protected $fillable = [
         'request_time_call',
         'tele_sale_id',
-        'author',
     ];
 
     public function teleSale()

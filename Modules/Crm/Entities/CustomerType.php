@@ -12,4 +12,5 @@ class CustomerType extends Model
     {
         return $this->hasOne('Modules\Crm\Entities\Customer','id','type_id');
     }
+
 }

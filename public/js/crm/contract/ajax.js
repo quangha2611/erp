@@ -83,7 +83,7 @@ $(document).ready(function () {
 
                     var htmlProduct = '<tr>'
                     + '<input type="hidden" name="contract_product[]" value="' + product.id + '">'
-                    + '<td> <input type="text" readonly value="' +  product.name + '"> </td>'  //name
+                    + '<td> <input type="text" readonly name="product_name[]" value="' +  product.name + '"> </td>'  //name
                     + '<td> <input min="1" name="contract_product_amount[]" id="product' + product.id + 'amount" type="number" value="1" required> </td>' // amount
                     + '<td> <input min="1" type="number" value="1"> </td>' //months
                     + '<td> <input id="product' + product.id + 'price" type="text" readonly value="' +  product.price + '"> </td>' // price
@@ -152,7 +152,7 @@ $(document).ready(function () {
 
                     var htmlEmployee = '<tr>'
                     + '<input type="hidden" name="employee_product_employee[]" value="' + employee.id + '" >'
-                    + '<td><input type="text" readonly value=\"' + employee.name + '\"></td>' // name
+                    + '<td><input type="text" readonly name="employee_name[]" value=\"' + employee.name + '\"></td>' // name
                     + '<td>'
                         + '<select style="width: 100%" name="employee_product_product[]" id="employee' + employee.id + 'product" required></select>'
                     + '</td>' //product

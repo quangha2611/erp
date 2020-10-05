@@ -16,23 +16,18 @@
     </ul>
     <div class="filterContainer">
         <form method="GET" name="crmContractTemplateFilter" class="form-inline lolify"
-            role="form" id="crmContractTemplateFilter">
+            role="form" id="crmContractTemplateFilter" action={{ route('get.crm.contract.filter') }}>
+            @csrf
             <div class="col-md-10 lolify-default">
 
                 <div class="form-group">
-                    <input type="text" name="contractCustomer" maxlength="225"
+                    <input type="text" name="info_customer" maxlength="225"
                         placeholder="Bên khách" data-toggle="tooltip"
                         title="Thông tin bên khách ghi trên hợp đồng. Tên cá nhân, công ty, số điện thoại, email."
                         id="contractCustomer" class="form-control" value=""> </div>
                 <div class="form-group">
-                    <input type="text" name="id" maxlength="255" placeholder="ID hợp đồng"
+                    <input type="text" name="contract_id" maxlength="255" placeholder="ID hợp đồng"
                         id="id" class="form-control" value=""> </div>
-                <input type="hidden" name="commissionEmployeeId" id="commissionEmployeeId"
-                    class="form-control" value=""> <input type="hidden" name="createdById"
-                    id="createdById" class="form-control" value=""> <input type="hidden"
-                    name="approvedById" id="approvedById" class="form-control" value=""> <input
-                    type="hidden" name="stampedById" id="stampedById" class="form-control"
-                    value="">
                 <div class="form-group">
                     <input name="submit" type="submit" id="btnFilterCrmContact"
                         class="form-control btn btn-primary" value="Lọc"> </div>
@@ -64,75 +59,18 @@
             </div>
             <div class="col-md-12 lolify-extend" style="display: none">
                 <div class="form-group">
-                    <input type="text" name="customerName" maxlength="225"
-                        placeholder="Khách hàng hệ thống" data-toggle="tooltip"
-                        title="Thông tin khách hàng trên hệ thống. Ô nhập này là dạng suggest"
-                        id="customerName" class="form-control ui-autocomplete-input" value=""
-                        autocomplete="off"> </div>
-                <div class="form-group">
-                    <input type="text" name="serviceName" maxlength="225"
-                        placeholder="Tên Gian hàng" data-toggle="tooltip" id="serviceName"
-                        class="form-control" value=""> </div>
-                <div class="form-group">
-                    <input type="text" name="leadId" maxlength="255" placeholder="ID thông tin"
-                        id="leadId" class="form-control" value=""> </div>
-                <div class="form-group">
-                    <input type="text" name="accountId" maxlength="255"
-                        placeholder="ID khách hàng" id="accountId" class="form-control"
-                        value=""> </div>
-                <div class="form-group">
-                    <select name="companyId" id="companyId"
-                        class="form-control select2-hidden-accessible" tabindex="-1"
-                        aria-hidden="true">
-                        <option value="">- Công ty -</option>
-                        <option value="10">VNP group</option>
-                        <option value="2">--Công ty cổ phần Vật Giá Việt Nam</option>
-                        <option value="315">----Vật giá - Hà Nội</option>
-                        <option value="319">----Vật giá - Hồ Chí Minh</option>
-                        <option value="365">----Vật giá - Hải Phòng</option>
-                        <option value="387">----WeSave</option>
-                        <option value="389">----123doc.org</option>
-                        <option value="390">----Cunghocvui.com</option>
-                        <option value="391">----123job.vn</option>
-                        <option value="392">----9houz.com</option>
-                        <option value="393">----123dok.com</option>
-                        <option value="321">--Công ty cổ phần TMDT Bảo Kim</option>
-                        <option value="322">----Bảo Kim - Hà Nội</option>
-                        <option value="323">----Bảo Kim - Hồ Chí Minh</option>
-                        <option value="324">--Công ty cổ phần Nhanh.vn</option>
-                        <option value="1">----Nhanh.vn</option>
-                        <option value="366">----Nhanh.vn Đà Nẵng</option>
-                        <option value="395">----Nhanh.vn HCM</option>
-                        <option value="379">--Westay</option>
-                        <option value="384">--Công ty cổ phần WeHelp</option>
-                        <option value="398">--WeLove</option>
-                    </select><span
-                        class="select2 select2-container select2-container--default select2-container--below"
-                        dir="ltr" style="width: auto;"><span class="selection"><span
-                                class="select2-selection select2-selection--single"
-                                role="combobox" aria-haspopup="true" aria-expanded="false"
-                                tabindex="0" aria-labelledby="select2-companyId-container"><span
-                                    class="select2-selection__rendered"
-                                    id="select2-companyId-container"
-                                    title="----Nhanh.vn">----Nhanh.vn</span><span
-                                    class="select2-selection__arrow" role="presentation"><b
-                                        role="presentation"></b></span></span></span><span
-                            class="dropdown-wrapper" aria-hidden="true"></span></span> </div>
-                <div class="form-group">
-                    <select name="supplyCompanyId" id="supplyCompanyId" class="form-control">
+                    <select name="company_id" id="supplyCompanyId" class="form-control">
                         <option value="">- Cty cung cấp sp -</option>
-                        <option value="1">Nhanh.vn</option>
-                        <option value="10">VNP group</option>
-                        <option value="2">---Công ty cổ phần Vật Giá Việt Nam</option>
-                        <option value="315">------Vật giá - Hà Nội</option>
-                        <option value="391">------123job.vn</option>
-                        <option value="14">---Easycare.vn</option>
-                        <option value="321">---Công ty cổ phần TMDT Bảo Kim</option>
-                        <option value="384">---Công ty cổ phần WeHelp</option>
-                    </select> </div>
-                <div class="form-group">
-                    <select name="departmentId" id="departmentId"
-                        class="form-control select2-hidden-accessible" tabindex="-1"
+                        @include('crm::pages.contract.include._inc_recursiveInput',[
+                            'data' => $companies,
+                            'parentId' => NULL,
+                            'note' => '--'
+                        ])
+                    </select> 
+                </div>
+                {{-- <div class="form-group">
+                    <select name="departmentId" id=""
+                        class="form-control" tabindex="-1"
                         aria-hidden="true">
                         <option value="">- Phòng ban -</option>
                         <option value="1270">Kinh doanh Nhanh.vn</option>
@@ -176,36 +114,17 @@
                         <option value="1386">-- Sale Marketing</option>
                         <option value="1419">-- Ecomcare</option>
                         <option value="1457">-- Phòng dịch vụ SEO GG MAPS</option>
-                    </select><span
-                        class="select2 select2-container select2-container--default select2-container--below"
-                        dir="ltr" style="width: auto;"><span class="selection"><span
-                                class="select2-selection select2-selection--single"
-                                role="combobox" aria-haspopup="true" aria-expanded="false"
-                                tabindex="0"
-                                aria-labelledby="select2-departmentId-container"><span
-                                    class="select2-selection__rendered"
-                                    id="select2-departmentId-container" title="- Phòng ban -">-
-                                    Phòng ban -</span><span class="select2-selection__arrow"
-                                    role="presentation"><b
-                                        role="presentation"></b></span></span></span><span
-                            class="dropdown-wrapper" aria-hidden="true"></span></span> </div>
+                    </select>
+                </div> --}}
                 <div class="form-group">
-                    <select name="status" id="status" class="form-control">
-                        <option value="">- Trạng thái -</option>
-                        <option value="1">Duyệt</option>
-                        <option value="2">Hủy</option>
-                        <option value="3">Mới</option>
-                    </select> </div>
-                <div class="form-group">
-                    <select name="type" id="type" class="form-control">
+                    <select name="sign_type" id="type" class="form-control">
                         <option value="">- Hình thức -</option>
-                        <option value="1">Kí mới</option>
-                        <option value="2">Tái kí</option>
-                        <option value="3">Mở rộng</option>
-                        <option value="4">Bán chéo</option>
+                        @foreach ($signTypes as $signType)
+                            <option value="{{ $signType->id }}">{{ $signType->name }}</option>
+                        @endforeach
                     </select> </div>
                 <div class="form-group">
-                    <select name="serviceType" id="serviceType" class="form-control">
+                    <select name="contract_type" id="serviceType" class="form-control">
                         <option value="">- Loại -</option>
                         @foreach ($contractTypes as $type)
                             <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -216,29 +135,25 @@
                         <option value="">- Loại khách hàng -</option>
                         <option value="1">Công ty</option>
                         <option value="2">Cá nhân</option>
-                    </select> </div>
+                    </select> 
+                </div>
                 <div class="form-group">
                     <input type="text" name="commissionName" maxlength="225"
                         placeholder="Doanh số cho" id="commissionName"
                         class="form-control ui-autocomplete-input" value="" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="createdByName" maxlength="225"
+                    <input type="text" name="author" maxlength="225"
                         placeholder="Người tạo" id="createdByName"
                         class="form-control ui-autocomplete-input" value="" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="approvedByName" maxlength="225"
+                    <input type="text" name="checker" maxlength="225"
                         placeholder="Người Duyệt" id="approvedByName"
                         class="form-control ui-autocomplete-input" value="" autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <input type="text" name="stampedByName" maxlength="225"
-                        placeholder="Người triển khai" id="stampedByName"
-                        class="form-control ui-autocomplete-input" value="" autocomplete="off">
-                </div>
                 <br>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <select name="productId[]" multiple="multiple" id="productId"
                         class="form-control" style="display: none;">
                         <optgroup label="Nhanh.vn">
@@ -540,54 +455,33 @@
                             <option value="584">123job - Gói mở hồ sơ ứng viên</option>
                         </optgroup>
                     </select>
-                </div>
+                </div> --}}
                 <div class="form-group">
-                    <input type="text" name="signedDateRange" maxlength="225"
-                        placeholder="Ngày kí" class="form-control date-range-picker"
-                        id="signedDateRange" value=""> </div>
+                    <input type="text"name="created_at" maxlength="225"
+                        placeholder="Ngày tạo" class="form-control"
+                        value="" onfocus="(this.type='date')" onfocusout="(this.type='text')"> </div>
                 <div class="form-group">
-                    <input type="text" name="createdDateRange" maxlength="225"
-                        placeholder="Ngày tạo" class="form-control date-range-picker"
-                        id="createdDateRange" value=""> </div>
+                    <input type="text"name="end_date" maxlength="225"
+                        placeholder="Ngày kết thúc" class="form-control"
+                        value="" onfocus="(this.type='date')" onfocusout="(this.type='text')"> </div>
                 <div class="form-group">
-                    <input type="text" name="endDateRange" maxlength="225"
-                        placeholder="Ngày kết thúc" class="form-control date-range-picker"
-                        id="endDateRange" value=""> </div>
+                    <input type="text"name="checker_time" maxlength="225"
+                        placeholder="Ngày duyệt" class="form-control"
+                        value="" onfocus="(this.type='date')" onfocusout="(this.type='text')"> </div>
                 <div class="form-group">
-                    <input type="text" name="approvedDateRange" maxlength="225"
-                        placeholder="Ngày duyệt" class="form-control date-range-picker"
-                        id="approvedDateRange" value=""> </div>
+                    <input type="text" name="expired_date" maxlength="225"
+                        placeholder="Ngày hết hạn" class="form-control"
+                        value="" onfocus="(this.type='date')" onfocusout="(this.type='text')"> </div>
                 <div class="form-group">
-                    <input type="text" name="expiredDateRange" maxlength="225"
-                        placeholder="Ngày hết hạn" class="form-control date-range-picker"
-                        id="expiredDateRange" value=""> </div>
-                <div class="form-group">
-                    <input type="text" name="startDateRange" maxlength="225"
-                        placeholder="Ngày bắt đầu" class="form-control date-range-picker"
-                        id="startDateRange" value=""> </div>
+                    <input type="text" name="start_date" maxlength="225"
+                        placeholder="Ngày bắt đầu" class="form-control"
+                        value="" onfocus="(this.type='date')" onfocusout="(this.type='text')"> </div>
                 <div class="form-group">
                     <input type="text" name="fromValue" maxlength="225" placeholder="Giá từ"
-                        class="form-control initAutonumeric" id="fromValue" value=""> </div>
+                        class="form-control initAutonumeric" id="from_value" value=""> </div>
                 <div class="form-group">
                     <input type="text" name="toValue" maxlength="225" placeholder="Giá đến"
-                        class="form-control initAutonumeric" id="toValue" value=""> </div>
-                <div class="form-group">
-                    <select name="hasService" id="hasService" class="form-control">
-                        <option value="">- Trạng thái gian hàng -</option>
-                        <option value="1">Đã có GH</option>
-                        <option value="-1">Chưa có GH</option>
-                    </select> </div>
-                <div class="form-group">
-                    <select name="hasRequirement" id="hasRequirement" class="form-control">
-                        <option value="">- Thực hiện Y/C dịch vụ -</option>
-                        <option value="1">Đã thực hiện</option>
-                        <option value="-1">Chưa thực hiện </option>
-                    </select> </div>
-                <div class="form-group">
-                    <select name="hasFile" id="hasFile" class="form-control">
-                        <option value="">- File đính kèm -</option>
-                        <option value="1">Có file đính kèm</option>
-                    </select> </div>
+                        class="form-control initAutonumeric" id="to_value" value=""> </div>
                 <div class="form-group">
                     <select name="isProfile" id="isProfile" class="form-control">
                         <option value="">- Loại hồ sơ -</option>
@@ -603,31 +497,12 @@
                         <option value="1">Có giảm giá</option>
                     </select> </div>
                 <div class="form-group">
-                    <input type="text" name="applyTransactionDateRange" maxlength="225"
-                        placeholder="Ngày duyệt phiếu thu"
-                        class="form-control date-range-picker" id="applyTransactionDateRange"
-                        value=""> </div>
-                <div class="form-group">
-                    <select name="statusPay" id="statusPay" class="form-control">
-                        <option value="">- thanh toán -</option>
+                    <select name="is_checked" id="statusPay" class="form-control">
+                        <option value="">- Thanh toán -</option>
                         <option value="1">Chưa thanh toán</option>
-                        <option value="4">Đã có thanh toán</option>
-                        <option value="2">Thanh toán 1 phần</option>
-                        <option value="3">Đã thanh toán hết</option>
-                    </select> </div>
-                <div class="form-group">
-                    <select name="billStatus" id="billStatus" class="form-control">
-                        <option value="">- Hóa đơn phiếu thu -</option>
-                        <option value="1">Đã xuất hóa đơn</option>
-                        <option value="-1">Chưa xuất hóa đơn</option>
-                    </select> </div>
-                <div class="form-group">
-                    <select name="billContractStatus" id="billContractStatus"
-                        class="form-control">
-                        <option value="">- Hóa đơn hợp đồng-</option>
-                        <option value="1">Đã xuất hóa đơn</option>
-                        <option value="-1">Chưa xuất hóa đơn</option>
-                    </select> </div>
+                        <option value="0">Đã thanh toán</option>
+                    </select> 
+                </div>
                 <div class="form-group">
                     <input type="text" name="billDateRange" maxlength="225"
                         placeholder="Ngày xuất hóa đơn" class="form-control date-range-picker"
@@ -639,23 +514,9 @@
                 <div class="form-group">
                     <select name="source" id="source" class="form-control">
                         <option value="">- Nguồn thông tin -</option>
-                        <option value="-1">Chưa cập nhật nguồn</option>
-                        <option value="999">Đã cập nhật nguồn</option>
-                        <option value="1">Data bàn giao - FB ADS</option>
-                        <option value="26">Data bàn giao - Fanpage</option>
-                        <option value="25">Data bàn giao - Google Ads</option>
-                        <option value="22">Data bàn giao - SEO</option>
-                        <option value="19">Data bàn giao- Hotline</option>
-                        <option value="8">Data bàn giao - Không có mã</option>
-                        <option value="11">Data bàn giao - Email marketing</option>
-                        <option value="21">Data bàn giao - SĐT quét từ QC</option>
-                        <option value="3">Data bàn giao - Được giới thiệu</option>
-                        <option value="12">Hội thảo, sự kiện, đi thị trường</option>
-                        <option value="13">Khách tự liên hệ kinh doanh</option>
-                        <option value="15">Kinh doanh được giới thiệu</option>
-                        <option value="17">TeleSale</option>
-                        <option value="24">Seeding/ Inbox/ Spam</option>
-                        <option value="100">Khác</option>
+                        @foreach ($customerResources as $source)
+                            <option value="{{$source->id}}">{{$source->name}}</option>
+                        @endforeach
                     </select> </div>
                 <div class="form-group">
                     <select name="numberPaid" id="numberPaid" class="form-control">
@@ -816,9 +677,9 @@
                 @endphp
                 @foreach($contracts as $contract)
                     @php
-                        $totalAllContractValue += intval($contract->totalValue); 
+                        $totalAllContractValue += intval($contract->total_value);
                         if ($contract->is_checked == 1) {
-                            $totalAllContractValueChecked += intval($contract->totalValue); 
+                            $totalAllContractValueChecked += intval($contract->total_value);
                         }
                     @endphp
                     <tr class="">
@@ -840,7 +701,7 @@
                                 {{ $contract->customer->major->name }}
                             </label>
                         </td>
-                        <td class="AttAmount colNb" style="display: table-cell;">{{ number_format($contract->totalValue) }}</td>
+                        <td class="AttAmount colNb" style="display: table-cell;">{{ number_format($contract->total_value) }}</td>
                         <td class="AttPaid colNb" style="display: table-cell;">
                             <p style="color: #F73838;">
                                 @if ($contract->is_checked == 1)
@@ -918,306 +779,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="confirmReapproveModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Xác nhận</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" class="referId" value="">
-                    <div class="alert alert-warning">Bạn muốn hoàn duyệt hợp đồng này?</div>
-                </div>
-                <div class="modal-footer">
 
-                    <button type="button" class="btn btn-primary btnSave">Đồng ý</button>
-                    <button type="button" class="btn btn-default"
-                        data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="errorModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Lỗi</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default"
-                        data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="alertModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Thông báo!</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default reload"
-                        data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <div class="modal fade" id="loadingModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div style="font-size: 3em; text-align: center;">
-                        <i class="fa fa-spin fa-cog"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="acceptRequirementModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"><i class="fa fa-hand-o-right"></i> Kích hoạt yêu cầu
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="col-md-12 title "><span><i class="fa fa-check"></i></span>Thông
-                        tin yêu cầu </div>
-                    <div class="row">
-                        <div id="show-requirement-area"></div>
-                    </div>
-                    <div class="col-md-12 title "><span><i class="fa fa-check"></i></span>Thông
-                        tin kích hoạt </div>
-                    <div class="row">
-                        <div class="form-horizontal">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-label col-md-3">Ngày bắt đầu:</label>
-                                    <div class="col-md-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i
-                                                    class="fa fa-calendar-o"></i></span>
-                                            <input type="text" value="24/07/2020"
-                                                class="datepicker form-control  startedDate">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label col-md-3">Ngày kết thúc:</label>
-                                    <div class="col-md-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i
-                                                    class="fa fa-calendar-o"></i></span>
-                                            <input type="text" value="24/07/2020"
-                                                class="datepicker form-control  endedDate">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label col-md-3">Tài khoản:</label>
-                                    <div class="col-md-8">
-                                        <div class="col-md-6">
-                                            <input name="valueType" value="1" class="valueType"
-                                                type="radio"><span>TK chính</span>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input name="valueType" value="2" class="valueType"
-                                                type="radio"><span>TK Marketing</span>
-                                        </div>
-                                        <div class="description text-muted fontsize-85"><i>Lưu ý
-                                                chọn chính đúng tài khoản nạp để phục vụ việc
-                                                báo cáo</i></div>
-
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label col-md-3">Số tiền thực
-                                        hiện:</label>
-                                    <div class="col-md-8">
-                                        <input value="" type="text"
-                                            class="form-control isAutonumeric confirmValue">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label col-md-3">Phí duy trì ( hoặc phí
-                                        khác ):</label>
-                                    <div class="col-md-8">
-                                        <input value="" type="text"
-                                            class="form-control isAutonumeric otherValue">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label col-md-3">khuyến mại:</label>
-                                    <div class="col-md-8">
-                                        <input value="" type="text"
-                                            class="form-control isAutonumeric extraValue">
-                                    </div>
-                                </div>
-                                <input value="" type="hidden" id="requirementId"
-                                    class="form-control isAutonumeric">
-                                <div class="alert alert-info"><b><i class="fa fa-edit"></i> Lưu
-                                        ý:</b> SỐ TIỀN THỰC HIỆN và PHÍ DUY TRÌ sẽ được tính để
-                                    trừ nợ nhân viên khi có hợp đồng! KHUYẾN MẠI thì không!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary accept-btn">Xác nhận</button>
-                    <button type="button" class="btn btn-default"
-                        data-dismiss="modal">Đóng</button>
-
-
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Xác nhận</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" class="referId" value="">
-                    <div class="alert alert-warning">
-                        Bạn muốn xóa hợp đồng này! </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary accept">Có</button>
-                    <button type="button" class="btn btn-default"
-                        data-dismiss="modal">Không</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="updateStampedEmployeeModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Cập nhật người triển khai</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="form-horizontal">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <span class="col-md-4">Người triển khai:</span>
-                                    <div class="col-md-8">
-                                        <input type="hidden" class="contractId" value="">
-                                        <input type="text"
-                                            class="stampedContractName form-control ui-autocomplete-input"
-                                            placeholder="" autocomplete="off">
-                                        <input type="hidden" class="stampedContractId">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <span class="col-md-4">Ngày triển khai:</span>
-                                    <div class="col-md-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i
-                                                    class="fa fa-calendar-o"></i></span>
-                                            <input type="text" value="24/07/2020"
-                                                class="datepicker form-control suportedDate active">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button"
-                        class="btn btn-primary save-accept-contract-support-btn">Xác
-                        nhận</button>
-                    <button type="button" class="btn btn-default reload"
-                        data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <div class="modal fade" id="alertModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Thông báo!</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-
-                    <button type="button" class="btn btn-default reload"
-                        data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
-    <div id="updateOriginalStatusModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                        aria-hidden="true">×</button>
-                    <h4 class="modal-title">
-                        Cập nhật trạng thái hợp đồng gốc
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal clearfix">
-                        <div style="margin-bottom: 5px;" class="alert alert-info col-md-12">
-                            Bạn vui lòng chọn 1 trong 2 trạng thái hợp đồng gốc
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkbox">
-                                <label>
-                                    <input name="originalStatus" class="originalStatus"
-                                        value="1" type="checkbox">
-                                    <span>Còn nợ</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="checkbox">
-                                <label>
-                                    <input name="originalStatus" class="originalStatus"
-                                        value="2" type="checkbox">
-                                    <span>Đã nộp</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary confirmUpdateOriginalStatus">
-                        Lưu
-                    </button>
-                    <button type="button" class="btn btn-default"
-                        data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <style>
         #nav-table {
             display: inline-block;

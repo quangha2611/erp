@@ -9,8 +9,10 @@ class ContractDetail extends Model
     protected $fillable = [
         'contract_id',
         'product_id',
+        'product_name',
         'amount',
         'employee_id',
+        'employee_name',
         'percent',
     ];
 

@@ -87,7 +87,7 @@
                         <label class="col-md-4 col-xs-4">Số tiền: </label>
                         <div class="col-md-8">
                             <span class=" ">
-                                <b>{{ number_format($contractTransaction->contract['totalValue']) }}</b>
+                                <b>{{ number_format($contractTransaction->contract->total_value) }}</b>
                             </span>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                         <div class="col-md-8">
                             <a target="_blank"
                                 href="https://erp.nhanh.vn/crm/contract/detail?id=63135">
-                                {{ number_format($contractTransaction->contract['totalValue']) }} </a>
+                                {{ number_format($contractTransaction->contract->total_value) }} </a>
                         </div>
                     </div>
                     <div class="form-group">
@@ -270,12 +270,12 @@
                                         <td>{{ $product['name'] }}</td>
                                         <td class="col-align-right">{{ number_format(intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) }}</td>
                                         <td class="col-align-right">{{ round((intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) 
-                                                                        *100 / intval($contractTransaction->contract['totalValue'])).'%' }}</td>
+                                                                        *100 / intval($contractTransaction->contract->total_value)).'%' }}</td>
                                     </tr>
                                 @endforeach
                                 <tr class="success">
                                     <td><b>Tổng</b></td>
-                                    <td class="col-align-right ">{{ number_format($contractTransaction->contract['totalValue']) }}</td>
+                                    <td class="col-align-right ">{{ number_format($contractTransaction->contract->total_value) }}</td>
                                     <td class="col-align-right ">100%</td>
                                 </tr>
                             </tbody>
@@ -370,12 +370,12 @@
                                         <td>{{ $product['name'] }}</td>
                                         <td class="col-align-right">{{ number_format(intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) }}</td>
                                         <td class="col-align-right">{{ round((intval($product['price']) * intval($product['amount']) * (intval($product['vat'])+100) / 100) 
-                                                                        *100 / intval($contractTransaction->contract['totalValue'])).'%' }}</td>
+                                                                        *100 / intval($contractTransaction->contract->total_value)).'%' }}</td>
                                     </tr>
                                 @endforeach
                                 <tr class="success">
                                     <td><b>Tổng</b></td>
-                                    <td class="col-align-right ">{{ number_format($contractTransaction->contract['totalValue']) }}</td>
+                                    <td class="col-align-right ">{{ number_format($contractTransaction->contract->total_value) }}</td>
                                     <td class="col-align-right ">100%</td>
                                 </tr>
                             </tbody>

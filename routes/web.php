@@ -265,7 +265,7 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Contract.scheduce');
         })->name('contractScheduce');
     
-        Route::get('template', function () {
+        Route::get('templatex', function () {
             return view('Layout.Crm.Contract.template');
         })->name('contractTemplate');
     

@@ -216,7 +216,7 @@ class CustomerController extends Controller
     
     public function edit($id)
     {
-        
+        $customer = $this->customer->find($id);
         $majors = CustomerMajor::all();
         $sources = CustomerSource::all();
         return view('crm::pages.account.edit', compact('customer', 'majors', 'sources'));

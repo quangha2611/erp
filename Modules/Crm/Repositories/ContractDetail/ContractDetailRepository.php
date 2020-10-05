@@ -14,31 +14,37 @@ class ContractDetailRepository extends BaseRepository implements ContractDetailI
         return new ContractDetail();
     }
 
-    public function getContractTotalValue($contract_id) {
-        $products = DB::table('contract_details')->select('contract_id','product_id','amount')
-                                     ->where('contract_id', $contract_id)
-                                     ->distinct()
-                                     ->get();
-        $totalValue = 0;
-        foreach($products as $product) {
-            $totalValue += DB::table('products')->find($product->product_id)->price * $product->amount * (DB::table('products')->find($product->product_id)->vat + 100) / 100;
-        }
-        return $totalValue;
-    }
-
-    public function getContractListOfProduct($contract_id) {
-        $products = DB::table('contract_details')->select('contract_id','product_id','amount')
+    public function getContractListOfProduct($contract_id)
+    {
+        $products = DB::table('contract_details')->select('contract_id','product_id','product_name', 'amount')
                                      ->where('contract_id', $contract_id)
                                      ->distinct()
                                      ->get();
         $listOfProduct = [];
         foreach($products as $product) {
             array_push($listOfProduct, [
-                'id'     => $product->product_id, 
-                'name'   => DB::table('products')->find($product->product_id)->name,
+                'id'     => $product->product_id,
+                'name'   => $product->product_name,
                 'amount' => $product->amount,
                 'vat'    => DB::table('products')->find($product->product_id)->vat,
                 'price'  => DB::table('products')->find($product->product_id)->price,
+            ]);
+        }
+        return $listOfProduct;
+    }
+
+    public function getContractListOfProductNoValue($contract_id)
+    {
+        $products = DB::table('contract_details')->select('contract_id','product_id','product_name','amount')
+            ->where('contract_id', $contract_id)
+            ->distinct()
+            ->get();
+        $listOfProduct = [];
+        foreach($products as $product) {
+            array_push($listOfProduct, [
+                'id'     => $product->product_id,
+                'name'   => $product->product_name,
+                'amount' => $product->amount,
             ]);
         }
         return $listOfProduct;

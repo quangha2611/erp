@@ -20,11 +20,9 @@ class ContractTemplateTableSeeder extends Seeder
 
         // $this->call("OthersTableSeeder");
         ContractTemplate::query()->truncate();
-        for($i=1; $i<=3; $i++) {
+        for($i=1; $i<=10; $i++) {
             ContractTemplate::insert([
-                'name' => 'template'.$i,
-                'company_id' => rand(1,7),
-                'contract_type_id' => rand(1,10),
+                'name' => 'template'.$i, 'company_id' => rand(1,7), 'contract_type_id' => $i,
             ]);
         }
     }

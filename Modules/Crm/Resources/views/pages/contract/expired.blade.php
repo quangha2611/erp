@@ -1626,9 +1626,12 @@
                                     {{ $contract->customer->name }}
                                 </a>
                             </td>
-                            <td class="col-align-left text-success"><a
-                                    href="https://erp.nhanh.vn/crm/contract/detail?id=5584"><i
-                                        class="fa fa-check text-success"></i> 27/05/2106</a></td>
+                            <td class="col-align-left text-success">
+                                <a href="https://erp.nhanh.vn/crm/contract/detail?id=5584">
+                                    <i class="fa fa-check text-success"></i>
+                                    {{ $contract->expired_date }}
+                                </a>
+                            </td>
                             <td class="col-align-left">{{ $contract->type->name }} ({{ $contract->signType->name }})</td>
                             <td class="col-align-left"></td>
                         </tr>

@@ -17,8 +17,10 @@ class CreateContractDetailsTable extends Migration
             $table->id();
             $table->integer('contract_id');
             $table->integer('product_id');
+            $table->string('product_name');
             $table->integer('amount');
             $table->integer('employee_id');
+            $table->string('employee_name');
             $table->integer('percent');
             $table->timestamps();
         });
