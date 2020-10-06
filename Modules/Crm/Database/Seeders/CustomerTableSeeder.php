@@ -31,10 +31,12 @@ class CustomerTableSeeder extends Seeder
                     'source_id' => rand(1,10),
                     'type_id' => 1 ,
                     'level_id' => rand(1,9),
-                    'is_account' => 1,
+                    'is_account' => rand(0,1),
                     'customer_status' => rand(1,4),
                     'address' => 'Hải Phòng',
                     'author' => 1,
+                    'created_at' => '2020-'.rand(9,10).'-'.rand(1,29).' '.rand(1,23).':'.rand(0,59).':'.rand(0,59),
+                    'updated_at' => '2020-'.rand(9,10).'-'.rand(1,29).' '.rand(1,23).':'.rand(0,59).':'.rand(0,59),
                     'identification' => '0000000000'.$i],
             ]);
         }

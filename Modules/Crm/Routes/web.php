@@ -167,6 +167,8 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
     });
 
     Route::prefix('/report')->group(function () {
-        Route::get('/','ReportController@index');
+        Route::get('/','ReportController@index')->name('get.crm.report.index');
+
+        Route::get('/filter','ReportController@filter')->name('get.crm.report.filter');
     });
 });

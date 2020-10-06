@@ -20,12 +20,13 @@ class CalendarTableSeeder extends Seeder
         // $this->call("OthersTableSeeder");
         Calendar::query()->truncate();
 
-        for ($i=1; $i<=50; $i++) {
-            Calendar::create([
+        for ($i=1; $i<=200; $i++) {
+            Calendar::insert([
                 'company_id' => rand(1,7),
                 'title' => 'Tiêu đề lịch hẹn '.$i,
                 'begin_date_time' => '2020-'.rand(1,12).'-'.rand(1,29).' '.rand(1,23).':'.rand(0,59).':'.rand(0,59),
                 'location' => 'Đại điểm '.$i,
+                'created_at' => '2020-'.rand(1,12).'-'.rand(1,29).' '.rand(1,23).':'.rand(0,59).':'.rand(0,59),
                 'description' => 'Miêu tả cuộc gặp '.$i,
             ]);
         }

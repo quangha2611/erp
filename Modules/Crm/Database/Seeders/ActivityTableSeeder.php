@@ -20,15 +20,15 @@ class ActivityTableSeeder extends Seeder
         // $this->call("OthersTableSeeder");
         DB::table('activities')->truncate();
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 200; $i++) {
             DB::table('activities')->insert([
                 [
                     'title' => 'Hành động '.$i,
                     'action_id' => rand(1,7),
                     'content' => 'Nội dung hành động '.$i ,
-                    'calendar_id' => $i > 50 ? $i - 50 : $i,
-                    'phone_call_id' => $i > 50 ? $i - 50 : $i,
-                    'request_call_id' => $i > 50 ? $i - 50 : $i,
+                    'calendar_id' => $i,
+                    'phone_call_id' => $i,
+                    'request_call_id' => $i,
                     'customer_id' => rand(1,20),
                     'author' => rand(1,3),
                 ]

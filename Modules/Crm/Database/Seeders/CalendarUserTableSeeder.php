@@ -20,7 +20,7 @@ class CalendarUserTableSeeder extends Seeder
         // $this->call("OthersTableSeeder");
         DB::table('calendar_user')->truncate();
 
-        for ($i = 1; $i <= 150; $i++) {
+        for ($i = 1; $i <= 200; $i++) {
             DB::table('calendar_user')->insert([
                 'calendar_id' => $i <= 50 ? $i : ($i <= 100 ? $i-50 : $i - 100),
                 'user_id' => rand(1,3),

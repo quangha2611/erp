@@ -5,13 +5,29 @@ namespace Modules\Crm\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Crm\Services\ReportService;
 
 class ReportController extends Controller
 {
+    protected  $report;
+
+    public function __construct(ReportService $report)
+    {
+        $this->report = $report;
+    }
 
     public function index()
     {
-        return view('crm::pages.report.index');
+        $reports = $this->report->index();
+        $dataView = [
+            'reports' => $reports
+        ];
+        return view('crm::pages.report.index')->with($dataView);
+    }
+
+    public function filter(Request $request)
+    {
+        dd($request->all());
     }
 
 

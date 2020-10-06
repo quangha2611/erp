@@ -21,13 +21,14 @@ class PhoneCallTableSeeder extends Seeder
         // $this->call("OthersTableSeeder");
         DB::table('phone_calls')->truncate();
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 200; $i++) {
             DB::table('phone_calls')->insert([
                 [
                     'title' => 'Cuộc gọi thứ '.$i,
                     'content' => 'Nội dung cuôc gọi thứ '.$i,
                     'direction' => 1,
-                    'status_id' => 1,
+                    'status_id' => rand(1,2),
+                    'created_at' => '2020-'.rand(1,12).'-'.rand(1,29).' '.rand(1,23).':'.rand(0,59).':'.rand(0,59),
                     'result_id' => rand(1,5),
                 ]
             ]);
