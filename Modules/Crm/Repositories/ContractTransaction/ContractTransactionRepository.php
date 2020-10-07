@@ -13,6 +13,11 @@ class ContractTransactionRepository extends BaseRepository implements ContractTr
         return new ContractTransaction();
     }
 
+    public function allWithContract()
+    {
+        return $this->model->with('contract')->where('is_deleted', 0)->get();
+    }
+
 
 }
 

@@ -16,6 +16,11 @@ class CustomerRepository extends BaseRepository implements CustomerInterfaceRepo
         return new Customer();
     }
 
+    public function allWithEmployee()
+    {
+        return $this->model->with('users')->where('is_deleted', 0)->get();
+    }
+
     public function getCustomerByInfo($attribute)
     {
        return $this->model->where('email',$attribute)->orWhere('phone',$attribute)->orWhere('website',$attribute)->first();

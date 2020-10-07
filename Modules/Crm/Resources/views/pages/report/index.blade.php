@@ -221,8 +221,8 @@
                                         {{  $report['meetings'] }}
                                     </td>
                                     <td class="colNumber"></td>
-                                    <td class="colNumber">
-                                        10
+                                    <td class="colNumber" {!! $report['employees'] != 0 ? '' : 'style="color: white"' !!}>
+                                        {{ $report['employees'] }}
                                     </td>
                                     <td class="colNumber" {!! $report['accounts'] != 0 ? '' : 'style="color: white"' !!}>
                                         {{ $report['accounts'] }}

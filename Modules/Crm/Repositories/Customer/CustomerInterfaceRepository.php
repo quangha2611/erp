@@ -6,6 +6,8 @@ use Modules\Crm\Repositories\BaseInterfaceRepository;
 
 interface CustomerInterfaceRepository extends BaseInterfaceRepository
 {
+    public  function allWithEmployee();
+
     public function getCustomerByInfo($attribute);
     
     public function storeByCalendar(array $attributes);

@@ -9,7 +9,7 @@ class ContractTransaction extends Model
     protected $fillable = [
         'contract_id',
         'type_id',
-        'auhtor',
+        'author',
         'checker_id',
         'checker_time',
         'is_checked',

@@ -6,7 +6,7 @@ use  Modules\Crm\Repositories\BaseInterfaceRepository;
 
 interface ContractTransactionInterfaceRepository extends BaseInterfaceRepository
 {
-
+    public function allWithContract();
 }
 
 ?>

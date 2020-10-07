@@ -2,13 +2,16 @@
 
 namespace Modules\Crm\Services;
 
+use function date_parse;
 use function explode;
+use function gettype;
 use Modules\Crm\Repositories\Activity\ActivityInterfaceRepository;
 use Modules\Crm\Repositories\Calendar\CalendarInterfaceRepository;
 use Modules\Crm\Repositories\Contract\ContractInterfaceRepository;
 use Modules\Crm\Repositories\ContractTransaction\ContractTransactionInterfaceRepository;
 use Modules\Crm\Repositories\Customer\CustomerInterfaceRepository;
 use Modules\Crm\Repositories\PhoneCall\PhoneCallInterfaceRepository;
+use function str_replace;
 use function strtotime;
 
 class ReportService
@@ -52,6 +55,54 @@ class ReportService
         return $reports;
     }
 
+    public function filter(array $attributes)
+    {
+        $reports = [];
+
+        if (isset($attributes['dateRange']) && $attributes['dateRange'] != NULL) {
+            $dateRange = explode(' - ',$attributes['dateRange']);
+            $from      = $this->changeFormatDate($dateRange[0]);
+            $to        = $this->changeFormatDate($dateRange[1]) ;
+
+            while (strtotime($from) < strtotime($to)) {
+                $reports[$from]["customers"] = 0;
+                $reports[$from]["employees"] = 0;
+                $reports[$from]["phoneCallsDone"] = 0;
+                $reports[$from]["phoneCallsFalse"] = 0;
+                $reports[$from]["calendars"] = 0;
+                $reports[$from]["meetings"] = 0;
+                $reports[$from]["accounts"] = 0;
+                $reports[$from]["contracts"] = 0;
+                $reports[$from]["totalValueContracts"] = 0;
+                $reports[$from]["totalContractTransactions"] = 0;
+                $from = date('Y-m-d', strtotime($from . ' +1 day'));
+            }
+        }
+
+        $reports = $this->countCustomerInDay($reports);
+        $reports = $this->countPhoneCallInDay($reports);
+        $reports = $this->countCalendarInDay($reports);
+        $reports = $this->countMeetingInDay($reports);
+        $reports = $this->countAccountInDay($reports);
+        $reports = $this->countContractInDay($reports);
+        $reports = $this->countContractTransaction($reports);
+
+        // format key yyyy-mm-dd to dd-mm-yyyy
+        foreach ($reports as $date => $report) {
+            $reports[date("d/m/Y", strtotime($date))] = $reports[$date];
+            unset($reports[$date]);
+        }
+
+        return $reports;
+    }
+
+    public function changeFormatDate($date)
+    {
+        //Change dd/mm/yyyy to yyyy/mm/dd
+        $newDate = explode('-',str_replace('/','-', $date));
+        return "$newDate[2]-$newDate[1]-$newDate[0]";
+    }
+
 
     public function initReportData($reports)
     {
@@ -63,6 +114,7 @@ class ReportService
         for ($i = 1; $i <= $countDayInCurrentMonth; $i++) {
             $i < 10 ? $day = "0$i" : $day = $i;
             $reports["$currentYear-$currentMonth-$day"]["customers"] = 0;
+            $reports["$currentYear-$currentMonth-$day"]["employees"] = 0;
             $reports["$currentYear-$currentMonth-$day"]["phoneCallsDone"] = 0;
             $reports["$currentYear-$currentMonth-$day"]["phoneCallsFalse"] = 0;
             $reports["$currentYear-$currentMonth-$day"]["calendars"] = 0;
@@ -78,12 +130,13 @@ class ReportService
 
     public function countCustomerInDay($reports)
     {
-        $customers   = $this->customer->all();
+        $customers   = $this->customer->allWithEmployee();
         foreach ($customers as $customer) {
             // get day to increase count customer
             $dayToIncrease = substr($customer->created_at, 0, 10);
             if (isset($reports[$dayToIncrease])) {
                 $reports[$dayToIncrease]["customers"]++;
+                $reports[$dayToIncrease]["employees"] = count($customer->users);
             }
         }
         return $reports;
@@ -162,7 +215,8 @@ class ReportService
 
     public function  countContractTransaction($reports)
     {
-        $contractTransactions = $this->contractTransactions->all();
+        $contractTransactions = $this->contractTransactions->allWithContract();
+        $contractTransactions;
         foreach ($contractTransactions as $contractTransaction) {
             // get day to increase count contract
             $dayToIncrease = substr($contractTransaction->checker_time, 0, 10);

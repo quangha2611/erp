@@ -27,7 +27,11 @@ class ReportController extends Controller
 
     public function filter(Request $request)
     {
-        dd($request->all());
+        $reports = $this->report->filter($request->all());
+        $dataView = [
+            'reports' => $reports
+        ];
+        return view('crm::pages.report.index')->with($dataView);
     }
 
 
