@@ -21,7 +21,7 @@ class CreateContractsTable extends Migration
             $table->date('sign_date'); // Ngày ký
             $table->date('start_date'); // Ngày bắt đầu
             $table->date('end_date')->nullable(); // Ngày kết thúc
-            $table->date('expired_date')->nullable(); // Ngày kết thúc
+            $table->date('expired_date'); // Ngày hết hạn
             $table->integer('contract_type'); // Loại hợp đồng
             $table->integer('sign_type'); // Hình thức ký
             $table->string('description')->nullable();

@@ -454,7 +454,6 @@
             }
         </style>
     </div>
-</div>
                 
 @endsection
 

@@ -180,16 +180,7 @@
                                             tiêu</span></a></li>
                             </ul>
                         </li>
-                        <li class=""><a class="js-sub-menu-toggle" rel="/crm/campaign/index"><i
-                                    class="fa fa-suitcase"></i> <span class="text">Marketing Campaign</span>
-                                <i class="toggle-icon fa fa-angle-left"></i></a>
-                            <ul class="sub-menu "></ul>
-                        </li>
-                        <li><a class="" href="{{ route('billSalary') }}">
-                                <i class="fa fa-money"></i> 
-                                <span class="text">Doanh số triển khai &amp; vận chuyển</span> 
-                            </a>
-                        </li>
+
                         <li class=""><a class="js-sub-menu-toggle" rel="/crm/report/target"><i
                                     class="fa fa-bar-chart-o"></i> <span class="text">Báo cáo</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>

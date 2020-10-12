@@ -9,6 +9,10 @@ interface ContractInterfaceRepository extends BaseInterfaceRepository
     public function updateContractExpried();
 
     public function expired();
+
+    public function countContractInRangeTime($startDate, $endDate);
+
+    public function getContractIsCheckedWithCustomer();
 }
 
 

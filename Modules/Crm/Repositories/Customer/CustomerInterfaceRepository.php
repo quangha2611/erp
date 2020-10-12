@@ -6,7 +6,9 @@ use Modules\Crm\Repositories\BaseInterfaceRepository;
 
 interface CustomerInterfaceRepository extends BaseInterfaceRepository
 {
-    public  function allWithEmployee();
+    public function allWithEmployeeAndSource();
+
+    public function countNewAccountNameInRangeTime($startDate, $endDate);
 
     public function getCustomerByInfo($attribute);
     

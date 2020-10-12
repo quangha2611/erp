@@ -127,7 +127,7 @@
                                     aria-hidden="true">
                                     <option value="">- Thành phố -</option>
                                     @for( $i = 0; $i < count($citys); $i++)
-                                        <option value="{{ $citys[$i]->ID }}">{{ $citys[$i]->Title }}</option>
+                                        <option value="{{ $citys[$i]->Title }}">{{ $citys[$i]->Title }}</option>
                                     @endfor
                                 </select>
                                 @error('city_id')

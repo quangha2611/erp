@@ -318,7 +318,7 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Report.comparedepartment');
         })->name('reportComparedepartment');
     
-        Route::get('customer', function () {
+        Route::get('customerx', function () {
             return view('Layout.Crm.Report.customer');
         })->name('reportCustomer');
     

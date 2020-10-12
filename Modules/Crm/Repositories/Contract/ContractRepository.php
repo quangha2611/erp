@@ -78,6 +78,20 @@ class ContractRepository extends BaseRepository implements ContractInterfaceRepo
 
         return $contracts->get();
     }
+
+    public function countContractInRangeTime($startDate, $endDate)
+    {
+        $contracts = $this->model->query();
+        $contracts->where('created_at', '>=' ,$startDate." 00:00:00");
+        $contracts->where('created_at', '<=' ,$endDate." 00:00:00");
+        return $contracts->with('customer')->get();
+    }
+
+    public function getContractIsCheckedWithCustomer()
+    {
+        $contracts = $this->model->query();
+        return $contracts->where('is_checked', 1)->with('customer')->get();
+    }
 }
 
 

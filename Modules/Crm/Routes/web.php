@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
     Route::prefix('/calendar')->group(function(){
         Route::get('/index','CalendarController@index')->name('get.crm.calendar.index');
@@ -170,5 +169,11 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::get('/','ReportController@index')->name('get.crm.report.index');
 
         Route::get('/filter','ReportController@filter')->name('get.crm.report.filter');
+
+        Route::get('/accountSource','ReportController@accountSource')->name('get.crm.report.accountSource');
+
+        Route::get('/accountSource/filter','ReportController@accountSourceFilter')->name('get.crm.report.accountSource.filter');
+
+        Route::get('/customer','ReportController@customer')->name('get.crm.report.customer');
     });
 });

@@ -20,9 +20,11 @@ class CustomerUserTableSeeder extends Seeder
         DB::table('customer_user')->truncate();
 
         for($i=1; $i<=20; $i++) {
-            DB::table('customer_user')->insert([
-                ['customer_id' => rand(1,20), 'user_id' => rand(1,3)],
-            ]);
+            for ($j=1; $j<=3; $j++) {
+                DB::table('customer_user')->insert([
+                    ['customer_id' => $i, 'user_id' => rand(1, 3)],
+                ]);
+            }
         }
     }
 }

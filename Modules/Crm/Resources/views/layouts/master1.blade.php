@@ -40,11 +40,11 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu ">
-                            <li class=""><a href="{{ route('reportIndex') }}">
+                            <li class=""><a href="{{ route('get.crm.report.index') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Chăm sóc</span>
                                 </a></li>
-                            <li class=""><a href="{{ route('reportCustomer') }}">
+                            <li class=""><a href="{{ route('get.crm.report.customer') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Khách hàng</span>
                                 </a></li>
@@ -56,7 +56,7 @@
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Trạng thái KH theo Sản phẩm</span>
                                 </a></li>
-                            <li class=""><a href="{{ route('reportSourceaccount') }}">
+                            <li class=""><a href="{{ route('get.crm.report.accountSource') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Nguồn khách hàng</span>
                                 </a></li>
@@ -128,39 +128,7 @@
                                 </a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" rel="/crm/report/index">
-                            <i class="fa fa-bar-chart-o"></i>
-                            <span class="text">Gian hàng</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu ">
-                            <li class=""><a href="{{ route('reportContractforservice') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Doanh số gian hàng</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportCarevg') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Chăm sóc Gian Hàng</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportRawserviceproduct') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Gian hàng - sản phẩm</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportServiceexpired') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Hợp đồng hết hạn trong tháng</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportServiceexpired') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Gian hàng hết hạn</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportMeetingvg') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Đến gặp của NV theo từng mục đích</span>
-                                </a></li>
-                        </ul>
-                    </li>
+
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" rel="/crm/report/index">
                             <i class="fa fa-bar-chart-o"></i>
@@ -178,23 +146,7 @@
                                 </a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" rel="/crm/report/index">
-                            <i class="fa fa-bar-chart-o"></i>
-                            <span class="text">Thực hiện dịch vụ</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu ">
-                            <li class=""><a href="{{ route('reportContractrequirement') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">THDV theo công ty</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportConfirmrequirement') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">THDV theo người thực hiện</span>
-                                </a></li>
-                        </ul>
-                    </li>
+
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" rel="/crm/report/index">
                             <i data-togle="tooltip" data-title="Danh sách" class="fa fa-cogs"></i>

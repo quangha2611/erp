@@ -335,8 +335,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">
-                                    Ngày hết hạn: </label>
+                                <label class="col-md-4 control-label required">
+                                    Ngày hết hạn: <span class="required">*</span></label>
                                 <div class="col-md-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i

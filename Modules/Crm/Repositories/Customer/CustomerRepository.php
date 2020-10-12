@@ -16,9 +16,18 @@ class CustomerRepository extends BaseRepository implements CustomerInterfaceRepo
         return new Customer();
     }
 
-    public function allWithEmployee()
+    public function allWithEmployeeAndSource()
     {
-        return $this->model->with('users')->where('is_deleted', 0)->get();
+        return $this->model->with('users', 'source', 'major', 'status')->where('is_deleted', 0)->get();
+    }
+
+    public function countNewAccountNameInRangeTime($startDate, $endDate)
+    {
+        $accounts = $this->model->query();
+        $accounts->where('is_account', 1);
+        $accounts->where('updated_at', '<=' , $endDate." 00:00:00");
+        $accounts->where('updated_at', '>=' , $startDate." 00:00:00");
+        return $accounts->with('users', 'source')->get();
     }
 
     public function getCustomerByInfo($attribute)

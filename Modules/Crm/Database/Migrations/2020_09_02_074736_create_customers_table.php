@@ -21,7 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('phone')->unique();
             $table->integer('major_id');
             $table->string('email')->unique();
-            $table->integer('city_id');         
+            $table->string('city_id');
             $table->integer('district_id')->nullable(); 
             $table->string('source_id');
             $table->string('description')->nullable();

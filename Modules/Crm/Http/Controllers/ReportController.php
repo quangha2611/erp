@@ -34,6 +34,34 @@ class ReportController extends Controller
         return view('crm::pages.report.index')->with($dataView);
     }
 
+    public function accountSource()
+    {
+        $reports = $this->report->accountSource();
+        $dataView = [
+            'reports' => $reports
+        ];
+        return view('crm::pages.report.accountSource')->with($dataView);
+
+    }
+
+    public function accountSourceFilter(Request $request)
+    {
+        $reports = $this->report->accountSourceFilter($request->all());
+        $dataView = [
+            'reports' => $reports
+        ];
+        return view('crm::pages.report.accountSource')->with($dataView);
+    }
+
+    public function customer()
+    {
+        $reports = $this->report->customer();
+        $dataView = [
+            'reports' => $reports
+        ];
+        return view('crm::pages.report.customer')->with($dataView);
+    }
+
 
     public function create()
     {
