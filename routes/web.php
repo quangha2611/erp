@@ -310,7 +310,7 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Report.department');
         })->name('reportDepartment');
     
-        Route::get('location', function () {
+        Route::get('locationx', function () {
             return view('Layout.Crm.Report.location');
         })->name('reportLocation');
     
@@ -370,7 +370,7 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Report.expirationcontract');
         })->name('reportExpirationcontract');
     
-        Route::get('bill', function () {
+        Route::get('billx', function () {
             return view('Layout.Crm.Report.bill');
         })->name('reportBill');
         
@@ -422,7 +422,7 @@ Route::prefix('crm')->group(function() {
             return view('Layout.Crm.Report.target');
         })->name('reportTarget');
     
-        Route::get('employee', function () {
+        Route::get('employeex', function () {
             return view('Layout.Crm.Report.employee');
         })->name('reportEmployee');
     

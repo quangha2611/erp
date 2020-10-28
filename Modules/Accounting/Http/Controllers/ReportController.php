@@ -54,7 +54,6 @@ class ReportController extends Controller
         return view('accounting::pages.report.category',compact('companies','funds','types','transactions','currentDate','countDay','currentFund'));
     }
 
-
     public function filterCategory(Request $request)
     {
         $companies = Company::all();

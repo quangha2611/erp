@@ -2,14 +2,18 @@
 
 namespace Modules\Crm\Http\Controllers;
 
+use App\Exports\ReportBillExport;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use Modules\Crm\Entities\CustomerLevel;
 use Modules\Crm\Services\ReportService;
+use function view;
 
 class ReportController extends Controller
 {
-    protected  $report;
+    protected $report;
 
     public function __construct(ReportService $report)
     {
@@ -18,7 +22,7 @@ class ReportController extends Controller
 
     public function index()
     {
-        $reports = $this->report->index();
+        $reports  = $this->report->index();
         $dataView = [
             'reports' => $reports
         ];
@@ -27,16 +31,18 @@ class ReportController extends Controller
 
     public function filter(Request $request)
     {
-        $reports = $this->report->filter($request->all());
+        $reports  = $this->report->filter($request->all());
         $dataView = [
             'reports' => $reports
         ];
         return view('crm::pages.report.index')->with($dataView);
     }
 
+
+    // ACCOUNT SOURCE
     public function accountSource()
     {
-        $reports = $this->report->accountSource();
+        $reports  = $this->report->accountSource();
         $dataView = [
             'reports' => $reports
         ];
@@ -46,76 +52,85 @@ class ReportController extends Controller
 
     public function accountSourceFilter(Request $request)
     {
-        $reports = $this->report->accountSourceFilter($request->all());
+        $reports  = $this->report->accountSourceFilter($request->all());
         $dataView = [
             'reports' => $reports
         ];
         return view('crm::pages.report.accountSource')->with($dataView);
     }
 
+    // CUSTOMER
+
     public function customer()
     {
-        $reports = $this->report->customer();
+        $reports  = $this->report->customer();
         $dataView = [
             'reports' => $reports
         ];
         return view('crm::pages.report.customer')->with($dataView);
     }
 
+    // CONTRACT
 
-    public function create()
+    public function expiredContract()
     {
-        return view('crm::create');
+        $reports  = $this->report->expiredContract();
+        $dataView = [
+            'reports' => $reports
+        ];
+        return view('crm::pages.report.expiredContract')->with($dataView);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(Request $request)
+    public function bill()
     {
-        //
+        $reports  = $this->report->bill();
+        $dataView = [
+            'reports' => $reports
+        ];
+        return view('crm::pages.report.bill')->with($dataView);
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
+    public function billExcel()
     {
-        return view('crm::show');
+        return Excel::download(new ReportBillExport($this->report), 'bill.xlsx');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
+    // REVENUE
+
+    public function location()
     {
-        return view('crm::edit');
+        $reports          = $this->report->location()[0];
+        $totalAllMoney    = $this->report->location()[1];
+        $totalAllContract = $this->report->location()[2];
+        $dataView         = [
+            'reports' => $reports,
+            'totalAllMoney' => $totalAllMoney,
+            'totalAllContract' => $totalAllContract
+        ];
+
+        return view('crm::pages.report.location')->with($dataView);
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
+    // EMPLOYEE
+
+    public function employee()
     {
-        //
+        $reports = $this->report->employee();
+        $dataView = [
+            'reports' => $reports,
+        ];
+        return view('crm::pages.report.employee')->with($dataView);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
+    // REPORT EMPLOYEE BY LEVEL CUSTOMER
+    public function employeeByLevelCustomer ()
     {
-        //
+        $reports = $this->report->employeeByLevelCustomer();
+        $dataView = [
+            'reports' => $reports,
+            'customerLevels' => CustomerLevel::all()
+        ];
+        return view('crm::pages.report.levelCustomer')->with($dataView);
     }
+
 }

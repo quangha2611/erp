@@ -28,7 +28,15 @@ class ContractRepository extends BaseRepository implements ContractInterfaceRepo
 
     public function expired()
     {
-        $contracts = $this->model->where('is_deleted',false)->orderBy('expired_date', 'desc')->get();
+        $contracts = $this->model->where('is_deleted',true)->orderBy('expired_date', 'desc')->get();
+        return $contracts;
+    }
+
+    public function expiredWithAll()
+    {
+        $contracts = $this->model->where('is_deleted',true)
+                                 ->with(['customer.level','customer.users'])
+                                 ->get();
         return $contracts;
     }
 
@@ -90,7 +98,19 @@ class ContractRepository extends BaseRepository implements ContractInterfaceRepo
     public function getContractIsCheckedWithCustomer()
     {
         $contracts = $this->model->query();
-        return $contracts->where('is_checked', 1)->with('customer')->get();
+        return $contracts->where('is_checked', 1)->with('customer','customer')->get();
+    }
+
+    public function getAllContractWithCustomer()
+    {
+        $contracts = $this->model->with('customer', 'customer.type')->get();
+        return $contracts;
+    }
+
+    public function getAllContractWithDetail()
+    {
+        $contracts = $this->model->with('details', 'details.product')->get();
+        return $contracts;
     }
 }
 

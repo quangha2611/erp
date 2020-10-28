@@ -28,7 +28,8 @@
     @yield('css')
 
     <link rel="manifest" href="https://erp.nhanh.vn/manifest.json">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
         .cke {
             visibility: hidden;
@@ -77,7 +78,8 @@
                                       href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
                                       aria-owns="parentMenuLeftMobile" aria-haspopup="true"><span class="mm-sronly">Close submenu
 							(Công ty)</span></a><a class="mm-title"
-                                                   href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile" aria-hidden="true">Công
+                                                   href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
+                                                   aria-hidden="true">Công
                     ty</a></div>
             <ul class="mm-listview">
                 <li><a class="mm-next" href="https://erp.nhanh.vn/crm/account/index#mm-2" aria-owns="mm-2"
@@ -117,7 +119,8 @@
                                       href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
                                       aria-owns="parentMenuLeftMobile" aria-haspopup="true"><span class="mm-sronly">Close submenu
 							(Nhân sự)</span></a><a class="mm-title"
-                                                   href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile" aria-hidden="true">Nhân
+                                                   href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
+                                                   aria-hidden="true">Nhân
                     sự</a></div>
             <ul class="mm-listview">
                 <li><a class="mm-next" href="https://erp.nhanh.vn/crm/account/index#mm-5" aria-owns="mm-5"
@@ -253,7 +256,8 @@
                                       href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
                                       aria-owns="parentMenuLeftMobile" aria-haspopup="true"><span class="mm-sronly">Close submenu (Tài
 							liệu)</span></a><a class="mm-title"
-                                               href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile" aria-hidden="true">Tài
+                                               href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
+                                               aria-hidden="true">Tài
                     liệu</a></div>
             <ul class="mm-listview">
                 <li><a class="mm-next" href="https://erp.nhanh.vn/crm/account/index#mm-13" aria-owns="mm-13"
@@ -280,7 +284,8 @@
                                       href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
                                       aria-owns="parentMenuLeftMobile" aria-haspopup="true"><span class="mm-sronly">Close submenu (Kế
 							toán)</span></a><a class="mm-title"
-                                               href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile" aria-hidden="true">Kế
+                                               href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
+                                               aria-hidden="true">Kế
                     toán</a></div>
             <ul class="mm-listview">
                 <li><a class="mm-next" href="https://erp.nhanh.vn/crm/account/index#mm-15" aria-owns="mm-15"
@@ -308,7 +313,8 @@
                                       href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
                                       aria-owns="parentMenuLeftMobile" aria-haspopup="true"><span class="mm-sronly">Close submenu
 							(Công việc)</span></a><a class="mm-title"
-                                                     href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile" aria-hidden="true">Công
+                                                     href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
+                                                     aria-hidden="true">Công
                     việc</a></div>
             <ul class="mm-listview">
                 <li><a class="" href="https://erp.nhanh.vn/work/task/myview"><i class="fa fa-home"></i> <span
@@ -419,7 +425,8 @@
         </div>
         <div class="mm-panel mm-hidden mm-hasnavbar" id="mm-22" aria-hidden="true">
             <div class="mm-navbar"><a class="mm-btn mm-prev" href="https://erp.nhanh.vn/crm/account/index#mm-16"
-                                      aria-owns="mm-16" aria-haspopup="true"><span class="mm-sronly">Close submenu ( )</span></a><a
+                                      aria-owns="mm-16" aria-haspopup="true"><span
+                            class="mm-sronly">Close submenu ( )</span></a><a
                         class="mm-title" href="https://erp.nhanh.vn/crm/account/index#mm-16" aria-hidden="true"> </a>
             </div>
             <ul class="sub-menu mm-listview">
@@ -440,7 +447,8 @@
                                       href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
                                       aria-owns="parentMenuLeftMobile" aria-haspopup="true"><span class="mm-sronly">Close submenu
 							(Khách hàng)</span></a><a class="mm-title"
-                                                      href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile" aria-hidden="true">Khách
+                                                      href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
+                                                      aria-hidden="true">Khách
                     hàng</a></div>
             <ul class="mm-listview">
                 <li><a class="mm-next" href="https://erp.nhanh.vn/crm/account/index#mm-24" aria-owns="mm-24"
@@ -675,7 +683,8 @@
                                       href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
                                       aria-owns="parentMenuLeftMobile" aria-haspopup="true"><span class="mm-sronly">Close submenu (Cải
 							tiến)</span></a><a class="mm-title"
-                                               href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile" aria-hidden="true">Cải
+                                               href="https://erp.nhanh.vn/crm/account/index#parentMenuLeftMobile"
+                                               aria-hidden="true">Cải
                     tiến</a></div>
             <ul class="mm-listview">
                 <li><a class="mm-next" href="https://erp.nhanh.vn/crm/account/index#mm-36" aria-owns="mm-36"
@@ -742,7 +751,8 @@
                     <!-- logo -->
                     <div class="col-md-2 logo">
                         <a href="https://erp.nhanh.vn/crm"> <img alt="Nhanh.vn"
-                                                                 src="{{ asset('asset/images/nhanh_white.png') }}" style="height: 30px">
+                                                                 src="{{ asset('asset/images/nhanh_white.png') }}"
+                                                                 style="height: 30px">
                         </a>
                         <!-- responsive top menu bar icon -->
 
@@ -842,7 +852,6 @@
                                             <!-- end notification: general -->
                                         </ul>
                                     </div>
-
 
 
                                     <!-- logged user and the menu -->

@@ -20,18 +20,12 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu ">
-                            <li class=""><a href="{{ route('reportDepartment') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Doanh thu theo phòng ban</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportLocation') }}">
+                            <li class="">
+                                <a href="{{ route('reportLocation') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Doanh thu theo địa điểm</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportComparedepartment') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">So sánh phòng ban tháng trước</span>
-                                </a></li>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -79,10 +73,6 @@
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">THDV theo công ty</span>
                                 </a></li>
-                            <li class=""><a href="{{ route('reportVgnewcustomer') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Hợp đồng mới (VG)</span>
-                                </a></li>
                             <li class=""><a href="{{ route('reportExpirationcontract') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Hợp đồng hết hạn</span>
@@ -100,10 +90,6 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu ">
-                            <li class=""><a href="{{ route('reportTarget') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Nhân viên VG</span>
-                                </a></li>
                             <li class=""><a href="{{ route('reportEmployee') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Doanh thu theo nhân viên</span>
@@ -119,10 +105,6 @@
                             <li class=""><a href="{{ route('reportSurvey') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Khảo sát kinh doanh</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportEmployeecarevg') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Chăm sóc khách hàng VG</span>
                                 </a></li>
                             <li class=""><a href="{{ route('reportAccounttoemployeeHome') }}">
                                     <i class="fa fa-bar-chart-o"></i>
@@ -173,10 +155,6 @@
                             <li class=""><a href="{{ route('reportProductforemployee') }}">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span class="text">Doanh thu NV theo Sản phẩm</span>
-                                </a></li>
-                            <li class=""><a href="{{ route('reportVgnewcustomer') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    <span class="text">Hợp đồng mới (VG)</span>
                                 </a></li>
                         </ul>
                     </li>

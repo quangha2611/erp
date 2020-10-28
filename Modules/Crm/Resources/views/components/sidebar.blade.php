@@ -185,53 +185,29 @@
                                     class="fa fa-bar-chart-o"></i> <span class="text">Báo cáo</span> <i
                                     class="toggle-icon fa fa-angle-left"></i></a>
                             <ul class="sub-menu ">
-                                <li class=""><a class="" href="{{ route('reportTarget') }}"><i
-                                            class="fa fa-bar-chart-o"></i> <span class="text">Nhân viên
-                                            VG</span></a></li>
-                                <li class=""><a class="" href="{{ route('reportEmployee') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.report.employee') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Doanh thu theo
                                             nhân viên</span></a></li>
                                 <li class=""><a class="" href="{{ route('reportRank') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Xếp
                                             hạng</span></a></li>
-                                <li class=""><a class=""
-                                        href="{{ route('reportContractforservice') }}"><i
-                                            class="fa fa-bar-chart-o"></i> <span class="text">Doanh số gian
-                                            hàng</span></a></li>
-                                <li class=""><a class="" href="{{ route('reportRevanuevg') }}"><i
-                                            class="fa fa-bar-chart-o"></i> <span class="text">Doanh Số
-                                            VG</span></a></li>
                                 <li class=""><a class="" href="{{ route('reportSurvey') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Khảo sát kinh
                                             doanh</span></a></li>
-                                <li class=""><a class=""
-                                        href="{{ route('reportVgnewcustomer') }}"><i
-                                            class="fa fa-bar-chart-o"></i> <span class="text">Hợp đồng mới
-                                            (VG)</span></a></li>
-                                <li class=""><a class="" href="{{ route('reportIndex') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.report.index') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Chăm
                                             sóc</span></a></li>
                                 <li class=""><a class=""
-                                        href="{{ route('reportEmployeecare') }}"><i
+                                        href="{{ route('get.crm.report.index') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Chăm sóc khách
                                             hàng</span></a></li>
                                 <li class=""><a class=""
-                                        href="{{ route('reportEmployeecarevg') }}"><i
-                                            class="fa fa-bar-chart-o"></i> <span class="text">Chăm sóc khách
-                                            hàng VG</span></a></li>
-                                <li class=""><a class=""
-                                        href="{{ route('reportAccounttoemployee') }}"><i
+                                        href="{{ route('get.crm.report.levelCustomer') }}"><i
                                             class="fa fa-bar-chart-o"></i> <span class="text">Trạng thái
                                             khách theo nhân viên</span></a></li>
-                                <li class=""><a class="" href="{{ route('reportRevenuetomonth') }}"><i
-                                    class="fa fa-bar-chart-o"></i> <span class="text">Doanh số từng
-                                            tháng cho nvkd</span></a></li>
-                                <li class=""><a class="" href="{{ route('reportService') }}"><i
+                                <li class=""><a class="" href="{{ route('get.crm.report.customer') }}"><i
                                     class="fa fa-bar-chart-o"></i> <span class="text">Dịch vụ khách
                                             hàng</span></a></li>
-                                <li class=""><a class="" href="{{ route('reportCarekpi') }}"><i
-                                    class="fa fa-bar-chart-o"></i> <span class="text">KPI chăm sóc
-                                            theo nhân viên</span></a></li>
                             </ul>
                         </li>
                     </ul>

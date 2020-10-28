@@ -175,5 +175,17 @@ Route::group(['prefix' => 'crm', 'middleware' => ['auth','web']], function(){
         Route::get('/accountSource/filter','ReportController@accountSourceFilter')->name('get.crm.report.accountSource.filter');
 
         Route::get('/customer','ReportController@customer')->name('get.crm.report.customer');
+
+        Route::get('/expiredContract','ReportController@expiredContract')->name('get.crm.report.expiredContract');
+
+        Route::get('/bill','ReportController@bill')->name('get.crm.report.bill');
+
+        Route::get('/bill/excel','ReportController@billExcel')->name('get.crm.report.bill.excel');
+
+        Route::get('/location','ReportController@location')->name('get.crm.report.location');
+
+        Route::get('/employee','ReportController@employee')->name('get.crm.report.employee');
+
+        Route::get('/levelCustomer', 'ReportController@employeeByLevelCustomer')->name('get.crm.report.levelCustomer');
     });
 });
